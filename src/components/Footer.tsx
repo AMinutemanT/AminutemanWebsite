@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Instagram, Twitter, Linkedin, Mail, Phone, MapPin, ArrowRight } from 'lucide-react';
 
+import logo from './../logo.png';
+
 export function Footer() {
   return (
     <footer className="bg-black text-white">
@@ -11,9 +13,9 @@ export function Footer() {
           <div className="lg:col-span-4 space-y-6">
             <Link to="/" className="inline-flex items-center gap-2">
               <img 
-                src={"src/logo.png"}
+                src={logo}
                 alt="Aminuteman Technologies Logo" 
-                className="h-6 sm:h-8 w-auto"
+                className="h-6 sm:h-8 w-24"
               />
             </Link>
             <p className="text-sm sm:text-base text-gray-400">

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Menu, X, Plus } from 'lucide-react';
 import { Link } from 'react-router-dom';
-// import logo from 'src/logo.png';
+import logo from './../logo.png';
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -71,9 +71,9 @@ export function Navbar() {
           <div className="flex items-center h-full ">
             <Link to="/" className="flex items-center h-full px-4" onClick={handleLinkClick}>
               <img 
-                src={"src/logo.png"}
+                src={logo}
                 alt="Logo" 
-                className="h-8 w-auto"
+                className="h-8 w-28"
               />
             </Link>
             <div className="h-full w-px bg-white" />
