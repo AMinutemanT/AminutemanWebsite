@@ -2,6 +2,7 @@ import React, { useEffect, useRef, Suspense, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, PerspectiveCamera, Environment, useGLTF } from '@react-three/drei';
 import { Radar, Layers, DollarSign, Plane } from 'lucide-react';
+import model from "../images/model.jpg"
 
 function Aircraft() {
   // Using a reliable public GLTF model from Google's Model-Viewer samples
@@ -55,7 +56,7 @@ export function Wingmans() {
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
-          <img src="src/images/model.jpg" alt="model image" />
+          <img src={model} alt="model image" />
           {/* <Canvas>
             <Suspense fallback={null}>
               <PerspectiveCamera makeDefault position={[0, 0, 5]} />
