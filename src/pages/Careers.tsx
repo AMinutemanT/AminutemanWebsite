@@ -2,6 +2,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Send, Briefcase, Quote } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import { Carousel } from '../components/Carousel';
+import director from '../images/director.jpg';
+import aniruddha from '../images/aniruddha.jpg';
+import propulsionHead from '../images/propulsionHead.jpg';
+import combustionChamberSpecialist from '../images/combustionChamberSpecialist.jpg';
+import avionicsHead from '../images/avionicsHead.jpg';
 
 const positions = [
   {
@@ -72,31 +77,31 @@ const testimonials = [
   {
     name: "Snehlata Kumari",
     role: "Director",
-    image: "../images/director.jpg",
+    image: director,
     quote: "Aminuteman fosters a culture of innovation and teamwork, making it rewarding to lead projects that shape the future of defense technology."
   },
   {
     name: "Aniruddha Narayan",
     role: "CEO",
-    image: "../images/aniruddha.jpg",
+    image: aniruddha,
     quote: "Being part of Aminuteman means working with passionate innovators dedicated to advancing aerospace defense and national security."
   },
   {
     name: "Drashya Rawal",
     role: "Head of Propulsion",
-    image: "../images/propulsionHead.jpg",
+    image: propulsionHead,
     quote: "Our teamwork at Aminuteman drives breakthroughs in propulsion that contribute to safer and more advanced aerospace technology."
   },
   {
     name: "Amit Mishra",
     role: "Combustion Chamber Specialist",
-    image: "../images/combustionChamberSpecialist.jpg",
+    image: combustionChamberSpecialist,
     quote: "Aminuteman supports creativity and precision, allowing me to innovate and tackle real-world challenges every day."
   },
   {
     name: "Pratik Desai",
     role: "Head of Avionics",
-    image: "../images/avionicsHead.jpg",
+    image: avionicsHead,
     quote: "Leading avionics at Aminuteman means pushing technical boundaries alongside some of the brightest minds in the field."
   }
 ];
