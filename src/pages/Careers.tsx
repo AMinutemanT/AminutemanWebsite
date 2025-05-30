@@ -70,22 +70,34 @@ const carouselSlides = [
 
 const testimonials = [
   {
+    name: "Snehlata Kumari",
+    role: "Director",
+    image: "src/images/director.jpg",
+    quote: "Aminuteman fosters a culture of innovation and teamwork, making it rewarding to lead projects that shape the future of defense technology."
+  },
+  {
     name: "Aniruddha Narayan",
     role: "CEO",
-    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80",
-    quote: "Working at Aminuteman has been an incredible journey. The culture of innovation and the opportunity to work on cutting-edge defense technology is unparalleled."
+    image: "src/images/aniruddha.jpg",
+    quote: "Being part of Aminuteman means working with passionate innovators dedicated to advancing aerospace defense and national security."
   },
   {
     name: "Drashya Rawal",
     role: "Head of Propulsion",
-    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80",
-    quote: "The collaborative environment here allows us to push boundaries and create solutions that make a real impact in aerospace technology."
+    image: "src/images/propulsionHead.jpg",
+    quote: "Our teamwork at Aminuteman drives breakthroughs in propulsion that contribute to safer and more advanced aerospace technology."
   },
   {
     name: "Amit Mishra",
-    role: "Director Aerodynamics",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80",
-    quote: "What sets Aminuteman apart is the freedom to innovate and the support to turn ambitious ideas into reality. Every day brings new challenges and opportunities."
+    role: "Combustion Chamber Specialist",
+    image: "src/images/combustionChamberSpecialist.jpg",
+    quote: "Aminuteman supports creativity and precision, allowing me to innovate and tackle real-world challenges every day."
+  },
+  {
+    name: "Pratik Desai",
+    role: "Head of Avionics",
+    image: "src/images/avionicsHead.jpg",
+    quote: "Leading avionics at Aminuteman means pushing technical boundaries alongside some of the brightest minds in the field."
   }
 ];
 

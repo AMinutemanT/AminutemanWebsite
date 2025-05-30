@@ -60,7 +60,7 @@ function App() {
     <Router>
       <ScrollToTop />
       <div className="relative min-h-screen">
-        <ComingSoonWatermark />
+        {/* <ComingSoonWatermark /> */}
         <Navbar />
         <AnimatedRoutes />
         <Footer />
