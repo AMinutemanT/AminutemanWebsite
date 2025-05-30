@@ -51,11 +51,12 @@ export function Wingmans() {
       <div className="container mx-auto px-4">
         <div 
           ref={sectionRefs.model}
-          className="w-[80%] mx-auto h-[80vh] relative mb-20 rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm overflow-hidden"
+          className="w-[80%] mx-auto {h-[80vh]} relative mb-20 rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm overflow-hidden"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
-          <Canvas>
+          <img src="src/images/model.jpg" alt="model image" />
+          {/* <Canvas>
             <Suspense fallback={null}>
               <PerspectiveCamera makeDefault position={[0, 0, 5]} />
               <ambientLight intensity={0.5} />
@@ -71,7 +72,7 @@ export function Wingmans() {
                 enabled={isHovered}
               />
             </Suspense>
-          </Canvas>
+          </Canvas> */}
         </div>
       </div>
 
