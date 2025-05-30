@@ -72,31 +72,31 @@ const testimonials = [
   {
     name: "Snehlata Kumari",
     role: "Director",
-    image: "src/images/director.jpg",
+    image: "../images/director.jpg",
     quote: "Aminuteman fosters a culture of innovation and teamwork, making it rewarding to lead projects that shape the future of defense technology."
   },
   {
     name: "Aniruddha Narayan",
     role: "CEO",
-    image: "src/images/aniruddha.jpg",
+    image: "../images/aniruddha.jpg",
     quote: "Being part of Aminuteman means working with passionate innovators dedicated to advancing aerospace defense and national security."
   },
   {
     name: "Drashya Rawal",
     role: "Head of Propulsion",
-    image: "src/images/propulsionHead.jpg",
+    image: "../images/propulsionHead.jpg",
     quote: "Our teamwork at Aminuteman drives breakthroughs in propulsion that contribute to safer and more advanced aerospace technology."
   },
   {
     name: "Amit Mishra",
     role: "Combustion Chamber Specialist",
-    image: "src/images/combustionChamberSpecialist.jpg",
+    image: "../images/combustionChamberSpecialist.jpg",
     quote: "Aminuteman supports creativity and precision, allowing me to innovate and tackle real-world challenges every day."
   },
   {
     name: "Pratik Desai",
     role: "Head of Avionics",
-    image: "src/images/avionicsHead.jpg",
+    image: "../images/avionicsHead.jpg",
     quote: "Leading avionics at Aminuteman means pushing technical boundaries alongside some of the brightest minds in the field."
   }
 ];
