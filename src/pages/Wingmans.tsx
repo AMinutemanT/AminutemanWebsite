@@ -8,10 +8,11 @@ import {
 } from "@react-three/drei";
 import { Radar, Layers, DollarSign, Plane } from "lucide-react";
 import { Loader } from "../components/Loader";
+import Model from "../model/Drone_With_cloth.fbx"
 
 function Aircraft() {
   // Using a reliable public GLTF model from Google's Model-Viewer samples
-  const scene = useFBX("src/model/Drone_With_cloth.fbx");
+  const scene = useFBX(Model);
   return <primitive object={scene} scale={0.03} position={[0, 0, 0]} />;
 }
 
