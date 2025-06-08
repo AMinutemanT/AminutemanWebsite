@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Send, Briefcase, Quote } from 'lucide-react';
-import emailjs from '@emailjs/browser';
-import { Carousel } from '../components/Carousel';
-import director from '../images/director.jpg';
-import aniruddha from '../images/aniruddha.jpg';
-import propulsionHead from '../images/propulsionHead.jpg';
-import combustionChamberSpecialist from '../images/combustionChamberSpecialist.jpg';
-import avionicsHead from '../images/avionicsHead.jpg';
+import React, { useState, useEffect, useRef } from "react";
+import { Send, Briefcase, Quote } from "lucide-react";
+import emailjs from "@emailjs/browser";
+import { Carousel } from "../components/Carousel";
+import director from "../images/director.jpg";
+import aniruddha from "../images/aniruddha.jpg";
+import propulsionHead from "../images/propulsionHead.jpg";
+import combustionChamberSpecialist from "../images/combustionChamberSpecialist.jpg";
+import avionicsHead from "../images/avionicsHead.jpg";
 
 const positions = [
   {
@@ -32,45 +32,55 @@ const positions = [
     department: "Manufacturing",
     type: "Full-time",
     location: "Pune",
-  }
+  },
 ];
 
 const cards = [
   {
     title: "VISIONARY VOYAGERS",
-    description: "We welcome people with a zest for exploring uncharted realms of possibility"
+    description:
+      "We welcome people with a zest for exploring uncharted realms of possibility",
   },
   {
     title: "MINDFUL MAVERICKS",
-    description: "We are a group of people with independent and unique perspectives"
+    description:
+      "We are a group of people with independent and unique perspectives",
   },
   {
     title: "INNOVATION IGNITERS",
-    description: "Innovation drives us and creating new things motivates us"
-  }
+    description: "Innovation drives us and creating new things motivates us",
+  },
 ];
 
 const carouselSlides = [
   {
     title: "Innovation Hub",
-    description: "Our state-of-the-art facilities foster creativity and breakthrough innovations in aerospace technology.",
-    image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80"
+    description:
+      "Our state-of-the-art facilities foster creativity and breakthrough innovations in aerospace technology.",
+    image:
+      "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80",
   },
   {
     title: "Collaborative Environment",
-    description: "Work alongside industry experts and brilliant minds in a dynamic, collaborative workspace.",
-    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80"
+    description:
+      "Work alongside industry experts and brilliant minds in a dynamic, collaborative workspace.",
+    image:
+      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80",
   },
   {
     title: "Work-Life Balance",
-    description: "We believe in maintaining a healthy work-life balance with flexible schedules and comprehensive benefits.",
-    image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80"
+    description:
+      "We believe in maintaining a healthy work-life balance with flexible schedules and comprehensive benefits.",
+    image:
+      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80",
   },
   {
     title: "Global Impact",
-    description: "Join us in shaping the future of aerospace and defense technology on a global scale.",
-    image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80"
-  }
+    description:
+      "Join us in shaping the future of aerospace and defense technology on a global scale.",
+    image:
+      "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80",
+  },
 ];
 
 const testimonials = [
@@ -78,43 +88,49 @@ const testimonials = [
     name: "Snehlata Kumari",
     role: "Director",
     image: director,
-    quote: "Aminuteman fosters a culture of innovation and teamwork, making it rewarding to lead projects that shape the future of defense technology."
+    quote:
+      "Aminuteman fosters a culture of innovation and teamwork, making it rewarding to lead projects that shape the future of defense technology.",
   },
   {
     name: "Aniruddha Narayan",
     role: "CEO",
     image: aniruddha,
-    quote: "Being part of Aminuteman means working with passionate innovators dedicated to advancing aerospace defense and national security."
+    quote:
+      "Being part of Aminuteman means working with passionate innovators dedicated to advancing aerospace defense and national security.",
   },
   {
     name: "Drashya Rawal",
     role: "Head of Propulsion",
     image: propulsionHead,
-    quote: "Our teamwork at Aminuteman drives breakthroughs in propulsion that contribute to safer and more advanced aerospace technology."
+    quote:
+      "Our teamwork at Aminuteman drives breakthroughs in propulsion that contribute to safer and more advanced aerospace technology.",
   },
   {
     name: "Amit Mishra",
     role: "Combustion Chamber Specialist",
     image: combustionChamberSpecialist,
-    quote: "Aminuteman supports creativity and precision, allowing me to innovate and tackle real-world challenges every day."
+    quote:
+      "Aminuteman supports creativity and precision, allowing me to innovate and tackle real-world challenges every day.",
   },
   {
     name: "Pratik Desai",
     role: "Head of Avionics",
     image: avionicsHead,
-    quote: "Leading avionics at Aminuteman means pushing technical boundaries alongside some of the brightest minds in the field."
-  }
+    quote:
+      "Leading avionics at Aminuteman means pushing technical boundaries alongside some of the brightest minds in the field.",
+  },
 ];
 
 export function Careers() {
   const form = useRef<HTMLFormElement>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{
-    type: 'success' | 'error' | null;
+    type: "success" | "error" | null;
     message: string;
-  }>({ type: null, message: '' });
+  }>({ type: null, message: "" });
+  const mailUrl = import.meta.env.VITE_MAIL_URL || "http://localhost:3000";
 
-  const words = ['PLAY', 'WORK', 'LEARN', 'GROW'];
+  const words = ["PLAY", "WORK", "LEARN", "GROW"];
   const [currentWord, setCurrentWord] = useState(0);
 
   React.useEffect(() => {
@@ -129,18 +145,18 @@ export function Careers() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('opacity-100', 'translate-x-0');
-            entry.target.classList.remove('opacity-0', 'translate-x-full');
+            entry.target.classList.add("opacity-100", "translate-x-0");
+            entry.target.classList.remove("opacity-0", "translate-x-full");
           }
         });
       },
       {
         threshold: 0.01,
-        rootMargin: '0px'
+        rootMargin: "0px",
       }
     );
 
-    document.querySelectorAll('.slide-card').forEach(card => {
+    document.querySelectorAll(".slide-card").forEach((card) => {
       observer.observe(card);
     });
 
@@ -148,47 +164,59 @@ export function Careers() {
   }, []);
 
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    position: '',
-    experience: '',
+    name: "",
+    email: "",
+    phone: "",
+    position: "",
+    experience: "",
     resume: null as File | null,
-    coverLetter: ''
+    coverLetter: "",
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setSubmitStatus({ type: null, message: '' });
+    setSubmitStatus({ type: null, message: "" });
+    const formPayload = new FormData();
+    formPayload.append("name", formData.name);
+    formPayload.append("email", formData.email);
+    formPayload.append("phone", formData.phone);
+    formPayload.append("position", formData.position);
+    formPayload.append("experience", formData.experience);
+    formPayload.append("coverLetter", formData.coverLetter);
+    if (formData.resume) {
+      formPayload.append("resume", formData.resume);
+    }
 
     try {
-      const result = await emailjs.sendForm(
-        'service_your_service_id',
-        'template_your_template_id',
-        form.current!,
-        'your_public_key'
-      );
-
-      if (result.text === 'OK') {
+      const response = await fetch(`${mailUrl}/career`, {
+        method: "POST",
+        body: formPayload,
+      });
+      const data = await response.json();
+      if (response.ok) {
         setSubmitStatus({
-          type: 'success',
-          message: 'Application submitted successfully! We\'ll review and get back to you soon.'
+          type: "success",
+          message: "Application submitted successfully!",
         });
         setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          position: '',
-          experience: '',
+          name: "",
+          email: "",
+          phone: "",
+          position: "",
+          experience: "",
           resume: null,
-          coverLetter: ''
+          coverLetter: "",
         });
       }
+      else {
+        throw new Error(data.message || "Failed to submit application");
+      }
+      if (form.current) form.current.reset();
     } catch (error) {
       setSubmitStatus({
-        type: 'error',
-        message: 'Failed to submit application. Please try again later.'
+        type: "error",
+        message: "Failed to submit application. Please try again later.",
       });
     } finally {
       setIsSubmitting(false);
@@ -196,20 +224,22 @@ export function Careers() {
   };
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      setFormData(prev => ({
+      setFormData((prev) => ({
         ...prev,
-        resume: e.target.files![0]
+        resume: e.target.files![0],
       }));
     }
   };
@@ -218,7 +248,7 @@ export function Careers() {
     <div className="min-h-screen bg-[#FFEfd5]">
       <div className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
-          <img 
+          <img
             src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=80"
             alt="Careers Hero"
             className="w-full h-full object-cover"
@@ -235,7 +265,10 @@ export function Careers() {
             <h1 className="animate-text">AT AMINUTEMAN</h1>
           </div>
           <p className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto mt-8">
-            For those rare intellects who possess both analytical rigor and contemplative depth scientists, researchers, engineers, physicists, and mathematicians whose pursuit of excellence extends beyond conventional boundaries we extend a distinguished invitation.
+            For those rare intellects who possess both analytical rigor and
+            contemplative depth scientists, researchers, engineers, physicists,
+            and mathematicians whose pursuit of excellence extends beyond
+            conventional boundaries we extend a distinguished invitation.
           </p>
         </div>
       </div>
@@ -245,17 +278,19 @@ export function Careers() {
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 text-center mb-12">
             WHO WE ARE LOOKING FOR
           </h2>
-          
+
           <div className="grid md:grid-cols-3 gap-4">
             {cards.map((card, index) => (
               <div
                 key={index}
                 className="slide-card bg-white/50 backdrop-blur-xl rounded-3xl p-6 shadow-2xl translate-x-full transition-all duration-1000"
                 style={{
-                  transitionDelay: `${index * 200}ms`
+                  transitionDelay: `${index * 200}ms`,
                 }}
               >
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">{card.title}</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                  {card.title}
+                </h3>
                 <p className="text-gray-700">{card.description}</p>
               </div>
             ))}
@@ -270,27 +305,31 @@ export function Careers() {
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 text-center mb-12">
             LIFE AT AMINUTEMAN
           </h2>
-          
+
           <div className="grid md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
               <div
                 key={index}
                 className="slide-card bg-white/50 backdrop-blur-xl rounded-3xl p-8 shadow-2xl translate-x-full transition-all duration-1000"
                 style={{
-                  transitionDelay: `${index * 200}ms`
+                  transitionDelay: `${index * 200}ms`,
                 }}
               >
                 <div className="flex flex-col items-center text-center">
                   <div className="w-20 h-20 rounded-full overflow-hidden mb-4">
-                    <img 
+                    <img
                       src={testimonial.image}
                       alt={testimonial.name}
                       className="w-full h-full object-cover"
                     />
                   </div>
                   <Quote className="w-8 h-8 text-gray-600 mb-4" />
-                  <p className="text-gray-700 mb-6 italic">"{testimonial.quote}"</p>
-                  <h3 className="text-xl font-semibold text-gray-900">{testimonial.name}</h3>
+                  <p className="text-gray-700 mb-6 italic">
+                    "{testimonial.quote}"
+                  </p>
+                  <h3 className="text-xl font-semibold text-gray-900">
+                    {testimonial.name}
+                  </h3>
                   <p className="text-gray-600">{testimonial.role}</p>
                 </div>
               </div>
@@ -305,11 +344,13 @@ export function Careers() {
             <div className="grid lg:grid-cols-5 gap-8 items-start">
               <div className="lg:col-span-2">
                 <div className="bg-white rounded-3xl p-8 shadow-lg sticky top-24">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-8">Open Positions</h3>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-8">
+                    Open Positions
+                  </h3>
                   <div className="space-y-6">
                     {positions.map((position, index) => (
-                      <div 
-                        key={index} 
+                      <div
+                        key={index}
                         className="group p-6 bg-[#FFEfd5] rounded-2xl transition-all duration-300 hover:shadow-md hover:translate-y-[-2px]"
                       >
                         <div className="flex items-start gap-4">
@@ -317,8 +358,12 @@ export function Careers() {
                             <Briefcase className="w-6 h-6 text-gray-700" />
                           </div>
                           <div>
-                            <h4 className="text-xl font-semibold text-gray-900 mb-2">{position.title}</h4>
-                            <p className="text-gray-600 mb-3">{position.department}</p>
+                            <h4 className="text-xl font-semibold text-gray-900 mb-2">
+                              {position.title}
+                            </h4>
+                            <p className="text-gray-600 mb-3">
+                              {position.department}
+                            </p>
                             <div className="flex flex-wrap gap-2">
                               <span className="px-3 py-1.5 text-sm bg-white rounded-full text-gray-700 shadow-sm">
                                 {position.type}
@@ -337,22 +382,33 @@ export function Careers() {
 
               <div className="lg:col-span-3">
                 <div className="bg-white rounded-3xl p-8 sm:p-10 shadow-lg">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-8">Apply Now</h3>
-                  
+                  <h3 className="text-2xl font-bold text-gray-900 mb-8">
+                    Apply Now
+                  </h3>
+
                   {submitStatus.type && (
-                    <div className={`mb-8 p-6 rounded-2xl ${
-                      submitStatus.type === 'success' 
-                        ? 'bg-green-50 text-green-700 border border-green-100' 
-                        : 'bg-red-50 text-red-700 border border-red-100'
-                    }`}>
+                    <div
+                      className={`mb-8 p-6 rounded-2xl ${
+                        submitStatus.type === "success"
+                          ? "bg-green-50 text-green-700 border border-green-100"
+                          : "bg-red-50 text-red-700 border border-red-100"
+                      }`}
+                    >
                       {submitStatus.message}
                     </div>
                   )}
 
-                  <form ref={form} onSubmit={handleSubmit} className="space-y-8">
+                  <form
+                    ref={form}
+                    onSubmit={handleSubmit}
+                    className="space-y-8"
+                  >
                     <div className="grid sm:grid-cols-2 gap-6">
                       <div className="space-y-2">
-                        <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                        <label
+                          htmlFor="name"
+                          className="block text-sm font-medium text-gray-700"
+                        >
                           Full Name
                         </label>
                         <input
@@ -367,7 +423,10 @@ export function Careers() {
                         />
                       </div>
                       <div className="space-y-2">
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                        <label
+                          htmlFor="email"
+                          className="block text-sm font-medium text-gray-700"
+                        >
                           Email
                         </label>
                         <input
@@ -385,7 +444,10 @@ export function Careers() {
 
                     <div className="grid sm:grid-cols-2 gap-6">
                       <div className="space-y-2">
-                        <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
+                        <label
+                          htmlFor="phone"
+                          className="block text-sm font-medium text-gray-700"
+                        >
                           Phone Number
                         </label>
                         <input
@@ -400,7 +462,10 @@ export function Careers() {
                         />
                       </div>
                       <div className="space-y-2">
-                        <label htmlFor="position" className="block text-sm font-medium text-gray-700">
+                        <label
+                          htmlFor="position"
+                          className="block text-sm font-medium text-gray-700"
+                        >
                           Position
                         </label>
                         <select
@@ -422,7 +487,10 @@ export function Careers() {
                     </div>
 
                     <div className="space-y-2">
-                      <label htmlFor="experience" className="block text-sm font-medium text-gray-700">
+                      <label
+                        htmlFor="experience"
+                        className="block text-sm font-medium text-gray-700"
+                      >
                         Years of Experience
                       </label>
                       <input
@@ -439,7 +507,10 @@ export function Careers() {
                     </div>
 
                     <div className="space-y-2">
-                      <label htmlFor="resume" className="block text-sm font-medium text-gray-700">
+                      <label
+                        htmlFor="resume"
+                        className="block text-sm font-medium text-gray-700"
+                      >
                         Resume
                       </label>
                       <input
@@ -451,11 +522,16 @@ export function Careers() {
                         accept=".pdf,.doc,.docx"
                         required
                       />
-                      <p className="mt-1 text-sm text-gray-500">Accepted formats: PDF, DOC, DOCX</p>
+                      <p className="mt-1 text-sm text-gray-500">
+                        Accepted formats: PDF, DOC, DOCX{"(Max Size 5MB)"}
+                      </p>
                     </div>
 
                     <div className="space-y-2">
-                      <label htmlFor="coverLetter" className="block text-sm font-medium text-gray-700">
+                      <label
+                        htmlFor="coverLetter"
+                        className="block text-sm font-medium text-gray-700"
+                      >
                         Cover Letter
                       </label>
                       <textarea
@@ -466,7 +542,6 @@ export function Careers() {
                         rows={6}
                         className="w-full px-4 py-3 bg-[#FFEfd5] border-2 border-transparent rounded-xl focus:outline-none focus:border-gray-300 text-gray-900 placeholder-gray-500 resize-none transition-colors"
                         placeholder="Tell us why you'd be a great fit..."
-                        required
                       />
                     </div>
 
@@ -475,7 +550,7 @@ export function Careers() {
                       disabled={isSubmitting}
                       className="w-full px-6 py-4 bg-gray-900 text-white hover:bg-gray-800 transition-all rounded-xl flex items-center justify-center gap-2 group disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      {isSubmitting ? 'Submitting...' : 'Submit Application'}
+                      {isSubmitting ? "Submitting..." : "Submit Application"}
                       <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </button>
                   </form>

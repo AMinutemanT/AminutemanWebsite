@@ -7,6 +7,8 @@ export function Contact() {
     type: 'success' | 'error' | null;
     message: string;
   }>({ type: null, message: '' });
+  const mailUrl=import.meta.env.VITE_MAIL_URL||"http://localhost:3000";
+  
 
   const [formData, setFormData] = useState({
     name: '',
@@ -48,7 +50,7 @@ export function Contact() {
     setSubmitStatus({ type: null, message: '' });
 
     try {
-      const response = await fetch("/api/send", {
+      const response = await fetch(`${mailUrl}/contact`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
