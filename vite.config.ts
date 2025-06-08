@@ -34,5 +34,6 @@ export default defineConfig({
     port: 4173,
     strictPort: true,
     host: true
-  }
+  },
+  assetsInclude: ['**/*.fbx', '**/*.glb', '**/*.gltf']
 });
