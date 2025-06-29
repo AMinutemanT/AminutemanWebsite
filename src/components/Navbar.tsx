@@ -73,7 +73,7 @@ export function Navbar() {
               <img 
                 src={logo}
                 alt="Logo" 
-                className="h-8 w-28"
+                className="h-[80%] w-28 object-cover"
               />
             </Link>
             <div className="h-full w-px bg-white" />

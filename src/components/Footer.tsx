@@ -15,7 +15,7 @@ export function Footer() {
               <img 
                 src={logo}
                 alt="Aminuteman Technologies Logo" 
-                className="h-6 sm:h-8 w-24"
+                className="h-12 w-24 object-cover"
               />
             </Link>
             <p className="text-sm sm:text-base text-gray-400">
