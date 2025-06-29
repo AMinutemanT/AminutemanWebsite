@@ -50,7 +50,15 @@ export function Footer() {
                     <MapPin className="w-5 h-5 text-gray-400 shrink-0 mt-1.5" />
                     <div className="space-y-1">
                       <p className="text-sm text-gray-400">Vighnaharta, Vidyanagar</p>
-                      <p className="text-sm text-gray-400">Dhanori, Pune - 411032</p>
+                      <p className="text-sm text-gray-400">Dhanori, Pune - 411015</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <MapPin className="w-5 h-5 text-gray-400 shrink-0 mt-1.5" />
+                    <div className="space-y-1">
+                      <p className="text-sm text-gray-400">SR NO 22, Hora Building</p>
+                      <p className="text-sm text-gray-400">Vishrantwadi road, Laxmi Nagar</p>
+                      <p className="text-sm text-gray-400">Dhanori, Pune - 411015</p>
                     </div>
                   </div>
                 </div>
