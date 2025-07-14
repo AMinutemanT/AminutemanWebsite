@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Send, Briefcase, Quote } from "lucide-react";
-import emailjs from "@emailjs/browser";
 import { Carousel } from "../components/Carousel";
 import director from "../images/director.jpg";
 import aniruddha from "../images/aniruddha.jpg";
@@ -58,68 +57,31 @@ const carouselSlides = [
     description:
       "Our state-of-the-art facilities foster creativity and breakthrough innovations in aerospace technology.",
     image:
-      "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=60",
   },
   {
     title: "Collaborative Environment",
     description:
       "Work alongside industry experts and brilliant minds in a dynamic, collaborative workspace.",
     image:
-      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=60",
   },
   {
     title: "Work-Life Balance",
     description:
       "We believe in maintaining a healthy work-life balance with flexible schedules and comprehensive benefits.",
     image:
-      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=60",
   },
   {
     title: "Global Impact",
     description:
       "Join us in shaping the future of aerospace and defense technology on a global scale.",
     image:
-      "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=60",
   },
 ];
 
-const testimonials = [
-  {
-    name: "Snehlata Kumari",
-    role: "Director",
-    image: director,
-    quote:
-      "Aminuteman fosters a culture of innovation and teamwork, making it rewarding to lead projects that shape the future of defense technology.",
-  },
-  {
-    name: "Aniruddha Narayan",
-    role: "CEO",
-    image: aniruddha,
-    quote:
-      "Being part of Aminuteman means working with passionate innovators dedicated to advancing aerospace defense and national security.",
-  },
-  {
-    name: "Drashya Rawal",
-    role: "Head of Propulsion",
-    image: propulsionHead,
-    quote:
-      "Our teamwork at Aminuteman drives breakthroughs in propulsion that contribute to safer and more advanced aerospace technology.",
-  },
-  {
-    name: "Amit Mishra",
-    role: "Combustion Chamber Specialist",
-    image: combustionChamberSpecialist,
-    quote:
-      "Aminuteman supports creativity and precision, allowing me to innovate and tackle real-world challenges every day.",
-  },
-  {
-    name: "Pratik Desai",
-    role: "Head of Avionics",
-    image: avionicsHead,
-    quote:
-      "Leading avionics at Aminuteman means pushing technical boundaries alongside some of the brightest minds in the field.",
-  },
-];
 
 export function Careers() {
   const form = useRef<HTMLFormElement>(null);
@@ -248,8 +210,8 @@ export function Careers() {
     <div className="min-h-screen bg-[#FFEfd5]">
       <div className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
-          <img
-            src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=80"
+          <img  loading="lazy"
+            src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=60"
             alt="Careers Hero"
             className="w-full h-full object-cover"
           />
@@ -300,43 +262,6 @@ export function Careers() {
 
       <Carousel slides={carouselSlides} />
 
-      <section className="py-20 bg-[#FFEfd5]">
-        <div className="container mx-auto px-4 sm:px-6">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 text-center mb-12">
-            LIFE AT AMINUTEMAN
-          </h2>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <div
-                key={index}
-                className="slide-card bg-white/50 backdrop-blur-xl rounded-3xl p-8 shadow-2xl translate-x-full transition-all duration-1000"
-                style={{
-                  transitionDelay: `${index * 200}ms`,
-                }}
-              >
-                <div className="flex flex-col items-center text-center">
-                  <div className="w-20 h-20 rounded-full overflow-hidden mb-4">
-                    <img
-                      src={testimonial.image}
-                      alt={testimonial.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <Quote className="w-8 h-8 text-gray-600 mb-4" />
-                  <p className="text-gray-700 mb-6 italic">
-                    "{testimonial.quote}"
-                  </p>
-                  <h3 className="text-xl font-semibold text-gray-900">
-                    {testimonial.name}
-                  </h3>
-                  <p className="text-gray-600">{testimonial.role}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       <section className="py-20 bg-[#FFEfd5]">
         <div className="container mx-auto px-4 sm:px-6">

@@ -7,8 +7,8 @@ export function InterceptorC() {
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white">
       <div className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
-          <img 
-            src="https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&q=80"
+          <img  loading="lazy" 
+            src="https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&q=60"
             alt="Interceptor C"
             className="w-full h-full object-cover"
           />

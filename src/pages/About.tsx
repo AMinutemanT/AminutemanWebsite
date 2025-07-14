@@ -5,8 +5,7 @@ export function About() {
   const sectionRefs = {
     intro: useRef<HTMLDivElement>(null),
     values: useRef<HTMLDivElement>(null),
-    journey: useRef<HTMLDivElement>(null),
-    team: useRef<HTMLDivElement>(null)
+    journey: useRef<HTMLDivElement>(null)
   };
 
   useEffect(() => {
@@ -52,7 +51,7 @@ export function About() {
 
       <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
-          <div 
+          <div
             ref={sectionRefs.intro}
             className="py-20 transform transition-all duration-1000 opacity-0 translate-y-10"
           >
@@ -74,7 +73,7 @@ export function About() {
             </div>
           </div>
 
-          <div 
+          <div
             ref={sectionRefs.values}
             className="py-20 transform transition-all duration-1000 opacity-0 translate-y-10"
           >
@@ -113,7 +112,7 @@ export function About() {
             </div>
           </div>
 
-          <div 
+          <div
             ref={sectionRefs.journey}
             className="py-20 transform transition-all duration-1000 opacity-0 translate-y-10"
           >
@@ -139,49 +138,7 @@ export function About() {
             </div>
           </div>
 
-          <div 
-            ref={sectionRefs.team}
-            className="py-20 transform transition-all duration-1000 opacity-0 translate-y-10"
-          >
-            <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8">
-              <h2 className="text-2xl font-bold text-white mb-8">Leadership Team</h2>
-              <div className="grid md:grid-cols-3 gap-8">
-                <div className="text-center">
-                  <div className="w-32 h-32 rounded-full overflow-hidden mx-auto mb-4">
-                    <img 
-                      src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80" 
-                      alt="CEO"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <h3 className="text-xl font-semibold text-white mb-1">Dr. Rajesh Kumar</h3>
-                  <p className="text-gray-400">Chief Executive Officer</p>
-                </div>
-                <div className="text-center">
-                  <div className="w-32 h-32 rounded-full overflow-hidden mx-auto mb-4">
-                    <img 
-                      src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80" 
-                      alt="CTO"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <h3 className="text-xl font-semibold text-white mb-1">Dr. Priya Sharma</h3>
-                  <p className="text-gray-400">Chief Technology Officer</p>
-                </div>
-                <div className="text-center">
-                  <div className="w-32 h-32 rounded-full overflow-hidden mx-auto mb-4">
-                    <img 
-                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80" 
-                      alt="COO"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <h3 className="text-xl font-semibold text-white mb-1">Dr. Arun Patel</h3>
-                  <p className="text-gray-400">Chief Operations Officer</p>
-                </div>
-              </div>
-            </div>
-          </div>
+          {/* ? abckbcka */}
         </div>
       </div>
     </div>

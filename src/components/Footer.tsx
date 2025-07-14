@@ -12,7 +12,7 @@ export function Footer() {
           {/* Company Details - Left */}
           <div className="lg:col-span-4 space-y-6">
             <Link to="/" className="inline-flex items-center gap-2">
-              <img 
+              <img  loading="lazy" 
                 src={logo}
                 alt="Aminuteman Technologies Logo" 
                 className=" h-12 w-32 object-cover"

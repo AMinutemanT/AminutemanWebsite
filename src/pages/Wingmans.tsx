@@ -9,6 +9,34 @@ import {
 import { Radar, Layers, DollarSign, Plane } from "lucide-react";
 import { Loader } from "../components/Loader";
 import Model from "../model/Drone_With_cloth.fbx"
+import { Features } from "../components/Features";
+
+const features=[
+              {
+                icon: <Radar className="w-6 h-6 text-white" />,
+                title: "Mission Extension",
+                description:
+                  "Fuses multi-platform ISR for enhanced battlespace awareness, I&W, and distributed targeting across domains.",
+              },
+              {
+                icon: <Layers className="w-6 h-6 text-white" />,
+                title: "Rapid Deployment",
+                description:
+                  "Open architecture enables quick reconfiguration, software updates, and mission-specific payloads to counter emerging threats.",
+              },
+              {
+                icon: <DollarSign className="w-6 h-6 text-white" />,
+                title: "COST-EFFICIENT",
+                description:
+                  "Delivers 3x combat value at 1/3 cost, with minimal logistics.",
+              },
+              {
+                icon: <Plane className="w-6 h-6 text-white" />,
+                title: "Tactical Performance",
+                description:
+                  "11.7m platform with 2,000+ NM range, 7G maneuverability, and support for autonomous/crewed ops across CENTCOM / INDOPACOM.",
+              },
+            ]
 
 function Aircraft() {
   // Using a reliable public GLTF model from Google's Model-Viewer samples
@@ -153,8 +181,8 @@ export function Wingmans() {
                 effectiveness across highly contested A2/AD environments.
               </p>
             </div>
-            <img
-              src="https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&q=80"
+            <img  loading="lazy"
+              src="https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&q=60"
               alt="Wingmans Aircraft"
               className="rounded-lg shadow-2xl"
             />
@@ -166,52 +194,7 @@ export function Wingmans() {
         ref={sectionRefs.features}
         className="py-20 px-4 bg-gray-900/50 transform transition-all duration-1000 opacity-0 translate-y-10"
       >
-        <div className="container mx-auto max-w-6xl">
-          <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-12">
-            Advanced Capabilities
-          </h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              {
-                icon: <Radar className="w-6 h-6 text-white" />,
-                title: "Mission Extension",
-                description:
-                  "Fuses multi-platform ISR for enhanced battlespace awareness, I&W, and distributed targeting across domains.",
-              },
-              {
-                icon: <Layers className="w-6 h-6 text-white" />,
-                title: "Rapid Deployment",
-                description:
-                  "Open architecture enables quick reconfiguration, software updates, and mission-specific payloads to counter emerging threats.",
-              },
-              {
-                icon: <DollarSign className="w-6 h-6 text-white" />,
-                title: "COST-EFFICIENT",
-                description:
-                  "Delivers 3x combat value at 1/3 cost, with minimal logistics.",
-              },
-              {
-                icon: <Plane className="w-6 h-6 text-white" />,
-                title: "Tactical Performance",
-                description:
-                  "11.7m platform with 2,000+ NM range, 7G maneuverability, and support for autonomous/crewed ops across CENTCOM / INDOPACOM.",
-              },
-            ].map((feature, index) => (
-              <div
-                key={index}
-                className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 text-center"
-              >
-                <div className="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  {feature.icon}
-                </div>
-                <h3 className="text-xl font-semibold text-white mb-2">
-                  {feature.title}
-                </h3>
-                <p className="text-gray-400">{feature.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
+        <Features features={features} heading="Advanced Capabilities" />
       </div>
     </div>
   );

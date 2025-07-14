@@ -1,5 +1,29 @@
-import React, { useEffect, useRef } from 'react';
-import { Plane, Gauge, Wind, Zap } from 'lucide-react';
+import React, { useEffect, useRef } from "react";
+import { Plane, Gauge, Wind, Zap } from "lucide-react";
+import { Features } from "../../components/Features";
+
+const features = [
+  {
+    icon: <Plane className="w-8 h-8" />,
+    title: "Enhanced Design",
+    description: "Improved aerodynamics and efficiency.",
+  },
+  {
+    icon: <Gauge className="w-8 h-8" />,
+    title: "Superior Performance",
+    description: "Increased thrust and better fuel economy.",
+  },
+  {
+    icon: <Wind className="w-8 h-8" />,
+    title: "Advanced Thermal",
+    description: "Next-gen thermal management system.",
+  },
+  {
+    icon: <Zap className="w-8 h-8" />,
+    title: "Smart Integration",
+    description: "Enhanced digital control interface.",
+  },
+];
 
 export function AnkosaB() {
   const sectionRefs = {
@@ -13,8 +37,8 @@ export function AnkosaB() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('opacity-100', 'translate-y-0');
-            entry.target.classList.remove('opacity-0', 'translate-y-10');
+            entry.target.classList.add("opacity-100", "translate-y-0");
+            entry.target.classList.remove("opacity-0", "translate-y-10");
           }
         });
       },
@@ -34,8 +58,8 @@ export function AnkosaB() {
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white">
       <div className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
-          <img 
-            src="https://images.unsplash.com/photo-1614728263952-84ea256f9679?auto=format&fit=crop&q=80"
+          <img  loading="lazy"
+            src="https://images.unsplash.com/photo-1614728263952-84ea256f9679?auto=format&fit=crop&q=60"
             alt="Ankosa B Engine"
             className="w-full h-full object-cover"
           />
@@ -49,20 +73,24 @@ export function AnkosaB() {
         </div>
       </div>
 
-      <div 
+      <div
         ref={sectionRefs.intro}
         className="py-20 px-4 transform transition-all duration-1000 opacity-0 translate-y-10"
       >
         <div className="container mx-auto max-w-6xl">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">Advanced Engine Technology</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                Advanced Engine Technology
+              </h2>
               <p className="text-gray-300 text-lg mb-6">
-                Building on the success of Ankosa A, the Ankosa B introduces enhanced performance capabilities and improved fuel efficiency. Engineered for next-generation military aircraft.
+                Building on the success of Ankosa A, the Ankosa B introduces
+                enhanced performance capabilities and improved fuel efficiency.
+                Engineered for next-generation military aircraft.
               </p>
             </div>
-            <img
-              src="https://images.unsplash.com/photo-1579829366248-204fe8413f31?auto=format&fit=crop&q=80"
+            <img  loading="lazy"
+              src="https://images.unsplash.com/photo-1579829366248-204fe8413f31?auto=format&fit=crop&q=60"
               alt="Ankosa B Technology"
               className="rounded-lg shadow-2xl"
             />
@@ -70,56 +98,22 @@ export function AnkosaB() {
         </div>
       </div>
 
-      <div 
+      <div
         ref={sectionRefs.features}
         className="py-20 px-4 bg-gray-900/50 transform transition-all duration-1000 opacity-0 translate-y-10"
       >
-        <div className="container mx-auto max-w-6xl">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
-            Key Features
-          </h2>
-          <div className="grid md:grid-cols-4 gap-8">
-            {[
-              {
-                icon: <Plane className="w-8 h-8" />,
-                title: "Enhanced Design",
-                description: "Improved aerodynamics and efficiency."
-              },
-              {
-                icon: <Gauge className="w-8 h-8" />,
-                title: "Superior Performance",
-                description: "Increased thrust and better fuel economy."
-              },
-              {
-                icon: <Wind className="w-8 h-8" />,
-                title: "Advanced Thermal",
-                description: "Next-gen thermal management system."
-              },
-              {
-                icon: <Zap className="w-8 h-8" />,
-                title: "Smart Integration",
-                description: "Enhanced digital control interface."
-              }
-            ].map((feature, index) => (
-              <div key={index} className="bg-gray-800/50 rounded-xl p-6 backdrop-blur-sm">
-                <div className="bg-blue-500/10 p-3 rounded-lg w-fit mb-4">
-                  {feature.icon}
-                </div>
-                <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
-                <p className="text-gray-400">{feature.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
+        <Features features={features} heading="Key Features" />
       </div>
 
-      <div 
+      <div
         ref={sectionRefs.specs}
         className="py-20 px-4 transform transition-all duration-1000 opacity-0 translate-y-10"
       >
         <div className="container mx-auto max-w-6xl">
           <div className="bg-gray-800/50 rounded-2xl p-8 backdrop-blur-sm">
-            <h2 className="text-3xl font-bold mb-8">Technical Specifications</h2>
+            <h2 className="text-3xl font-bold mb-8">
+              Technical Specifications
+            </h2>
             <div className="grid md:grid-cols-3 gap-8">
               <div className="space-y-2">
                 <p className="text-gray-400">Maximum Thrust</p>

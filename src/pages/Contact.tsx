@@ -91,8 +91,8 @@ export function Contact() {
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black">
       <div className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
-          <img 
-            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80"
+          <img  loading="lazy" 
+            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=60"
             alt="Contact Hero"
             className="w-full h-full object-cover"
           />

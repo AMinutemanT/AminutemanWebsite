@@ -70,7 +70,7 @@ export function Navbar() {
         <div className="flex items-center justify-between h-16 px-[10px] border-b">
           <div className="flex items-center h-full ">
             <Link to="/" className="flex items-center h-full px-4" onClick={handleLinkClick}>
-              <img 
+              <img  loading="lazy" 
                 src={logo}
                 alt="Logo" 
                 className="h-[80%] w-32 object-cover"

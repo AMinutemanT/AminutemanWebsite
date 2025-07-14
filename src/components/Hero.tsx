@@ -16,8 +16,8 @@ export function Hero() {
   return (
     <div className="relative min-h-screen flex items-center">
       <div className="absolute inset-0">
-        <img 
-          src="https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&q=80"
+        <img  loading="lazy" 
+          src="https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&q=60"
           alt="Hero Background"
           className="w-full h-full object-cover"
         />

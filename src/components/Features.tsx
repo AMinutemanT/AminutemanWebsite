@@ -24,17 +24,23 @@ const features = [
   }
 ];
 
-export function Features() {
+interface features{
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+}
+
+export function Features({features,heading,subheading}: {features: features[],heading: string,subheading?: string}) {
   return (
     <section className="relative py-16 sm:py-24 bg-gray-900/50 backdrop-blur-sm">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-            Advanced Defense Technology
+            {heading }
           </h2>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-            Our cutting-edge solutions combine advanced propulsion, AI systems, and precision control for superior military capabilities.
-          </p>
+          {subheading && <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+            {subheading}
+          </p>}
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           {features.map((feature, index) => (
