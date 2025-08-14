@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
-interface FeatureItem {
+interface features {
   icon: React.ReactNode;
   title: string;
   description: string;
@@ -10,37 +10,13 @@ export function Features({
   features,
   heading,
   subheading,
-  sectionRef
 }: {
-  features: FeatureItem[];
+  features: features[];
   heading: string;
   subheading?: string;
-  sectionRef: React.RefObject<HTMLDivElement>;
 }) {
-
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          el.classList.remove('opacity-0', 'translate-y-10');
-          el.classList.add('opacity-100', 'translate-y-0');
-        }
-      },
-      { threshold: 0.2 }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [sectionRef]);
-
   return (
-    <section
-      ref={sectionRef}
-      className="relative py-20 px-4 sm:py-28 overflow-hidden transform transition-all duration-1000 opacity-0 translate-y-10"
-    >
+    <section className="relative py-20 px-4 sm:py-28 bg-gradient-to-b from-gray-900 via-gray-900/90 to-gray-800 overflow-hidden">
       {/* Decorative glowing orbs */}
       <div className="absolute top-0 left-0 w-72 h-72 bg-blue-500/20 rounded-full blur-3xl opacity-40 animate-pulse" />
       <div className="absolute bottom-0 right-0 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl opacity-40 animate-pulse delay-500" />

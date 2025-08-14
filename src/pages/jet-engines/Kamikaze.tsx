@@ -8,7 +8,6 @@ import TechnicalSpecifications from "../../components/TechnicalSpecifications";
 import kamikazeImage from "../../images/kamikaze/kamikaze.jpg";
 import IntroSection from "../../components/IntroSection";
 
-
 const features = [
   {
     icon: <Plane className="w-8 h-8" />,
@@ -77,11 +76,16 @@ export function Kamikaze() {
         description="content"
         imageUrl={kamikazeImage}
       />
-      <Features
-        sectionRef={sectionRefs.features}
-        features={features}
-        heading="Key Features"
-      />
+
+      <div
+        ref={sectionRefs.features}
+        className="py-20 px-4 bg-gray-900/50 transform transition-all duration-1000 opacity-0 translate-y-10"
+      >
+        <Features
+          features={features}
+          heading="Key Features"
+        />
+      </div>
 
       <TechnicalSpecifications sectionRef={sectionRefs.specs} specs={specs} />
     </div>

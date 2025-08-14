@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { Plane, Gauge, Wind, Zap } from "lucide-react";
 import { Features } from "../../components/Features";
-import IntroSection from "../../components/IntroSection";
 
 const features = [
   {
@@ -59,8 +58,7 @@ export function AnkosaA() {
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white">
       <div className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
-          <img
-            loading="lazy"
+          <img  loading="lazy"
             src="https://images.unsplash.com/photo-1540575861501-7cf05a4b125a?auto=format&fit=crop&q=60"
             alt="Ankosa A Engine"
             className="w-full h-full object-cover"
@@ -75,41 +73,37 @@ export function AnkosaA() {
         </div>
       </div>
 
-      <IntroSection
-        sectionRef={sectionRefs.intro}
-        title="Advanced Propulsion System"
-        description="The Ankosa A engine combines cutting-edge technology with exceptional reliability. Designed for tactical aircraft, it delivers superior performance across all flight envelopes." imageUrl="https://images.unsplash.com/photo-1579829366248-204fe8413f31?auto=format&fit=crop&q=60"
-      />
-
-      {/* <div
+      <div
         ref={sectionRefs.intro}
         className="py-20 px-4 transform transition-all duration-1000 opacity-0 translate-y-10"
       >
         <div className="container mx-auto max-w-6xl">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6"></h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                Advanced Propulsion System
+              </h2>
               <p className="text-gray-300 text-lg mb-6">
                 The Ankosa A engine combines cutting-edge technology with
                 exceptional reliability. Designed for tactical aircraft, it
                 delivers superior performance across all flight envelopes.
               </p>
             </div>
-            <img
-              loading="lazy"
+            <img  loading="lazy"
               src="https://images.unsplash.com/photo-1579829366248-204fe8413f31?auto=format&fit=crop&q=60"
               alt="Ankosa A Technology"
               className="rounded-lg shadow-2xl"
             />
           </div>
         </div>
-      </div> */}
+      </div>
 
-      <Features
-        sectionRef={sectionRefs.features}
-        features={features}
-        heading="Key Features"
-      />
+      <div
+        ref={sectionRefs.features}
+        className="py-20 px-4 bg-gray-900/50 transform transition-all duration-1000 opacity-0 translate-y-10"
+      >
+        <Features  features={features} heading="Key Features" />
+      </div>
 
       <div
         ref={sectionRefs.specs}
