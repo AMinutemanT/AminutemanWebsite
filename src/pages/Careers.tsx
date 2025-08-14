@@ -1,34 +1,48 @@
-import React, { useState, useEffect, useRef } from "react";
-import { Send, Briefcase, Quote } from "lucide-react";
+import React, { useState, useRef } from "react";
+import { Send, Briefcase } from "lucide-react";
 import { Carousel } from "../components/Carousel";
-import director from "../images/director.jpg";
-import aniruddha from "../images/aniruddha.jpg";
-import propulsionHead from "../images/propulsionHead.jpg";
-import combustionChamberSpecialist from "../images/combustionChamberSpecialist.jpg";
-import avionicsHead from "../images/avionicsHead.jpg";
 
 const positions = [
   {
-    title: "Aerospace Engineer",
+    title: "UAV Engineer",
     department: "Engineering",
     type: "Full-time",
     location: "Pune",
   },
   {
-    title: "AI/ML Engineer",
-    department: "Research & Development",
-    type: "Full-time",
-    location: "Pune",
-  },
-  {
-    title: "Mechanical Design Engineer",
+    title: "Avionics Engineer",
     department: "Engineering",
     type: "Full-time",
     location: "Pune",
   },
   {
-    title: "Quality Assurance Specialist",
-    department: "Manufacturing",
+    title: "Aerodynamics Engineer",
+    department: "Engineering",
+    type: "Full-time",
+    location: "Pune",
+  },
+  {
+    title: "Design Engineer",
+    department: "Engineering",
+    type: "Full-time",
+    location: "Pune",
+  },
+  {
+    title: "Structural Engineer",
+    department: "Engineering",
+    type: "Full-time",
+    location: "Pune",
+  },
+
+  {
+    title: "Electronics Engineer",
+    department: "Engineering",
+    type: "Full-time",
+    location: "Pune",
+  },
+  {
+    title: "AI Engineer",
+    department: "Engineering",
     type: "Full-time",
     location: "Pune",
   },
@@ -81,7 +95,6 @@ const carouselSlides = [
       "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=60",
   },
 ];
-
 
 export function Careers() {
   const form = useRef<HTMLFormElement>(null);
@@ -170,8 +183,7 @@ export function Careers() {
           resume: null,
           coverLetter: "",
         });
-      }
-      else {
+      } else {
         throw new Error(data.message || "Failed to submit application");
       }
       if (form.current) form.current.reset();
@@ -210,7 +222,8 @@ export function Careers() {
     <div className="min-h-screen bg-[#FFEfd5]">
       <div className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
-          <img  loading="lazy"
+          <img
+            loading="lazy"
             src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=60"
             alt="Careers Hero"
             className="w-full h-full object-cover"
@@ -262,7 +275,6 @@ export function Careers() {
 
       <Carousel slides={carouselSlides} />
 
-
       <section className="py-20 bg-[#FFEfd5]">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-7xl mx-auto">
@@ -272,7 +284,7 @@ export function Careers() {
                   <h3 className="text-2xl font-bold text-gray-900 mb-8">
                     Open Positions
                   </h3>
-                  <div className="space-y-6">
+                  <div className="space-y-6 overflow-y-scroll max-h-[800px]">
                     {positions.map((position, index) => (
                       <div
                         key={index}

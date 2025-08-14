@@ -15,9 +15,9 @@ import { InterceptorC } from './pages/air-systems/InterceptorC';
 import { ValleyCommandControl } from './pages/valley/ValleyCommandControl';
 import { ValleyMissionAutonomy } from './pages/valley/ValleyMissionAutonomy';
 import { ValleyPartnerProgram } from './pages/valley/ValleyPartnerProgram';
-import { TwinTurboEngine } from './pages/jet-engines/TwinTurboEngine';
 import { AnkosaA } from './pages/jet-engines/AnkosaA';
 import { AnkosaB } from './pages/jet-engines/AnkosaB';
+import { Kamikaze } from './pages/jet-engines/Kamikaze';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -46,9 +46,9 @@ function AnimatedRoutes() {
         <Route path="/valley/command-control" element={<PageTransition><ValleyCommandControl /></PageTransition>} />
         <Route path="/valley/mission-autonomy" element={<PageTransition><ValleyMissionAutonomy /></PageTransition>} />
         <Route path="/valley/partner-program" element={<PageTransition><ValleyPartnerProgram /></PageTransition>} />
-        <Route path="/jet-engines/twin-turbo" element={<PageTransition><TwinTurboEngine /></PageTransition>} />
         <Route path="/jet-engines/ankosa-a" element={<PageTransition><AnkosaA /></PageTransition>} />
         <Route path="/jet-engines/ankosa-b" element={<PageTransition><AnkosaB /></PageTransition>} />
+        <Route path="/kamikaze" element={<PageTransition><Kamikaze /></PageTransition>} />
       </Routes>
     </AnimatePresence>
   );
