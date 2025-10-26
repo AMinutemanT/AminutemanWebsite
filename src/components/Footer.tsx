@@ -104,36 +104,6 @@ export function Footer() {
               <ul className="space-y-2">
                 <li>
                   <Link
-                    to="/air-systems/interceptor-a"
-                    className="text-sm text-gray-400 hover:text-white transition-colors"
-                  >
-                    Interceptor A
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/air-systems/interceptor-b"
-                    className="text-sm text-gray-400 hover:text-white transition-colors"
-                  >
-                    Interceptor B
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/air-systems/interceptor-c"
-                    className="text-sm text-gray-400 hover:text-white transition-colors"
-                  >
-                    Interceptor C
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="text-sm font-medium text-white mb-4">Propulsion Systems</h3>
-              <ul className="space-y-2">
-                <li>
-                  <Link
                     to="/kamikaze"
                     className="text-sm text-gray-400 hover:text-white transition-colors"
                   >
