@@ -134,7 +134,7 @@ export function Footer() {
               <ul className="space-y-2">
                 <li>
                   <Link
-                    to="/jet-engines/ankosa-a"
+                    to="/kamikaze"
                     className="text-sm text-gray-400 hover:text-white transition-colors"
                   >
                     Ankosa A
@@ -150,16 +150,14 @@ export function Footer() {
                 </li>
                 <li>
                   <Link
-                    to="/kamikaze"
+                    to="/jet-engines/HAPS"
                     className="text-sm text-gray-400 hover:text-white transition-colors"
                   >
-                    Kamikaze
+                    HAPS
                   </Link>
                 </li>
               </ul>
-            </div>
-
-            <div>
+            </div>            <div>
               <h3 className="text-sm font-medium text-white mb-4">Valley</h3>
               <ul className="space-y-2">
                 <li>
