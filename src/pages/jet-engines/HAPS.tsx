@@ -7,7 +7,7 @@ export function HAPS() {
         <div className="absolute inset-0">
           <img
             loading="lazy"
-            src="/src/images/HAPS/hero.webp"
+            src="/images/HAPS/hero.webp"
             alt="HAPS Hero Background"
             className="w-full h-full object-cover"
           />
@@ -40,7 +40,7 @@ export function HAPS() {
               <div className="overflow-hidden rounded-xl shadow-2xl">
                 <img
                   loading="lazy"
-                  src="/src/images/HAPS/hero.webp"
+                  src="/images/HAPS/hero.webp"
                   alt="HAPS Hero"
                   className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110"
                 />
@@ -52,7 +52,7 @@ export function HAPS() {
               <div className="overflow-hidden rounded-xl shadow-2xl">
                 <img
                   loading="lazy"
-                  src="/src/images/HAPS/fin.webp"
+                  src="/images/HAPS/fin.webp"
                   alt="HAPS Fin"
                   className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110"
                 />
@@ -64,7 +64,7 @@ export function HAPS() {
               <div className="overflow-hidden rounded-xl shadow-2xl">
                 <img
                   loading="lazy"
-                  src="/src/images/HAPS/insky.webp"
+                  src="/images/HAPS/insky.webp"
                   alt="HAPS Insky"
                   className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110"
                 />
@@ -76,7 +76,7 @@ export function HAPS() {
               <div className="overflow-hidden rounded-xl shadow-2xl">
                 <img
                   loading="lazy"
-                  src="/src/images/HAPS/solar.txt"
+                  src="/images/HAPS/solar.txt"
                   alt="HAPS Solar"
                   className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110"
                 />
