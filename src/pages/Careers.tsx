@@ -117,26 +117,17 @@ export function Careers() {
   }, []);
 
   React.useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("opacity-100", "translate-x-0");
-            entry.target.classList.remove("opacity-0", "translate-x-full");
-          }
-        });
-      },
-      {
-        threshold: 0.01,
-        rootMargin: "0px",
-      }
-    );
+    // Use a simple timeout instead of intersection observer to prevent conflicts
+    const timer = setTimeout(() => {
+      document.querySelectorAll(".slide-card").forEach((card, index) => {
+        setTimeout(() => {
+          card.classList.add("opacity-100", "translate-x-0");
+          card.classList.remove("opacity-0", "translate-x-full");
+        }, index * 200);
+      });
+    }, 100);
 
-    document.querySelectorAll(".slide-card").forEach((card) => {
-      observer.observe(card);
-    });
-
-    return () => observer.disconnect();
+    return () => clearTimeout(timer);
   }, []);
 
   const [formData, setFormData] = useState({
@@ -281,6 +272,8 @@ ${formData.coverLetter || 'No cover letter provided'}
           <img
             loading="eager"
             decoding="sync"
+            crossOrigin="anonymous"
+            fetchPriority="high"
             src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=60"
             alt="Careers Hero"
             className="w-full h-full object-cover"
@@ -288,7 +281,8 @@ ${formData.coverLetter || 'No cover letter provided'}
               imageRendering: 'auto',
               backfaceVisibility: 'hidden',
               transform: 'translateZ(0)',
-              willChange: 'auto'
+              willChange: 'auto',
+              WebkitBackfaceVisibility: 'hidden'
             }}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-transparent" />

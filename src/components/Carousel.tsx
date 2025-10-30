@@ -141,49 +141,61 @@ export function Carousel({ slides, className = "bg-[#FFEfd5]" }: CarouselProps) 
   return (
     <section className={`py-16 sm:py-20 md:py-24 ${className}`}>
       <div className="max-w-[90rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16">
-        <div className="relative w-full rounded-2xl overflow-hidden border">
+        <div className="relative w-full rounded-2xl overflow-hidden border carousel-container">
           {/* Main Carousel */}
           <div 
             className="relative"
+            data-carousel="true"
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
           >
             {slides.map((slide, index) => (
               <div
-                key={index}
+                key={`slide-${index}`}
                 className={`transition-opacity duration-500 ease-in-out ${
-                  index === currentSlide ? 'opacity-100' : 'opacity-0 absolute inset-0 -z-10'
+                  index === currentSlide ? 'opacity-100 relative z-10' : 'opacity-0 absolute inset-0 z-0'
                 }`}
+                style={{
+                  // Keep all slides in DOM to prevent reloading
+                  position: index === currentSlide ? 'relative' : 'absolute',
+                  visibility: 'visible', // Always visible to prevent unloading
+                }}
               >
-                {/* Image Container */}
+                {/* Image Container - Always render to prevent reloading */}
                 <div className="relative w-full h-[50vh] sm:h-[60vh] md:h-[70vh] overflow-hidden">
                   {/* Loading placeholder */}
                   {!imagesLoaded[index] && (
-                    <div className="absolute inset-0 bg-gray-800 flex items-center justify-center">
+                    <div className="absolute inset-0 bg-gray-800 flex items-center justify-center z-20">
                       <div className="text-white">Loading...</div>
                     </div>
                   )}
-                  {/* Using img tag with enhanced caching to prevent disappearing */}
+                  
+                  {/* Image with permanent loading to prevent disappearing */}
                   <img
-                    key={`carousel-img-${index}`} // Unique key to prevent React re-mounting
+                    key={`carousel-img-${index}-permanent`}
                     src={slide.image}
                     alt={slide.title}
-                    loading="eager" // Prevent lazy loading
-                    decoding="sync" // Synchronous decoding
-                    fetchPriority="high" // High priority loading
-                    crossOrigin="anonymous" // Enable CORS for better caching
+                    loading="eager"
+                    decoding="sync"
+                    fetchPriority="high"
+                    crossOrigin="anonymous"
                     className="absolute inset-0 w-full h-full object-cover brightness-[0.6]"
                     style={{ 
                       imageRendering: 'auto',
                       backfaceVisibility: 'hidden',
-                      transform: 'translateZ(0)', // Force hardware acceleration
-                      willChange: 'auto', // Optimize for changes
-                      WebkitBackfaceVisibility: 'hidden', // Safari compatibility
-                      MozBackfaceVisibility: 'hidden', // Firefox compatibility
+                      WebkitBackfaceVisibility: 'hidden',
+                      MozBackfaceVisibility: 'hidden',
+                      transform: 'translateZ(0)',
+                      willChange: 'transform, opacity',
+                      // Force image to stay in memory
+                      pointerEvents: 'none',
+                      userSelect: 'none',
+                      // Prevent image from being optimized away
+                      minHeight: '1px',
+                      minWidth: '1px',
                     }}
                     onLoad={() => {
-                      // Mark image as loaded and keep it in memory
                       setImagesLoaded(prev => {
                         const newLoaded = [...prev];
                         newLoaded[index] = true;
@@ -192,10 +204,13 @@ export function Carousel({ slides, className = "bg-[#FFEfd5]" }: CarouselProps) 
                     }}
                     onError={(e) => {
                       console.warn(`Image failed to load: ${slide.image}`);
-                      // Optionally set a fallback image
                       const target = e.target as HTMLImageElement;
-                      target.style.display = 'none';
+                      // Don't hide the image, just log the error
+                      target.style.backgroundColor = '#374151';
                     }}
+                    // Prevent context menu and dragging
+                    onContextMenu={(e) => e.preventDefault()}
+                    onDragStart={(e) => e.preventDefault()}
                   />
                   
                   {/* Content Overlay */}

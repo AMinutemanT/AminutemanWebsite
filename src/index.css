@@ -9,6 +9,39 @@
     touch-action: manipulation;
     @apply text-base;
   }
+
+  /* Force image loading and prevent lazy loading issues */
+  img {
+    image-rendering: auto;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    transform: translateZ(0);
+    will-change: auto;
+  }
+
+  /* Carousel specific optimizations */
+  .carousel-container img {
+    content-visibility: visible !important;
+    contain-intrinsic-size: auto !important;
+    loading: eager !important;
+    decoding: sync !important;
+    fetchpriority: high !important;
+  }
+
+  /* Prevent image disappearing in production */
+  [data-carousel="true"] img {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+    min-height: 1px;
+    min-width: 1px;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
   
   /* Enhanced mobile-first typography */
   @media (min-width: 320px) {
