@@ -1,6 +1,45 @@
 import { useState, useRef, TouchEvent, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
+// Image cache utility to prevent images from being garbage collected
+class ImageCache {
+  private static instance: ImageCache;
+  private cache: Map<string, HTMLImageElement> = new Map();
+
+  static getInstance(): ImageCache {
+    if (!ImageCache.instance) {
+      ImageCache.instance = new ImageCache();
+    }
+    return ImageCache.instance;
+  }
+
+  preloadImage(src: string): Promise<HTMLImageElement> {
+    return new Promise((resolve, reject) => {
+      if (this.cache.has(src)) {
+        resolve(this.cache.get(src)!);
+        return;
+      }
+
+      const img = new Image();
+      img.crossOrigin = "anonymous";
+      img.loading = "eager";
+      img.decoding = "sync";
+      
+      img.onload = () => {
+        this.cache.set(src, img);
+        resolve(img);
+      };
+      
+      img.onerror = () => reject(new Error(`Failed to load image: ${src}`));
+      img.src = src;
+    });
+  }
+
+  getImage(src: string): HTMLImageElement | null {
+    return this.cache.get(src) || null;
+  }
+}
+
 interface Slide {
   title: string;
   description: string;
@@ -18,30 +57,46 @@ export function Carousel({ slides, className = "bg-[#FFEfd5]" }: CarouselProps) 
   const touchStartX = useRef<number>(0);
   const touchEndX = useRef<number>(0);
   const isSwiping = useRef<boolean>(false);
+  const imageRefsCache = useRef<Map<string, HTMLImageElement>>(new Map());
 
-  // Preload all images to prevent them from disappearing
+  // Preload and cache all images to prevent them from disappearing
   useEffect(() => {
+    const imageCache = ImageCache.getInstance();
+    
     const preloadImages = async () => {
-      const loadPromises = slides.map((slide, index) => {
-        return new Promise<void>((resolve) => {
-          const img = new Image();
-          img.onload = () => {
-            setImagesLoaded(prev => {
-              const newLoaded = [...prev];
-              newLoaded[index] = true;
-              return newLoaded;
-            });
-            resolve();
-          };
-          img.onerror = () => resolve(); // Continue even if image fails to load
-          img.src = slide.image;
-        });
+      const imageElements: HTMLImageElement[] = [];
+      
+      const loadPromises = slides.map(async (slide, index) => {
+        try {
+          const img = await imageCache.preloadImage(slide.image);
+          imageElements[index] = img;
+          
+          setImagesLoaded(prev => {
+            const newLoaded = [...prev];
+            newLoaded[index] = true;
+            return newLoaded;
+          });
+        } catch (error) {
+          console.warn(`Failed to preload image: ${slide.image}`, error);
+        }
       });
       
       await Promise.all(loadPromises);
+      
+      // Store references in cache to prevent garbage collection
+      imageElements.forEach((img, index) => {
+        if (img && slides[index]) {
+          imageRefsCache.current.set(slides[index].image, img);
+        }
+      });
     };
 
     preloadImages();
+    
+    // Cleanup function - keep images cached for performance
+    return () => {
+      // Images remain in cache for future use
+    };
   }, [slides]);
 
   const goToSlide = (index: number) => {
@@ -103,25 +158,43 @@ export function Carousel({ slides, className = "bg-[#FFEfd5]" }: CarouselProps) 
               >
                 {/* Image Container */}
                 <div className="relative w-full h-[50vh] sm:h-[60vh] md:h-[70vh] overflow-hidden">
-                  {/* Using img tag instead of background to prevent disappearing */}
+                  {/* Loading placeholder */}
+                  {!imagesLoaded[index] && (
+                    <div className="absolute inset-0 bg-gray-800 flex items-center justify-center">
+                      <div className="text-white">Loading...</div>
+                    </div>
+                  )}
+                  {/* Using img tag with enhanced caching to prevent disappearing */}
                   <img
+                    key={`carousel-img-${index}`} // Unique key to prevent React re-mounting
                     src={slide.image}
                     alt={slide.title}
                     loading="eager" // Prevent lazy loading
                     decoding="sync" // Synchronous decoding
+                    fetchPriority="high" // High priority loading
+                    crossOrigin="anonymous" // Enable CORS for better caching
                     className="absolute inset-0 w-full h-full object-cover brightness-[0.6]"
                     style={{ 
                       imageRendering: 'auto',
                       backfaceVisibility: 'hidden',
-                      transform: 'translateZ(0)' // Force hardware acceleration
+                      transform: 'translateZ(0)', // Force hardware acceleration
+                      willChange: 'auto', // Optimize for changes
+                      WebkitBackfaceVisibility: 'hidden', // Safari compatibility
+                      MozBackfaceVisibility: 'hidden', // Firefox compatibility
                     }}
                     onLoad={() => {
-                      // Mark image as loaded
+                      // Mark image as loaded and keep it in memory
                       setImagesLoaded(prev => {
                         const newLoaded = [...prev];
                         newLoaded[index] = true;
                         return newLoaded;
                       });
+                    }}
+                    onError={(e) => {
+                      console.warn(`Image failed to load: ${slide.image}`);
+                      // Optionally set a fallback image
+                      const target = e.target as HTMLImageElement;
+                      target.style.display = 'none';
                     }}
                   />
                   
