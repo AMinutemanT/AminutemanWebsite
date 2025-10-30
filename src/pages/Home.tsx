@@ -132,7 +132,7 @@ export function Home() {
                     <div className="w-3 h-3 bg-blue-400 rounded-sm" />
                     <span className="text-sm font-bold text-blue-300 tracking-widest uppercase">Leadership</span>
                   </div>
-                  <h2 className="text-5xl lg:text-6xl font-black text-white tracking-wider leading-tight uppercase" style={{ fontFamily: 'Impact, "Arial Black", "Franklin Gothic Bold", Arial, sans-serif' }}>
+                  <h2 className="text-5xl lg:text-6xl font-black text-white tracking-wider leading-tight uppercase" style={{ fontFamily: '"Inter", "Helvetica Neue", "Arial", "Segoe UI", system-ui, sans-serif' }}>
                     BOARD OF<br />DIRECTORS
                   </h2>
                 </div>
