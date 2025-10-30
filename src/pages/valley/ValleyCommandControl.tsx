@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import { Command, Shield, Cpu, Radio } from "lucide-react";
 import { Features } from "../../components/Features";
 import ProductHero from "../../components/ProductHero";
@@ -139,6 +140,229 @@ export function ValleyCommandControl() {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Advanced Military Defense Section */}
+      <div className="py-20 px-4 bg-gradient-to-b from-black to-gray-900">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl sm:text-5xl font-extrabold text-white mb-6">
+              Advanced Military Defense<br />Technology Solutions
+            </h2>
+            <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
+              Pioneering the future of defense with autonomous systems, AI-powered tactical solutions, and military-grade technology for strategic operations.
+            </p>
+          </div>
+
+          <div className="text-center mb-16">
+            <h3 className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent mb-4">
+              Core Defense Platforms
+            </h3>
+            <p className="text-lg text-gray-300">
+              Indigenous technology sovereignty with battle-tested autonomous systems
+            </p>
+          </div>
+          
+          <div className="grid lg:grid-cols-2 gap-8">
+            {/* Valley AI Operating System */}
+            <div className="bg-gray-800/40 border border-gray-700/50 rounded-2xl p-8 backdrop-blur-sm">
+              <h4 className="text-2xl font-semibold text-white mb-4">
+                Valley AI Operating System
+              </h4>
+              <p className="text-gray-300 mb-6 text-lg leading-relaxed">
+                GPS-denied autonomous navigation, multi-domain sensor fusion, and real-time tactical adaptation for strategic military operations. Combat-proven AI delivering operational superiority.
+              </p>
+              <ul className="space-y-3">
+                <li className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0" />
+                  <span className="text-gray-300">Autonomous mission planning and battlefield awareness</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0" />
+                  <span className="text-gray-300">Predictive threat analysis and countermeasure deployment</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0" />
+                  <span className="text-gray-300">Swarm coordination for distributed autonomous operations</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Ankosha A Kamikaze Platform */}
+            <div className="bg-gray-800/40 border border-gray-700/50 rounded-2xl p-8 backdrop-blur-sm">
+              <h4 className="text-2xl font-semibold text-white mb-4">
+                Ankosha A Kamikaze Platform
+              </h4>
+              <p className="text-gray-300 mb-6 text-lg leading-relaxed">
+                Deep-strike autonomous loitering munitions with 1,500km operational range. High-value target elimination with 10-hour persistent surveillance capability.
+              </p>
+              <ul className="space-y-3">
+                <li className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0" />
+                  <span className="text-gray-300">Fire-and-forget mission profiles in contested environments</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0" />
+                  <span className="text-gray-300">Precision 20kg warhead for infrastructure disruption</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0" />
+                  <span className="text-gray-300">Minimized operator exposure with autonomous engagement</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Strategic Applications Section */}
+      <div className="py-20 px-4 bg-gray-900">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl sm:text-5xl font-extrabold text-white mb-6">
+              Strategic Applications
+            </h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+              One platform, infinite applications across defense and strategic sectors
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Border Surveillance */}
+            <div className="bg-gray-800/40 border border-gray-700/50 rounded-2xl p-6 backdrop-blur-sm">
+              <h4 className="text-xl font-semibold text-white mb-4">
+                Border Surveillance
+              </h4>
+              <p className="text-gray-300 leading-relaxed">
+                Autonomous LAC monitoring with continuous intrusion detection and threat assessment
+              </p>
+            </div>
+
+            {/* Counter-Terrorism */}
+            <div className="bg-gray-800/40 border border-gray-700/50 rounded-2xl p-6 backdrop-blur-sm">
+              <h4 className="text-xl font-semibold text-white mb-4">
+                Counter-Terrorism
+              </h4>
+              <p className="text-gray-300 leading-relaxed">
+                Urban navigation, target tracking, and critical infrastructure protection capabilities
+              </p>
+            </div>
+
+            {/* Enterprise Automation */}
+            <div className="bg-gray-800/40 border border-gray-700/50 rounded-2xl p-6 backdrop-blur-sm">
+              <h4 className="text-xl font-semibold text-white mb-4">
+                Enterprise Automation
+              </h4>
+              <p className="text-gray-300 leading-relaxed">
+                Military-grade AI for business process optimization and workflow intelligence
+              </p>
+            </div>
+
+            {/* Industrial Security */}
+            <div className="bg-gray-800/40 border border-gray-700/50 rounded-2xl p-6 backdrop-blur-sm">
+              <h4 className="text-xl font-semibold text-white mb-4">
+                Industrial Security
+              </h4>
+              <p className="text-gray-300 leading-relaxed">
+                24/7 perimeter surveillance for mining, energy, and remote infrastructure operations
+              </p>
+            </div>
+
+            {/* Smart Cities */}
+            <div className="bg-gray-800/40 border border-gray-700/50 rounded-2xl p-6 backdrop-blur-sm">
+              <h4 className="text-xl font-semibold text-white mb-4">
+                Smart Cities
+              </h4>
+              <p className="text-gray-300 leading-relaxed">
+                Public safety monitoring, traffic optimization, and emergency response coordination
+              </p>
+            </div>
+
+            {/* International Export */}
+            <div className="bg-gray-800/40 border border-gray-700/50 rounded-2xl p-6 backdrop-blur-sm">
+              <h4 className="text-xl font-semibold text-white mb-4">
+                International Export
+              </h4>
+              <p className="text-gray-300 leading-relaxed">
+                Allied nation defense cooperation with customizable autonomous systems
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Strategic Advantages Section */}
+      <div className="py-20 px-4 bg-gradient-to-b from-gray-900 to-black">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl sm:text-5xl font-extrabold text-white mb-6">
+              Strategic Advantages
+            </h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+              Indigenous defense technology establishing technological sovereignty
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-start">
+            {/* GPS-Denied Autonomy */}
+            <div className="text-center">
+              <h4 className="text-lg font-bold text-white mb-3 leading-tight">
+                GPS-Denied Autonomy
+              </h4>
+              <p className="text-gray-300 leading-relaxed text-sm">
+                Operational superiority in contested environments without external dependencies
+              </p>
+            </div>
+
+            {/* Combat-Proven AI */}
+            <div className="text-center">
+              <h4 className="text-lg font-bold text-white mb-3 leading-tight">
+                Combat-Proven AI
+              </h4>
+              <p className="text-gray-300 leading-relaxed text-sm">
+                Real-time tactical adaptation with predictive threat analysis capabilities
+              </p>
+            </div>
+
+            {/* Technology Sovereignty */}
+            <div className="text-center">
+              <h4 className="text-lg font-bold text-white mb-3 leading-tight">
+                Technology Sovereignty
+              </h4>
+              <p className="text-gray-300 leading-relaxed text-sm">
+                Indigenous development without dependency on Western defense suppliers
+              </p>
+            </div>
+
+            {/* Multi-Domain Integration */}
+            <div className="text-center">
+              <h4 className="text-lg font-bold text-white mb-3 leading-tight">
+                Multi-Domain Integration
+              </h4>
+              <p className="text-gray-300 leading-relaxed text-sm">
+                Seamless coordination across land, air, and strategic infrastructure systems
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Call to Action Section */}
+      <div className="py-20 px-4 bg-black">
+        <div className="container mx-auto max-w-4xl text-center">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
+            Ready to Discuss Strategic Cooperation?
+          </h2>
+          <p className="text-lg text-gray-300 mb-8 leading-relaxed max-w-2xl mx-auto">
+            Contact our team to explore how Aminuteman Technologies can support your B2B and strategic operational requirements.
+          </p>
+          <Link 
+            to="/contact" 
+            className="inline-block bg-transparent border-2 border-white text-white px-6 py-2 rounded-full text-sm font-semibold hover:bg-white hover:text-black transition-all duration-300 transform hover:scale-105"
+          >
+            Get in Touch
+          </Link>
         </div>
       </div>
     </div>

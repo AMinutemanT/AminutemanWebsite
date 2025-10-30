@@ -279,10 +279,17 @@ ${formData.coverLetter || 'No cover letter provided'}
       <div className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <img
-            loading="lazy"
+            loading="eager"
+            decoding="sync"
             src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=60"
             alt="Careers Hero"
             className="w-full h-full object-cover"
+            style={{ 
+              imageRendering: 'auto',
+              backfaceVisibility: 'hidden',
+              transform: 'translateZ(0)',
+              willChange: 'auto'
+            }}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-transparent" />
         </div>

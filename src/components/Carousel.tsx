@@ -1,4 +1,4 @@
-import React, { useState, useRef, TouchEvent } from 'react';
+import { useState, useRef, TouchEvent, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface Slide {
@@ -14,9 +14,35 @@ interface CarouselProps {
 
 export function Carousel({ slides, className = "bg-[#FFEfd5]" }: CarouselProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [imagesLoaded, setImagesLoaded] = useState<boolean[]>(new Array(slides.length).fill(false));
   const touchStartX = useRef<number>(0);
   const touchEndX = useRef<number>(0);
   const isSwiping = useRef<boolean>(false);
+
+  // Preload all images to prevent them from disappearing
+  useEffect(() => {
+    const preloadImages = async () => {
+      const loadPromises = slides.map((slide, index) => {
+        return new Promise<void>((resolve) => {
+          const img = new Image();
+          img.onload = () => {
+            setImagesLoaded(prev => {
+              const newLoaded = [...prev];
+              newLoaded[index] = true;
+              return newLoaded;
+            });
+            resolve();
+          };
+          img.onerror = () => resolve(); // Continue even if image fails to load
+          img.src = slide.image;
+        });
+      });
+      
+      await Promise.all(loadPromises);
+    };
+
+    preloadImages();
+  }, [slides]);
 
   const goToSlide = (index: number) => {
     setCurrentSlide(index);
@@ -76,17 +102,31 @@ export function Carousel({ slides, className = "bg-[#FFEfd5]" }: CarouselProps) 
                 }`}
               >
                 {/* Image Container */}
-                <div className="relative w-full h-[50vh] sm:h-[60vh] md:h-[70vh]">
-                  <div 
-                    className="absolute inset-0 bg-cover bg-center"
+                <div className="relative w-full h-[50vh] sm:h-[60vh] md:h-[70vh] overflow-hidden">
+                  {/* Using img tag instead of background to prevent disappearing */}
+                  <img
+                    src={slide.image}
+                    alt={slide.title}
+                    loading="eager" // Prevent lazy loading
+                    decoding="sync" // Synchronous decoding
+                    className="absolute inset-0 w-full h-full object-cover brightness-[0.6]"
                     style={{ 
-                      backgroundImage: `url(${slide.image})`,
-                      filter: 'brightness(0.6)' 
+                      imageRendering: 'auto',
+                      backfaceVisibility: 'hidden',
+                      transform: 'translateZ(0)' // Force hardware acceleration
+                    }}
+                    onLoad={() => {
+                      // Mark image as loaded
+                      setImagesLoaded(prev => {
+                        const newLoaded = [...prev];
+                        newLoaded[index] = true;
+                        return newLoaded;
+                      });
                     }}
                   />
                   
                   {/* Content Overlay */}
-                  <div className="relative h-full flex items-end">
+                  <div className="relative h-full flex items-end bg-gradient-to-t from-black/50 to-transparent">
                     <div className="w-full px-6 sm:px-8 md:px-12 pb-6 sm:pb-8 md:pb-10">
                       <div className="max-w-4xl">
                         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3 md:mb-4 text-white">

@@ -7,8 +7,8 @@ import { Rocket, Brain, Shield, Target } from 'lucide-react';
 
 const carouselSlides = [
   {
-    title: "Twin Turbo Jet Engine Manufacturing",
-    description: "State-of-the-art manufacturing facility for advanced jet engines with superior performance and reliability.",
+    title: "Electric Propulsion Engine",
+    description: "State-of-the-art manufacturing facility for advanced propulsion engines with superior performance and reliability.",
     image: "https://images.unsplash.com/photo-1540575861501-7cf05a4b125a?auto=format&fit=crop&q=60"
   },
   {
@@ -83,18 +83,107 @@ export function Home() {
   return (
     <div className="relative min-h-screen bg-gradient-to-b from-gray-900 to-black">
       <Hero />
-      <div 
-        ref={sectionRefs.features} 
-        className="transform transition-all duration-1000 opacity-0 translate-y-10"
-      >
-        <Features features={features} heading='Advanced Defense Technology' subheading='Our cutting-edge solutions combine advanced propulsion, AI systems, and precision control for superior military capabilities.' />
-      </div>
+      
+      {/* Tagline Section */}
+      <section className="relative py-20 bg-black">
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900/50 to-black"></div>
+        <div className="container mx-auto relative z-10">
+          <div className="text-center leading-none">
+            <div className="text-6xl sm:text-7xl lg:text-8xl font-black text-blue-400/60 tracking-widest uppercase select-none [text-shadow:_0_0_30px_rgb(59_130_246_/_20%)]">
+              SHAPING
+            </div>
+            <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-white italic tracking-wider select-none -my-2">
+              the
+            </div>
+            <div className="text-6xl sm:text-7xl lg:text-8xl font-black text-blue-400/60 tracking-widest uppercase select-none [text-shadow:_0_0_30px_rgb(59_130_246_/_20%)]">
+              DETERRENCE
+            </div>
+          </div>
+        </div>
+      </section>
+      
       <div 
         ref={sectionRefs.carousel} 
         className="transform transition-all duration-1000 opacity-0 translate-y-10"
       >
         <Carousel slides={carouselSlides} className="bg-gray-900/50 backdrop-blur-sm" />
       </div>
+      
+      <div 
+        ref={sectionRefs.features} 
+        className="transform transition-all duration-1000 opacity-0 translate-y-10"
+      >
+        <Features features={features} heading='Advancing Military Defense Technology' subheading='Our cutting-edge solutions combine advanced propulsion, AI systems, and precision control for superior military capabilities.' />
+      </div>
+      
+      {/* Leadership Section */}
+      <section className="relative py-20 px-4 sm:py-28 bg-gradient-to-br from-gray-900 via-gray-800 to-black overflow-hidden">
+        <div className="container mx-auto">
+          <div className="max-w-7xl mx-auto">
+            
+            {/* Main Layout */}
+            <div className="grid lg:grid-cols-5 gap-16 items-start">
+              
+              {/* Left Column - Header and Content */}
+              <div className="lg:col-span-3">
+                {/* Header */}
+                <div className="mb-12">
+                  <div className="flex items-center gap-4 mb-8">
+                    <div className="w-3 h-3 bg-blue-400 rounded-sm" />
+                    <span className="text-sm font-bold text-blue-300 tracking-widest uppercase">Leadership</span>
+                  </div>
+                  <h2 className="text-5xl lg:text-6xl font-black text-white tracking-wider leading-tight uppercase" style={{ fontFamily: 'Impact, "Arial Black", "Franklin Gothic Bold", Arial, sans-serif' }}>
+                    BOARD OF<br />DIRECTORS
+                  </h2>
+                </div>
+
+                {/* Founder Vision Content */}
+                <div className="flex flex-col justify-center h-full relative">
+                  {/* Background quotation marks */}
+                  <div className="absolute inset-0 overflow-hidden">
+                    <div className="text-8xl text-blue-500/20 font-serif absolute -top-6 -left-4 leading-none select-none pointer-events-none">66</div>
+                  </div>
+                  
+                  <div className="relative z-10 pl-8 pr-4">
+                    <p className="text-base text-gray-300 leading-relaxed text-justify">
+                      At <span className="font-bold text-white">Aminuteman Technologies</span>, I envision a future where defense technology is not just reactive but intelligent — systems that think, decide, and act with autonomy. Our goal is to shift the paradigm of defense readiness from dependence on maintenance to true self-sustainability, where machines become sentient guardians of national security. Through <span className="font-semibold text-blue-400">Valley AI</span>, the world's first Physical AI Operating System, we are building the brain for autonomous defense hardware — capable of real-time decision-making on the edge. This mission is deeply aligned with <span className="font-semibold text-blue-400">Atmanirbhar Bharat</span>, driving India toward complete defense sovereignty by engineering indigenous, AI-driven systems that reduce human risk, enhance strategic agility, and ensure that the burden of danger is borne by technology, not our soldiers.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Column - Image */}
+              <div className="lg:col-span-2 relative">
+                <div className="relative border-2 border-gray-600 p-6 bg-gray-800/50 backdrop-blur-sm">
+                  <img
+                    loading="eager"
+                    decoding="sync"
+                    src="/images/aniruddha.jpg"
+                    alt="Aniruddha - Founder & CEO"
+                    className="w-full aspect-[4/5] object-cover"
+                    style={{ 
+                      imageRendering: 'auto',
+                      backfaceVisibility: 'hidden',
+                      transform: 'translateZ(0)'
+                    }}
+                  />
+                  {/* Corner brackets */}
+                  <div className="absolute top-0 left-0 w-10 h-10 border-l-2 border-t-2 border-blue-400" />
+                  <div className="absolute top-0 right-0 w-10 h-10 border-r-2 border-t-2 border-blue-400" />
+                  <div className="absolute bottom-0 left-0 w-10 h-10 border-l-2 border-b-2 border-blue-400" />
+                  <div className="absolute bottom-0 right-0 w-10 h-10 border-r-2 border-b-2 border-blue-400" />
+                </div>
+                <div className="mt-8 text-center">
+                  <h3 className="text-4xl font-bold text-white mb-3">Aniruddha Narayan</h3>
+                  <p className="text-xl text-blue-300 font-medium">Founder & CEO</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+      
       <div 
         ref={sectionRefs.cta} 
         className="transform transition-all duration-1000 opacity-0 translate-y-10"

@@ -70,7 +70,7 @@ export function ValleyMissionAutonomy() {
         sectionRef={sectionRefs.intro}
         title="Advanced Mission Intelligence"
         description="Our Mission Autonomy system leverages cutting-edge AI to automate mission planning, execution, and adaptation. It enables unmanned systems to operate independently while maintaining strategic objectives and safety parameters."
-        imageUrl="https://images.unsplash.com/photo-1580894732444-8fee7c8c6396?auto=format&fit=crop&q=60"
+        imageUrl="/images/model.jpg"
         imageAlt="Autonomous Systems"
       />
 
@@ -135,6 +135,64 @@ export function ValleyMissionAutonomy() {
                   </li>
                 </ul>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Clients Section */}
+      <div className="py-16 px-4 bg-gray-900/50">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-12">
+            <h3 className="text-2xl font-bold text-white mb-4">
+              Our Trusted Clients
+            </h3>
+            <p className="text-gray-300">
+              Delivering advanced defense solutions to leading organizations
+            </p>
+          </div>
+          <div className="flex justify-center items-center flex-wrap gap-8">
+            <div className="w-20 h-20 bg-white rounded-full p-3 flex items-center justify-center hover:scale-110 transition-transform duration-300">
+              <img 
+                src="/images/collab/6febd270f3f6a4cf7951703ba0e925a0.png" 
+                alt="Client Organization" 
+                className="w-full h-full object-contain"
+              />
+            </div>
+            <div className="w-20 h-20 bg-white rounded-full p-3 flex items-center justify-center hover:scale-110 transition-transform duration-300">
+              <img 
+                src="/images/collab/9e6a710497202d266783a4f5ed0f61ea.png" 
+                alt="Client Organization" 
+                className="w-full h-full object-contain"
+              />
+            </div>
+            <div className="w-20 h-20 bg-white rounded-full p-3 flex items-center justify-center hover:scale-110 transition-transform duration-300">
+              <img 
+                src="/images/collab/indian-army-logo-hd-49649.png" 
+                alt="Indian Army" 
+                className="w-full h-full object-contain"
+              />
+            </div>
+            <div className="w-20 h-20 bg-white rounded-full p-3 flex items-center justify-center hover:scale-110 transition-transform duration-300">
+              <img 
+                src="/images/collab/logo.jpeg" 
+                alt="Client Organization" 
+                className="w-full h-full object-contain"
+              />
+            </div>
+            <div className="w-20 h-20 bg-white rounded-full p-3 flex items-center justify-center hover:scale-110 transition-transform duration-300">
+              <img 
+                src="/images/collab/pngwing.com.png" 
+                alt="Client Organization" 
+                className="w-full h-full object-contain"
+              />
+            </div>
+            <div className="w-20 h-20 bg-white rounded-full p-3 flex items-center justify-center hover:scale-110 transition-transform duration-300">
+              <img 
+                src="/images/collab/favicon.ico" 
+                alt="Client Organization" 
+                className="w-full h-full object-contain"
+              />
             </div>
           </div>
         </div>
