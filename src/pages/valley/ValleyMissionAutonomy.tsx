@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Brain, Target, Compass, Cpu } from "lucide-react";
 import { Features } from "../../components/Features";
 import ProductHero from "../../components/ProductHero";
@@ -86,7 +86,7 @@ export function ValleyMissionAutonomy() {
         className="py-20 px-4 transform transition-all duration-1000 opacity-0 translate-y-10"
       >
         <div className="container mx-auto max-w-6xl">
-          <div className="bg-gray-800/40 border border-gray-700/50 rounded-2xl p-8 backdrop-blur-sm">
+          <div className="bg-gray-800/40 border border-gray-700/50 rounded-2xl p-8 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
             <h2 className="text-4xl sm:text-5xl font-extrabold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent mb-8">Autonomous Capabilities</h2>
             <div className="grid md:grid-cols-2 gap-8">
               <div>
@@ -152,42 +152,42 @@ export function ValleyMissionAutonomy() {
             </p>
           </div>
           <div className="flex justify-center items-center flex-wrap gap-8">
-            <div className="w-20 h-20 bg-white rounded-full p-3 flex items-center justify-center hover:scale-110 transition-transform duration-300">
+            <div className="w-20 h-20 bg-white rounded-full p-3 flex items-center justify-center hover:scale-110 hover:-translate-y-1 transition-all duration-300 client-logo">
               <img 
                 src="/images/collab/6febd270f3f6a4cf7951703ba0e925a0.png" 
                 alt="Client Organization" 
                 className="w-full h-full object-contain"
               />
             </div>
-            <div className="w-20 h-20 bg-white rounded-full p-3 flex items-center justify-center hover:scale-110 transition-transform duration-300">
+            <div className="w-20 h-20 bg-white rounded-full p-3 flex items-center justify-center hover:scale-110 hover:-translate-y-1 transition-all duration-300 client-logo">
               <img 
                 src="/images/collab/9e6a710497202d266783a4f5ed0f61ea.png" 
                 alt="Client Organization" 
                 className="w-full h-full object-contain"
               />
             </div>
-            <div className="w-20 h-20 bg-white rounded-full p-3 flex items-center justify-center hover:scale-110 transition-transform duration-300">
+            <div className="w-20 h-20 bg-white rounded-full p-3 flex items-center justify-center hover:scale-110 hover:-translate-y-1 transition-all duration-300 client-logo">
               <img 
                 src="/images/collab/indian-army-logo-hd-49649.png" 
                 alt="Indian Army" 
                 className="w-full h-full object-contain"
               />
             </div>
-            <div className="w-20 h-20 bg-white rounded-full p-3 flex items-center justify-center hover:scale-110 transition-transform duration-300">
+            <div className="w-20 h-20 bg-white rounded-full p-3 flex items-center justify-center hover:scale-110 hover:-translate-y-1 transition-all duration-300 client-logo">
               <img 
                 src="/images/collab/logo.jpeg" 
                 alt="Client Organization" 
                 className="w-full h-full object-contain"
               />
             </div>
-            <div className="w-20 h-20 bg-white rounded-full p-3 flex items-center justify-center hover:scale-110 transition-transform duration-300">
+            <div className="w-20 h-20 bg-white rounded-full p-3 flex items-center justify-center hover:scale-110 hover:-translate-y-1 transition-all duration-300 client-logo">
               <img 
                 src="/images/collab/pngwing.com.png" 
                 alt="Client Organization" 
                 className="w-full h-full object-contain"
               />
             </div>
-            <div className="w-20 h-20 bg-white rounded-full p-3 flex items-center justify-center hover:scale-110 transition-transform duration-300">
+            <div className="w-20 h-20 bg-white rounded-full p-3 flex items-center justify-center hover:scale-110 hover:-translate-y-1 transition-all duration-300 client-logo">
               <img 
                 src="/images/collab/favicon.ico" 
                 alt="Client Organization" 

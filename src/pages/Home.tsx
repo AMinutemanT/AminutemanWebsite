@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { Hero } from '../components/Hero';
 import { Features } from '../components/Features';
 import { CTA } from '../components/CTA';
@@ -132,17 +132,14 @@ export function Home() {
                     <div className="w-3 h-3 bg-blue-400 rounded-sm" />
                     <span className="text-sm font-bold text-blue-300 tracking-widest uppercase">Leadership</span>
                   </div>
-                  <h2 className="text-5xl lg:text-6xl font-black text-white tracking-wider leading-tight uppercase" style={{ fontFamily: '"Inter", "Helvetica Neue", "Arial", "Segoe UI", system-ui, sans-serif' }}>
-                    BOARD OF<br />DIRECTORS
+                  <h2 className="text-5xl lg:text-6xl font-black text-white tracking-wider leading-tight uppercase">
+                    Our Vision
                   </h2>
                 </div>
 
                 {/* Founder Vision Content */}
                 <div className="flex flex-col justify-center h-full relative">
-                  {/* Background quotation marks */}
-                  <div className="absolute inset-0 overflow-hidden">
-                    <div className="text-8xl text-blue-500/20 font-serif absolute -top-6 -left-4 leading-none select-none pointer-events-none">66</div>
-                  </div>
+                  
                   
                   <div className="relative z-10 pl-8 pr-4">
                     <p className="text-base text-gray-300 leading-relaxed text-justify">

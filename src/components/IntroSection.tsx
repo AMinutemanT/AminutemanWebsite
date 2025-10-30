@@ -4,7 +4,8 @@ interface IntroSectionProps {
   sectionRef?: React.RefObject<HTMLDivElement>;
   title: string;
   description: string;
-  imageUrl: string;
+  imageUrl?: string;
+  videoUrl?: string;
   imageAlt?: string;
 }
 
@@ -13,6 +14,7 @@ const IntroSection: React.FC<IntroSectionProps> = ({
   title,
   description,
   imageUrl,
+  videoUrl,
   imageAlt = "Intro Image",
 }) => {
   return (
@@ -30,18 +32,31 @@ const IntroSection: React.FC<IntroSectionProps> = ({
             <h2 className="text-4xl sm:text-5xl font-extrabold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
               {title}
             </h2>
-            <p className="text-lg sm:text-xl text-gray-300 leading-relaxed">
+            <p className="text-lg sm:text-xl text-gray-300 leading-relaxed text-justify">
               {description}
             </p>
           </div>
           <div className="relative group">
             <div className="absolute -inset-1 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-2xl blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
-            <img
-              loading="lazy"
-              src={imageUrl}
-              alt={imageAlt}
-              className="relative rounded-2xl shadow-2xl border border-gray-700/50 group-hover:border-blue-500/50 transition-all duration-300"
-            />
+            {videoUrl ? (
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="relative rounded-2xl shadow-2xl border border-gray-700/50 group-hover:border-blue-500/50 transition-all duration-300 w-full h-auto"
+              >
+                <source src={videoUrl} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            ) : (
+              <img
+                loading="lazy"
+                src={imageUrl}
+                alt={imageAlt}
+                className="relative rounded-2xl shadow-2xl border border-gray-700/50 group-hover:border-blue-500/50 transition-all duration-300"
+              />
+            )}
           </div>
         </div>
       </div>

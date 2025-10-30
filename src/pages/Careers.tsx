@@ -315,7 +315,7 @@ ${formData.coverLetter || 'No cover letter provided'}
             {cards.map((card, index) => (
               <div
                 key={index}
-                className="slide-card bg-white/50 backdrop-blur-xl rounded-3xl p-6 shadow-2xl translate-x-full transition-all duration-1000"
+                className="slide-card bg-white/50 backdrop-blur-xl rounded-3xl p-6 shadow-2xl translate-x-full transition-all duration-1000 hover:-translate-y-2"
                 style={{
                   transitionDelay: `${index * 200}ms`,
                 }}
@@ -345,7 +345,7 @@ ${formData.coverLetter || 'No cover letter provided'}
                     {positions.map((position, index) => (
                       <div
                         key={index}
-                        className="group p-6 bg-[#FFEfd5] rounded-2xl transition-all duration-300 hover:shadow-md hover:translate-y-[-2px]"
+                        className="group p-6 bg-[#FFEfd5] rounded-2xl transition-all duration-300 hover:shadow-md hover:-translate-y-2 position-card"
                       >
                         <div className="flex items-start gap-4">
                           <div className="p-3 bg-white rounded-xl shadow-sm">

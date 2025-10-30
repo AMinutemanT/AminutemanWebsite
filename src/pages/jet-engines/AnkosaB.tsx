@@ -1,44 +1,36 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Plane, Gauge, Wind, Zap } from "lucide-react";
 import { Features } from "../../components/Features";
 import ProductHero from "../../components/ProductHero";
 import IntroSection from "../../components/IntroSection";
-import TechnicalSpecifications from "../../components/TechnicalSpecifications";
 
 const features = [
   {
+    icon: <Zap className="w-8 h-8" />,
+    title: "Designed for Accelerated Fielding",
+    description: "Leverages advanced rapid prototyping, digital engineering, and an open and modular system design to accelerate the speed from prototyping to production.",
+  },
+  {
     icon: <Plane className="w-8 h-8" />,
-    title: "Enhanced Design",
-    description: "Improved aerodynamics and efficiency.",
+    title: "High-Performance, Multi-Mission Platform",
+    description: "Designed to deliver next-generation flight performance with the flexibility to integrate a variety of first or third-party sensors and payloads to support the mission requirements.",
   },
   {
     icon: <Gauge className="w-8 h-8" />,
-    title: "Superior Performance",
-    description: "Increased thrust and better fuel economy.",
+    title: "Model-Driven, Field-Tested",
+    description: "The digital design is rapidly tested, validated, and iterated by leveraging synthetic pilots and intelligent flight simulation onboard actual aircraft.",
   },
   {
     icon: <Wind className="w-8 h-8" />,
-    title: "Advanced Thermal",
-    description: "Next-gen thermal management system.",
+    title: "Affordable Mass Production",
+    description: "Commercial off the shelf subsystems and all digital workflow from concept through manufacture, validation, and verification provides rapid and scalable production at a fraction of the cost of a crewed fighter.",
   },
-  {
-    icon: <Zap className="w-8 h-8" />,
-    title: "Smart Integration",
-    description: "Enhanced digital control interface.",
-  },
-];
-
-const specs = [
-  { label: "Maximum Thrust", value: "38,000 lbf" },
-  { label: "Weight", value: "2,300 lbs" },
-  { label: "Specific Fuel Consumption", value: "0.7 lb/lbf-hr" },
 ];
 
 export function AnkosaB() {
   const sectionRefs = {
     intro: useRef<HTMLDivElement>(null),
     features: useRef<HTMLDivElement>(null),
-    specs: useRef<HTMLDivElement>(null),
   };
 
   useEffect(() => {
@@ -74,9 +66,9 @@ export function AnkosaB() {
 
       <IntroSection
         sectionRef={sectionRefs.intro}
-        title="Advanced Engine Technology"
-        description="Building on the success of Ankosa A, the Ankosa B introduces enhanced performance capabilities and improved fuel efficiency. Engineered for next-generation military aircraft."
-        imageUrl="https://images.unsplash.com/photo-1579829366248-204fe8413f31?auto=format&fit=crop&q=60"
+        title="Advanced AAV"
+        description="Open system architecture is platform agnostic and enables rapid capability insertion and third-party payloads. Modular, missionized nose enables payloads to be quickly swapped out. Trusted autonomy – executes mission elements with minimal increase in workload for crewed platforms. Designed to be 1/10th of the cost of a crewed platform. Purpose-built system leverages advanced manufacturing and digital production capabilities. Leverages Valley OS for mission autocracy."
+        videoUrl="/videos/Kamikaze.mp4"
         imageAlt="Ankosa B Technology"
       />
 
@@ -86,8 +78,6 @@ export function AnkosaB() {
       >
         <Features features={features} heading="Key Features" />
       </div>
-
-      <TechnicalSpecifications sectionRef={sectionRefs.specs} specs={specs} />
     </div>
   );
 }
