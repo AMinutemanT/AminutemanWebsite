@@ -155,8 +155,8 @@ export function Home() {
                   <img
                     loading="eager"
                     decoding="sync"
-                    src="/images/model.jpg"
-                    alt="Vision Model"
+                    src="/images/vision.jpg"
+                    alt="Company Vision"
                     className="w-full aspect-[4/5] object-cover"
                     style={{ 
                       imageRendering: 'auto',
