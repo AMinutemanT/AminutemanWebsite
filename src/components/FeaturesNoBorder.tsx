@@ -6,7 +6,7 @@ interface features {
   description: string;
 }
 
-export function Features({
+export function FeaturesNoBorder({
   features,
   heading,
   subheading,
@@ -34,23 +34,19 @@ export function Features({
           )}
         </div>
 
-        {/* Feature Grid */}
+        {/* Feature Grid - No Borders */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10">
           {features.map((feature, index) => (
             <div
               key={index}
-              className="group relative bg-gray-800/40 border border-gray-700/50 rounded-2xl p-8 backdrop-blur-sm transition-all duration-300 hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/10 hover:-translate-y-2 feature-card"
+              className="group text-center transition-all duration-300 hover:-translate-y-2"
             >
-              <div className="bg-gradient-to-tr from-blue-500/20 to-purple-500/20 w-14 h-14 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                {feature.icon}
-              </div>
               <h3 className="text-xl font-bold text-white mb-3">
                 {feature.title}
               </h3>
-              <p className="text-gray-400 leading-relaxed">
+              <p className="text-sm text-gray-400 leading-relaxed">
                 {feature.description}
               </p>
-              <div className="absolute -top-1 -right-1 w-4 h-4 bg-blue-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
           ))}
         </div>

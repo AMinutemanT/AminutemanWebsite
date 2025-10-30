@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Plane, Gauge, Wind, Zap } from "lucide-react";
-import { Features } from "../../components/Features";
+import { FeaturesNoBorder } from "../../components/FeaturesNoBorder";
 import ProductHero from "../../components/ProductHero";
 import IntroSection from "../../components/IntroSection";
 
@@ -76,7 +76,7 @@ export function AnkosaB() {
         ref={sectionRefs.features}
         className="py-20 px-4 bg-gray-900/50 transform transition-all duration-1000 opacity-0 translate-y-10"
       >
-        <Features features={features} heading="Key Features" />
+        <FeaturesNoBorder features={features} heading="Key Features" />
       </div>
     </div>
   );
