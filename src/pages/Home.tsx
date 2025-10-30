@@ -155,8 +155,8 @@ export function Home() {
                   <img
                     loading="eager"
                     decoding="sync"
-                    src="/images/aniruddha.jpg"
-                    alt="Aniruddha - Founder & CEO"
+                    src="/images/model.jpg"
+                    alt="Vision Model"
                     className="w-full aspect-[4/5] object-cover"
                     style={{ 
                       imageRendering: 'auto',
@@ -169,10 +169,6 @@ export function Home() {
                   <div className="absolute top-0 right-0 w-10 h-10 border-r-2 border-t-2 border-blue-400" />
                   <div className="absolute bottom-0 left-0 w-10 h-10 border-l-2 border-b-2 border-blue-400" />
                   <div className="absolute bottom-0 right-0 w-10 h-10 border-r-2 border-b-2 border-blue-400" />
-                </div>
-                <div className="mt-8 text-center">
-                  <h3 className="text-4xl font-bold text-white mb-3">Aniruddha Narayan</h3>
-                  <p className="text-xl text-blue-300 font-medium">Founder & CEO</p>
                 </div>
               </div>
             </div>
