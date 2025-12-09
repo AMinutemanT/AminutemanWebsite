@@ -31,8 +31,8 @@ const carouselSlides = [
 const features = [
   {
     icon: <Rocket className="w-6 h-6 text-white" />,
-    title: "Advanced Propulsion",
-    description: "State-of-the-art rocket motors and propulsion systems for enhanced performance and reliability."
+    title: "Advanced Humanoid",
+    description: "State-of-the-art unmanned robots and advanced learning systems for enhanced performance and reliability."
   },
   {
     icon: <Brain className="w-6 h-6 text-white" />,
@@ -47,7 +47,7 @@ const features = [
   {
     icon: <Target className="w-6 h-6 text-white" />,
     title: "Precision Control",
-    description: "High-accuracy targeting and control systems for optimal performance."
+    description: "High-accuracy targeting, control and stipulated systems for optimal decision making and reliable performance."
   }
 ];
 
@@ -180,6 +180,64 @@ export function Home() {
           </div>
         </div>
       </section>
+
+      {/* Clients Section */}
+      <div className="py-16 px-4 bg-gray-900/50">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-12">
+            <h3 className="text-2xl font-bold text-white mb-4">
+              Our Trusted Clients
+            </h3>
+            <p className="text-gray-300">
+              Delivering advanced defense solutions to leading organizations
+            </p>
+          </div>
+          <div className="flex justify-center items-center flex-wrap gap-8">
+            <div className="w-20 h-20 bg-white rounded-full p-3 flex items-center justify-center hover:scale-110 hover:-translate-y-1 transition-all duration-300 client-logo">
+              <img 
+                src="/images/collab/6febd270f3f6a4cf7951703ba0e925a0.png" 
+                alt="Client Organization" 
+                className="w-full h-full object-contain"
+              />
+            </div>
+            <div className="w-20 h-20 bg-white rounded-full p-3 flex items-center justify-center hover:scale-110 hover:-translate-y-1 transition-all duration-300 client-logo">
+              <img 
+                src="/images/collab/9e6a710497202d266783a4f5ed0f61ea.png" 
+                alt="Client Organization" 
+                className="w-full h-full object-contain"
+              />
+            </div>
+            <div className="w-20 h-20 bg-white rounded-full p-3 flex items-center justify-center hover:scale-110 hover:-translate-y-1 transition-all duration-300 client-logo">
+              <img 
+                src="/images/collab/indian-army-logo-hd-49649.png" 
+                alt="Indian Army" 
+                className="w-full h-full object-contain"
+              />
+            </div>
+            <div className="w-20 h-20 bg-white rounded-full p-3 flex items-center justify-center hover:scale-110 hover:-translate-y-1 transition-all duration-300 client-logo">
+              <img 
+                src="/images/collab/logo.jpeg" 
+                alt="Client Organization" 
+                className="w-full h-full object-contain"
+              />
+            </div>
+            <div className="w-20 h-20 bg-white rounded-full p-3 flex items-center justify-center hover:scale-110 hover:-translate-y-1 transition-all duration-300 client-logo">
+              <img 
+                src="/images/collab/pngwing.com.png" 
+                alt="Client Organization" 
+                className="w-full h-full object-contain"
+              />
+            </div>
+            <div className="w-20 h-20 bg-white rounded-full p-3 flex items-center justify-center hover:scale-110 hover:-translate-y-1 transition-all duration-300 client-logo">
+              <img 
+                src="/images/collab/favicon.ico" 
+                alt="Client Organization" 
+                className="w-full h-full object-contain"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
       
       <div 
         ref={sectionRefs.cta} 

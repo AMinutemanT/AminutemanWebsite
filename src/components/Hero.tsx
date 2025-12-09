@@ -28,10 +28,10 @@ export function Hero() {
           isVisible ? 'translate-y-0 opacity-100' : 'translate-y-32 opacity-0'
         }`}>
           <h1 className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold text-white mb-4 sm:mb-2 [text-shadow:_0_4px_12px_rgb(0_0_0_/_20%)]">
-            Advanced Military Defense Technology Solutions
+            Advanced Physical AI Technology Solutions
           </h1>
           <p className="text-center text-sm sm:text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-8 sm:mb-12">
-            Pioneering the future of defense with advanced missile systems, AI-powered tactical solutions, and military-grade simulation technology.
+            Pioneering the future of defense tech and civilian applications with advanced algorithm systems and AI-powered tactical solutions with high-grade simulation and analytical technologies.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
