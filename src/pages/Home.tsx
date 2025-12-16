@@ -232,7 +232,7 @@ export function Home() {
               <img 
                 src="/images/collab/CA.png" 
                 alt="Client Organization" 
-                className="h-20 w-auto object-contain"
+                className="h-28 w-auto object-contain"
               />
             </div>
           </div>
