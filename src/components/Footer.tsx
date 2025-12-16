@@ -55,10 +55,10 @@ export function Footer() {
                   <MapPin className="w-5 h-5 text-gray-400 shrink-0 mt-1.5" />
                   <div className="space-y-1">
                     <p className="text-sm text-gray-400">
-                      Vighnaharta, Vidyanagar
+                      1324 West 13th street,
                     </p>
                     <p className="text-sm text-gray-400">
-                      Dhanori, Pune - 411015
+                      Tempe, Arizona 85281
                     </p>
                   </div>
                 </div>
@@ -66,13 +66,10 @@ export function Footer() {
                   <MapPin className="w-5 h-5 text-gray-400 shrink-0 mt-1.5" />
                   <div className="space-y-1">
                     <p className="text-sm text-gray-400">
-                      Dr. D.Y. Patil Institute of Engineering,
+                      Vighnaharta, Vidyanagar
                     </p>
                     <p className="text-sm text-gray-400">
-                      Management and Research.
-                    </p>
-                    <p className="text-sm text-gray-400">
-                      Akurdi, Nigdi, Pune - 411044
+                      Dhanori, Pune - 411015
                     </p>
                   </div>
                 </div>
@@ -200,6 +197,18 @@ export function Footer() {
                   Contact Us
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
+              </div>
+              <div className="flex justify-center gap-6">
+                <img 
+                  src="/images/usFlag.png" 
+                  alt="US Flag" 
+                  className="w-20 h-auto object-contain"
+                />
+                <img 
+                  src="/images/indianflag.jpg" 
+                  alt="Indian Flag" 
+                  className="w-20 h-auto object-contain"
+                />
               </div>
             </div>
           </div>

@@ -189,50 +189,50 @@ export function Home() {
               Our Trusted Clients
             </h3>
             <p className="text-gray-300">
-              Delivering advanced defense solutions to leading organizations
+              Delivering Advanced and optimised solution to leading organizations
             </p>
           </div>
           <div className="flex justify-center items-center flex-wrap gap-8">
-            <div className="w-20 h-20 bg-white rounded-full p-3 flex items-center justify-center hover:scale-110 hover:-translate-y-1 transition-all duration-300 client-logo">
+            <div className="flex items-center justify-center hover:scale-110 hover:-translate-y-1 transition-all duration-300 client-logo">
               <img 
                 src="/images/collab/6febd270f3f6a4cf7951703ba0e925a0.png" 
                 alt="Client Organization" 
-                className="w-full h-full object-contain"
+                className="h-20 w-auto object-contain"
               />
             </div>
-            <div className="w-20 h-20 bg-white rounded-full p-3 flex items-center justify-center hover:scale-110 hover:-translate-y-1 transition-all duration-300 client-logo">
+            <div className="flex items-center justify-center hover:scale-110 hover:-translate-y-1 transition-all duration-300 client-logo">
               <img 
                 src="/images/collab/9e6a710497202d266783a4f5ed0f61ea.png" 
                 alt="Client Organization" 
-                className="w-full h-full object-contain"
+                className="h-20 w-auto object-contain"
               />
             </div>
-            <div className="w-20 h-20 bg-white rounded-full p-3 flex items-center justify-center hover:scale-110 hover:-translate-y-1 transition-all duration-300 client-logo">
+            <div className="flex items-center justify-center hover:scale-110 hover:-translate-y-1 transition-all duration-300 client-logo">
               <img 
                 src="/images/collab/indian-army-logo-hd-49649.png" 
                 alt="Indian Army" 
-                className="w-full h-full object-contain"
+                className="h-20 w-auto object-contain"
               />
             </div>
-            <div className="w-20 h-20 bg-white rounded-full p-3 flex items-center justify-center hover:scale-110 hover:-translate-y-1 transition-all duration-300 client-logo">
+            <div className="flex items-center justify-center hover:scale-110 hover:-translate-y-1 transition-all duration-300 client-logo">
               <img 
                 src="/images/collab/logo.jpeg" 
                 alt="Client Organization" 
-                className="w-full h-full object-contain"
+                className="h-20 w-auto object-contain"
               />
             </div>
-            <div className="w-20 h-20 bg-white rounded-full p-3 flex items-center justify-center hover:scale-110 hover:-translate-y-1 transition-all duration-300 client-logo">
+            <div className="flex items-center justify-center hover:scale-110 hover:-translate-y-1 transition-all duration-300 client-logo">
               <img 
                 src="/images/collab/pngwing.com.png" 
                 alt="Client Organization" 
-                className="w-full h-full object-contain"
+                className="h-20 w-auto object-contain"
               />
             </div>
-            <div className="w-20 h-20 bg-white rounded-full p-3 flex items-center justify-center hover:scale-110 hover:-translate-y-1 transition-all duration-300 client-logo">
+            <div className="flex items-center justify-center hover:scale-110 hover:-translate-y-1 transition-all duration-300 client-logo">
               <img 
-                src="/images/collab/favicon.ico" 
+                src="/images/collab/CA.png" 
                 alt="Client Organization" 
-                className="w-full h-full object-contain"
+                className="h-20 w-auto object-contain"
               />
             </div>
           </div>
