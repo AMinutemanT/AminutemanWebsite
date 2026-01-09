@@ -156,36 +156,29 @@ export function Wingmans() {
         className="py-20 px-4 transform transition-all duration-1000 opacity-0 translate-y-10"
       >
         <div className="container mx-auto max-w-6xl">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                Force Multiplication Doctrine
-              </h2>
-              <p className="text-gray-300 text-lg mb-6">
-                This operational imperative represents a paramount tactical
-                challenge. How does one amplify and enhance the combat
-                effectiveness of our premier airpower platforms? Through force
-                multiplication principles—dramatically expanding battlespace
-                dominance capabilities and combat power projection.
-              </p>
-              <p className="text-gray-300 text-lg mb-6">
-                The Wingman functions as an autonomous collaborative combat
-                system leveraging advanced CONOPS-integrated human-machine
-                teaming architecture to achieve decisive force multiplication
-                effects.
-              </p>
-              <p className="text-gray-300 text-lg mb-6">
-                This platform is purpose-engineered for seamless integration
-                with fielded air superiority assets, delivering enhanced
-                operational persistence, battlespace survivability, and mission
-                effectiveness across highly contested A2/AD environments.
-              </p>
-            </div>
-            <img  loading="lazy"
-              src="https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&q=60"
-              alt="Wingmans Aircraft"
-              className="rounded-lg shadow-2xl"
-            />
+          <div>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+              Force Multiplication Doctrine
+            </h2>
+            <p className="text-gray-300 text-lg mb-6">
+              This operational imperative represents a paramount tactical
+              challenge. How does one amplify and enhance the combat
+              effectiveness of our premier airpower platforms? Through force
+              multiplication principles—dramatically expanding battlespace
+              dominance capabilities and combat power projection.
+            </p>
+            <p className="text-gray-300 text-lg mb-6">
+              The Wingman functions as an autonomous collaborative combat
+              system leveraging advanced CONOPS-integrated human-machine
+              teaming architecture to achieve decisive force multiplication
+              effects.
+            </p>
+            <p className="text-gray-300 text-lg mb-6">
+              This platform is purpose-engineered for seamless integration
+              with fielded air superiority assets, delivering enhanced
+              operational persistence, battlespace survivability, and mission
+              effectiveness across highly contested A2/AD environments.
+            </p>
           </div>
         </div>
       </div>
