@@ -7,9 +7,9 @@ import { Rocket, Brain, Shield, Target } from 'lucide-react';
 
 const carouselSlides = [
   {
-    title: "Electric Propulsion Engine",
-    description: "State-of-the-art manufacturing facility for advanced propulsion engines with superior performance and reliability.",
-    image: "https://images.unsplash.com/photo-1540575861501-7cf05a4b125a?auto=format&fit=crop&q=60"
+    title: "Valley OS",
+    description: "Building state of the Operating System for Data mining, autonomy across all platforms with advanced computational algorithms across hardware, geospatial network, on single command chain",
+    image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=60"
   },
   {
     title: "Interceptor",
@@ -182,58 +182,147 @@ export function Home() {
       </section>
 
       {/* Clients Section */}
-      <div className="py-16 px-4 bg-gray-900/50">
+      <div className="py-16 px-4 bg-gray-900/50 overflow-hidden">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12">
             <h3 className="text-2xl font-bold text-white mb-4">
-              Our Trusted Clients
+              CLINTELE
             </h3>
             <p className="text-gray-300">
               Delivering Advanced and optimised solution to leading organizations
             </p>
           </div>
-          <div className="flex justify-center items-center flex-wrap gap-8">
-            <div className="flex items-center justify-center hover:scale-110 hover:-translate-y-1 transition-all duration-300 client-logo">
-              <img 
-                src="/images/collab/6febd270f3f6a4cf7951703ba0e925a0.png" 
-                alt="Client Organization" 
-                className="h-20 w-auto object-contain"
-              />
-            </div>
-            <div className="flex items-center justify-center hover:scale-110 hover:-translate-y-1 transition-all duration-300 client-logo">
-              <img 
-                src="/images/collab/9e6a710497202d266783a4f5ed0f61ea.png" 
-                alt="Client Organization" 
-                className="h-20 w-auto object-contain"
-              />
-            </div>
-            <div className="flex items-center justify-center hover:scale-110 hover:-translate-y-1 transition-all duration-300 client-logo">
-              <img 
-                src="/images/collab/indian-army-logo-hd-49649.png" 
-                alt="Indian Army" 
-                className="h-20 w-auto object-contain"
-              />
-            </div>
-            <div className="flex items-center justify-center hover:scale-110 hover:-translate-y-1 transition-all duration-300 client-logo">
-              <img 
-                src="/images/collab/logo.jpeg" 
-                alt="Client Organization" 
-                className="h-20 w-auto object-contain"
-              />
-            </div>
-            <div className="flex items-center justify-center hover:scale-110 hover:-translate-y-1 transition-all duration-300 client-logo">
-              <img 
-                src="/images/collab/pngwing.com.png" 
-                alt="Client Organization" 
-                className="h-20 w-auto object-contain"
-              />
-            </div>
-            <div className="flex items-center justify-center hover:scale-110 hover:-translate-y-1 transition-all duration-300 client-logo">
-              <img 
-                src="/images/collab/CA.png" 
-                alt="Client Organization" 
-                className="h-28 w-auto object-contain"
-              />
+          <div className="relative overflow-hidden bg-white py-8 rounded-lg">
+            <div className="flex items-center gap-16 animate-scroll whitespace-nowrap">
+              {/* First set */}
+              <div className="flex items-center justify-center flex-shrink-0 w-40">
+                <img 
+                  src="/images/collab/6febd270f3f6a4cf7951703ba0e925a0.png" 
+                  alt="Client Organization" 
+                  className="h-20 w-auto object-contain"
+                />
+              </div>
+              <div className="flex items-center justify-center flex-shrink-0 w-40">
+                <img 
+                  src="/images/collab/9e6a710497202d266783a4f5ed0f61ea.png" 
+                  alt="Client Organization" 
+                  className="h-20 w-auto object-contain"
+                />
+              </div>
+              <div className="flex items-center justify-center flex-shrink-0 w-40">
+                <img 
+                  src="/images/collab/indian-army-logo-hd-49649.png" 
+                  alt="Indian Army" 
+                  className="h-20 w-auto object-contain"
+                />
+              </div>
+              <div className="flex items-center justify-center flex-shrink-0 w-40">
+                <img 
+                  src="/images/collab/logo.jpeg" 
+                  alt="Client Organization" 
+                  className="h-20 w-auto object-contain"
+                />
+              </div>
+              <div className="flex items-center justify-center flex-shrink-0 w-40">
+                <img 
+                  src="/images/collab/pngwing.com.png" 
+                  alt="Client Organization" 
+                  className="h-20 w-auto object-contain"
+                />
+              </div>
+              <div className="flex items-center justify-center flex-shrink-0 w-40">
+                <img 
+                  src="/images/collab/CA.png" 
+                  alt="Client Organization" 
+                  className="h-28 w-auto object-contain"
+                />
+              </div>
+              {/* Second set - exact duplicate for seamless loop */}
+              <div className="flex items-center justify-center flex-shrink-0 w-40">
+                <img 
+                  src="/images/collab/6febd270f3f6a4cf7951703ba0e925a0.png" 
+                  alt="Client Organization" 
+                  className="h-20 w-auto object-contain"
+                />
+              </div>
+              <div className="flex items-center justify-center flex-shrink-0 w-40">
+                <img 
+                  src="/images/collab/9e6a710497202d266783a4f5ed0f61ea.png" 
+                  alt="Client Organization" 
+                  className="h-20 w-auto object-contain"
+                />
+              </div>
+              <div className="flex items-center justify-center flex-shrink-0 w-40">
+                <img 
+                  src="/images/collab/indian-army-logo-hd-49649.png" 
+                  alt="Indian Army" 
+                  className="h-20 w-auto object-contain"
+                />
+              </div>
+              <div className="flex items-center justify-center flex-shrink-0 w-40">
+                <img 
+                  src="/images/collab/logo.jpeg" 
+                  alt="Client Organization" 
+                  className="h-20 w-auto object-contain"
+                />
+              </div>
+              <div className="flex items-center justify-center flex-shrink-0 w-40">
+                <img 
+                  src="/images/collab/pngwing.com.png" 
+                  alt="Client Organization" 
+                  className="h-20 w-auto object-contain"
+                />
+              </div>
+              <div className="flex items-center justify-center flex-shrink-0 w-40">
+                <img 
+                  src="/images/collab/CA.png" 
+                  alt="Client Organization" 
+                  className="h-28 w-auto object-contain"
+                />
+              </div>
+              {/* Third set - for extra smoothness */}
+              <div className="flex items-center justify-center flex-shrink-0 w-40">
+                <img 
+                  src="/images/collab/6febd270f3f6a4cf7951703ba0e925a0.png" 
+                  alt="Client Organization" 
+                  className="h-20 w-auto object-contain"
+                />
+              </div>
+              <div className="flex items-center justify-center flex-shrink-0 w-40">
+                <img 
+                  src="/images/collab/9e6a710497202d266783a4f5ed0f61ea.png" 
+                  alt="Client Organization" 
+                  className="h-20 w-auto object-contain"
+                />
+              </div>
+              <div className="flex items-center justify-center flex-shrink-0 w-40">
+                <img 
+                  src="/images/collab/indian-army-logo-hd-49649.png" 
+                  alt="Indian Army" 
+                  className="h-20 w-auto object-contain"
+                />
+              </div>
+              <div className="flex items-center justify-center flex-shrink-0 w-40">
+                <img 
+                  src="/images/collab/logo.jpeg" 
+                  alt="Client Organization" 
+                  className="h-20 w-auto object-contain"
+                />
+              </div>
+              <div className="flex items-center justify-center flex-shrink-0 w-40">
+                <img 
+                  src="/images/collab/pngwing.com.png" 
+                  alt="Client Organization" 
+                  className="h-20 w-auto object-contain"
+                />
+              </div>
+              <div className="flex items-center justify-center flex-shrink-0 w-40">
+                <img 
+                  src="/images/collab/CA.png" 
+                  alt="Client Organization" 
+                  className="h-28 w-auto object-contain"
+                />
+              </div>
             </div>
           </div>
         </div>

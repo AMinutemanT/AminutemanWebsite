@@ -279,6 +279,25 @@
     transform: translateY(-6px);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
   }
+
+  /* Infinite scroll animation for client logos */
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-33.333%));
+    }
+  }
+
+  .animate-scroll {
+    animation: scroll 30s linear infinite;
+    display: inline-flex;
+  }
+
+  .animate-scroll:hover {
+    animation-play-state: paused;
+  }
 }
 
 /* Reduced motion preferences */
