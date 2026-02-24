@@ -119,7 +119,7 @@ export function Footer() {
                     to="/jet-engines/HAPS"
                     className="text-sm text-gray-400 hover:text-white transition-colors"
                   >
-                    HAPS
+                    Aquasat
                   </Link>
                 </li>
               </ul>
