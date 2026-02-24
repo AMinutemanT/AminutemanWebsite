@@ -61,16 +61,7 @@ export function HAPS() {
             COMING SOON
           </h2>
         </motion.div>
-
-        {/* Subtitle */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 1, delay: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="mt-6 text-sm sm:text-base md:text-lg text-white/50 tracking-[0.15em] uppercase font-light text-center max-w-xl"
-        >
-          The next chapter in stratospheric observation
-        </motion.p>
+        
 
         {/* Pulsing dot */}
         <motion.div
