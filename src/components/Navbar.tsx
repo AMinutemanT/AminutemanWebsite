@@ -36,7 +36,7 @@ export function Navbar() {
       case 'Ankosa B':
         return '/jet-engines/ankosa-b';
       case 'Aquasat':
-        return '/jet-engines/HAPS';
+        return '/jet-engines/aquasat';
       case 'Interceptor A':
         return '/air-systems/interceptor-a';
       case 'Interceptor B':

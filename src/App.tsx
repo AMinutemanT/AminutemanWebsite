@@ -49,7 +49,7 @@ function AnimatedRoutes() {
         <Route path="/valley/partner-program" element={<PageTransition><ValleyPartnerProgram /></PageTransition>} />
         <Route path="/jet-engines/ankosa-a" element={<PageTransition><AnkosaA /></PageTransition>} />
         <Route path="/jet-engines/ankosa-b" element={<PageTransition><AnkosaB /></PageTransition>} />
-        <Route path="/jet-engines/HAPS" element={<PageTransition><HAPS /></PageTransition>} />
+        <Route path="/jet-engines/aquasat" element={<PageTransition><HAPS /></PageTransition>} />
         <Route path="/kamikaze" element={<PageTransition><Kamikaze /></PageTransition>} />
       </Routes>
     </AnimatePresence>

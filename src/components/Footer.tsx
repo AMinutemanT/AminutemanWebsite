@@ -116,7 +116,7 @@ export function Footer() {
                 </li>
                 <li>
                   <Link
-                    to="/jet-engines/HAPS"
+                    to="/jet-engines/aquasat"
                     className="text-sm text-gray-400 hover:text-white transition-colors"
                   >
                     Aquasat
