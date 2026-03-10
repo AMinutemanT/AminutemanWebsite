@@ -85,17 +85,17 @@ export function Home() {
       <Hero />
       
       {/* Tagline Section */}
-      <section className="relative py-20 bg-black">
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900/50 to-black"></div>
-        <div className="container mx-auto relative z-10">
-          <div className="text-center leading-none">
-            <div className="text-6xl sm:text-7xl lg:text-8xl font-black text-blue-400/60 tracking-widest uppercase select-none [text-shadow:_0_0_30px_rgb(59_130_246_/_20%)]">
+      <section className="relative py-16 sm:py-24 bg-black">
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900/50 to-black" />
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="text-center leading-none space-y-1">
+            <div className="text-4xl sm:text-6xl lg:text-8xl font-black text-blue-400/60 tracking-[0.15em] uppercase select-none [text-shadow:_0_0_30px_rgb(59_130_246_/_20%)]">
               SHAPING
             </div>
-            <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-white italic tracking-wider select-none -my-2">
+            <div className="text-lg sm:text-2xl lg:text-3xl font-bold text-white italic tracking-wider select-none">
               the
             </div>
-            <div className="text-6xl sm:text-7xl lg:text-8xl font-black text-blue-400/60 tracking-widest uppercase select-none [text-shadow:_0_0_30px_rgb(59_130_246_/_20%)]">
+            <div className="text-4xl sm:text-6xl lg:text-8xl font-black text-blue-400/60 tracking-[0.15em] uppercase select-none [text-shadow:_0_0_30px_rgb(59_130_246_/_20%)]">
               DETERRENCE
             </div>
           </div>
@@ -225,147 +225,32 @@ export function Home() {
       </section>
 
       {/* Clients Section */}
-      <div className="py-16 px-4 bg-gray-900/50 overflow-hidden">
+      <div className="py-16 sm:py-20 px-4 bg-gray-900/50 overflow-hidden">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12">
-            <h3 className="text-2xl font-bold text-white mb-4">
-              CLINTELE
+            <h3 className="text-sm font-bold text-blue-300 tracking-widest uppercase mb-4">
+              CLIENTELE
             </h3>
-            <p className="text-gray-300">
-              Delivering Advanced and optimised solution to leading organizations
+            <p className="text-base text-gray-300">
+              Delivering advanced and optimised solutions to leading organizations
             </p>
           </div>
           <div className="relative overflow-hidden bg-white py-8 rounded-lg">
             <div className="flex items-center gap-16 animate-scroll whitespace-nowrap">
-              {/* First set */}
-              <div className="flex items-center justify-center flex-shrink-0 w-40">
-                <img 
-                  src="/images/collab/6febd270f3f6a4cf7951703ba0e925a0.png" 
-                  alt="Client Organization" 
-                  className="h-20 w-auto object-contain"
-                />
-              </div>
-              <div className="flex items-center justify-center flex-shrink-0 w-40">
-                <img 
-                  src="/images/collab/9e6a710497202d266783a4f5ed0f61ea.png" 
-                  alt="Client Organization" 
-                  className="h-20 w-auto object-contain"
-                />
-              </div>
-              <div className="flex items-center justify-center flex-shrink-0 w-40">
-                <img 
-                  src="/images/collab/indian-army-logo-hd-49649.png" 
-                  alt="Indian Army" 
-                  className="h-20 w-auto object-contain"
-                />
-              </div>
-              <div className="flex items-center justify-center flex-shrink-0 w-40">
-                <img 
-                  src="/images/collab/logo.jpeg" 
-                  alt="Client Organization" 
-                  className="h-20 w-auto object-contain"
-                />
-              </div>
-              <div className="flex items-center justify-center flex-shrink-0 w-40">
-                <img 
-                  src="/images/collab/pngwing.com.png" 
-                  alt="Client Organization" 
-                  className="h-20 w-auto object-contain"
-                />
-              </div>
-              <div className="flex items-center justify-center flex-shrink-0 w-40">
-                <img 
-                  src="/images/collab/CA.png" 
-                  alt="Client Organization" 
-                  className="h-28 w-auto object-contain"
-                />
-              </div>
-              {/* Second set - exact duplicate for seamless loop */}
-              <div className="flex items-center justify-center flex-shrink-0 w-40">
-                <img 
-                  src="/images/collab/6febd270f3f6a4cf7951703ba0e925a0.png" 
-                  alt="Client Organization" 
-                  className="h-20 w-auto object-contain"
-                />
-              </div>
-              <div className="flex items-center justify-center flex-shrink-0 w-40">
-                <img 
-                  src="/images/collab/9e6a710497202d266783a4f5ed0f61ea.png" 
-                  alt="Client Organization" 
-                  className="h-20 w-auto object-contain"
-                />
-              </div>
-              <div className="flex items-center justify-center flex-shrink-0 w-40">
-                <img 
-                  src="/images/collab/indian-army-logo-hd-49649.png" 
-                  alt="Indian Army" 
-                  className="h-20 w-auto object-contain"
-                />
-              </div>
-              <div className="flex items-center justify-center flex-shrink-0 w-40">
-                <img 
-                  src="/images/collab/logo.jpeg" 
-                  alt="Client Organization" 
-                  className="h-20 w-auto object-contain"
-                />
-              </div>
-              <div className="flex items-center justify-center flex-shrink-0 w-40">
-                <img 
-                  src="/images/collab/pngwing.com.png" 
-                  alt="Client Organization" 
-                  className="h-20 w-auto object-contain"
-                />
-              </div>
-              <div className="flex items-center justify-center flex-shrink-0 w-40">
-                <img 
-                  src="/images/collab/CA.png" 
-                  alt="Client Organization" 
-                  className="h-28 w-auto object-contain"
-                />
-              </div>
-              {/* Third set - for extra smoothness */}
-              <div className="flex items-center justify-center flex-shrink-0 w-40">
-                <img 
-                  src="/images/collab/6febd270f3f6a4cf7951703ba0e925a0.png" 
-                  alt="Client Organization" 
-                  className="h-20 w-auto object-contain"
-                />
-              </div>
-              <div className="flex items-center justify-center flex-shrink-0 w-40">
-                <img 
-                  src="/images/collab/9e6a710497202d266783a4f5ed0f61ea.png" 
-                  alt="Client Organization" 
-                  className="h-20 w-auto object-contain"
-                />
-              </div>
-              <div className="flex items-center justify-center flex-shrink-0 w-40">
-                <img 
-                  src="/images/collab/indian-army-logo-hd-49649.png" 
-                  alt="Indian Army" 
-                  className="h-20 w-auto object-contain"
-                />
-              </div>
-              <div className="flex items-center justify-center flex-shrink-0 w-40">
-                <img 
-                  src="/images/collab/logo.jpeg" 
-                  alt="Client Organization" 
-                  className="h-20 w-auto object-contain"
-                />
-              </div>
-              <div className="flex items-center justify-center flex-shrink-0 w-40">
-                <img 
-                  src="/images/collab/pngwing.com.png" 
-                  alt="Client Organization" 
-                  className="h-20 w-auto object-contain"
-                />
-              </div>
-              <div className="flex items-center justify-center flex-shrink-0 w-40">
-                <img 
-                  src="/images/collab/CA.png" 
-                  alt="Client Organization" 
-                  className="h-28 w-auto object-contain"
-                />
-              </div>
+              {[...Array(3)].map((_, setIndex) => (
+                [
+                  { src: '/images/collab/6febd270f3f6a4cf7951703ba0e925a0.png', alt: 'Client Organization' },
+                  { src: '/images/collab/9e6a710497202d266783a4f5ed0f61ea.png', alt: 'Client Organization' },
+                  { src: '/images/collab/indian-army-logo-hd-49649.png', alt: 'Indian Army' },
+                  { src: '/images/collab/logo.jpeg', alt: 'Client Organization' },
+                  { src: '/images/collab/pngwing.com.png', alt: 'Client Organization' },
+                  { src: '/images/collab/CA.png', alt: 'Client Organization' },
+                ].map((logo, i) => (
+                  <div key={`${setIndex}-${i}`} className="flex items-center justify-center flex-shrink-0 w-32 sm:w-40">
+                    <img src={logo.src} alt={logo.alt} className="h-16 sm:h-20 w-auto object-contain" />
+                  </div>
+                ))
+              ))}
             </div>
           </div>
         </div>

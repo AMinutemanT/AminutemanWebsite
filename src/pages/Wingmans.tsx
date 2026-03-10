@@ -86,7 +86,7 @@ export function Wingmans() {
       <div className="container mx-auto px-4">
         <div
           ref={sectionRefs.model}
-          className="w-[80%] mx-auto h-[80vh] relative mb-20 rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm overflow-hidden"
+          className="w-full sm:w-[90%] lg:w-[80%] mx-auto h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] relative mb-20 rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm overflow-hidden"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >

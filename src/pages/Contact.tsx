@@ -224,7 +224,7 @@ ${formData.message}
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold text-white mb-2">Email</h3>
-                    <p className="text-gray-300 break-all">aminutemantechnologies@gmail.com</p>
+                    <p className="text-gray-300 break-words">aminutemantechnologies@gmail.com</p>
                   </div>
                 </div>
               </div>

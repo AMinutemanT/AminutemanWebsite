@@ -16,19 +16,15 @@ export function FeaturesNoBorder({
   subheading?: string;
 }) {
   return (
-    <section className="relative py-20 px-4 sm:py-28 bg-gradient-to-b from-gray-900 via-gray-900/90 to-gray-800 overflow-hidden">
-      {/* Decorative glowing orbs */}
-      <div className="absolute top-0 left-0 w-72 h-72 bg-blue-500/20 rounded-full blur-3xl opacity-40 animate-pulse" />
-      <div className="absolute bottom-0 right-0 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl opacity-40 animate-pulse delay-500" />
-
+    <section className="relative py-20 px-4 sm:py-28 bg-gray-900 overflow-hidden">
       <div className="container mx-auto relative z-10">
         {/* Heading */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl font-extrabold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+          <h2 className="text-4xl sm:text-5xl font-bold text-white">
             {heading}
           </h2>
           {subheading && (
-            <p className="mt-4 text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto">
+            <p className="mt-4 text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto">
               {subheading}
             </p>
           )}
@@ -39,7 +35,7 @@ export function FeaturesNoBorder({
           {features.map((feature, index) => (
             <div
               key={index}
-              className="group text-center transition-all duration-300 hover:-translate-y-2"
+              className="group text-center transition-all duration-300 hover:-translate-y-1"
             >
               <h3 className="text-xl font-bold text-white mb-3">
                 {feature.title}

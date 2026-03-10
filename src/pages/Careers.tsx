@@ -266,7 +266,7 @@ ${formData.coverLetter || 'No cover letter provided'}
   };
 
   return (
-    <div className="min-h-screen bg-[#FFEfd5]">
+    <div className="min-h-screen bg-gray-900">
       <div className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <img
@@ -305,9 +305,9 @@ ${formData.coverLetter || 'No cover letter provided'}
         </div>
       </div>
 
-      <section className="py-20 bg-[#FFEfd5]">
+      <section className="py-20 bg-gray-900">
         <div className="container mx-auto px-4 sm:px-6">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 text-center mb-12">
+          <h2 className="text-4xl md:text-5xl font-bold text-white text-center mb-12">
             WHO WE ARE LOOKING FOR
           </h2>
 
@@ -315,15 +315,15 @@ ${formData.coverLetter || 'No cover letter provided'}
             {cards.map((card, index) => (
               <div
                 key={index}
-                className="slide-card bg-white/50 backdrop-blur-xl rounded-3xl p-6 shadow-2xl translate-x-full transition-all duration-1000 hover:-translate-y-2"
+                className="slide-card bg-gray-800/50 backdrop-blur-xl border border-white/10 rounded-2xl p-6 translate-x-full transition-all duration-1000 hover:-translate-y-2"
                 style={{
                   transitionDelay: `${index * 200}ms`,
                 }}
               >
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                <h3 className="text-2xl font-bold text-white mb-3">
                   {card.title}
                 </h3>
-                <p className="text-gray-700">{card.description}</p>
+                <p className="text-gray-400">{card.description}</p>
               </div>
             ))}
           </div>
@@ -332,37 +332,37 @@ ${formData.coverLetter || 'No cover letter provided'}
 
       <Carousel slides={carouselSlides} />
 
-      <section className="py-20 bg-[#FFEfd5]">
+      <section className="py-20 bg-gray-900">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-7xl mx-auto">
             <div className="grid lg:grid-cols-5 gap-8 items-start">
               <div className="lg:col-span-2">
-                <div className="bg-white rounded-3xl p-8 shadow-lg sticky top-24">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-8">
+                <div className="bg-gray-800/50 backdrop-blur-sm border border-white/10 rounded-2xl p-8 sticky top-24">
+                  <h3 className="text-2xl font-bold text-white mb-8">
                     Open Positions
                   </h3>
-                  <div className="space-y-6 overflow-y-scroll max-h-[800px]">
+                  <div className="space-y-4 overflow-y-auto max-h-[70vh]">
                     {positions.map((position, index) => (
                       <div
                         key={index}
-                        className="group p-6 bg-[#FFEfd5] rounded-2xl transition-all duration-300 hover:shadow-md hover:-translate-y-2 position-card"
+                        className="group p-5 bg-white/5 border border-white/10 rounded-xl transition-all duration-300 hover:bg-white/10 hover:-translate-y-1 position-card"
                       >
                         <div className="flex items-start gap-4">
-                          <div className="p-3 bg-white rounded-xl shadow-sm">
-                            <Briefcase className="w-6 h-6 text-gray-700" />
+                          <div className="p-3 bg-blue-500/10 rounded-xl">
+                            <Briefcase className="w-5 h-5 text-white" />
                           </div>
                           <div>
-                            <h4 className="text-xl font-semibold text-gray-900 mb-2">
+                            <h4 className="text-lg font-semibold text-white mb-1">
                               {position.title}
                             </h4>
-                            <p className="text-gray-600 mb-3">
+                            <p className="text-gray-400 text-sm mb-3">
                               {position.department}
                             </p>
                             <div className="flex flex-wrap gap-2">
-                              <span className="px-3 py-1.5 text-sm bg-white rounded-full text-gray-700 shadow-sm">
+                              <span className="px-3 py-1 text-xs bg-white/10 rounded-full text-gray-300">
                                 {position.type}
                               </span>
-                              <span className="px-3 py-1.5 text-sm bg-white rounded-full text-gray-700 shadow-sm">
+                              <span className="px-3 py-1 text-xs bg-white/10 rounded-full text-gray-300">
                                 {position.location}
                               </span>
                             </div>
@@ -375,17 +375,17 @@ ${formData.coverLetter || 'No cover letter provided'}
               </div>
 
               <div className="lg:col-span-3">
-                <div className="bg-white rounded-3xl p-8 sm:p-10 shadow-lg">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-8">
+                <div className="bg-gray-800/50 backdrop-blur-sm border border-white/10 rounded-2xl p-8 sm:p-10">
+                  <h3 className="text-2xl font-bold text-white mb-8">
                     Apply Now
                   </h3>
 
                   {submitStatus.type && (
                     <div
-                      className={`mb-8 p-6 rounded-2xl ${
+                      className={`mb-8 p-6 rounded-xl ${
                         submitStatus.type === "success"
-                          ? "bg-green-50 text-green-700 border border-green-100"
-                          : "bg-red-50 text-red-700 border border-red-100"
+                          ? "bg-green-500/10 text-green-400 border border-green-500/20"
+                          : "bg-red-500/10 text-red-400 border border-red-500/20"
                       }`}
                     >
                       {submitStatus.message}
@@ -401,7 +401,7 @@ ${formData.coverLetter || 'No cover letter provided'}
                       <div className="space-y-2">
                         <label
                           htmlFor="name"
-                          className="block text-sm font-medium text-gray-700"
+                          className="block text-sm font-medium text-white/90"
                         >
                           Full Name
                         </label>
@@ -411,7 +411,7 @@ ${formData.coverLetter || 'No cover letter provided'}
                           name="name"
                           value={formData.name}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 bg-[#FFEfd5] border-2 border-transparent rounded-xl focus:outline-none focus:border-gray-300 text-gray-900 placeholder-gray-500 transition-colors"
+                          className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 text-white placeholder-white/30 transition-all"
                           placeholder="John Doe"
                           required
                         />
@@ -419,7 +419,7 @@ ${formData.coverLetter || 'No cover letter provided'}
                       <div className="space-y-2">
                         <label
                           htmlFor="email"
-                          className="block text-sm font-medium text-gray-700"
+                          className="block text-sm font-medium text-white/90"
                         >
                           Email
                         </label>
@@ -429,7 +429,7 @@ ${formData.coverLetter || 'No cover letter provided'}
                           name="email"
                           value={formData.email}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 bg-[#FFEfd5] border-2 border-transparent rounded-xl focus:outline-none focus:border-gray-300 text-gray-900 placeholder-gray-500 transition-colors"
+                          className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 text-white placeholder-white/30 transition-all"
                           placeholder="john@example.com"
                           required
                         />
@@ -440,7 +440,7 @@ ${formData.coverLetter || 'No cover letter provided'}
                       <div className="space-y-2">
                         <label
                           htmlFor="phone"
-                          className="block text-sm font-medium text-gray-700"
+                          className="block text-sm font-medium text-white/90"
                         >
                           Phone Number
                         </label>
@@ -450,7 +450,7 @@ ${formData.coverLetter || 'No cover letter provided'}
                           name="phone"
                           value={formData.phone}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 bg-[#FFEfd5] border-2 border-transparent rounded-xl focus:outline-none focus:border-gray-300 text-gray-900 placeholder-gray-500 transition-colors"
+                          className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 text-white placeholder-white/30 transition-all"
                           placeholder="+91 XXXXXXXXXX"
                           required
                         />
@@ -458,7 +458,7 @@ ${formData.coverLetter || 'No cover letter provided'}
                       <div className="space-y-2">
                         <label
                           htmlFor="position"
-                          className="block text-sm font-medium text-gray-700"
+                          className="block text-sm font-medium text-white/90"
                         >
                           Position
                         </label>
@@ -467,7 +467,7 @@ ${formData.coverLetter || 'No cover letter provided'}
                           name="position"
                           value={formData.position}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 bg-[#FFEfd5] border-2 border-transparent rounded-xl focus:outline-none focus:border-gray-300 text-gray-900 transition-colors"
+                          className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 text-white transition-all"
                           required
                         >
                           <option value="">Select a position</option>
@@ -483,7 +483,7 @@ ${formData.coverLetter || 'No cover letter provided'}
                     <div className="space-y-2">
                       <label
                         htmlFor="experience"
-                        className="block text-sm font-medium text-gray-700"
+                        className="block text-sm font-medium text-white/90"
                       >
                         Years of Experience
                       </label>
@@ -493,7 +493,7 @@ ${formData.coverLetter || 'No cover letter provided'}
                         name="experience"
                         value={formData.experience}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 bg-[#FFEfd5] border-2 border-transparent rounded-xl focus:outline-none focus:border-gray-300 text-gray-900 placeholder-gray-500 transition-colors"
+                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 text-white placeholder-white/30 transition-all"
                         placeholder="Years of experience"
                         min="0"
                         required
@@ -503,7 +503,7 @@ ${formData.coverLetter || 'No cover letter provided'}
                     <div className="space-y-2">
                       <label
                         htmlFor="resume"
-                        className="block text-sm font-medium text-gray-700"
+                        className="block text-sm font-medium text-white/90"
                       >
                         Resume
                       </label>
@@ -512,18 +512,18 @@ ${formData.coverLetter || 'No cover letter provided'}
                         id="resume"
                         name="resume"
                         onChange={handleFileChange}
-                        className="w-full px-4 py-3 bg-[#FFEfd5] border-2 border-transparent rounded-xl focus:outline-none focus:border-gray-300 text-gray-900 transition-colors file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-medium file:bg-gray-900 file:text-white hover:file:bg-gray-800"
+                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 text-white transition-all file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-medium file:bg-white file:text-black hover:file:bg-white/90"
                         accept=".pdf,.doc,.docx"
                         required
                       />
                       {formData.resume && (
-                        <div className="mt-2 p-2 bg-green-50 border border-green-200 rounded-lg">
-                          <p className="text-sm text-green-700">
+                        <div className="mt-2 p-2 bg-green-500/10 border border-green-500/20 rounded-lg">
+                          <p className="text-sm text-green-400">
                             ✓ Selected: {formData.resume.name} ({(formData.resume.size / 1024 / 1024).toFixed(2)} MB)
                           </p>
                         </div>
                       )}
-                      <p className="mt-1 text-sm text-gray-500">
+                      <p className="mt-1 text-sm text-gray-400">
                         Accepted formats: PDF, DOC, DOCX (Max Size 5MB)
                       </p>
                     </div>
@@ -531,7 +531,7 @@ ${formData.coverLetter || 'No cover letter provided'}
                     <div className="space-y-2">
                       <label
                         htmlFor="coverLetter"
-                        className="block text-sm font-medium text-gray-700"
+                        className="block text-sm font-medium text-white/90"
                       >
                         Cover Letter
                       </label>
@@ -541,7 +541,7 @@ ${formData.coverLetter || 'No cover letter provided'}
                         value={formData.coverLetter}
                         onChange={handleChange}
                         rows={6}
-                        className="w-full px-4 py-3 bg-[#FFEfd5] border-2 border-transparent rounded-xl focus:outline-none focus:border-gray-300 text-gray-900 placeholder-gray-500 resize-none transition-colors"
+                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 text-white placeholder-white/30 resize-none transition-all"
                         placeholder="Tell us why you'd be a great fit..."
                       />
                     </div>
@@ -549,7 +549,7 @@ ${formData.coverLetter || 'No cover letter provided'}
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full px-6 py-4 bg-gray-900 text-white hover:bg-gray-800 transition-all rounded-xl flex items-center justify-center gap-2 group disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full px-6 py-4 bg-white text-black hover:bg-white/90 transition-all rounded-xl flex items-center justify-center gap-2 group font-medium disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {uploadingResume 
                         ? "Uploading Resume..." 

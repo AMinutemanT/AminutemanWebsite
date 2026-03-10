@@ -86,7 +86,7 @@ export function ValleyPartnerProgram() {
       >
         <div className="container mx-auto max-w-6xl">
           <div className="bg-gray-800/40 border border-gray-700/50 rounded-2xl p-8 backdrop-blur-sm">
-            <h2 className="text-4xl sm:text-5xl font-extrabold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent mb-8">Partnership Benefits</h2>
+            <h2 className="text-4xl sm:text-5xl font-extrabold text-white mb-8">Partnership Benefits</h2>
             <div className="grid md:grid-cols-2 gap-8">
               <div>
                 <h3 className="text-xl font-semibold mb-4">

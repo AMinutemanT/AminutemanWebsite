@@ -137,8 +137,6 @@ export function About() {
               </div>
             </div>
           </div>
-
-          {/* ? abckbcka */}
         </div>
       </div>
     </div>

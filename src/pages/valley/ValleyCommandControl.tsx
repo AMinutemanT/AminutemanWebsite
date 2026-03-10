@@ -88,7 +88,7 @@ export function ValleyCommandControl() {
       >
         <div className="container mx-auto max-w-6xl">
           <div className="bg-gray-800/40 border border-gray-700/50 rounded-2xl p-8 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-            <h2 className="text-4xl sm:text-5xl font-extrabold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent mb-8">System Capabilities</h2>
+            <h2 className="text-4xl sm:text-5xl font-extrabold text-white mb-8">System Capabilities</h2>
             <div className="grid md:grid-cols-2 gap-8">
               <div>
                 <h3 className="text-xl font-semibold mb-4">
@@ -156,7 +156,7 @@ export function ValleyCommandControl() {
           </div>
 
           <div className="text-center mb-16">
-            <h3 className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent mb-4">
+            <h3 className="text-3xl font-bold text-white mb-4">
               Core Defense Platforms
             </h3>
             <p className="text-lg text-gray-300">

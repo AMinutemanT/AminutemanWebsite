@@ -51,7 +51,7 @@ interface CarouselProps {
   className?: string;
 }
 
-export function Carousel({ slides, className = "bg-[#FFEfd5]" }: CarouselProps) {
+export function Carousel({ slides, className = "bg-gray-900" }: CarouselProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [imagesLoaded, setImagesLoaded] = useState<boolean[]>(new Array(slides.length).fill(false));
   const touchStartX = useRef<number>(0);
@@ -163,38 +163,20 @@ export function Carousel({ slides, className = "bg-[#FFEfd5]" }: CarouselProps) 
                 }}
               >
                 {/* Image Container - Always render to prevent reloading */}
-                <div className="relative w-full h-[50vh] sm:h-[60vh] md:h-[70vh] overflow-hidden">
-                  {/* Loading placeholder */}
+                <div className="relative w-full h-[50vh] sm:h-[60vh] md:h-[65vh] overflow-hidden">
                   {!imagesLoaded[index] && (
-                    <div className="absolute inset-0 bg-gray-800 flex items-center justify-center z-20">
-                      <div className="text-white">Loading...</div>
+                    <div className="absolute inset-0 bg-gray-900 flex items-center justify-center z-20">
+                      <div className="text-white/40 text-sm tracking-widest uppercase">Loading</div>
                     </div>
                   )}
                   
-                  {/* Image with permanent loading to prevent disappearing */}
                   <img
-                    key={`carousel-img-${index}-permanent`}
+                    key={`carousel-img-${index}`}
                     src={slide.image}
                     alt={slide.title}
                     loading="eager"
                     decoding="sync"
-                    fetchPriority="high"
-                    crossOrigin="anonymous"
                     className="absolute inset-0 w-full h-full object-cover brightness-[0.6]"
-                    style={{ 
-                      imageRendering: 'auto',
-                      backfaceVisibility: 'hidden',
-                      WebkitBackfaceVisibility: 'hidden',
-                      MozBackfaceVisibility: 'hidden',
-                      transform: 'translateZ(0)',
-                      willChange: 'transform, opacity',
-                      // Force image to stay in memory
-                      pointerEvents: 'none',
-                      userSelect: 'none',
-                      // Prevent image from being optimized away
-                      minHeight: '1px',
-                      minWidth: '1px',
-                    }}
                     onLoad={() => {
                       setImagesLoaded(prev => {
                         const newLoaded = [...prev];
@@ -203,14 +185,9 @@ export function Carousel({ slides, className = "bg-[#FFEfd5]" }: CarouselProps) 
                       });
                     }}
                     onError={(e) => {
-                      console.warn(`Image failed to load: ${slide.image}`);
                       const target = e.target as HTMLImageElement;
-                      // Don't hide the image, just log the error
                       target.style.backgroundColor = '#374151';
                     }}
-                    // Prevent context menu and dragging
-                    onContextMenu={(e) => e.preventDefault()}
-                    onDragStart={(e) => e.preventDefault()}
                   />
                   
                   {/* Content Overlay */}
