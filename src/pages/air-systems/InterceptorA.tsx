@@ -44,21 +44,21 @@ const carouselSlides = [
       "https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&q=60",
   },
   {
-    title: "FLIGHT",
+    title: "Flight",
     description:
       "INTERCEPTOR utilizes dual-redundant MIL-SPEC turbofan propulsion systems delivering sustained high-transonic velocity profiles with multi-axis supermaneuvrability exceeding 9G tactical loading capacity.",
     image:
       "https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&q=60",
   },
   {
-    title: "AUTONOMY",
+    title: "Autonomy",
     description:
       "INTERCEPTOR integrates advanced JADC2-compatible artificial intelligence and multi-tiered autonomous decision matrix systems, allowing single-operator C2 tasking of multiple INTERCEPTOR platforms across distributed battlespace environments.",
     image:
       "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=60",
   },
   {
-    title: "INTEROPERABILITY",
+    title: "Interoperability",
     description:
       "INTERCEPTOR works easily with current radar systems, sensors, and defense networks that are already being used today. The system plugs into existing equipment right away with no special changes needed.",
     image:

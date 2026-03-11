@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { Send, Briefcase } from "lucide-react";
+import { Send } from "lucide-react";
 import { Carousel } from "../components/Carousel";
 import { uploadToCloudinary, submitToWeb3Forms } from '../utils/cloudinary';
 
@@ -51,17 +51,17 @@ const positions = [
 
 const cards = [
   {
-    title: "VISIONARY VOYAGERS",
+    title: "Visionary Voyagers",
     description:
       "We welcome people with a zest for exploring uncharted realms of possibility",
   },
   {
-    title: "MINDFUL MAVERICKS",
+    title: "Mindful Mavericks",
     description:
       "We are a group of people with independent and unique perspectives",
   },
   {
-    title: "INNOVATION IGNITERS",
+    title: "Innovation Igniters",
     description: "Innovation drives us and creating new things motivates us",
   },
 ];
@@ -106,7 +106,7 @@ export function Careers() {
   }>({ type: null, message: "" });
   const [uploadingResume, setUploadingResume] = useState(false);
 
-  const words = ["PLAY", "WORK", "LEARN", "GROW"];
+  const words = ["WORK", "LEARN", "GROW"];
   const [currentWord, setCurrentWord] = useState(0);
 
   React.useEffect(() => {
@@ -347,10 +347,7 @@ ${formData.coverLetter || 'No cover letter provided'}
                         key={index}
                         className="group p-5 bg-white/5 border border-white/10 rounded-xl transition-all duration-300 hover:bg-white/10 hover:-translate-y-1 position-card"
                       >
-                        <div className="flex items-start gap-4">
-                          <div className="p-3 bg-blue-500/10 rounded-xl">
-                            <Briefcase className="w-5 h-5 text-white" />
-                          </div>
+                        <div>
                           <div>
                             <h4 className="text-lg font-semibold text-white mb-1">
                               {position.title}

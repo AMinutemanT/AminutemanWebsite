@@ -122,12 +122,11 @@ export function Home() {
           <div className="max-w-7xl mx-auto">
             
             {/* Main Layout */}
-            <div className="grid lg:grid-cols-5 gap-16 items-start">
-              
-              {/* Left Column - Header and Content */}
-              <div className="lg:col-span-3">
-                {/* Header */}
-                <div className="mb-12">
+            <div className="grid lg:grid-cols-5 gap-x-16 gap-y-8 lg:gap-y-12 items-start">
+
+              {/* Header - always first */}
+              <div className="lg:col-span-3 order-1">
+                <div className="mb-0 lg:mb-12">
                   <div className="flex items-center gap-4 mb-8">
                     <div className="w-3 h-3 bg-blue-400 rounded-sm" />
                     <span className="text-sm font-bold text-blue-300 tracking-widest uppercase">Leadership</span>
@@ -136,21 +135,10 @@ export function Home() {
                     Our Vision
                   </h2>
                 </div>
-
-                {/* Founder Vision Content */}
-                <div className="flex flex-col justify-center h-full relative">
-                  
-                  
-                  <div className="relative z-10 pl-8 pr-4">
-                    <p className="text-base text-gray-300 leading-relaxed text-justify">
-                      At <span className="font-bold text-white">Aminuteman Technologies</span>, I envision a future where defense technology is not just reactive but intelligent — systems that think, decide, and act with autonomy. Our goal is to shift the paradigm of defense readiness from dependence on maintenance to true self-sustainability, where machines become sentient guardians of national security. Through <span className="font-semibold text-blue-400">Valley AI</span>, the world's first Physical AI Operating System, we are building the brain for autonomous defense hardware — capable of real-time decision-making on the edge. This mission is deeply aligned with <span className="font-semibold text-blue-400">Atmanirbhar Bharat</span>, driving India toward complete defense sovereignty by engineering indigenous, AI-driven systems that reduce human risk, enhance strategic agility, and ensure that the burden of danger is borne by technology, not our soldiers.
-                    </p>
-                  </div>
-                </div>
               </div>
 
-              {/* Right Column - Image */}
-              <div className="lg:col-span-2 relative">
+              {/* Image - second on mobile, right column on desktop spanning 2 rows */}
+              <div className="lg:col-span-2 lg:row-span-2 relative order-2">
                 <div className="relative border-2 border-gray-600 p-6 bg-gray-800/50 backdrop-blur-sm">
                   <img
                     loading="eager"
@@ -175,13 +163,24 @@ export function Home() {
                   <p className="text-xl text-blue-300 font-medium">Founder & CEO</p>
                 </div>
               </div>
+
+              {/* Founder Vision Content - third on mobile, left column on desktop */}
+              <div className="lg:col-span-3 order-3">
+                <div className="flex flex-col justify-center h-full relative">
+                  <div className="relative z-10 pl-4 lg:pl-8 pr-4">
+                    <p className="text-base text-gray-300 leading-relaxed text-justify">
+                      At <span className="font-bold text-white">Aminuteman Technologies</span>, I envision a future where defense technology is not just reactive but intelligent — systems that think, decide, and act with autonomy. Our goal is to shift the paradigm of defense readiness from dependence on maintenance to true self-sustainability, where machines become sentient guardians of national security. Through <span className="font-semibold text-blue-400">Valley AI</span>, the world's first Physical AI Operating System, we are building the brain for autonomous defense hardware — capable of real-time decision-making on the edge. This mission is deeply aligned with <span className="font-semibold text-blue-400">Atmanirbhar Bharat</span>, driving India toward complete defense sovereignty by engineering indigenous, AI-driven systems that reduce human risk, enhance strategic agility, and ensure that the burden of danger is borne by technology, not our soldiers.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* Om Panchal - Co-Founder */}
             <div className="grid lg:grid-cols-5 gap-16 items-center mt-24">
 
               {/* Left Column - Image */}
-              <div className="lg:col-span-2 relative order-2 lg:order-1">
+              <div className="lg:col-span-2 relative order-1">
                 <div className="relative border-2 border-gray-600 p-6 bg-gray-800/50 backdrop-blur-sm">
                   <img
                     loading="eager"
@@ -208,10 +207,10 @@ export function Home() {
               </div>
 
               {/* Right Column - Content */}
-              <div className="lg:col-span-3 order-1 lg:order-2 flex items-center lg:-mt-28">
+              <div className="lg:col-span-3 order-2 flex items-center lg:-mt-28">
                 <div className="flex flex-col justify-center h-full relative w-full">
                   <div className="relative z-10 pl-4 lg:pl-8 pr-4">
-                    <p className="text-base text-gray-300 leading-relaxed text-justify">
+                    <p className="text-base text-gray-300 leading-relaxed text-justify mb-8 lg:mb-0">
                       A hands-on aerospace engineer with <span className="font-semibold text-blue-400">10+ years</span> of building, flying, and breaking things — from RC aircraft and UAVs to rockets and lunar lander technology. Currently completing his <span className="font-bold text-white">M.S. Aerospace Engineering at Arizona State University</span>, Om led the design and engineering of NASA's AGEGIS lunar landing pad system at the <span className="font-semibold text-blue-400">Luminosity Lab, ASU</span> — earning the <span className="font-bold text-white">Best System Engineering Award</span> and <span className="font-semibold text-blue-400">$150K in NASA funding</span> at the Big Idea Forum in Las Vegas. A 3× Boeing National Aeromodelling champion at IIT Madras, FAA Part 107 certified drone pilot, and NASA L-Space mission planning committee member, Om brings a field-ready mindset and prototyping obsession — turning napkin sketches into flight-tested hardware that works when it matters.
                     </p>
                   </div>

@@ -304,45 +304,34 @@ export function ValleyCommandControl() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-start">
-            {/* GPS-Denied Autonomy */}
-            <div className="text-center">
-              <h4 className="text-lg font-bold text-white mb-3 leading-tight">
-                GPS-Denied Autonomy
-              </h4>
-              <p className="text-gray-300 leading-relaxed text-sm">
-                Operational superiority in contested environments without external dependencies
-              </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            <div className="flex items-start gap-4">
+              <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0" />
+              <div>
+                <h4 className="text-lg font-bold text-white mb-1">GPS-Denied Autonomy</h4>
+                <p className="text-gray-300 text-sm">Operational superiority in contested environments without external dependencies</p>
+              </div>
             </div>
-
-            {/* Combat-Proven AI */}
-            <div className="text-center">
-              <h4 className="text-lg font-bold text-white mb-3 leading-tight">
-                Combat-Proven AI
-              </h4>
-              <p className="text-gray-300 leading-relaxed text-sm">
-                Real-time tactical adaptation with predictive threat analysis capabilities
-              </p>
+            <div className="flex items-start gap-4">
+              <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0" />
+              <div>
+                <h4 className="text-lg font-bold text-white mb-1">Combat-Proven AI</h4>
+                <p className="text-gray-300 text-sm">Real-time tactical adaptation with predictive threat analysis capabilities</p>
+              </div>
             </div>
-
-            {/* Technology Sovereignty */}
-            <div className="text-center">
-              <h4 className="text-lg font-bold text-white mb-3 leading-tight">
-                Technology Sovereignty
-              </h4>
-              <p className="text-gray-300 leading-relaxed text-sm">
-                Indigenous development without dependency on Western defense suppliers
-              </p>
+            <div className="flex items-start gap-4">
+              <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0" />
+              <div>
+                <h4 className="text-lg font-bold text-white mb-1">Technology Sovereignty</h4>
+                <p className="text-gray-300 text-sm">Indigenous development without dependency on Western defense suppliers</p>
+              </div>
             </div>
-
-            {/* Multi-Domain Integration */}
-            <div className="text-center">
-              <h4 className="text-lg font-bold text-white mb-3 leading-tight">
-                Multi-Domain Integration
-              </h4>
-              <p className="text-gray-300 leading-relaxed text-sm">
-                Seamless coordination across land, air, and strategic infrastructure systems
-              </p>
+            <div className="flex items-start gap-4">
+              <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0" />
+              <div>
+                <h4 className="text-lg font-bold text-white mb-1">Multi-Domain Integration</h4>
+                <p className="text-gray-300 text-sm">Seamless coordination across land, air, and strategic infrastructure systems</p>
+              </div>
             </div>
           </div>
         </div>

@@ -23,7 +23,7 @@ export function Footer() {
                 loading="lazy"
                 src={logo}
                 alt="Aminuteman Technologies Logo"
-                className=" h-12 w-32 object-cover"
+                className="h-12 w-32 object-cover"
               />
             </Link>
             <p className="text-sm sm:text-base text-gray-400">

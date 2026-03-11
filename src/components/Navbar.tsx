@@ -67,9 +67,9 @@ export function Navbar() {
         <div className="flex items-center justify-between h-16 px-[10px] border-b">
           <div className="flex items-center h-full ">
             <Link to="/" className="flex items-center h-full px-4" onClick={handleLinkClick}>
-              <img  loading="lazy" 
+              <img  loading="lazy"
                 src={logo}
-                alt="Logo" 
+                alt="Logo"
                 className="h-[80%] w-32 object-cover"
               />
             </Link>
@@ -116,14 +116,6 @@ export function Navbar() {
           </div>
 
           <div className="flex items-center h-full">
-            <div className="hidden sm:block w-px h-full bg-white" />
-            <Link
-              to="/wingmans"
-              className="hidden sm:inline-flex items-center h-full px-4 text-sm font-medium text-white hover:bg-white hover:text-black transition-colors"
-              onClick={handleLinkClick}
-            >
-              Wingmans
-            </Link>
             <div className="hidden sm:block w-px h-full bg-white" />
             <Link
               to="/careers"
@@ -174,13 +166,6 @@ export function Navbar() {
                   )}
                 </div>
               ))}
-              <Link
-                to="/wingmans"
-                className="block sm:hidden w-full py-4 mt-4 text-sm text-white/70 "
-                onClick={handleLinkClick}
-              >
-                Wingmans
-              </Link>
               <Link
                 to="/careers"
                 className="block sm:hidden w-full py-4 my-4 text-sm text-white/70"

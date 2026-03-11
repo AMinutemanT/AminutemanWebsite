@@ -8,7 +8,6 @@ import { Home } from './pages/Home';
 import { Contact } from './pages/Contact';
 import { About } from './pages/About';
 import { Careers } from './pages/Careers';
-import { Wingmans } from './pages/Wingmans';
 import { InterceptorA } from './pages/air-systems/InterceptorA';
 import { InterceptorB } from './pages/air-systems/InterceptorB';
 import { InterceptorC } from './pages/air-systems/InterceptorC';
@@ -40,7 +39,6 @@ function AnimatedRoutes() {
         <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
         <Route path="/about" element={<PageTransition><About /></PageTransition>} />
         <Route path="/careers" element={<PageTransition><Careers /></PageTransition>} />
-        <Route path="/wingmans" element={<PageTransition><Wingmans /></PageTransition>} />
         <Route path="/air-systems/interceptor-a" element={<PageTransition><InterceptorA /></PageTransition>} />
         <Route path="/air-systems/interceptor-b" element={<PageTransition><InterceptorB /></PageTransition>} />
         <Route path="/air-systems/interceptor-c" element={<PageTransition><InterceptorC /></PageTransition>} />
