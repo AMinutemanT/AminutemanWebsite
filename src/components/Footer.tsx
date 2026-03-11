@@ -13,7 +13,7 @@ import logo from "./../logo.png";
 
 export function Footer() {
   return (
-    <footer className="bg-black text-white">
+    <footer className="bg-black text-white border-t border-white/40">
       <div className="container mx-auto py-8 sm:py-12 md:py-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
           {/* Company Details - Left */}
