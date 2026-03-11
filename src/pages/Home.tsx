@@ -81,12 +81,12 @@ export function Home() {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-b from-gray-900 to-black">
+    <div className="relative min-h-screen bg-black">
       <Hero />
       
       {/* Tagline Section */}
       <section className="relative py-16 sm:py-24 bg-black">
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900/50 to-black" />
+        <div className="absolute inset-0 bg-black" />
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center leading-none space-y-1">
             <div className="text-4xl sm:text-6xl lg:text-8xl font-black text-blue-400/60 tracking-[0.15em] uppercase select-none [text-shadow:_0_0_30px_rgb(59_130_246_/_20%)]">
@@ -106,7 +106,7 @@ export function Home() {
         ref={sectionRefs.carousel} 
         className="transform transition-all duration-1000 opacity-0 translate-y-10"
       >
-        <Carousel slides={carouselSlides} className="bg-gray-900/50 backdrop-blur-sm" />
+        <Carousel slides={carouselSlides} className="bg-black" />
       </div>
       
       <div 
@@ -117,7 +117,7 @@ export function Home() {
       </div>
       
       {/* Leadership Section */}
-      <section className="relative py-20 px-4 sm:py-28 bg-gradient-to-br from-gray-900 via-gray-800 to-black overflow-hidden">
+      <section className="relative py-20 px-4 sm:py-28 bg-black overflow-hidden">
         <div className="container mx-auto">
           <div className="max-w-7xl mx-auto">
             
@@ -139,7 +139,7 @@ export function Home() {
 
               {/* Image - second on mobile, right column on desktop spanning 2 rows */}
               <div className="lg:col-span-2 lg:row-span-2 relative order-2">
-                <div className="relative border-2 border-gray-600 p-6 bg-gray-800/50 backdrop-blur-sm">
+                <div className="relative border-2 border-white/40 p-6 bg-transparent">
                   <img
                     loading="eager"
                     decoding="sync"
@@ -181,7 +181,7 @@ export function Home() {
 
               {/* Left Column - Image */}
               <div className="lg:col-span-2 relative order-1">
-                <div className="relative border-2 border-gray-600 p-6 bg-gray-800/50 backdrop-blur-sm">
+                <div className="relative border-2 border-white/40 p-6 bg-transparent">
                   <img
                     loading="eager"
                     decoding="sync"
@@ -224,7 +224,7 @@ export function Home() {
       </section>
 
       {/* Clients Section */}
-      <div className="py-16 sm:py-20 px-4 bg-gray-900/50 overflow-hidden">
+      <div className="py-16 sm:py-20 px-4 bg-black overflow-hidden">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12">
             <h3 className="text-sm font-bold text-blue-300 tracking-widest uppercase mb-4">

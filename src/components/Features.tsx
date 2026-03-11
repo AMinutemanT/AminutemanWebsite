@@ -16,7 +16,7 @@ export function Features({
   subheading?: string;
 }) {
   return (
-    <section className="relative py-20 px-4 sm:py-28 bg-gray-900 overflow-hidden">
+    <section className="relative py-20 px-4 sm:py-28 bg-black overflow-hidden">
       <div className="container mx-auto relative z-10">
         {/* Heading */}
         <div className="text-center mb-16">
@@ -35,7 +35,7 @@ export function Features({
           {features.map((feature, index) => (
             <div
               key={index}
-              className="group bg-gray-800/50 border border-white/10 rounded-xl p-8 transition-all duration-300 hover:border-white/20 hover:-translate-y-1 feature-card"
+              className="group bg-transparent border border-white/40 rounded-xl p-8 transition-all duration-300 hover:border-white/60 hover:-translate-y-1 feature-card"
             >
               <h3 className="text-xl font-bold text-white mb-3">
                 {feature.title}

@@ -5,7 +5,7 @@ import ProductHero from '../../components/ProductHero';
 
 export function InterceptorB() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white">
+    <div className="min-h-screen bg-black text-white">
       <ProductHero
         title="Coming Soon"
         subtitle="Our next-generation Interceptor B is currently in development. Stay tuned for groundbreaking advancements in military aviation technology."

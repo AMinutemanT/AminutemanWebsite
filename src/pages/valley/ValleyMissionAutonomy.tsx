@@ -58,7 +58,7 @@ export function ValleyMissionAutonomy() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white">
+    <div className="min-h-screen bg-black text-white">
       <ProductHero
         title="Mission Autonomy"
         subtitle="AI-Powered Autonomous Mission Planning and Execution"
@@ -76,7 +76,7 @@ export function ValleyMissionAutonomy() {
 
       <div
         ref={sectionRefs.features}
-        className="py-20 px-4 bg-gray-900/50 transform transition-all duration-1000 opacity-0 translate-y-10"
+        className="py-20 px-4 bg-black transform transition-all duration-1000 opacity-0 translate-y-10"
       >
         <Features features={features} heading="Core Features"/>
       </div>
@@ -86,7 +86,7 @@ export function ValleyMissionAutonomy() {
         className="py-20 px-4 transform transition-all duration-1000 opacity-0 translate-y-10"
       >
         <div className="container mx-auto max-w-6xl">
-          <div className="bg-gray-800/40 border border-gray-700/50 rounded-2xl p-8 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+          <div className="bg-transparent border border-white/20 rounded-2xl p-8 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
             <h2 className="text-4xl sm:text-5xl font-extrabold text-white mb-8">Autonomous Capabilities</h2>
             <div className="grid md:grid-cols-2 gap-8">
               <div>
@@ -141,7 +141,7 @@ export function ValleyMissionAutonomy() {
       </div>
 
       {/* Clients Section */}
-      <div className="py-16 px-4 bg-gray-900/50">
+      <div className="py-16 px-4 bg-black">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12">
             <h3 className="text-2xl font-bold text-white mb-4">

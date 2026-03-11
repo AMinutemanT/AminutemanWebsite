@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export function CTA() {
   return (
-    <section className="relative py-16 sm:py-24 lg:py-32 bg-gray-900/50 backdrop-blur-sm">
+    <section className="relative py-16 sm:py-24 lg:py-32 bg-black">
       <div className="container mx-auto px-4 sm:px-6 text-center">
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-8">
           Advancing Military Defense Technology

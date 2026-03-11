@@ -51,7 +51,7 @@ interface CarouselProps {
   className?: string;
 }
 
-export function Carousel({ slides, className = "bg-gray-900" }: CarouselProps) {
+export function Carousel({ slides, className = "bg-black" }: CarouselProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [imagesLoaded, setImagesLoaded] = useState<boolean[]>(new Array(slides.length).fill(false));
   const touchStartX = useRef<number>(0);
@@ -165,7 +165,7 @@ export function Carousel({ slides, className = "bg-gray-900" }: CarouselProps) {
                 {/* Image Container - Always render to prevent reloading */}
                 <div className="relative w-full h-[50vh] sm:h-[60vh] md:h-[65vh] overflow-hidden">
                   {!imagesLoaded[index] && (
-                    <div className="absolute inset-0 bg-gray-900 flex items-center justify-center z-20">
+                    <div className="absolute inset-0 bg-black flex items-center justify-center z-20">
                       <div className="text-white/40 text-sm tracking-widest uppercase">Loading</div>
                     </div>
                   )}

@@ -56,7 +56,7 @@ export function AnkosaB() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white">
+    <div className="min-h-screen bg-black text-white">
       <ProductHero
         title="Ankosa B"
         subtitle="Enhanced Military Jet Engine Platform"
@@ -74,7 +74,7 @@ export function AnkosaB() {
 
       <div
         ref={sectionRefs.features}
-        className="py-20 px-4 bg-gray-900/50 transform transition-all duration-1000 opacity-0 translate-y-10"
+        className="py-20 px-4 bg-black transform transition-all duration-1000 opacity-0 translate-y-10"
       >
         <FeaturesNoBorder features={features} heading="Key Features" />
       </div>

@@ -20,7 +20,7 @@ const IntroSection: React.FC<IntroSectionProps> = ({
   return (
     <section
       ref={sectionRef}
-      className="relative py-20 px-4 sm:py-28 bg-gray-900 overflow-hidden transform transition-all duration-1000 opacity-0 translate-y-10"
+      className="relative py-20 px-4 sm:py-28 bg-black overflow-hidden transform transition-all duration-1000 opacity-0 translate-y-10"
     >
       <div className="container mx-auto relative z-10">
         <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -39,7 +39,7 @@ const IntroSection: React.FC<IntroSectionProps> = ({
                 loop
                 muted
                 playsInline
-                className="rounded-xl border border-white/10 w-full h-auto"
+                className="rounded-xl border border-white/40 w-full h-auto"
               >
                 <source src={videoUrl} type="video/mp4" />
                 Your browser does not support the video tag.
@@ -49,7 +49,7 @@ const IntroSection: React.FC<IntroSectionProps> = ({
                 loading="lazy"
                 src={imageUrl}
                 alt={imageAlt}
-                className="rounded-xl border border-white/10"
+                className="rounded-xl border border-white/40"
               />
             )}
           </div>

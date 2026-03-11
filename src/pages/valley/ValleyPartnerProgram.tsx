@@ -57,7 +57,7 @@ export function ValleyPartnerProgram() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white">
+    <div className="min-h-screen bg-black text-white">
       <ProductHero
         title="Partner Program"
         subtitle="Join Our Elite Network of Defense Technology Partners"
@@ -75,7 +75,7 @@ export function ValleyPartnerProgram() {
 
       <div
         ref={sectionRefs.features}
-        className="py-20 px-4 bg-gray-900/50 transform transition-all duration-1000 opacity-0 translate-y-10"
+        className="py-20 px-4 bg-black transform transition-all duration-1000 opacity-0 translate-y-10"
       >
         <Features features={features} heading="Key Features" />
       </div>
@@ -85,7 +85,7 @@ export function ValleyPartnerProgram() {
         className="py-20 px-4 transform transition-all duration-1000 opacity-0 translate-y-10"
       >
         <div className="container mx-auto max-w-6xl">
-          <div className="bg-gray-800/40 border border-gray-700/50 rounded-2xl p-8 backdrop-blur-sm">
+          <div className="bg-transparent border border-white/20 rounded-2xl p-8 backdrop-blur-sm">
             <h2 className="text-4xl sm:text-5xl font-extrabold text-white mb-8">Partnership Benefits</h2>
             <div className="grid md:grid-cols-2 gap-8">
               <div>

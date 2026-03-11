@@ -59,7 +59,7 @@ export function ValleyCommandControl() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white">
+    <div className="min-h-screen bg-black text-white">
       <ProductHero
         title="Command & Control"
         subtitle="Advanced Command Center Solutions for Military Operations"
@@ -77,7 +77,7 @@ export function ValleyCommandControl() {
 
       <div
         ref={sectionRefs.features}
-        className="py-20 px-4 bg-gray-900/50 transform transition-all duration-1000 opacity-0 translate-y-10"
+        className="py-20 px-4 bg-black transform transition-all duration-1000 opacity-0 translate-y-10"
       >
         <Features features={features} heading="Key Features" />
       </div>
@@ -87,7 +87,7 @@ export function ValleyCommandControl() {
         className="py-20 px-4 transform transition-all duration-1000 opacity-0 translate-y-10"
       >
         <div className="container mx-auto max-w-6xl">
-          <div className="bg-gray-800/40 border border-gray-700/50 rounded-2xl p-8 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+          <div className="bg-transparent border border-white/40 rounded-2xl p-8 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
             <h2 className="text-4xl sm:text-5xl font-extrabold text-white mb-8">System Capabilities</h2>
             <div className="grid md:grid-cols-2 gap-8">
               <div>
@@ -144,7 +144,7 @@ export function ValleyCommandControl() {
       </div>
 
       {/* Advanced Military Defense Section */}
-      <div className="py-20 px-4 bg-gradient-to-b from-black to-gray-900">
+      <div className="py-20 px-4 bg-black">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
             <h2 className="text-4xl sm:text-5xl font-extrabold text-white mb-6">
@@ -166,7 +166,7 @@ export function ValleyCommandControl() {
           
           <div className="grid lg:grid-cols-2 gap-8">
             {/* Valley AI Operating System */}
-            <div className="bg-gray-800/40 border border-gray-700/50 rounded-2xl p-8 backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 platform-card">
+            <div className="bg-transparent border border-white/20 rounded-2xl p-8 backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 platform-card">
               <h4 className="text-2xl font-semibold text-white mb-4">
                 Valley AI Operating System
               </h4>
@@ -190,7 +190,7 @@ export function ValleyCommandControl() {
             </div>
 
             {/* Ankosha A Kamikaze Platform */}
-            <div className="bg-gray-800/40 border border-gray-700/50 rounded-2xl p-8 backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 platform-card">
+            <div className="bg-transparent border border-white/20 rounded-2xl p-8 backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 platform-card">
               <h4 className="text-2xl font-semibold text-white mb-4">
                 Ankosha A Kamikaze Platform
               </h4>
@@ -217,7 +217,7 @@ export function ValleyCommandControl() {
       </div>
 
       {/* Strategic Applications Section */}
-      <div className="py-20 px-4 bg-gray-900">
+      <div className="py-20 px-4 bg-black">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
             <h2 className="text-4xl sm:text-5xl font-extrabold text-white mb-6">
@@ -230,7 +230,7 @@ export function ValleyCommandControl() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Border Surveillance */}
-            <div className="bg-gray-800/40 border border-gray-700/50 rounded-2xl p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 application-card">
+            <div className="bg-transparent border border-white/20 rounded-2xl p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 application-card">
               <h4 className="text-xl font-semibold text-white mb-4">
                 Border Surveillance
               </h4>
@@ -240,7 +240,7 @@ export function ValleyCommandControl() {
             </div>
 
             {/* Counter-Terrorism */}
-            <div className="bg-gray-800/40 border border-gray-700/50 rounded-2xl p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 application-card">
+            <div className="bg-transparent border border-white/20 rounded-2xl p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 application-card">
               <h4 className="text-xl font-semibold text-white mb-4">
                 Counter-Terrorism
               </h4>
@@ -250,7 +250,7 @@ export function ValleyCommandControl() {
             </div>
 
             {/* Enterprise Automation */}
-            <div className="bg-gray-800/40 border border-gray-700/50 rounded-2xl p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 application-card">
+            <div className="bg-transparent border border-white/20 rounded-2xl p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 application-card">
               <h4 className="text-xl font-semibold text-white mb-4">
                 Enterprise Automation
               </h4>
@@ -260,7 +260,7 @@ export function ValleyCommandControl() {
             </div>
 
             {/* Industrial Security */}
-            <div className="bg-gray-800/40 border border-gray-700/50 rounded-2xl p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 application-card">
+            <div className="bg-transparent border border-white/20 rounded-2xl p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 application-card">
               <h4 className="text-xl font-semibold text-white mb-4">
                 Industrial Security
               </h4>
@@ -270,7 +270,7 @@ export function ValleyCommandControl() {
             </div>
 
             {/* Smart Cities */}
-            <div className="bg-gray-800/40 border border-gray-700/50 rounded-2xl p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 application-card">
+            <div className="bg-transparent border border-white/20 rounded-2xl p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 application-card">
               <h4 className="text-xl font-semibold text-white mb-4">
                 Smart Cities
               </h4>
@@ -280,7 +280,7 @@ export function ValleyCommandControl() {
             </div>
 
             {/* International Export */}
-            <div className="bg-gray-800/40 border border-gray-700/50 rounded-2xl p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 application-card">
+            <div className="bg-transparent border border-white/20 rounded-2xl p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 application-card">
               <h4 className="text-xl font-semibold text-white mb-4">
                 International Export
               </h4>
@@ -293,7 +293,7 @@ export function ValleyCommandControl() {
       </div>
 
       {/* Strategic Advantages Section */}
-      <div className="py-20 px-4 bg-gradient-to-b from-gray-900 to-black">
+      <div className="py-20 px-4 bg-black">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
             <h2 className="text-4xl sm:text-5xl font-extrabold text-white mb-6">

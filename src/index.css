@@ -119,14 +119,14 @@
   }
 
   .btn-secondary {
-    @apply btn bg-white/10 border border-white/20 text-white hover:bg-white/20 focus:ring-white/50;
+    @apply btn bg-white/10 border border-white/40 text-white hover:bg-white/20 focus:ring-white/50;
   }
 
   .card {
     @apply bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 sm:p-8;
-    @apply border border-white/10;
+    @apply border border-white/40;
     @apply transition-all duration-300;
-    @apply hover:border-white/20 hover:shadow-lg hover:-translate-y-1;
+    @apply hover:border-white/60 hover:shadow-lg hover:-translate-y-1;
     @apply transform-gpu;
   }
 
@@ -142,7 +142,7 @@
   .form-input {
     @apply w-full px-4 py-3;
     @apply text-base;
-    @apply bg-white/5 border border-white/10 rounded-xl;
+    @apply bg-white/5 border border-white/40 rounded-xl;
     @apply focus:outline-none focus:ring-2 focus:ring-blue-500/20;
     @apply text-white placeholder-white/30 transition-all;
   }

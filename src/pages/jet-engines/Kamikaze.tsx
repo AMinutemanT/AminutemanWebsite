@@ -67,7 +67,7 @@ export function Kamikaze() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white">
+    <div className="min-h-screen bg-black text-white">
       <ProductHero backgroundType="video" backgroundSrc={video} />
 
       <IntroSection
@@ -79,7 +79,7 @@ export function Kamikaze() {
 
       <div
         ref={sectionRefs.features}
-        className=" bg-gray-900/50 transform transition-all duration-1000 opacity-0 translate-y-10"
+        className=" bg-black transform transition-all duration-1000 opacity-0 translate-y-10"
       >
         <Features
           features={features}

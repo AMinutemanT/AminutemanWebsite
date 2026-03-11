@@ -19,7 +19,7 @@ const TechnicalSpecifications: React.FC<TechnicalSpecificationsProps> = ({
   return (
     <section
       ref={sectionRef}
-      className="relative py-20 px-4 sm:py-28 bg-gray-900 overflow-hidden transform transition-all duration-1000 opacity-0 translate-y-10"
+      className="relative py-20 px-4 sm:py-28 bg-black overflow-hidden transform transition-all duration-1000 opacity-0 translate-y-10"
     >
       <div className="container mx-auto relative z-10">
         {/* Heading */}
@@ -34,7 +34,7 @@ const TechnicalSpecifications: React.FC<TechnicalSpecificationsProps> = ({
           {specs.map((spec, index) => (
             <div
               key={index}
-              className="group bg-gray-800/50 border border-white/10 rounded-xl p-8 transition-all duration-300 hover:border-white/20"
+              className="group bg-transparent border border-white/40 rounded-xl p-8 transition-all duration-300 hover:border-white/60"
             >
               <div className="space-y-4">
                 <p className="text-sm sm:text-base text-gray-400 uppercase tracking-wider font-medium">

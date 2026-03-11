@@ -31,7 +31,7 @@ export function About() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black">
+    <div className="min-h-screen bg-black">
       <div className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <img 
@@ -101,7 +101,7 @@ export function About() {
                   description: "Strengthening national defense"
                 }
               ].map((value, index) => (
-                <div key={index} className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 text-center">
+                <div key={index} className="bg-transparent border border-white/20 rounded-xl p-6 text-center">
                   <div className="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center mx-auto mb-4">
                     {value.icon}
                   </div>
@@ -116,7 +116,7 @@ export function About() {
             ref={sectionRefs.journey}
             className="py-20 transform transition-all duration-1000 opacity-0 translate-y-10"
           >
-            <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8">
+            <div className="bg-transparent border border-white/20 rounded-2xl p-8">
               <h2 className="text-2xl font-bold text-white mb-6">Our Journey</h2>
               <div className="space-y-8">
                 <div className="relative pl-8 border-l border-white/20">

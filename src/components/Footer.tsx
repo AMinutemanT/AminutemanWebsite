@@ -165,7 +165,7 @@ export function Footer() {
                   href="https://www.linkedin.com/company/106417184/admin/page-posts/published/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center w-10 h-10 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors group"
+                  className="inline-flex items-center justify-center w-10 h-10 bg-white/5 rounded-lg hover:bg-white/10 transition-colors group"
                 >
                   <Linkedin className="w-5 h-5 text-gray-400 group-hover:text-white" />
                 </a>
@@ -173,7 +173,7 @@ export function Footer() {
                   href="https://x.com/Aminutemantech"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center w-10 h-10 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors group"
+                  className="inline-flex items-center justify-center w-10 h-10 bg-white/5 rounded-lg hover:bg-white/10 transition-colors group"
                 >
                   <Twitter className="w-5 h-5 text-gray-400 group-hover:text-white" />
                 </a>
@@ -181,12 +181,12 @@ export function Footer() {
                   href="https://www.instagram.com/aniruddhanarayan__/?utm_source=ig_web_button_share_sheet"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center w-10 h-10 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors group"
+                  className="inline-flex items-center justify-center w-10 h-10 bg-white/5 rounded-lg hover:bg-white/10 transition-colors group"
                 >
                   <Instagram className="w-5 h-5 text-gray-400 group-hover:text-white" />
                 </a>
               </div>
-              <div className="bg-gray-800 p-4 rounded-lg">
+              <div className="bg-white/5 border border-white/20 p-4 rounded-lg">
                 <p className="text-sm text-gray-300 mb-3">
                   Stay updated with our latest innovations
                 </p>

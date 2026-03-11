@@ -94,7 +94,7 @@ ${formData.message}
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black">
+    <div className="min-h-screen bg-black">
       <div className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <img  loading="lazy" 
@@ -117,7 +117,7 @@ ${formData.message}
           <div className="grid lg:grid-cols-12 gap-8 items-start">
             <div 
               ref={sectionRefs.form}
-              className="lg:col-span-8 bg-gray-800/50 backdrop-blur-xl rounded-3xl p-8 sm:p-10 shadow-2xl transform transition-all duration-1000 opacity-0 translate-y-10"
+              className="lg:col-span-8 bg-transparent border border-white/20 rounded-3xl p-8 sm:p-10 transform transition-all duration-1000 opacity-0 translate-y-10"
             >
               {submitStatus.type && (
                 <div className={`mb-8 p-4 rounded-xl ${
@@ -204,7 +204,7 @@ ${formData.message}
               ref={sectionRefs.info}
               className="lg:col-span-4 space-y-6 transform transition-all duration-1000 opacity-0 translate-y-10"
             >
-              <div className="bg-gray-800/50 backdrop-blur-xl rounded-3xl p-8 shadow-2xl">
+              <div className="bg-transparent border border-white/20 rounded-3xl p-8">
                 <div className="flex items-start gap-5">
                   <div className="p-4 bg-blue-500/10 rounded-2xl">
                     <Phone className="w-6 h-6 text-white" />
@@ -217,7 +217,7 @@ ${formData.message}
                 </div>
               </div>
 
-              <div className="bg-gray-800/50 backdrop-blur-xl rounded-3xl p-8 shadow-2xl">
+              <div className="bg-transparent border border-white/20 rounded-3xl p-8">
                 <div className="flex items-start gap-5">
                   <div className="p-4 bg-blue-500/10 rounded-2xl">
                     <Mail className="w-6 h-6 text-white" />
@@ -229,7 +229,7 @@ ${formData.message}
                 </div>
               </div>
 
-              <div className="bg-gray-800/50 backdrop-blur-xl rounded-3xl p-8 shadow-2xl">
+              <div className="bg-transparent border border-white/20 rounded-3xl p-8">
                 <div className="flex items-start gap-5">
                   <div className="p-4 bg-blue-500/10 rounded-2xl">
                     <MapPin className="w-6 h-6 text-white" />
