@@ -39,6 +39,7 @@ const IntroSection: React.FC<IntroSectionProps> = ({
                 loop
                 muted
                 playsInline
+                preload="auto"
                 className="rounded-xl border border-white/40 w-full h-auto"
               >
                 <source src={videoUrl} type="video/mp4" />

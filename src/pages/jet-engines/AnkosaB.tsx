@@ -61,7 +61,7 @@ export function AnkosaB() {
         title="Ankosa B"
         subtitle="Enhanced Military Jet Engine Platform"
         backgroundType="image"
-        backgroundSrc="https://images.unsplash.com/photo-1614728263952-84ea256f9679?auto=format&fit=crop&q=60"
+        backgroundSrc="https://images.unsplash.com/photo-1614728263952-84ea256f9679?auto=format&fit=crop&q=80&w=1920"
       />
 
       <IntroSection

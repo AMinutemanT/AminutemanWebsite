@@ -5,6 +5,9 @@ import { Features } from "../../components/Features";
 import ProductHero from "../../components/ProductHero";
 import IntroSection from "../../components/IntroSection";
 
+const HERO_IMG = "https://images.unsplash.com/photo-1580894894513-541e068a3e2b?auto=format&fit=crop&q=80&w=1920";
+const INTRO_IMG = "https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?auto=format&fit=crop&q=80&w=1024";
+
 const features = [
   {
     icon: <Command className="w-8 h-8" />,
@@ -36,6 +39,17 @@ export function ValleyCommandControl() {
     capabilities: useRef<HTMLDivElement>(null),
   };
 
+  // Inject <link rel="preload"> for hero image immediately
+  useEffect(() => {
+    const link = document.createElement("link");
+    link.rel = "preload";
+    link.as = "image";
+    link.href = HERO_IMG;
+    link.setAttribute("fetchpriority", "high");
+    document.head.appendChild(link);
+    return () => { document.head.removeChild(link); };
+  }, []);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -64,14 +78,14 @@ export function ValleyCommandControl() {
         title="Command & Control"
         subtitle="Advanced Command Center Solutions for Military Operations"
         backgroundType="image"
-        backgroundSrc="https://images.unsplash.com/photo-1580894894513-541e068a3e2b?auto=format&fit=crop&q=60"
+        backgroundSrc={HERO_IMG}
       />
 
       <IntroSection
         sectionRef={sectionRefs.intro}
         title="Centralized Control System"
         description="Our Command & Control system provides military commanders with real-time situational awareness and decision-making capabilities. Integrated with AI-powered analytics, it enables rapid response to evolving tactical situations."
-        imageUrl="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?auto=format&fit=crop&q=60"
+        imageUrl={INTRO_IMG}
         imageAlt="Command Center Interface"
       />
 

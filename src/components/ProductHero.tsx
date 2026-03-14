@@ -14,12 +14,13 @@ const ProductHero: React.FC<HeroProps> = ({
   backgroundSrc,
 }) => {
   return (
-    <div className="relative h-[70vh] sm:h-screen flex items-center justify-center overflow-hidden">
+    <div className="relative h-[70vh] sm:h-screen flex items-center justify-center overflow-hidden bg-black">
       {/* Background */}
       <div className="absolute inset-0">
         {backgroundType === "image" ? (
           <img
-            loading="lazy"
+            loading="eager"
+            fetchPriority="high"
             src={backgroundSrc}
             alt={title}
             className="w-full h-full object-cover"
@@ -30,6 +31,7 @@ const ProductHero: React.FC<HeroProps> = ({
             muted
             loop
             playsInline
+            preload="auto"
             className="w-full h-full object-cover"
           >
             <source src={backgroundSrc} type="video/mp4" />

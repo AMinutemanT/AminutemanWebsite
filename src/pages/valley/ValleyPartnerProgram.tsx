@@ -4,6 +4,9 @@ import { Features } from "../../components/Features";
 import ProductHero from "../../components/ProductHero";
 import IntroSection from "../../components/IntroSection";
 
+const HERO_IMG = "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1920";
+const INTRO_IMG = "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=1024";
+
 const features = [
   {
     icon: <Users className="w-8 h-8" />,
@@ -35,6 +38,16 @@ export function ValleyPartnerProgram() {
   };
 
   useEffect(() => {
+    const link = document.createElement("link");
+    link.rel = "preload";
+    link.as = "image";
+    link.href = HERO_IMG;
+    link.setAttribute("fetchpriority", "high");
+    document.head.appendChild(link);
+    return () => { document.head.removeChild(link); };
+  }, []);
+
+  useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -62,14 +75,14 @@ export function ValleyPartnerProgram() {
         title="Partner Program"
         subtitle="Join Our Elite Network of Defense Technology Partners"
         backgroundType="image"
-        backgroundSrc="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=60"
+        backgroundSrc={HERO_IMG}
       />
 
       <IntroSection
         sectionRef={sectionRefs.intro}
         title="Strategic Partnership Opportunities"
         description="The Valley Partner Program connects industry leaders, innovators, and experts in defense technology. Our partnership network provides exclusive access to resources, training, and collaboration opportunities to drive innovation in military technology."
-        imageUrl="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=60"
+        imageUrl={INTRO_IMG}
         imageAlt="Partnership Meeting"
       />
 

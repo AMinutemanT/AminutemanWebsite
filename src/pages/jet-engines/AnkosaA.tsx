@@ -69,14 +69,14 @@ export function AnkosaA() {
         title="Ankosa A"
         subtitle="High-Performance Military Jet Engine"
         backgroundType="image"
-        backgroundSrc="https://images.unsplash.com/photo-1540575861501-7cf05a4b125a?auto=format&fit=crop&q=60"
+        backgroundSrc="https://images.unsplash.com/photo-1540575861501-7cf05a4b125a?auto=format&fit=crop&q=80&w=1920"
       />
 
       <IntroSection
         sectionRef={sectionRefs.intro}
         title="Advanced Propulsion System"
         description="The Ankosa A engine combines cutting-edge technology with exceptional reliability. Designed for tactical aircraft, it delivers superior performance across all flight envelopes."
-        imageUrl="https://images.unsplash.com/photo-1579829366248-204fe8413f31?auto=format&fit=crop&q=60"
+        imageUrl="https://images.unsplash.com/photo-1579829366248-204fe8413f31?auto=format&fit=crop&q=80&w=1024"
         imageAlt="Ankosa A Technology"
       />
 

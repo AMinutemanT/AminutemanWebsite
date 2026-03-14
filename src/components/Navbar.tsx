@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { Menu, X, Plus } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import logo from './../logo.png';
+import { prefetchRouteAssets } from '../utils/assetPreloader';
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -53,6 +54,23 @@ export function Navbar() {
     setActiveMenu(null);
   };
 
+  // Prefetch hero assets when user hovers/touches a nav link
+  const handlePrefetch = useCallback((item: string) => {
+    const route = getRoutePath(item);
+    prefetchRouteAssets(route);
+  }, []);
+
+  // Prefetch all assets for a dropdown group when it opens
+  const handleGroupPrefetch = useCallback((menu: string) => {
+    const items = menuItems[menu as keyof typeof menuItems];
+    if (items) {
+      items.forEach((item) => {
+        const route = getRoutePath(item);
+        prefetchRouteAssets(route);
+      });
+    }
+  }, []);
+
   return (
     <nav 
       className={`fixed w-full z-50 transition-colors duration-300 border-b border-white/10 ${
@@ -67,7 +85,7 @@ export function Navbar() {
         <div className="flex items-center justify-between h-16 px-[10px] border-b">
           <div className="flex items-center h-full ">
             <Link to="/" className="flex items-center h-full px-4" onClick={handleLinkClick}>
-              <img  loading="lazy"
+              <img  loading="eager"
                 src={logo}
                 alt="Logo"
                 className="h-[80%] w-32 object-cover"
@@ -81,7 +99,7 @@ export function Navbar() {
               <div
                 key={menu}
                 className="relative group"
-                onMouseEnter={() => setActiveMenu(menu)}
+                onMouseEnter={() => { setActiveMenu(menu); handleGroupPrefetch(menu); }}
                 onMouseLeave={() => setActiveMenu(null)}
               >
                 <button 
@@ -103,6 +121,7 @@ export function Navbar() {
                           key={item}
                           to={getRoutePath(item)}
                           className="block px-4 py-2 text-sm text-white/70 hover:text-white hover:bg-white/10 transition-colors"
+                          onMouseEnter={() => handlePrefetch(item)}
                           onClick={handleLinkClick}
                         >
                           {item}
@@ -141,8 +160,8 @@ export function Navbar() {
             <div className="px-4 py-2 space-y-1">
               {Object.entries(menuItems).map(([menu, items]) => (
                 <div key={menu} className="py-2">
-                  <button 
-                    onClick={() => setActiveMenu(activeMenu === menu ? null : menu)}
+                  <button
+                    onClick={() => { const next = activeMenu === menu ? null : menu; setActiveMenu(next); if (next) handleGroupPrefetch(next); }}
                     className="w-full text-left text-white/70 py-2 flex justify-between items-center"
                   >
                     <span className="text-sm font-medium">{menu}</span>
@@ -157,7 +176,8 @@ export function Navbar() {
                           key={item}
                           to={getRoutePath(item)}
                           className="block text-sm text-white/70 hover:text-white py-1"
-                          onClick={handleLinkClick}
+                          onTouchStart={() => handlePrefetch(item)}
+                          onClick={() => { handlePrefetch(item); handleLinkClick(); }}
                         >
                           {item}
                         </Link>

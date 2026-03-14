@@ -4,6 +4,8 @@ import { Features } from "../../components/Features";
 import ProductHero from "../../components/ProductHero";
 import IntroSection from "../../components/IntroSection";
 
+const HERO_IMG = "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1920";
+
 const features = [
   {
     icon: <Brain className="w-8 h-8" />,
@@ -36,6 +38,16 @@ export function ValleyMissionAutonomy() {
   };
 
   useEffect(() => {
+    const link = document.createElement("link");
+    link.rel = "preload";
+    link.as = "image";
+    link.href = HERO_IMG;
+    link.setAttribute("fetchpriority", "high");
+    document.head.appendChild(link);
+    return () => { document.head.removeChild(link); };
+  }, []);
+
+  useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -63,7 +75,7 @@ export function ValleyMissionAutonomy() {
         title="Mission Autonomy"
         subtitle="AI-Powered Autonomous Mission Planning and Execution"
         backgroundType="image"
-        backgroundSrc="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=60"
+        backgroundSrc={HERO_IMG}
       />
 
       <IntroSection
