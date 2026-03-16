@@ -467,9 +467,9 @@ ${formData.coverLetter || 'No cover letter provided'}
                           className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 text-white transition-all"
                           required
                         >
-                          <option value="" className="bg-white text-black">Select a position</option>
+                          <option value="" className="bg-black text-white">Select a position</option>
                           {positions.map((pos, index) => (
-                            <option key={index} value={pos.title} className="bg-white text-black">
+                            <option key={index} value={pos.title} className="bg-black text-white">
                               {pos.title}
                             </option>
                           ))}
