@@ -176,49 +176,6 @@ export function Home() {
               </div>
             </div>
 
-            {/* Om Panchal - Co-Founder */}
-            <div className="grid lg:grid-cols-5 gap-16 items-center mt-24">
-
-              {/* Left Column - Image */}
-              <div className="lg:col-span-2 relative order-1">
-                <div className="relative border-2 border-white/40 p-6 bg-transparent">
-                  <img
-                    loading="eager"
-                    decoding="sync"
-                    src="/ompanchal.jpeg"
-                    alt="Om Panchal"
-                    className="w-full aspect-[4/5] object-cover"
-                    style={{
-                      imageRendering: 'auto',
-                      backfaceVisibility: 'hidden',
-                      transform: 'translateZ(0)'
-                    }}
-                  />
-                  {/* Corner brackets */}
-                  <div className="absolute top-0 left-0 w-10 h-10 border-l-2 border-t-2 border-blue-400" />
-                  <div className="absolute top-0 right-0 w-10 h-10 border-r-2 border-t-2 border-blue-400" />
-                  <div className="absolute bottom-0 left-0 w-10 h-10 border-l-2 border-b-2 border-blue-400" />
-                  <div className="absolute bottom-0 right-0 w-10 h-10 border-r-2 border-b-2 border-blue-400" />
-                </div>
-                <div className="mt-8 text-center">
-                  <h3 className="text-4xl font-bold text-white mb-3">Om Panchal</h3>
-                  <p className="text-xl text-blue-300 font-medium">Co-Founder</p>
-                </div>
-              </div>
-
-              {/* Right Column - Content */}
-              <div className="lg:col-span-3 order-2 flex items-center lg:-mt-28">
-                <div className="flex flex-col justify-center h-full relative w-full">
-                  <div className="relative z-10 pl-4 lg:pl-8 pr-4">
-                    <p className="text-base text-gray-300 leading-relaxed text-justify mb-8 lg:mb-0">
-                      A hands-on aerospace engineer with <span className="font-semibold text-blue-400">10+ years</span> of building, flying, and breaking things — from RC aircraft and UAVs to rockets and lunar lander technology. Currently completing his <span className="font-bold text-white">M.S. Aerospace Engineering at Arizona State University</span>, Om led the design and engineering of NASA's AGEGIS lunar landing pad system at the <span className="font-semibold text-blue-400">Luminosity Lab, ASU</span> — earning the <span className="font-bold text-white">Best System Engineering Award</span> and <span className="font-semibold text-blue-400">$150K in NASA funding</span> at the Big Idea Forum in Las Vegas. A 3× Boeing National Aeromodelling champion at IIT Madras, FAA Part 107 certified drone pilot, and NASA L-Space mission planning committee member, Om brings a field-ready mindset and prototyping obsession — turning napkin sketches into flight-tested hardware that works when it matters.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-
           </div>
         </div>
       </section>
