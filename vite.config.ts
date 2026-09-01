@@ -17,9 +17,11 @@ export default defineConfig({
     },
     rollupOptions: {
       output: {
+        // three.js is reached only through the lazily imported ModelViewer, so it
+        // is deliberately NOT named here: naming it would pull the chunk into the
+        // entry preload graph and every page would pay for the renderer.
         manualChunks: {
           vendor: ['react', 'react-dom', 'react-router-dom'],
-          three: ['three', '@react-three/fiber', '@react-three/drei'],
           motion: ['framer-motion']
         }
       }

@@ -1,160 +1,316 @@
-import React, { useEffect, useRef } from "react";
-import { Users, Award, Briefcase, GraduationCap } from "lucide-react";
-import { Features } from "../../components/Features";
-import ProductHero from "../../components/ProductHero";
-import IntroSection from "../../components/IntroSection";
+import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
+import { Reveal, Stagger, StaggerItem } from '../../components/ui/Reveal';
+import { Eyebrow, SectionHeading, StatusTag } from '../../components/ui/HUD';
+import { SpecTable } from '../../components/ui/SpecTable';
 
-const HERO_IMG = "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1920";
-const INTRO_IMG = "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=1024";
+/* ---------------------------------------------------------------------------
+ * Valley / Partner Program, bringing a third-party sensor or effector onto
+ * the grid. Deliberately an engineering document, not a channel programme.
+ * ------------------------------------------------------------------------- */
 
-const features = [
+const WHO = [
   {
-    icon: <Users className="w-8 h-8" />,
-    title: "Network Access",
-    description: "Connect with industry leaders and decision makers.",
+    title: 'Sensor manufacturers',
+    body: 'Radar, RF, electro-optic and acoustic systems that already hold a picture and need it to reach effectors they do not own.',
   },
   {
-    icon: <Award className="w-8 h-8" />,
-    title: "Certification",
-    description: "Official partner certification and recognition.",
+    title: 'Effector manufacturers',
+    body: 'Interceptors, guns, jammers and munitions that can service a track if something reliable tasks them.',
   },
   {
-    icon: <Briefcase className="w-8 h-8" />,
-    title: "Business Growth",
-    description: "Access to new markets and opportunities.",
+    title: 'Platform integrators',
+    body: 'Vehicle, vessel and aircraft integrators fitting mixed payloads that have to behave as one system on delivery.',
   },
   {
-    icon: <GraduationCap className="w-8 h-8" />,
-    title: "Training",
-    description: "Advanced technical training and support.",
+    title: 'Government laboratories',
+    body: 'DRDO and service establishments evaluating grid architectures against national requirements.',
   },
 ];
 
+const STAGES = [
+  {
+    step: 'Scope',
+    body: 'We agree what the system contributes (tracks, effects, or both) and the operational envelope it is being onboarded for. Most integrations fail on ambiguity here, not on code.',
+  },
+  {
+    step: 'Interface',
+    body: 'You receive the grid interface specification and a conformance harness that runs against your system on your own infrastructure, before any joint work is scheduled.',
+  },
+  {
+    step: 'Conformance',
+    body: 'Track publication, tasking, timing and failure behaviour are tested against the harness. Disagreements surface in a lab rather than on a range.',
+  },
+  {
+    step: 'Integration trial',
+    body: 'The system joins a live grid instance alongside other nodes and is exercised through degraded, jammed and disconnected conditions.',
+  },
+  {
+    step: 'Field release',
+    body: 'The system is released onto customer grids as a qualified node, with its envelope and its known limitations documented for the operators who will use it.',
+  },
+];
+
+const REQUIREMENTS = [
+  {
+    label: 'Track publication',
+    body: 'The ability to emit observations with position, time and an uncertainty estimate. Uncertainty is required, not optional. The grid cannot fuse a claim it cannot weigh.',
+  },
+  {
+    label: 'Time discipline',
+    body: 'A disciplined clock and a stated timing accuracy. Correlation across sensors is a timing problem before it is a geometry problem.',
+  },
+  {
+    label: 'Tasking interface',
+    body: 'For effectors, an interface that accepts a task, reports feasibility honestly, and reports the outcome, including failure.',
+  },
+  {
+    label: 'Declared failure behaviour',
+    body: 'What the system does on loss of link, loss of power or loss of confidence, stated in advance and demonstrated under test.',
+  },
+  {
+    label: 'Deployable on-premise',
+    body: 'No dependency on a vendor cloud, a phone-home licence check or telemetry leaving the customer enclave.',
+  },
+];
+
+const SPECS = [
+  { label: 'Interface', value: 'Open specification', note: 'Released under NDA to qualified partners' },
+  { label: 'Conformance harness', value: 'Self-service', note: 'Runs on partner infrastructure' },
+  { label: 'Typical onboarding', value: 'Weeks', note: 'Scope to conformance, system dependent' },
+  { label: 'Deployment', value: 'On-premise', note: 'No vendor cloud dependency permitted' },
+  { label: 'Exclusivity', value: 'None required', note: 'Partners retain their own customers' },
+  { label: 'Source access', value: 'Not required', note: 'Conformance is behavioural, not inspectional' },
+  { label: 'Certification', value: 'ON REQUEST' },
+  { label: 'Commercial terms', value: 'ON REQUEST' },
+];
+
 export function ValleyPartnerProgram() {
-  const sectionRefs = {
-    intro: useRef<HTMLDivElement>(null),
-    features: useRef<HTMLDivElement>(null),
-    benefits: useRef<HTMLDivElement>(null),
-  };
-
   useEffect(() => {
-    const link = document.createElement("link");
-    link.rel = "preload";
-    link.as = "image";
-    link.href = HERO_IMG;
-    link.setAttribute("fetchpriority", "high");
-    document.head.appendChild(link);
-    return () => { document.head.removeChild(link); };
-  }, []);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("opacity-100", "translate-y-0");
-            entry.target.classList.remove("opacity-0", "translate-y-10");
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    Object.values(sectionRefs).forEach((ref) => {
-      if (ref.current) {
-        observer.observe(ref.current);
-      }
-    });
-
-    return () => observer.disconnect();
+    document.title = 'Partner Program, Aminuteman Technologies';
   }, []);
 
   return (
-    <div className="min-h-screen bg-black text-white">
-      <ProductHero
-        title="Partner Program"
-        subtitle="Join Our Elite Network of Defense Technology Partners"
-        backgroundType="image"
-        backgroundSrc={HERO_IMG}
-      />
+    <div className="bg-void">
+      {/* ---- Header ------------------------------------------------------ */}
+      <header className="relative overflow-hidden border-b border-line pt-40 pb-20 sm:pt-48 sm:pb-28">
+        <div className="absolute inset-0 bg-grid-coarse bg-grid-coarse opacity-[0.18]" />
+        <div className="absolute inset-0 bg-[radial-gradient(100%_80%_at_50%_0%,rgba(255,138,0,0.14),transparent_60%)]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-void" />
 
-      <IntroSection
-        sectionRef={sectionRefs.intro}
-        title="Strategic Partnership Opportunities"
-        description="The Valley Partner Program connects industry leaders, innovators, and experts in defense technology. Our partnership network provides exclusive access to resources, training, and collaboration opportunities to drive innovation in military technology."
-        imageUrl={INTRO_IMG}
-        imageAlt="Partnership Meeting"
-      />
+        <div className="container relative">
+          <Reveal direction="none">
+            <nav className="flex items-center gap-2 font-mono text-[0.65rem] uppercase tracking-widest text-ink-dim">
+              <Link to="/" className="transition-colors hover:text-white">
+                Home
+              </Link>
+              <span>/</span>
+              <Link to="/valley" className="transition-colors hover:text-white">
+                Valley
+              </Link>
+              <span>/</span>
+              <span className="text-accent">Partners</span>
+            </nav>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <p className="mt-8 font-mono text-xs uppercase tracking-ultra text-accent-soft/80">
+              Partner Program
+            </p>
+            <h1 className="display-xl mt-4 max-w-4xl text-white">Bring your system onto the grid</h1>
+          </Reveal>
+          <Reveal delay={0.14}>
+            <p className="mt-7 max-w-3xl text-lg leading-relaxed text-ink-2 sm:text-xl">
+              Valley owns no sensor and no magazine. A third-party system that publishes tracks or
+              accepts tasking is a first-class node on the grid, with no privileged status held
+              back for our own hardware.
+            </p>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <div className="mt-9">
+              <StatusTag status="Open" />
+            </div>
+          </Reveal>
+        </div>
+      </header>
 
-      <div
-        ref={sectionRefs.features}
-        className="py-20 px-4 bg-black transform transition-all duration-1000 opacity-0 translate-y-10"
-      >
-        <Features features={features} heading="Key Features" />
-      </div>
-
-      <div
-        ref={sectionRefs.benefits}
-        className="py-20 px-4 transform transition-all duration-1000 opacity-0 translate-y-10"
-      >
-        <div className="container mx-auto max-w-6xl">
-          <div className="bg-transparent border border-white/20 rounded-2xl p-8 backdrop-blur-sm">
-            <h2 className="text-4xl sm:text-5xl font-extrabold text-white mb-8">Partnership Benefits</h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              <div>
-                <h3 className="text-xl font-semibold mb-4">
-                  Business Benefits
-                </h3>
-                <ul className="space-y-3">
-                  <li className="flex items-center gap-3">
-                    <div className="w-3 h-3 bg-blue-500 rounded-full" />
-                    <span className="text-gray-300">
-                      Priority access to new technologies
-                    </span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <div className="w-3 h-3 bg-blue-500 rounded-full" />
-                    <span className="text-gray-300">
-                      Co-marketing opportunities
-                    </span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <div className="w-3 h-3 bg-blue-500 rounded-full" />
-                    <span className="text-gray-300">
-                      Revenue sharing programs
-                    </span>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-4">
-                  Technical Support
-                </h3>
-                <ul className="space-y-3">
-                  <li className="flex items-center gap-3">
-                    <div className="w-3 h-3 bg-blue-500 rounded-full" />
-                    <span className="text-gray-300">
-                      Dedicated technical support
-                    </span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <div className="w-3 h-3 bg-blue-500 rounded-full" />
-                    <span className="text-gray-300">
-                      Early access to beta features
-                    </span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <div className="w-3 h-3 bg-blue-500 rounded-full" />
-                    <span className="text-gray-300">
-                      Custom integration assistance
-                    </span>
-                  </li>
-                </ul>
+      {/* ---- Thesis ------------------------------------------------------ */}
+      <section className="section border-b border-line">
+        <div className="container">
+          <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+            <div className="lg:col-span-4">
+              <Eyebrow index="01">Why open</Eyebrow>
+            </div>
+            <div className="lg:col-span-8">
+              <Reveal>
+                <p className="font-display text-3xl uppercase leading-tight tracking-tight text-white sm:text-4xl md:text-5xl">
+                  A grid that only talks to its owner&rsquo;s hardware is just a bigger silo.
+                </p>
+              </Reveal>
+              <div className="mt-10 space-y-6">
+                <Reveal delay={0.06}>
+                  <p className="body-copy text-base sm:text-lg">
+                    Every force we work with fields equipment from a dozen suppliers across three
+                    services, bought across three decades. A platform that requires them to replace
+                    that inventory before it delivers value is not an integration layer, it is a
+                    procurement programme wearing one.
+                  </p>
+                </Reveal>
+                <Reveal delay={0.12}>
+                  <p className="body-copy text-base sm:text-lg">
+                    So the interface is published rather than guarded, conformance is something a
+                    partner can run themselves before talking to us, and there is no exclusivity
+                    requirement. A partner keeps their customers and their roadmap. What they gain
+                    is that their system becomes tasking-reachable by every other node on the grid.
+                  </p>
+                </Reveal>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* ---- Who --------------------------------------------------------- */}
+      <section className="section border-b border-line">
+        <div className="container">
+          <Reveal>
+            <SectionHeading eyebrow="Who this is for" index="02" title="Partners" />
+          </Reveal>
+
+          <Stagger className="mt-16 grid grid-cols-1 gap-px bg-line sm:grid-cols-2 lg:grid-cols-4">
+            {WHO.map((item, i) => (
+              <StaggerItem key={item.title} className="bg-void">
+                <div className="group relative h-full bg-panel/40 p-8 transition-colors duration-300 hover:bg-panel">
+                  <span className="font-mono text-[0.6rem] tracking-widest text-accent/50">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <h3 className="mt-4 font-display text-xl uppercase leading-tight tracking-wide text-white">
+                    {item.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-ink-2">{item.body}</p>
+                  <span className="absolute bottom-0 left-0 h-px w-0 bg-accent transition-all duration-500 group-hover:w-full" />
+                </div>
+              </StaggerItem>
+            ))}
+          </Stagger>
+        </div>
+      </section>
+
+      {/* ---- Stages ------------------------------------------------------ */}
+      <section className="section border-b border-line">
+        <div className="container">
+          <Reveal>
+            <SectionHeading
+              eyebrow="Process"
+              index="03"
+              title="How onboarding runs"
+              lede="Five stages. Most of the effort sits in the first two, which is deliberate. Ambiguity is cheaper to remove before integration than after."
+            />
+          </Reveal>
+
+          <div className="mt-14 border-t border-line">
+            {STAGES.map((item, i) => (
+              <Reveal key={item.step} delay={i * 0.05}>
+                <div className="group grid grid-cols-1 gap-4 border-b border-line py-8 transition-colors duration-300 hover:bg-white/[0.02] md:grid-cols-12 md:gap-8">
+                  <div className="md:col-span-1">
+                    <span className="font-mono text-xs text-ink-dim">
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                  </div>
+                  <div className="md:col-span-3">
+                    <h3 className="font-display text-2xl uppercase leading-none tracking-wide text-white transition-colors group-hover:text-accent">
+                      {item.step}
+                    </h3>
+                  </div>
+                  <div className="md:col-span-8">
+                    <p className="text-sm leading-relaxed text-ink-2 sm:text-base">
+                      {item.body}
+                    </p>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ---- Requirements ------------------------------------------------ */}
+      <section className="section border-b border-line">
+        <div className="container">
+          <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+            <div className="lg:col-span-5">
+              <Reveal>
+                <SectionHeading
+                  eyebrow="Interface"
+                  index="04"
+                  title="What your system must do"
+                  lede="Short list, strictly enforced. Everything here exists because its absence has broken a real integration."
+                />
+              </Reveal>
+            </div>
+            <div className="lg:col-span-7">
+              <div className="border-t border-line">
+                {REQUIREMENTS.map((item, i) => (
+                  <Reveal key={item.label} delay={i * 0.05}>
+                    <div className="grid grid-cols-1 gap-2 border-b border-line py-6 sm:grid-cols-12 sm:gap-6">
+                      <div className="sm:col-span-4">
+                        <h3 className="font-display text-lg uppercase leading-tight tracking-wide text-white">
+                          {item.label}
+                        </h3>
+                      </div>
+                      <div className="sm:col-span-8">
+                        <p className="text-sm leading-relaxed text-ink-2">{item.body}</p>
+                      </div>
+                    </div>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ---- Specification ------------------------------------------------ */}
+      <section className="section border-b border-line">
+        <div className="container">
+          <Reveal>
+            <Eyebrow index="05">Programme terms</Eyebrow>
+          </Reveal>
+          <div className="mt-10">
+            <SpecTable specs={SPECS} />
+          </div>
+        </div>
+      </section>
+
+      {/* ---- CTA ---------------------------------------------------------- */}
+      <section className="section">
+        <div className="container">
+                      <div className="border border-line bg-panel/40 p-8 sm:p-14">
+              <div className="grid gap-8 lg:grid-cols-12 lg:items-center lg:gap-12">
+                <div className="lg:col-span-8">
+                  <p className="eyebrow">Integration enquiries</p>
+                  <h2 className="display-md mt-5 text-white">Request the interface specification</h2>
+                  <p className="body-copy mt-5 max-w-2xl">
+                    The grid interface specification and conformance harness are released under
+                    NDA to qualified partners. Tell us what your system senses or services and we
+                    will scope the integration.
+                  </p>
+                </div>
+                <div className="flex flex-col gap-3 lg:col-span-4 lg:items-end">
+                  <Link to="/contact" className="btn-primary w-full justify-center lg:w-auto">
+                    Contact the platform office
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                  <Link to="/valley" className="btn-secondary w-full justify-center lg:w-auto">
+                    Back to Valley
+                  </Link>
+                </div>
+              </div>
+            </div>
+        </div>
+      </section>
     </div>
   );
 }
+
+export default ValleyPartnerProgram;

@@ -1,150 +1,101 @@
-import React, { useState, useRef } from "react";
-import { Send } from "lucide-react";
-import { Carousel } from "../components/Carousel";
+import React, { useEffect, useRef, useState } from 'react';
+import { Send, Upload, FileCheck } from 'lucide-react';
 import { uploadToCloudinary, submitToWeb3Forms } from '../utils/cloudinary';
+import { Reveal, Stagger, StaggerItem } from '../components/ui/Reveal';
+import { Eyebrow, SectionHeading } from '../components/ui/HUD';
 
-const positions = [
-  {
-    title: "UAV Engineer",
-    department: "Engineering",
-    type: "Full-time",
-    location: "Pune",
-  },
-  {
-    title: "Avionics Engineer",
-    department: "Engineering",
-    type: "Full-time",
-    location: "Pune",
-  },
-  {
-    title: "Aerodynamics Engineer",
-    department: "Engineering",
-    type: "Full-time",
-    location: "Pune",
-  },
-  {
-    title: "Design Engineer",
-    department: "Engineering",
-    type: "Full-time",
-    location: "Pune",
-  },
-  {
-    title: "Structural Engineer",
-    department: "Engineering",
-    type: "Full-time",
-    location: "Pune",
-  },
+/* ---------------------------------------------------------------------------
+ * Careers. The pitch is the work, not the perks, the people worth hiring for
+ * this are the ones who want the hard problem, so the page leads with it.
+ * ------------------------------------------------------------------------- */
 
+const POSITIONS = [
   {
-    title: "Electronics Engineer",
-    department: "Engineering",
-    type: "Full-time",
-    location: "Pune",
+    title: 'UAV Engineer',
+    discipline: 'Airframe',
+    note: 'Loitering munition and interceptor airframes from concept through trials.',
   },
   {
-    title: "AI Engineer",
-    department: "Engineering",
-    type: "Full-time",
-    location: "Pune",
+    title: 'Aerodynamics Engineer',
+    discipline: 'Airframe',
+    note: 'Subsonic through hypersonic configuration work, CFD and wind-tunnel correlation.',
+  },
+  {
+    title: 'Structural Engineer',
+    discipline: 'Airframe',
+    note: 'Composite and metallic primary structure sized for attritable production rates.',
+  },
+  {
+    title: 'Design Engineer',
+    discipline: 'Airframe',
+    note: 'Detail design and design-for-manufacture across the programme families.',
+  },
+  {
+    title: 'Avionics Engineer',
+    discipline: 'Avionics',
+    note: 'Flight control, datalink and navigation that hold through jamming and GNSS denial.',
+  },
+  {
+    title: 'Electronics Engineer',
+    discipline: 'Avionics',
+    note: 'Power, sensing and payload interfaces qualified for field environments.',
+  },
+  {
+    title: 'AI Engineer',
+    discipline: 'Autonomy',
+    note: 'Edge autonomy, perception and mission behaviours for the Valley stack.',
   },
 ];
 
-const cards = [
+const WHY = [
   {
-    title: "Visionary Voyagers",
-    description:
-      "We welcome people with a zest for exploring uncharted realms of possibility",
+    title: 'The hard problem is the job',
+    body: 'Edge autonomy that survives disconnection, denied-environment navigation, effectors priced against what they intercept. Nobody hands you a reference design for these.',
   },
   {
-    title: "Mindful Mavericks",
-    description:
-      "We are a group of people with independent and unique perspectives",
+    title: 'Hardware that flies',
+    body: 'Work here reaches a test range, not a slide. Engineers see their parts fabricated, instrumented and flown, and own the results either way.',
   },
   {
-    title: "Innovation Igniters",
-    description: "Innovation drives us and creating new things motivates us",
+    title: 'Whole stack, small team',
+    body: 'Airframe, avionics, autonomy and effectors sit in the same programme office. You will work across boundaries that larger primes keep separate.',
+  },
+  {
+    title: 'It matters who builds it',
+    body: 'Every programme exists because the alternative was an import licence. The work is national capability, and it is treated that way.',
   },
 ];
 
-const carouselSlides = [
-  {
-    title: "Innovation Hub",
-    description:
-      "Our state-of-the-art facilities foster creativity and breakthrough innovations in aerospace technology.",
-    image:
-      "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=60",
-  },
-  {
-    title: "Collaborative Environment",
-    description:
-      "Work alongside industry experts and brilliant minds in a dynamic, collaborative workspace.",
-    image:
-      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=60",
-  },
-  {
-    title: "Work-Life Balance",
-    description:
-      "We believe in maintaining a healthy work-life balance with flexible schedules and comprehensive benefits.",
-    image:
-      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=60",
-  },
-  {
-    title: "Global Impact",
-    description:
-      "Join us in shaping the future of aerospace and defense technology on a global scale.",
-    image:
-      "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=60",
-  },
-];
+const EXPERIENCE_BANDS = ['0 to 1', '2 to 4', '5 to 9', '10+'];
 
 export function Careers() {
   const form = useRef<HTMLFormElement>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{
-    type: "success" | "error" | null;
+    type: 'success' | 'error' | null;
     message: string;
-  }>({ type: null, message: "" });
+  }>({ type: null, message: '' });
   const [uploadingResume, setUploadingResume] = useState(false);
 
-  const words = ["WORK", "LEARN", "GROW"];
-  const [currentWord, setCurrentWord] = useState(0);
-
-  React.useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentWord((prev) => (prev + 1) % words.length);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, []);
-
-  React.useEffect(() => {
-    // Use a simple timeout instead of intersection observer to prevent conflicts
-    const timer = setTimeout(() => {
-      document.querySelectorAll(".slide-card").forEach((card, index) => {
-        setTimeout(() => {
-          card.classList.add("opacity-100", "translate-x-0");
-          card.classList.remove("opacity-0", "translate-x-full");
-        }, index * 200);
-      });
-    }, 100);
-
-    return () => clearTimeout(timer);
-  }, []);
-
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    position: "",
-    experience: "",
+    name: '',
+    email: '',
+    phone: '',
+    position: '',
+    experience: '',
     resume: null as File | null,
-    resumeUrl: "",
-    coverLetter: "",
+    resumeUrl: '',
+    coverLetter: '',
   });
+
+  useEffect(() => {
+    document.title = 'Careers, Aminuteman Technologies';
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setSubmitStatus({ type: null, message: "" });
+    setSubmitStatus({ type: null, message: '' });
 
     try {
       let resumeUrl = formData.resumeUrl;
@@ -152,16 +103,13 @@ export function Careers() {
       // Upload resume to Cloudinary if a new file is selected
       if (formData.resume && !formData.resumeUrl) {
         setUploadingResume(true);
-        console.log('Uploading resume to Cloudinary...');
         resumeUrl = await uploadToCloudinary(formData.resume);
-        console.log('Resume uploaded successfully:', resumeUrl);
       }
 
       if (!resumeUrl) {
         throw new Error('Resume upload failed. Please try again.');
       }
 
-      // Prepare data for Web3Forms
       const web3FormData = {
         name: formData.name,
         email: formData.email,
@@ -189,29 +137,29 @@ ${formData.coverLetter || 'No cover letter provided'}
       };
 
       await submitToWeb3Forms(web3FormData);
-      
+
       setSubmitStatus({
-        type: "success",
-        message: "Application submitted successfully! We'll review your application and get back to you soon.",
+        type: 'success',
+        message: 'Application received. We review every submission and respond directly.',
       });
-      
+
       setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        position: "",
-        experience: "",
+        name: '',
+        email: '',
+        phone: '',
+        position: '',
+        experience: '',
         resume: null,
-        resumeUrl: "",
-        coverLetter: "",
+        resumeUrl: '',
+        coverLetter: '',
       });
-      
+
       if (form.current) form.current.reset();
     } catch (error) {
       console.error('Application submission error:', error);
       setSubmitStatus({
-        type: "error",
-        message: "Failed to submit application. Please try again later.",
+        type: 'error',
+        message: 'Submission failed. Please try again later.',
       });
     } finally {
       setIsSubmitting(false);
@@ -220,243 +168,220 @@ ${formData.coverLetter || 'No cover letter provided'}
   };
 
   const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
   ) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
-      
+
       // Validate file size (5MB limit)
       if (file.size > 5 * 1024 * 1024) {
         setSubmitStatus({
-          type: "error",
-          message: "File size should be less than 5MB. Please choose a smaller file.",
+          type: 'error',
+          message: 'File size should be less than 5MB. Please choose a smaller file.',
         });
         return;
       }
-      
+
       // Validate file type
-      const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+      const allowedTypes = [
+        'application/pdf',
+        'application/msword',
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      ];
       if (!allowedTypes.includes(file.type)) {
         setSubmitStatus({
-          type: "error",
-          message: "Please upload a PDF, DOC, or DOCX file.",
+          type: 'error',
+          message: 'Please upload a PDF, DOC, or DOCX file.',
         });
         return;
       }
-      
+
       setFormData((prev) => ({
         ...prev,
         resume: file,
-        resumeUrl: "", // Reset URL when new file is selected
+        resumeUrl: '', // Reset URL when new file is selected
       }));
-      
-      // Clear any previous error messages
-      setSubmitStatus({ type: null, message: "" });
+
+      setSubmitStatus({ type: null, message: '' });
     }
   };
 
+  const selectPosition = (title: string) => {
+    setFormData((prev) => ({ ...prev, position: title }));
+    document.getElementById('application')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
-    <div className="min-h-screen bg-black">
-      <div className="relative h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0">
-          <img
-            loading="eager"
-            decoding="sync"
-            crossOrigin="anonymous"
-            fetchPriority="high"
-            src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=60"
-            alt="Careers Hero"
-            className="w-full h-full object-cover"
-            style={{ 
-              imageRendering: 'auto',
-              backfaceVisibility: 'hidden',
-              transform: 'translateZ(0)',
-              willChange: 'auto',
-              WebkitBackfaceVisibility: 'hidden'
-            }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-transparent" />
-        </div>
-        <div className="relative z-10 text-center px-4">
-          <div className="flex flex-col items-center gap-2">
-            <div className="h-[5rem] overflow-hidden">
-              <h1 className="animate-text text-slide-animation">
-                {words[currentWord]}
-              </h1>
-            </div>
-            <h1 className="animate-text">AT AMINUTEMAN</h1>
-          </div>
-          <p className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto mt-8">
-            For those rare intellects who possess both analytical rigor and
-            contemplative depth scientists, researchers, engineers, physicists,
-            and mathematicians whose pursuit of excellence extends beyond
-            conventional boundaries we extend a distinguished invitation.
-          </p>
-        </div>
-      </div>
+    <div className="bg-void">
+      {/* ---- Header ------------------------------------------------------ */}
+      <header className="relative overflow-hidden border-b border-line pt-40 pb-20 sm:pt-48 sm:pb-28">
+        <div className="absolute inset-0 bg-grid-coarse bg-grid-coarse opacity-[0.18]" />
+        <div className="absolute inset-0 bg-[radial-gradient(100%_80%_at_50%_0%,rgba(255,138,0,0.12),transparent_60%)]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-void" />
 
-      <section className="py-20 bg-black">
-        <div className="container mx-auto px-4 sm:px-6">
-          <h2 className="text-4xl md:text-5xl font-bold text-white text-center mb-12">
-            WHO WE ARE LOOKING FOR
-          </h2>
+        <div className="container relative">
+          <Reveal direction="none">
+            <Eyebrow>Careers</Eyebrow>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <h1 className="display-xl mt-6 max-w-4xl text-white">
+              Build the things
+              <br />
+              nobody will sell us
+            </h1>
+          </Reveal>
+          <Reveal delay={0.14}>
+            <p className="mt-7 max-w-3xl text-lg leading-relaxed text-ink-2 sm:text-xl">
+              We are hiring engineers who want the unsolved half of the problem, autonomy,
+              structures, guidance and avionics for systems that have to work in contested
+              airspace, on a schedule India controls.
+            </p>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <p className="mt-10 font-mono text-[0.65rem] uppercase tracking-widest text-ink-dim">
+              {POSITIONS.length} open positions · Pune, India · Full-time
+            </p>
+          </Reveal>
+        </div>
+      </header>
 
-          <div className="grid md:grid-cols-3 gap-4">
-            {cards.map((card, index) => (
-              <div
-                key={index}
-                className="slide-card bg-transparent border border-white/20 rounded-2xl p-6 translate-x-full transition-all duration-1000 hover:-translate-y-2"
-                style={{
-                  transitionDelay: `${index * 200}ms`,
-                }}
-              >
-                <h3 className="text-2xl font-bold text-white mb-3">
-                  {card.title}
-                </h3>
-                <p className="text-gray-400">{card.description}</p>
-              </div>
+      {/* ---- Why --------------------------------------------------------- */}
+      <section className="section border-b border-line">
+        <div className="container">
+          <Reveal>
+            <SectionHeading
+              eyebrow="The work"
+              index="01"
+              title="Why this, and not somewhere else"
+            />
+          </Reveal>
+
+          <Stagger className="mt-16 grid grid-cols-1 gap-px bg-line sm:grid-cols-2 lg:grid-cols-4">
+            {WHY.map((item, i) => (
+              <StaggerItem key={item.title} className="bg-void">
+                <div className="group relative h-full bg-panel/40 p-8 transition-colors duration-300 hover:bg-panel">
+                  <span className="font-mono text-[0.6rem] tracking-widest text-accent/50">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <h3 className="mt-4 font-display text-xl uppercase leading-tight tracking-wide text-white">
+                    {item.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-ink-2">{item.body}</p>
+                  <span className="absolute bottom-0 left-0 h-px w-0 bg-accent transition-all duration-500 group-hover:w-full" />
+                </div>
+              </StaggerItem>
+            ))}
+          </Stagger>
+        </div>
+      </section>
+
+      {/* ---- Positions --------------------------------------------------- */}
+      <section className="section border-b border-line">
+        <div className="container">
+          <Reveal>
+            <SectionHeading
+              eyebrow="Open roles"
+              index="02"
+              title="Positions"
+              lede="All roles are full-time and on-site in Pune. If none of these match and you are still the right person, apply anyway and say why."
+            />
+          </Reveal>
+
+          <div className="mt-14 border-t border-line">
+            {POSITIONS.map((role, i) => (
+              <Reveal key={role.title} delay={i * 0.04}>
+                <div className="group grid grid-cols-1 items-center gap-3 border-b border-line py-7 transition-colors duration-300 hover:bg-white/[0.02] md:grid-cols-12 md:gap-8">
+                  <div className="md:col-span-1">
+                    <span className="font-mono text-xs text-ink-dim">
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                  </div>
+                  <div className="md:col-span-4">
+                    <h3 className="font-display text-2xl uppercase leading-none tracking-wide text-white transition-colors group-hover:text-accent">
+                      {role.title}
+                    </h3>
+                    <p className="mt-2 font-mono text-[0.6rem] uppercase tracking-widest text-ink-dim">
+                      {role.discipline} · Pune · Full-time
+                    </p>
+                  </div>
+                  <div className="md:col-span-5">
+                    <p className="text-sm leading-relaxed text-ink-3">{role.note}</p>
+                  </div>
+                  <div className="md:col-span-2 md:text-right">
+                    <button
+                      type="button"
+                      onClick={() => selectPosition(role.title)}
+                      className="font-mono text-[0.65rem] uppercase tracking-widest text-accent transition-colors hover:text-white"
+                    >
+                      Apply →
+                    </button>
+                  </div>
+                </div>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      <Carousel slides={carouselSlides} />
+      {/* ---- Application ------------------------------------------------- */}
+      <section id="application" className="section scroll-mt-28">
+        <div className="container">
+          <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+            <div className="lg:col-span-4">
+              <Reveal>
+                <Eyebrow index="03">Application</Eyebrow>
+                <h2 className="display-md mt-6 text-white">Send it in</h2>
+                <p className="body-copy mt-5">
+                  One form, one attachment. We read every application ourselves, there is no
+                  keyword filter between you and the engineering team.
+                </p>
+                <p className="mt-8 font-mono text-[0.6rem] uppercase leading-relaxed tracking-widest text-ink-dim">
+                  PDF, DOC or DOCX · 5 MB maximum · unclassified material only
+                </p>
+              </Reveal>
+            </div>
 
-      <section className="py-20 bg-black">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-7xl mx-auto">
-            <div className="grid lg:grid-cols-5 gap-8 items-start">
-              <div className="lg:col-span-2">
-                <div className="bg-transparent border border-white/20 rounded-2xl p-8 sticky top-24">
-                  <h3 className="text-2xl font-bold text-white mb-8">
-                    Open Positions
-                  </h3>
-                  <div className="space-y-4 overflow-y-auto max-h-[70vh]">
-                    {positions.map((position, index) => (
-                      <div
-                        key={index}
-                        className="group p-5 bg-transparent border border-white/20 rounded-xl transition-all duration-300 hover:bg-white/10 hover:-translate-y-1 position-card"
-                      >
-                        <div>
-                          <div>
-                            <h4 className="text-lg font-semibold text-white mb-1">
-                              {position.title}
-                            </h4>
-                            <p className="text-gray-400 text-sm mb-3">
-                              {position.department}
-                            </p>
-                            <div className="flex flex-wrap gap-2">
-                              <span className="px-3 py-1 text-xs bg-white/10 rounded-full text-gray-300">
-                                {position.type}
-                              </span>
-                              <span className="px-3 py-1 text-xs bg-white/10 rounded-full text-gray-300">
-                                {position.location}
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              <div className="lg:col-span-3">
-                <div className="bg-transparent border border-white/20 rounded-2xl p-8 sm:p-10">
-                  <h3 className="text-2xl font-bold text-white mb-8">
-                    Apply Now
-                  </h3>
-
-                  {submitStatus.type && (
-                    <div
-                      className={`mb-8 p-6 rounded-xl ${
-                        submitStatus.type === "success"
-                          ? "bg-green-500/10 text-green-400 border border-green-500/20"
-                          : "bg-red-500/10 text-red-400 border border-red-500/20"
-                      }`}
-                    >
-                      {submitStatus.message}
-                    </div>
-                  )}
-
-                  <form
+            <div className="lg:col-span-8">
+              <Reveal delay={0.08}>
+                                  <form
                     ref={form}
                     onSubmit={handleSubmit}
-                    className="space-y-8"
+                    className="border border-line bg-panel/40 p-7 sm:p-10"
                   >
-                    <div className="grid sm:grid-cols-2 gap-6">
-                      <div className="space-y-2">
-                        <label
-                          htmlFor="name"
-                          className="block text-sm font-medium text-white/90"
-                        >
-                          Full Name
-                        </label>
-                        <input
-                          type="text"
-                          id="name"
-                          name="name"
-                          value={formData.name}
-                          onChange={handleChange}
-                          className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 text-white placeholder-white/30 transition-all"
-                          placeholder="John Doe"
-                          required
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <label
-                          htmlFor="email"
-                          className="block text-sm font-medium text-white/90"
-                        >
-                          Email
-                        </label>
-                        <input
-                          type="email"
-                          id="email"
-                          name="email"
-                          value={formData.email}
-                          onChange={handleChange}
-                          className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 text-white placeholder-white/30 transition-all"
-                          placeholder="john@example.com"
-                          required
-                        />
-                      </div>
+                    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                      <Field
+                        label="Full name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        required
+                      />
+                      <Field
+                        label="Email"
+                        name="email"
+                        type="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                      />
                     </div>
 
-                    <div className="grid sm:grid-cols-2 gap-6">
-                      <div className="space-y-2">
-                        <label
-                          htmlFor="phone"
-                          className="block text-sm font-medium text-white/90"
-                        >
-                          Phone Number
-                        </label>
-                        <input
-                          type="tel"
-                          id="phone"
-                          name="phone"
-                          value={formData.phone}
-                          onChange={handleChange}
-                          className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 text-white placeholder-white/30 transition-all"
-                          placeholder="+91 XXXXXXXXXX"
-                          required
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <label
-                          htmlFor="position"
-                          className="block text-sm font-medium text-white/90"
-                        >
+                    <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
+                      <Field
+                        label="Phone"
+                        name="phone"
+                        type="tel"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        required
+                      />
+                      <div>
+                        <label htmlFor="position" className="data-label">
                           Position
                         </label>
                         <select
@@ -464,101 +389,116 @@ ${formData.coverLetter || 'No cover letter provided'}
                           name="position"
                           value={formData.position}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 text-white transition-all"
                           required
+                          className="form-input mt-2.5 appearance-none"
                         >
-                          <option value="" className="bg-black text-white">Select a position</option>
-                          {positions.map((pos, index) => (
-                            <option key={index} value={pos.title} className="bg-black text-white">
-                              {pos.title}
+                          <option value="" disabled className="bg-panel">
+                            Select…
+                          </option>
+                          {POSITIONS.map((p) => (
+                            <option key={p.title} value={p.title} className="bg-panel">
+                              {p.title}
                             </option>
                           ))}
+                          <option value="Other" className="bg-panel">
+                            Other
+                          </option>
                         </select>
                       </div>
                     </div>
 
-                    <div className="space-y-2">
-                      <label
-                        htmlFor="experience"
-                        className="block text-sm font-medium text-white/90"
-                      >
-                        Years of Experience
+                    <div className="mt-6">
+                      <label htmlFor="experience" className="data-label">
+                        Years of experience
                       </label>
-                      <input
-                        type="number"
+                      <select
                         id="experience"
                         name="experience"
                         value={formData.experience}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 text-white placeholder-white/30 transition-all"
-                        placeholder="Years of experience"
-                        min="0"
                         required
-                      />
+                        className="form-input mt-2.5 appearance-none"
+                      >
+                        <option value="" disabled className="bg-panel">
+                          Select…
+                        </option>
+                        {EXPERIENCE_BANDS.map((b) => (
+                          <option key={b} value={b} className="bg-panel">
+                            {b}
+                          </option>
+                        ))}
+                      </select>
                     </div>
 
-                    <div className="space-y-2">
+                    {/* Resume */}
+                    <div className="mt-6">
+                      <span className="data-label">Resume</span>
                       <label
                         htmlFor="resume"
-                        className="block text-sm font-medium text-white/90"
+                        className="mt-2.5 flex cursor-pointer items-center gap-3 border border-dashed border-white/20 bg-white/[0.03] px-4 py-5 transition-colors hover:border-accent/50 hover:bg-white/[0.05]"
                       >
-                        Resume
+                        {formData.resume ? (
+                          <FileCheck className="h-5 w-5 shrink-0 text-nominal" />
+                        ) : (
+                          <Upload className="h-5 w-5 shrink-0 text-accent/70" />
+                        )}
+                        <span className="font-mono text-xs text-ink-2">
+                          {formData.resume ? formData.resume.name : 'Attach PDF, DOC or DOCX'}
+                        </span>
+                        <input
+                          id="resume"
+                          name="resume"
+                          type="file"
+                          accept=".pdf,.doc,.docx"
+                          onChange={handleFileChange}
+                          required
+                          className="sr-only"
+                        />
                       </label>
-                      <input
-                        type="file"
-                        id="resume"
-                        name="resume"
-                        onChange={handleFileChange}
-                        className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 text-white transition-all file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-medium file:bg-white file:text-black hover:file:bg-white/90"
-                        accept=".pdf,.doc,.docx"
-                        required
-                      />
-                      {formData.resume && (
-                        <div className="mt-2 p-2 bg-green-500/10 border border-green-500/20 rounded-lg">
-                          <p className="text-sm text-green-400">
-                            ✓ Selected: {formData.resume.name} ({(formData.resume.size / 1024 / 1024).toFixed(2)} MB)
-                          </p>
-                        </div>
-                      )}
-                      <p className="mt-1 text-sm text-gray-400">
-                        Accepted formats: PDF, DOC, DOCX (Max Size 5MB)
-                      </p>
                     </div>
 
-                    <div className="space-y-2">
-                      <label
-                        htmlFor="coverLetter"
-                        className="block text-sm font-medium text-white/90"
-                      >
-                        Cover Letter
+                    <div className="mt-6">
+                      <label htmlFor="coverLetter" className="data-label">
+                        Why this work <span className="text-ink-dim">(optional)</span>
                       </label>
                       <textarea
                         id="coverLetter"
                         name="coverLetter"
+                        rows={6}
                         value={formData.coverLetter}
                         onChange={handleChange}
-                        rows={6}
-                        className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 text-white placeholder-white/30 resize-none transition-all"
-                        placeholder="Tell us why you'd be a great fit..."
+                        placeholder="What you have built, and which of these problems you want."
+                        className="form-input mt-2.5 resize-y"
                       />
                     </div>
 
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full px-6 py-4 bg-white text-black hover:bg-white/90 transition-all rounded-xl flex items-center justify-center gap-2 group font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="btn-primary mt-8 w-full justify-center sm:w-auto"
                     >
-                      {uploadingResume 
-                        ? "Uploading Resume..." 
-                        : isSubmitting 
-                        ? "Submitting Application..." 
-                        : "Submit Application"
-                      }
-                      <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      {uploadingResume
+                        ? 'Uploading resume…'
+                        : isSubmitting
+                          ? 'Submitting…'
+                          : 'Submit application'}
+                      <Send className="h-4 w-4" />
                     </button>
+
+                    {submitStatus.type && (
+                      <p
+                        role="status"
+                        className={`mt-6 border px-4 py-3 font-mono text-[0.65rem] uppercase tracking-widest ${
+                          submitStatus.type === 'success'
+                            ? 'border-nominal/40 bg-nominal/[0.07] text-nominal'
+                            : 'border-critical/40 bg-critical/[0.07] text-critical'
+                        }`}
+                      >
+                        {submitStatus.message}
+                      </p>
+                    )}
                   </form>
-                </div>
-              </div>
+              </Reveal>
             </div>
           </div>
         </div>
@@ -566,3 +506,38 @@ ${formData.coverLetter || 'No cover letter provided'}
     </div>
   );
 }
+
+function Field({
+  label,
+  name,
+  value,
+  onChange,
+  type = 'text',
+  required = false,
+}: {
+  label: string;
+  name: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  type?: string;
+  required?: boolean;
+}) {
+  return (
+    <div>
+      <label htmlFor={name} className="data-label">
+        {label}
+      </label>
+      <input
+        id={name}
+        name={name}
+        type={type}
+        value={value}
+        onChange={onChange}
+        required={required}
+        className="form-input mt-2.5"
+      />
+    </div>
+  );
+}
+
+export default Careers;

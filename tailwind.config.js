@@ -11,6 +11,41 @@ export default {
       '2xl': '1536px',
     },
     extend: {
+      colors: {
+        // Structural blacks. Neutral rather than blue-tinted, so the orange
+        // accent stays the only chromatic note on the page.
+        void: '#000000',
+        abyss: '#060608',
+        panel: '#0A0A0C',
+        steel: '#16161A',
+        line: {
+          DEFAULT: '#1F1F24',
+          bright: '#2A2A30',
+        },
+        // Primary accent. Navigation, data, every active state.
+        accent: {
+          DEFAULT: '#FF8A00',
+          soft: '#FFAE42',
+          deep: '#FF7A3F',
+        },
+        // Kept as an alias so existing signal/targeting chrome stays consistent.
+        signal: {
+          DEFAULT: '#FF8A00',
+          soft: '#FFAE42',
+        },
+        // Status colours.
+        nominal: '#5DFF6A',
+        critical: '#FF5A5A',
+        info: '#5AB6FF',
+        // Text ramp.
+        ink: {
+          0: '#FFFFFF',
+          1: '#E8E8EC',
+          2: '#B8B8BF',
+          3: '#8C8C94',
+          dim: '#5A5A62',
+        },
+      },
       container: {
         center: true,
         padding: {
@@ -33,6 +68,8 @@ export default {
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
+        display: ['"Big Shoulders Display"', 'Impact', 'Inter', 'sans-serif'],
+        mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
       },
       spacing: {
         'safe-top': 'env(safe-area-inset-top)',
@@ -52,6 +89,56 @@ export default {
         '5xl': ['3rem', { lineHeight: '1' }],
         '6xl': ['3.75rem', { lineHeight: '1' }],
         '7xl': ['4.5rem', { lineHeight: '1' }],
+        '8xl': ['6rem', { lineHeight: '0.95' }],
+        '9xl': ['8rem', { lineHeight: '0.9' }],
+      },
+      letterSpacing: {
+        widest: '0.2em',
+        ultra: '0.35em',
+      },
+      backgroundImage: {
+        'grid-fine':
+          'linear-gradient(to right, rgba(255,255,255,0.038) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.038) 1px, transparent 1px)',
+        'grid-coarse':
+          'linear-gradient(to right, rgba(255,255,255,0.07) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.07) 1px, transparent 1px)',
+      },
+      backgroundSize: {
+        'grid-fine': '32px 32px',
+        'grid-coarse': '128px 128px',
+      },
+      keyframes: {
+        sweep: {
+          '0%': { transform: 'translateY(-100%)' },
+          '100%': { transform: 'translateY(100%)' },
+        },
+        'pulse-ring': {
+          '0%': { transform: 'scale(0.85)', opacity: '0.9' },
+          '100%': { transform: 'scale(1.9)', opacity: '0' },
+        },
+        drift: {
+          '0%': { backgroundPosition: '0 0' },
+          '100%': { backgroundPosition: '0 -256px' },
+        },
+        blink: {
+          '0%, 45%': { opacity: '1' },
+          '50%, 95%': { opacity: '0.25' },
+          '100%': { opacity: '1' },
+        },
+        'trace-dash': {
+          to: { strokeDashoffset: '-1000' },
+        },
+        marquee: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
+      },
+      animation: {
+        sweep: 'sweep 6s linear infinite',
+        'pulse-ring': 'pulse-ring 2.4s cubic-bezier(0.22, 1, 0.36, 1) infinite',
+        drift: 'drift 24s linear infinite',
+        blink: 'blink 2.6s ease-in-out infinite',
+        'trace-dash': 'trace-dash 14s linear infinite',
+        marquee: 'marquee 40s linear infinite',
       },
     },
   },

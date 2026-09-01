@@ -1,214 +1,281 @@
-import { useEffect, useRef } from "react";
-import { Brain, Target, Compass, Cpu } from "lucide-react";
-import { Features } from "../../components/Features";
-import ProductHero from "../../components/ProductHero";
-import IntroSection from "../../components/IntroSection";
+import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
+import { Reveal, Stagger, StaggerItem } from '../../components/ui/Reveal';
+import { Eyebrow, SectionHeading, StatusTag } from '../../components/ui/HUD';
+import { SpecTable } from '../../components/ui/SpecTable';
+import { programmePath } from '../../data/programmes';
 
-const HERO_IMG = "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1920";
+/* ---------------------------------------------------------------------------
+ * Valley / Mission Autonomy, behaviours that survive disconnection, and the
+ * qualification regime that makes them trustworthy forward.
+ * ------------------------------------------------------------------------- */
 
-const features = [
+const BEHAVIOURS = [
   {
-    icon: <Brain className="w-8 h-8" />,
-    title: "AI Decision Making",
-    description:
-      "Advanced algorithms for autonomous decision-making in complex environments.",
+    title: 'Runs on the airframe',
+    body: 'Perception, navigation and mission logic execute on the vehicle. Autonomy is a property of the node, not a service it calls over a link an adversary can take away.',
   },
   {
-    icon: <Target className="w-8 h-8" />,
-    title: "Dynamic Planning",
-    description: "Real-time mission planning and route optimization.",
+    title: 'Navigates without GNSS',
+    body: 'Terrain-referenced and visual-inertial navigation hold position against the map when satellite navigation is denied, spoofed or simply unavailable.',
   },
   {
-    icon: <Compass className="w-8 h-8" />,
-    title: "Adaptive Navigation",
-    description: "Intelligent navigation system with obstacle avoidance.",
+    title: 'Re-plans in flight',
+    body: 'A changed picture, a lost element or a closed window is resolved on the aircraft. The mission adapts without a round trip to an operator who may be unreachable.',
   },
   {
-    icon: <Cpu className="w-8 h-8" />,
-    title: "Multi-Agent Coordination",
-    description: "Seamless coordination between multiple autonomous systems.",
+    title: 'Fails safe, not silent',
+    body: 'Loss of link, loss of an element or loss of confidence drives a defined behaviour (hold, return, or abort) declared before launch rather than improvised in the air.',
+  },
+  {
+    title: 'Formation before platform',
+    body: 'Elements share one track picture over a mesh. Task allocation and lead succession are resolved between aircraft, so losing any single one degrades the formation gracefully.',
+  },
+  {
+    title: 'Bounded by design',
+    body: 'Geofences, rules of engagement and authority boundaries are compiled into the mission, not left to a behaviour to respect. The envelope is a constraint, not a suggestion.',
   },
 ];
 
+const QUALIFICATION = [
+  {
+    step: 'Specify',
+    body: 'A behaviour is written against a stated mission envelope (conditions, boundaries and the failure modes it must handle) before any code is trusted with it.',
+  },
+  {
+    step: 'Simulate',
+    body: 'It is exercised against the programme digital twin across the envelope and beyond it, including the degraded and adversarial cases that rarely appear on a range.',
+  },
+  {
+    step: 'Fly',
+    body: 'Flight test correlates the twin against the real vehicle. Where they disagree, the model is corrected before the behaviour advances. The round keeps the model honest.',
+  },
+  {
+    step: 'Release',
+    body: 'A behaviour is released to a specific airframe, envelope and authority level. Qualification on one platform makes it available to others after re-validation, not by assumption.',
+  },
+];
+
+const SPECS = [
+  { label: 'Execution', value: 'On-airframe', note: 'No rear link required for mission execution' },
+  { label: 'Navigation', value: 'GNSS-independent', note: 'Terrain-referenced + visual-inertial' },
+  { label: 'Datalink', value: 'Mesh, encrypted', note: 'Frequency-agile, LPI/LPD waveform' },
+  { label: 'Formation size', value: 'Up to 24', note: 'Elements under a single operator' },
+  { label: 'Commitment authority', value: 'Human, always', note: 'Never delegated to a behaviour' },
+  { label: 'Qualification', value: 'Twin-correlated', note: 'Simulation validated against flight test' },
+  { label: 'Onboard compute', value: 'ON REQUEST' },
+  { label: 'Behaviour library', value: 'ON REQUEST' },
+];
+
 export function ValleyMissionAutonomy() {
-  const sectionRefs = {
-    intro: useRef<HTMLDivElement>(null),
-    features: useRef<HTMLDivElement>(null),
-    capabilities: useRef<HTMLDivElement>(null),
-  };
-
   useEffect(() => {
-    const link = document.createElement("link");
-    link.rel = "preload";
-    link.as = "image";
-    link.href = HERO_IMG;
-    link.setAttribute("fetchpriority", "high");
-    document.head.appendChild(link);
-    return () => { document.head.removeChild(link); };
-  }, []);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("opacity-100", "translate-y-0");
-            entry.target.classList.remove("opacity-0", "translate-y-10");
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    Object.values(sectionRefs).forEach((ref) => {
-      if (ref.current) {
-        observer.observe(ref.current);
-      }
-    });
-
-    return () => observer.disconnect();
+    document.title = 'Mission Autonomy, Aminuteman Technologies';
   }, []);
 
   return (
-    <div className="min-h-screen bg-black text-white">
-      <ProductHero
-        title="Mission Autonomy"
-        subtitle="AI-Powered Autonomous Mission Planning and Execution"
-        backgroundType="image"
-        backgroundSrc={HERO_IMG}
-      />
+    <div className="bg-void">
+      {/* ---- Header ------------------------------------------------------ */}
+      <header className="relative overflow-hidden border-b border-line pt-40 pb-20 sm:pt-48 sm:pb-28">
+        <div className="absolute inset-0 bg-grid-coarse bg-grid-coarse opacity-[0.18]" />
+        <div className="absolute inset-0 bg-[radial-gradient(100%_80%_at_50%_0%,rgba(255,138,0,0.14),transparent_60%)]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-void" />
 
-      <IntroSection
-        sectionRef={sectionRefs.intro}
-        title="Advanced Mission Intelligence"
-        description="Our Mission Autonomy system leverages cutting-edge AI to automate mission planning, execution, and adaptation. It enables unmanned systems to operate independently while maintaining strategic objectives and safety parameters."
-        imageUrl="/images/model.jpg"
-        imageAlt="Autonomous Systems"
-      />
-
-      <div
-        ref={sectionRefs.features}
-        className="py-20 px-4 bg-black transform transition-all duration-1000 opacity-0 translate-y-10"
-      >
-        <Features features={features} heading="Core Features"/>
-      </div>
-
-      <div
-        ref={sectionRefs.capabilities}
-        className="py-20 px-4 transform transition-all duration-1000 opacity-0 translate-y-10"
-      >
-        <div className="container mx-auto max-w-6xl">
-          <div className="bg-transparent border border-white/20 rounded-2xl p-8 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-            <h2 className="text-4xl sm:text-5xl font-extrabold text-white mb-8">Autonomous Capabilities</h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              <div>
-                <h3 className="text-xl font-semibold mb-4">Mission Planning</h3>
-                <ul className="space-y-3">
-                  <li className="flex items-center gap-3">
-                    <div className="w-3 h-3 bg-blue-500 rounded-full" />
-                    <span className="text-gray-300">
-                      Automated route generation
-                    </span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <div className="w-3 h-3 bg-blue-500 rounded-full" />
-                    <span className="text-gray-300">Resource optimization</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <div className="w-3 h-3 bg-blue-500 rounded-full" />
-                    <span className="text-gray-300">
-                      Risk assessment and mitigation
-                    </span>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-4">
-                  Execution Control
-                </h3>
-                <ul className="space-y-3">
-                  <li className="flex items-center gap-3">
-                    <div className="w-3 h-3 bg-blue-500 rounded-full" />
-                    <span className="text-gray-300">
-                      Real-time mission adaptation
-                    </span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <div className="w-3 h-3 bg-blue-500 rounded-full" />
-                    <span className="text-gray-300">
-                      Environmental awareness
-                    </span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <div className="w-3 h-3 bg-blue-500 rounded-full" />
-                    <span className="text-gray-300">
-                      Emergency response protocols
-                    </span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Clients Section */}
-      <div className="py-16 px-4 bg-black">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-12">
-            <h3 className="text-2xl font-bold text-white mb-4">
-              Our Trusted Clients
-            </h3>
-            <p className="text-gray-300">
-              Delivering advanced defense solutions to leading organizations
+        <div className="container relative">
+          <Reveal direction="none">
+            <nav className="flex items-center gap-2 font-mono text-[0.65rem] uppercase tracking-widest text-ink-dim">
+              <Link to="/" className="transition-colors hover:text-white">
+                Home
+              </Link>
+              <span>/</span>
+              <Link to="/valley" className="transition-colors hover:text-white">
+                Valley
+              </Link>
+              <span>/</span>
+              <span className="text-accent">Autonomy</span>
+            </nav>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <p className="mt-8 font-mono text-xs uppercase tracking-ultra text-accent-soft/80">
+              Mission Autonomy
             </p>
-          </div>
-          <div className="flex justify-center items-center flex-wrap gap-8">
-            <div className="w-20 h-20 bg-white rounded-full p-3 flex items-center justify-center hover:scale-110 hover:-translate-y-1 transition-all duration-300 client-logo">
-              <img 
-                src="/images/collab/6febd270f3f6a4cf7951703ba0e925a0.png" 
-                alt="Client Organization" 
-                className="w-full h-full object-contain"
-              />
+            <h1 className="display-xl mt-4 max-w-4xl text-white">
+              Autonomy that holds through disconnection
+            </h1>
+          </Reveal>
+          <Reveal delay={0.14}>
+            <p className="mt-7 max-w-3xl text-lg leading-relaxed text-ink-2 sm:text-xl">
+              The mission behaviours that run on the airframe when the link is gone, and the
+              qualification regime that makes a commander willing to launch them.
+            </p>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <div className="mt-9">
+              <StatusTag status="In trials" />
             </div>
-            <div className="w-20 h-20 bg-white rounded-full p-3 flex items-center justify-center hover:scale-110 hover:-translate-y-1 transition-all duration-300 client-logo">
-              <img 
-                src="/images/collab/9e6a710497202d266783a4f5ed0f61ea.png" 
-                alt="Client Organization" 
-                className="w-full h-full object-contain"
-              />
+          </Reveal>
+        </div>
+      </header>
+
+      {/* ---- Thesis ------------------------------------------------------ */}
+      <section className="section border-b border-line">
+        <div className="container">
+          <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+            <div className="lg:col-span-4">
+              <Eyebrow index="01">The problem</Eyebrow>
             </div>
-            <div className="w-20 h-20 bg-white rounded-full p-3 flex items-center justify-center hover:scale-110 hover:-translate-y-1 transition-all duration-300 client-logo">
-              <img 
-                src="/images/collab/indian-army-logo-hd-49649.png" 
-                alt="Indian Army" 
-                className="w-full h-full object-contain"
-              />
-            </div>
-            <div className="w-20 h-20 bg-white rounded-full p-3 flex items-center justify-center hover:scale-110 hover:-translate-y-1 transition-all duration-300 client-logo">
-              <img 
-                src="/images/collab/logo.jpeg" 
-                alt="Client Organization" 
-                className="w-full h-full object-contain"
-              />
-            </div>
-            <div className="w-20 h-20 bg-white rounded-full p-3 flex items-center justify-center hover:scale-110 hover:-translate-y-1 transition-all duration-300 client-logo">
-              <img 
-                src="/images/collab/pngwing.com.png" 
-                alt="Client Organization" 
-                className="w-full h-full object-contain"
-              />
-            </div>
-            <div className="w-20 h-20 bg-white rounded-full p-3 flex items-center justify-center hover:scale-110 hover:-translate-y-1 transition-all duration-300 client-logo">
-              <img 
-                src="/images/collab/favicon.ico" 
-                alt="Client Organization" 
-                className="w-full h-full object-contain"
-              />
+            <div className="lg:col-span-8">
+              <Reveal>
+                <p className="font-display text-3xl uppercase leading-tight tracking-tight text-white sm:text-4xl md:text-5xl">
+                  An autonomous system that needs its link is a remotely piloted one with extra steps.
+                </p>
+              </Reveal>
+              <div className="mt-10 space-y-6">
+                <Reveal delay={0.06}>
+                  <p className="body-copy text-base sm:text-lg">
+                    Most fielded autonomy degrades to remote control the moment conditions get
+                    contested, precisely when it was supposed to earn its place. If the behaviour
+                    depends on a datacentre, a satellite fix or a continuous operator, it is not
+                    autonomy; it is latency waiting to be exploited.
+                  </p>
+                </Reveal>
+                <Reveal delay={0.12}>
+                  <p className="body-copy text-base sm:text-lg">
+                    We build the opposite case first. The aircraft is assumed to be jammed,
+                    without satellite navigation and out of contact, and the mission is expected to
+                    continue anyway, within an envelope declared before launch, and with the one
+                    decision that matters still reserved for a person.
+                  </p>
+                </Reveal>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* ---- Behaviours -------------------------------------------------- */}
+      <section className="section border-b border-line">
+        <div className="container">
+          <Reveal>
+            <SectionHeading eyebrow="Behaviour" index="02" title="What runs on the airframe" />
+          </Reveal>
+
+          <Stagger className="mt-16 grid grid-cols-1 gap-px bg-line md:grid-cols-2 lg:grid-cols-3">
+            {BEHAVIOURS.map((item, i) => (
+              <StaggerItem key={item.title} className="bg-void">
+                <div className="group relative h-full bg-panel/40 p-8 transition-colors duration-300 hover:bg-panel">
+                  <span className="font-mono text-[0.6rem] tracking-widest text-accent/50">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <h3 className="mt-4 font-display text-xl uppercase leading-tight tracking-wide text-white">
+                    {item.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-ink-2">{item.body}</p>
+                  <span className="absolute bottom-0 left-0 h-px w-0 bg-accent transition-all duration-500 group-hover:w-full" />
+                </div>
+              </StaggerItem>
+            ))}
+          </Stagger>
+        </div>
+      </section>
+
+      {/* ---- Qualification ----------------------------------------------- */}
+      <section className="section border-b border-line">
+        <div className="container">
+          <Reveal>
+            <SectionHeading
+              eyebrow="Trust"
+              index="03"
+              title="How a behaviour is qualified"
+              lede="Autonomy is only useful if a commander will actually launch it. That is a qualification problem before it is a research one."
+            />
+          </Reveal>
+
+          <div className="mt-14 border-t border-line">
+            {QUALIFICATION.map((item, i) => (
+              <Reveal key={item.step} delay={i * 0.05}>
+                <div className="group grid grid-cols-1 gap-4 border-b border-line py-8 transition-colors duration-300 hover:bg-white/[0.02] md:grid-cols-12 md:gap-8">
+                  <div className="md:col-span-1">
+                    <span className="font-mono text-xs text-ink-dim">
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                  </div>
+                  <div className="md:col-span-3">
+                    <h3 className="font-display text-2xl uppercase leading-none tracking-wide text-white transition-colors group-hover:text-accent">
+                      {item.step}
+                    </h3>
+                  </div>
+                  <div className="md:col-span-8">
+                    <p className="text-sm leading-relaxed text-ink-2 sm:text-base">
+                      {item.body}
+                    </p>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal delay={0.1}>
+            <div className="mt-12 flex flex-wrap gap-6">
+              <Link
+                to={programmePath('sovereign-model')}
+                className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-accent transition-colors hover:text-white"
+              >
+                The sovereign model
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                to={programmePath('digital-twin')}
+                className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-accent transition-colors hover:text-white"
+              >
+                Digital twins
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ---- Specification ------------------------------------------------ */}
+      <section className="section border-b border-line">
+        <div className="container">
+          <Reveal>
+            <Eyebrow index="04">Specification</Eyebrow>
+          </Reveal>
+          <div className="mt-10">
+            <SpecTable specs={SPECS} />
+          </div>
+        </div>
+      </section>
+
+      {/* ---- CTA ---------------------------------------------------------- */}
+      <section className="section">
+        <div className="container">
+                      <div className="border border-line bg-panel/40 p-8 sm:p-14">
+              <div className="grid gap-8 lg:grid-cols-12 lg:items-center lg:gap-12">
+                <div className="lg:col-span-8">
+                  <p className="eyebrow">Platform enquiries</p>
+                  <h2 className="display-md mt-5 text-white">Discuss an autonomy requirement</h2>
+                  <p className="body-copy mt-5 max-w-2xl">
+                    Behaviour libraries, envelope documentation and trial results are released to
+                    qualified counterparties following end-user certification.
+                  </p>
+                </div>
+                <div className="flex flex-col gap-3 lg:col-span-4 lg:items-end">
+                  <Link to="/contact" className="btn-primary w-full justify-center lg:w-auto">
+                    Contact the platform office
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                  <Link to="/valley" className="btn-secondary w-full justify-center lg:w-auto">
+                    Back to Valley
+                  </Link>
+                </div>
+              </div>
+            </div>
+        </div>
+      </section>
     </div>
   );
 }
+
+export default ValleyMissionAutonomy;

@@ -33,7 +33,9 @@ export const uploadToCloudinary = async (file: File): Promise<string> => {
 };
 
 // Web3Forms submission utility
-export const submitToWeb3Forms = async (formData: any): Promise<void> => {
+export const submitToWeb3Forms = async (
+  formData: Record<string, unknown>,
+): Promise<void> => {
   const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || '087ad74a-490c-4bcb-a331-228bbb69f1d8';
   
   const payload = {

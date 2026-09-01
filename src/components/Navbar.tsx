@@ -1,202 +1,214 @@
-import { useState, useCallback } from 'react';
-import { Menu, X, Plus } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Menu, X, Plus, ArrowRight } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 import logo from './../logo.png';
-import { prefetchRouteAssets } from '../utils/assetPreloader';
+import { NAV_GROUPS } from '../data/nav';
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeMenu, setActiveMenu] = useState<string | null>(null);
-  const [isHovered, setIsHovered] = useState(false);
+  const [openGroup, setOpenGroup] = useState<string | null>(null);
+  const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
 
-  const menuItems = {
-    'Valley': [
-      'Command & Control',
-      'Mission Autonomy',
-      'Valley Partner Program'
-    ],
-    'Air Systems': [
-      'Ankosa A',
-      'Ankosa B',
-      'Aquasat'
-    ]
-  };
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
-  const getRoutePath = (item: string) => {
-    switch (item) {
-      case 'Command & Control':
-        return '/valley/command-control';
-      case 'Mission Autonomy':
-        return '/valley/mission-autonomy';
-      case 'Valley Partner Program':
-        return '/valley/partner-program';
-      case 'Twin Turbo Engine':
-        return '/jet-engines/twin-turbo';
-      case 'Ankosa A':
-        return '/kamikaze';
-      case 'Ankosa B':
-        return '/jet-engines/ankosa-b';
-      case 'Aquasat':
-        return '/jet-engines/aquasat';
-      case 'Interceptor A':
-        return '/air-systems/interceptor-a';
-      case 'Interceptor B':
-        return '/air-systems/interceptor-b';
-      case 'Interceptor C':
-        return '/air-systems/interceptor-c';
-      default:
-        return '/';
-    }
-  };
-
-  const handleLinkClick = () => {
+  // Any navigation closes whatever was open.
+  useEffect(() => {
     setIsMenuOpen(false);
-    setActiveMenu(null);
-  };
+    setOpenGroup(null);
+  }, [location.pathname]);
 
-  // Prefetch hero assets when user hovers/touches a nav link
-  const handlePrefetch = useCallback((item: string) => {
-    const route = getRoutePath(item);
-    prefetchRouteAssets(route);
-  }, []);
+  // Lock the page behind the mobile drawer.
+  useEffect(() => {
+    document.body.style.overflow = isMenuOpen ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMenuOpen]);
 
-  // Prefetch all assets for a dropdown group when it opens
-  const handleGroupPrefetch = useCallback((menu: string) => {
-    const items = menuItems[menu as keyof typeof menuItems];
-    if (items) {
-      items.forEach((item) => {
-        const route = getRoutePath(item);
-        prefetchRouteAssets(route);
-      });
-    }
-  }, []);
+  const solid = scrolled || openGroup !== null || isMenuOpen;
 
   return (
-    <nav 
-      className={`fixed w-full z-50 transition-colors duration-300 border-b border-white/10 ${
-        isHovered || isMenuOpen
-          ? 'bg-black' 
-          : 'bg-black/20 backdrop-blur-sm'
+    <nav
+      className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${
+        solid ? 'border-line bg-void/95 backdrop-blur-md' : 'border-white/[0.06] bg-void/30 backdrop-blur-sm'
       }`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseLeave={() => setOpenGroup(null)}
     >
-      <div className="w-full">
-        <div className="flex items-center justify-between h-16 px-[10px] border-b">
-          <div className="flex items-center h-full ">
-            <Link to="/" className="flex items-center h-full px-4" onClick={handleLinkClick}>
-              <img  loading="eager"
-                src={logo}
-                alt="Logo"
-                className="h-[80%] w-32 object-cover"
-              />
-            </Link>
-            <div className="h-full w-px bg-white" />
-          </div>
+      <div className="flex h-16 items-stretch justify-between">
+        {/* Mark */}
+        <div className="flex items-stretch">
+          <Link to="/" className="flex items-center px-4 sm:px-6">
+            <img src={logo} alt="Aminuteman Technologies" loading="eager" className="h-8 w-auto object-contain" />
+          </Link>
+          <span className="w-px bg-line" />
+          <span className="hidden items-center px-5 font-mono text-[0.6rem] uppercase tracking-widest text-ink-dim xl:flex">
+            Shaping the Deterrence
+          </span>
+        </div>
 
-          <div className="hidden lg:flex items-center space-x-8">
-            {Object.entries(menuItems).map(([menu, items]) => (
-              <div
-                key={menu}
-                className="relative group"
-                onMouseEnter={() => { setActiveMenu(menu); handleGroupPrefetch(menu); }}
-                onMouseLeave={() => setActiveMenu(null)}
+        {/* Desktop groups */}
+        <div className="hidden items-stretch lg:flex">
+          {NAV_GROUPS.map((group) => (
+            <div key={group.label} className="flex items-stretch">
+              <span className="w-px bg-line" />
+              <button
+                type="button"
+                onMouseEnter={() => setOpenGroup(group.label)}
+                onFocus={() => setOpenGroup(group.label)}
+                onClick={() => setOpenGroup(openGroup === group.label ? null : group.label)}
+                className={`flex items-center gap-2 px-5 font-mono text-[0.7rem] uppercase tracking-widest transition-colors ${
+                  openGroup === group.label ? 'bg-white/[0.04] text-white' : 'text-ink-2 hover:text-white'
+                }`}
+                aria-expanded={openGroup === group.label}
               >
-                <button 
-                  className="flex items-center space-x-2 py-2 transition-all text-white/70 hover:text-white group relative"
-                >
-                  <span className="text-sm font-medium after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-white after:transition-all after:duration-300 group-hover:after:w-full">
-                    {menu}
-                  </span>
-                  <Plus className={`w-4 h-4 transition-transform ${
-                    activeMenu === menu ? 'rotate-45' : ''
-                  }`} />
-                </button>
+                {group.label}
+                <Plus
+                  className={`h-3 w-3 transition-transform duration-300 ${
+                    openGroup === group.label ? 'rotate-45' : ''
+                  }`}
+                />
+              </button>
+            </div>
+          ))}
+        </div>
 
-                {activeMenu === menu && (
-                  <div className="absolute left-0 top-full pt-2 w-64">
-                    <div className="bg-black/90 backdrop-blur-sm rounded-lg shadow-lg ring-1 ring-white/10 py-2">
-                      {items.map((item) => (
-                        <Link
-                          key={item}
-                          to={getRoutePath(item)}
-                          className="block px-4 py-2 text-sm text-white/70 hover:text-white hover:bg-white/10 transition-colors"
-                          onMouseEnter={() => handlePrefetch(item)}
-                          onClick={handleLinkClick}
-                        >
-                          {item}
-                        </Link>
-                      ))}
-                    </div>
+        {/* Actions */}
+        <div className="flex items-stretch">
+          <span className="w-px bg-line" />
+          <Link
+            to="/contact"
+            className="hidden items-center px-5 font-mono text-[0.7rem] uppercase tracking-widest text-white transition-colors hover:bg-white hover:text-void sm:flex"
+          >
+            Contact
+          </Link>
+          <span className="hidden w-px bg-line sm:block" />
+          <button
+            type="button"
+            onClick={() => setIsMenuOpen((open) => !open)}
+            className="flex items-center px-5 text-white transition-colors hover:bg-white hover:text-void lg:hidden"
+            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+          >
+            {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
+      </div>
+
+      {/* Desktop mega-menu */}
+      {openGroup && (
+        <div className="hidden border-t border-line bg-void lg:block">
+          {NAV_GROUPS.filter((group) => group.label === openGroup).map((group) => (
+            <div key={group.label} className="container py-10">
+              <div className="grid grid-cols-12 gap-10">
+                <div className="col-span-3">
+                  <p className="eyebrow">{group.label}</p>
+                  <p className="mt-5 text-sm leading-relaxed text-ink-3">{group.blurb}</p>
+                  {group.to && (
+                    <Link
+                      to={group.to}
+                      className="mt-6 inline-flex items-center gap-2 font-mono text-[0.65rem] uppercase tracking-widest text-accent transition-colors hover:text-white"
+                    >
+                      View all
+                      <ArrowRight className="h-3.5 w-3.5" />
+                    </Link>
+                  )}
+                </div>
+
+                <div className="col-span-9 grid grid-cols-3 gap-px bg-line">
+                  {group.links.map((link) => (
+                    <Link
+                      key={link.to + link.label}
+                      to={link.to}
+                      className="group flex flex-col bg-void p-5 transition-colors hover:bg-panel"
+                    >
+                      {link.designation && (
+                        <span className="font-mono text-[0.55rem] uppercase tracking-widest text-accent/50">
+                          {link.designation}
+                        </span>
+                      )}
+                      <p className="mt-2 font-display text-lg uppercase leading-none tracking-wide text-white transition-colors group-hover:text-accent">
+                        {link.label}
+                      </p>
+                      {link.note && (
+                        <p className="mt-2 text-xs leading-relaxed text-ink-3">{link.note}</p>
+                      )}
+                    </Link>
+                  ))}
+                  {/* The hairline grid paints through unfilled cells, so close
+                      the last row rather than leaving grey blocks in it. */}
+                  {group.links.length % 3 !== 0 && (
+                    <div
+                      className="bg-void"
+                      style={{ gridColumn: `span ${3 - (group.links.length % 3)}` }}
+                    />
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Mobile drawer */}
+      {isMenuOpen && (
+        <div className="h-[calc(100vh-4rem)] overflow-y-auto border-t border-line bg-void lg:hidden">
+          <div className="divide-y divide-white/10">
+            {NAV_GROUPS.map((group) => (
+              <div key={group.label}>
+                <button
+                  type="button"
+                  onClick={() => setOpenGroup(openGroup === group.label ? null : group.label)}
+                  className="flex w-full items-center justify-between px-5 py-5 text-left"
+                >
+                  <span className="font-display text-2xl uppercase tracking-wide text-white">
+                    {group.label}
+                  </span>
+                  <Plus
+                    className={`h-4 w-4 text-ink-3 transition-transform duration-300 ${
+                      openGroup === group.label ? 'rotate-45' : ''
+                    }`}
+                  />
+                </button>
+                {openGroup === group.label && (
+                  <div className="space-y-px bg-line pb-px">
+                    {group.links.map((link) => (
+                      <Link
+                        key={link.to + link.label}
+                        to={link.to}
+                        className="block bg-void px-5 py-4"
+                      >
+                        {link.designation && (
+                          <span className="font-mono text-[0.55rem] uppercase tracking-widest text-accent/50">
+                            {link.designation}
+                          </span>
+                        )}
+                        <p className="mt-1 font-mono text-sm text-white">{link.label}</p>
+                        {link.note && (
+                          <p className="mt-1 text-xs leading-relaxed text-ink-dim">{link.note}</p>
+                        )}
+                      </Link>
+                    ))}
                   </div>
                 )}
               </div>
             ))}
           </div>
 
-          <div className="flex items-center h-full">
-            <div className="hidden sm:block w-px h-full bg-white" />
-            <Link
-              to="/careers"
-              className="hidden sm:inline-flex items-center h-full px-4 text-sm font-medium text-white hover:bg-white hover:text-black transition-colors"
-              onClick={handleLinkClick}
-            >
-              We're Hiring
+          <div className="p-5">
+            <Link to="/contact" className="btn-primary w-full justify-center">
+              Contact us
+              <ArrowRight className="h-4 w-4" />
             </Link>
-            <div className="hidden sm:block w-px h-full bg-white" />
-            
-            <button 
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="lg:hidden h-full px-4 text-white hover:bg-white hover:text-black transition-colors"
-              aria-label="Toggle menu"
-            >
-              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
           </div>
         </div>
-
-        {isMenuOpen && (
-          <div className="lg:hidden bg-black/90 backdrop-blur-sm max-h-[calc(100vh-4rem)] overflow-y-auto border-b">
-            <div className="px-4 py-2 space-y-1">
-              {Object.entries(menuItems).map(([menu, items]) => (
-                <div key={menu} className="py-2">
-                  <button
-                    onClick={() => { const next = activeMenu === menu ? null : menu; setActiveMenu(next); if (next) handleGroupPrefetch(next); }}
-                    className="w-full text-left text-white/70 py-2 flex justify-between items-center"
-                  >
-                    <span className="text-sm font-medium">{menu}</span>
-                    <Plus className={`w-4 h-4 transition-transform ${
-                      activeMenu === menu ? 'rotate-45' : ''
-                    }`} />
-                  </button>
-                  {activeMenu === menu && (
-                    <div className="pl-4 py-2 space-y-2">
-                      {items.map((item) => (
-                        <Link
-                          key={item}
-                          to={getRoutePath(item)}
-                          className="block text-sm text-white/70 hover:text-white py-1"
-                          onTouchStart={() => handlePrefetch(item)}
-                          onClick={() => { handlePrefetch(item); handleLinkClick(); }}
-                        >
-                          {item}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ))}
-              <Link
-                to="/careers"
-                className="block sm:hidden w-full py-4 my-4 text-sm text-white/70"
-                onClick={handleLinkClick}
-              >
-                We're Hiring
-              </Link>
-            </div>
-          </div>
-        )}
-      </div>
+      )}
     </nav>
   );
 }
+
+export default Navbar;
