@@ -673,7 +673,7 @@ function Clientele() {
           </div>
         </div>
 
-        <div className="mt-12 grid grid-cols-2 gap-px border-y border-line bg-line sm:grid-cols-3 lg:grid-cols-6">
+        <div className="mt-12 grid grid-cols-2 gap-px border-y border-line bg-line sm:grid-cols-4">
           {names.map((p) => (
             <div key={p.name} className="bg-void px-4 py-5 text-center">
               <p className="font-display text-sm uppercase leading-tight tracking-wide text-white/85">

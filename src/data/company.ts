@@ -241,28 +241,10 @@ export const DOMESTIC_PARTNERS: Partner[] = [
 /** International agreements and collaborations. */
 export const INTERNATIONAL_PARTNERS: Partner[] = [
   {
-    name: 'Airbus',
-    region: 'Europe',
-    basis: 'Agreement',
-    note: 'Aerospace collaboration spanning airframe engineering and qualification practice.',
-  },
-  {
-    name: 'EDGE Group',
-    region: 'United Arab Emirates',
-    basis: 'Agreement',
-    note: 'Defence systems collaboration across autonomous platforms and effectors.',
-  },
-  {
     name: 'Nicomatic',
     region: 'France',
     basis: 'Agreement',
     note: 'High-reliability interconnect for airborne and space-qualified assemblies.',
-  },
-  {
-    name: 'Akika',
-    region: 'Poland',
-    basis: 'Agreement',
-    note: 'European engineering and supply collaboration for the airframe programmes.',
   },
 ];
 
@@ -291,7 +273,7 @@ export const RECORD: Milestone[] = [
   {
     year: '2026',
     title: 'Four capitals, and a sovereign model programme',
-    body: 'Sovereign multi-modal foundation model programme under way for a service customer. International agreements concluded with Airbus, EDGE Group, Nicomatic and Akika. Operations across Pune, Delhi, Bengaluru and Madhya Pradesh.',
+    body: 'Sovereign multi-modal foundation model programme under way for a service customer. International agreement concluded with Nicomatic for high-reliability interconnect. Operations across Pune, Delhi, Bengaluru and Madhya Pradesh.',
   },
 ];
 

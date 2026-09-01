@@ -435,3 +435,23 @@ The home page rendered blank whenever WebGL was unavailable. `AnkoshaScene` crea
 - `npx tsc --noEmit`, `npm run lint`, `npm run build` all clean.
 - 29-route crawl covering the new paths, both legacy prefixes, and the five removed slugs: 0 pages with issues, 0 em dashes, 0 banned-term hits. Every legacy URL lands on the right target.
 - Mobile pass at 390px across 9 routes: no horizontal overflow anywhere; drawer expands the AI group correctly.
+
+## Session 10, three partner names removed and the partner grids reclosed
+
+- [x] Removed Airbus, EDGE Group and Akika from `INTERNATIONAL_PARTNERS`. The international list is now Nicomatic alone; the domestic list of seven is untouched. Eleven partner entries down to eight.
+- [x] The names also appeared in the 2026 milestone in `RECORD`, which read "International agreements concluded with Airbus, EDGE Group, Nicomatic and Akika." Rewritten to name only the agreement that still stands.
+- [x] Home clientele grid reclosed. Eleven tiles in a `grid-cols-2 sm:grid-cols-3 lg:grid-cols-6` grid had already been leaving a dead cell at every breakpoint; at eight tiles the six-column row would have left four. Now `grid-cols-2 sm:grid-cols-4`, and eight divides both, so the grid closes exactly at every width.
+- [x] About partners section rebalanced. The India and International lists sat in an even `lg:grid-cols-2` split, which put seven rows against one and left half the section empty. Moved to the `lg:grid-cols-12` idiom already used elsewhere in the file, 7 columns for India and 5 for International, so the column widths track the content weight.
+
+### Verification
+- `npx tsc --noEmit`, `npm run lint`, `npm run build` all clean.
+- Headless Chrome render of `/` and `/about`: neither DOM contains Airbus, Akika or EDGE Group. Both pages render (88k and 74k of DOM), so nothing was taken down with the removal.
+- Counted in the rendered DOM rather than the source: the clientele grid holds exactly 8 tiles and carries `sm:grid-cols-4`; the About section holds 8 partner rows across the 7/5 split.
+- Grepped the built `dist/` for all three names: clean.
+- Both grid changes are `sm:` and `lg:` only, so layout below 640px is byte-identical to before.
+
+### Not changed, needs a decision
+The "Working with" logo marquee on the home page carries Rolls-Royce, Aston Martin and BMW logos, all captioned "Partner organisation". None of the three appears anywhere in the partner data. Left in place because it was outside what was asked, but it is the same class of claim as the three names just removed.
+
+### Blocked
+Deployment. Not a git repository, no Vercel/Netlify config in the project, and the Vercel CLI's `auth.json` is empty, so the CLI is not logged in.

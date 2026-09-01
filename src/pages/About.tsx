@@ -194,8 +194,8 @@ export function About() {
             />
           </Reveal>
 
-          <div className="mt-16 grid gap-12 lg:grid-cols-2 lg:gap-16">
-            <div>
+          <div className="mt-16 grid gap-12 lg:grid-cols-12 lg:gap-16">
+            <div className="lg:col-span-7">
               <p className="data-label text-white/70">India</p>
               <div className="mt-6 border-t border-line">
                 {DOMESTIC_PARTNERS.map((p, i) => (
@@ -205,7 +205,7 @@ export function About() {
                 ))}
               </div>
             </div>
-            <div>
+            <div className="lg:col-span-5">
               <p className="data-label text-white/70">International</p>
               <div className="mt-6 border-t border-line">
                 {INTERNATIONAL_PARTNERS.map((p, i) => (
