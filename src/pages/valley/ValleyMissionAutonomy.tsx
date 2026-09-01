@@ -218,7 +218,7 @@ export function ValleyMissionAutonomy() {
           <Reveal delay={0.1}>
             <div className="mt-12 flex flex-wrap gap-6">
               <Link
-                to={programmePath('sovereign-model')}
+                to={programmePath('aorizon')}
                 className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-accent transition-colors hover:text-white"
               >
                 The sovereign model

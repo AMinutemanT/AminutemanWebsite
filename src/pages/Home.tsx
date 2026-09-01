@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { AnkoshaFlythrough } from '../components/AnkoshaFlythrough';
-import { UnifiedGrid } from '../components/UnifiedGrid';
 import { Reveal, Stagger, StaggerItem } from '../components/ui/Reveal';
 import { Eyebrow, SectionHeading } from '../components/ui/HUD';
 import { MediaSlot } from '../components/ui/MediaSlot';
@@ -38,6 +37,11 @@ const DOMAINS: { slug: string; heading: string; blurb: string }[] = [
     blurb: 'INDRASTRA holds the low-altitude picture. RYDER is the effector it commands.',
   },
   {
+    slug: 'legacy-systems',
+    heading: 'Legacy & manned',
+    blurb: 'Guns, radars and manned platforms already in service, retrofitted onto the grid rather than replaced.',
+  },
+  {
     slug: 'hypersonics',
     heading: 'Hypersonics',
     blurb: 'Glide vehicles, and a balloon launch approach that removes the booster from the equation.',
@@ -58,14 +62,9 @@ const DOMAINS: { slug: string; heading: string; blurb: string }[] = [
     blurb: 'Every round has a model, and the model is kept honest by the round.',
   },
   {
-    slug: 'sovereign-model',
-    heading: 'Sovereign AI',
-    blurb: 'A multi-modal foundation model trained wholly on Indian compute, handed over as customer IP.',
-  },
-  {
     slug: 'aorizon',
     heading: 'See',
-    blurb: 'Wide-area autonomous sensing and fusion, holding one custody model over every source.',
+    blurb: 'The sovereign foundation model, trained wholly on Indian compute, and the fused picture it holds over every source.',
   },
   {
     slug: 'talon',
@@ -370,11 +369,6 @@ function ValleySection() {
           </div>
         </div>
 
-        <Reveal delay={0.15} className="mt-16">
-                      <div className="border border-line bg-abyss/70 p-5 sm:p-8">
-              <UnifiedGrid />
-            </div>
-        </Reveal>
       </div>
     </section>
   );

@@ -43,6 +43,7 @@ const REDIRECTS: Record<string, string> = {
   '/air-systems': '/systems',
   '/technologies': '/ai',
   '/products': '/ai',
+  '/ai/sovereign-model': '/ai/aorizon',
 };
 
 /**

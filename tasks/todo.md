@@ -455,3 +455,54 @@ The "Working with" logo marquee on the home page carries Rolls-Royce, Aston Mart
 
 ### Blocked
 Deployment. Not a git repository, no Vercel/Netlify config in the project, and the Vercel CLI's `auth.json` is empty, so the CLI is not logged in.
+
+## Session 11, de-generifying the site, Aorizon merged, legacy systems added
+
+- [x] Removed the Unified Grid schematic from the home page. It stays on `/valley`, where a visitor has opted into that level of detail. The symmetry was the tell: seven sensors against seven effectors, evenly spaced, all bezier-ing into one centred glowing core. Real architectures are not bilaterally symmetric, and a diagram that is reads as decoration.
+- [x] Merged the Sovereign Foundation Model programme into Aorizon, which is what Aorizon actually is: the multi-modal foundation model, and the fused picture it produces. One programme now carries both, the three deployment profiles came across as variants, and the argument reads better joined up, because telemetry being native to the model is precisely why fusion is not a separate pipeline.
+- [x] `/ai/sovereign-model` redirects to `/ai/aorizon` rather than 404ing. Cross-references in Talon, Sentinel, quantum and the Valley mission-autonomy page repointed.
+- [x] Added Manned & Legacy Systems (`/systems/legacy-systems`), covering retrofit fire control and datalink for towed and self-propelled artillery, SPAAG systems of the ZSU-23-4 class, legacy surveillance radars and manned platforms.
+- [x] Framed against the Indian Army's LVCCS (Land Vectors Control and Coordination System) requirement, which describes this problem in the open. Written as addressing the requirement, not as being on the programme, since LVCCS is at RFI stage.
+- [x] Built `LegacyGrid.tsx`, an animated side-elevation figure: a ZSU-23-4 with traversing turret, elevating quad mount and independently rotating Gun Dish antenna; a surveillance radar whose array rotates; and a towed gun laying to elevation. Inline SVG, no raster assets, no library, and every animation collapses under `prefers-reduced-motion`.
+- [x] Navigation stripped. The mega-menu's bordered cards with accent designation codes and per-link descriptions became plain link columns. That ornament, repeated across ten programmes, was most of what made the nav feel generated.
+
+### Defects found and fixed while verifying
+- CSS `transform-origin` on a nested SVG group resolves against the viewBox, not the parent `transform`, so every pivot in the schematic was rotating about a point off-screen. Recomputed all five in absolute viewBox coordinates.
+- First attempt put the schematic behind the programme hero. The display-size headline sat straight on top of the Shilka and hid it, and the hero's `via-void/70` gradient washed out the line-work besides. Moved to its own captioned figure band below the hero, which is where a technical drawing belongs.
+- The radar mast's two braces met in a V that read as a stray arrowhead; replaced with a proper lattice. The uplink lines stopped at a shared height and hung in space above the assets; each now terminates just clear of the asset it belongs to. The towed gun's shield collided with its breech into an unreadable blob; shield dropped for a trunnion bracket and the wheel slimmed.
+
+### Grids
+- Domain matrix: Aorizon merge took it to 9 programmes and 11 tiles, which does not close a three-column grid. The legacy-systems addition brings it back to 10 programmes and 12 tiles, so it closes exactly at 1, 2 and 3 columns.
+- Clientele grid unchanged at 8 tiles in `grid-cols-2 sm:grid-cols-4`.
+
+### Verification
+- `npx tsc --noEmit`, `npm run lint`, `npm run build` all clean.
+- Eight-route crawl of the production build: every page renders, titles correct, and `/ai/sovereign-model` resolves to Aorizon.
+- Figure geometry checked by extracting the rendered SVG and screenshotting it against the built stylesheet, over four passes.
+- Counted in the rendered DOM: 12 domain tiles, 8 clientele tiles, Unified Grid absent from home and still present on `/valley`.
+
+### Open
+- No hero photograph for `legacy-systems`; the standard "imagery pending" placeholder shows, with the drop path.
+- `designation` and `note` on `NavLink` are now unused by any component. Left in place and still populated, in case the notes are wanted back.
+- LVCCS framing is drawn from public reporting and should be checked by someone who knows the programme position.
+
+## Session 12, the schematic replaced with real photography
+
+- [x] Deleted `LegacyGrid.tsx` and its figure band. The drawn schematic read as an illustration, not as a defence site, which was the objection.
+- [x] Replaced it with photography of equipment actually in Indian service, sourced from Wikimedia Commons under Government of India Open Data License (GODL-India) rather than pulled off the open web, so nothing on the site carries someone else's copyright claim.
+  - Hero: a Dhanush 155mm battery firing at dusk.
+  - Gallery: a single Dhanush firing in daylight, and the Swathi weapon locating radar, an indigenous counter-battery sensor.
+- [x] Attribution carried in the gallery captions, which is what GODL-India requires.
+- [x] Removed the `schematic` field from the `Programme` type again; nothing uses it.
+
+### Rejected during selection, and why
+- A ZSU-23-4 that turned out to be a Vietnamese People's Army vehicle at a trade expo, complete with display placard, crowd barrier and red star. Wrong nationality and obviously not operational.
+- Two US DoD photographs from Yudh Abhyas 2024. Public domain and technically Indian Army, but framed on US personnel with legible name tapes, which reads as somebody else's army on an Indian company's site.
+- The Swathi shot is a Republic Day parade frame; cropped hard to the vehicle to push the crowd and the parade booth out of frame. Still the weakest of the three, and worth replacing if a field photograph turns up.
+
+### Verification
+- `npx tsc --noEmit`, `npm run lint`, `npm run build` all clean.
+- Page rendered at 1400px: hero photograph reads correctly behind the headline, all three images return 200, both GODL-India credits present in the DOM, no trace of the deleted component.
+
+### Open
+- Every image is a licensed third-party photograph of equipment the company does not own. If any of this reads as implying otherwise, the captions are where to fix it: they name the systems as in-service Indian Army assets rather than ours.

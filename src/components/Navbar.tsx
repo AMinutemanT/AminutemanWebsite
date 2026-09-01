@@ -119,34 +119,18 @@ export function Navbar() {
                   )}
                 </div>
 
-                <div className="col-span-9 grid grid-cols-3 gap-px bg-line">
+                {/* Plain link columns. No per-link codes or descriptions: the
+                    page itself carries that, and the menu reads as a directory. */}
+                <div className="col-span-9 grid grid-cols-3 gap-x-12">
                   {group.links.map((link) => (
                     <Link
                       key={link.to + link.label}
                       to={link.to}
-                      className="group flex flex-col bg-void p-5 transition-colors hover:bg-panel"
+                      className="border-b border-line py-3 font-display text-base uppercase tracking-wide text-ink-1 transition-colors hover:text-white"
                     >
-                      {link.designation && (
-                        <span className="font-mono text-[0.55rem] uppercase tracking-widest text-accent/50">
-                          {link.designation}
-                        </span>
-                      )}
-                      <p className="mt-2 font-display text-lg uppercase leading-none tracking-wide text-white transition-colors group-hover:text-accent">
-                        {link.label}
-                      </p>
-                      {link.note && (
-                        <p className="mt-2 text-xs leading-relaxed text-ink-3">{link.note}</p>
-                      )}
+                      {link.label}
                     </Link>
                   ))}
-                  {/* The hairline grid paints through unfilled cells, so close
-                      the last row rather than leaving grey blocks in it. */}
-                  {group.links.length % 3 !== 0 && (
-                    <div
-                      className="bg-void"
-                      style={{ gridColumn: `span ${3 - (group.links.length % 3)}` }}
-                    />
-                  )}
                 </div>
               </div>
             </div>
@@ -180,17 +164,9 @@ export function Navbar() {
                       <Link
                         key={link.to + link.label}
                         to={link.to}
-                        className="block bg-void px-5 py-4"
+                        className="block bg-void px-5 py-3.5 font-display text-sm uppercase tracking-wide text-ink-1"
                       >
-                        {link.designation && (
-                          <span className="font-mono text-[0.55rem] uppercase tracking-widest text-accent/50">
-                            {link.designation}
-                          </span>
-                        )}
-                        <p className="mt-1 font-mono text-sm text-white">{link.label}</p>
-                        {link.note && (
-                          <p className="mt-1 text-xs leading-relaxed text-ink-dim">{link.note}</p>
-                        )}
+                        {link.label}
                       </Link>
                     ))}
                   </div>

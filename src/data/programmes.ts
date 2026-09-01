@@ -333,6 +333,87 @@ const counterUas: Programme = {
   related: ['ankosha', 'sentinel', 'talon', 'valley'],
 };
 
+const legacySystems: Programme = {
+  slug: 'legacy-systems',
+  category: 'systems',
+  designation: 'LEGACY INTEGRATION',
+  name: 'Manned & Legacy Systems',
+  tagline: 'The guns, radars and manned platforms already in service, brought onto the grid',
+  domain: ['Land', 'Air defence', 'Integration'],
+  status: 'In development',
+  summary:
+    'Retrofit fire control and datalink for equipment a force already owns. Towed and self-propelled artillery, anti-aircraft gun systems, legacy surveillance radars and manned platforms report into the same track picture as everything else on the grid, without being replaced.',
+  hero: {
+    label: 'LEGACY INTEGRATION / IN SERVICE',
+    path: '/images/legacy/hero.jpg',
+    src: '/images/legacy/battery-night-fire.jpg',
+  },
+  overview: {
+    heading: 'The next war is fought with the equipment already in the inventory.',
+    body: [
+      'A formation does not re-equip because a better architecture arrived. It fights with what it holds: towed howitzers, self-propelled anti-aircraft guns of Soviet lineage still in wide service, surveillance radars designed decades before anything on this site, and crews who know that equipment intimately. Most of it has no digital interface at all, so it sits outside every modern picture and is coordinated by voice.',
+      'That gap is now the stated problem. The Indian Army\'s Land Vectors Control and Coordination System requirement describes exactly this: technical and tactical control of fire from missiles, rockets, guns, howitzers, mortars and loitering munitions as one regiment-level application, integrated with battlefield surveillance and the wider C4I2 grid, to compress sensor-to-shooter timelines. The lesson was drawn in the open, from artillery employment during Operation Sindoor in May 2025.',
+      'Our position is that this is an integration problem rather than a procurement one. A gun does not need to be replaced to be scheduled; it needs to know where it is, what it is laid on, what it is holding, and it needs to say so on a link that survives jamming. That is a retrofit kit and a protocol, not a new platform.',
+      'So the same grid Ankosha and Ryder sit on takes a position-and-azimuth pack, a ruggedised crew terminal and a datalink appliance, and a legacy gun becomes an addressable effector in Talon\'s allocation. The crew keeps its drills. The picture stops depending on someone reading grid references over a radio.',
+    ],
+  },
+  capabilities: [
+    {
+      title: 'Retrofit, not replacement',
+      body: 'Position, azimuth and elevation sensing plus a crew terminal fitted to equipment in service, so a gun becomes addressable without touching its ballistics or its maintenance chain.',
+    },
+    {
+      title: 'Legacy radar ingest',
+      body: 'Analogue and early-digital surveillance radars adapted into Aorizon as ordinary track sources, with provenance, rather than being read off a scope and relayed by voice.',
+    },
+    {
+      title: 'Gun-system integration',
+      body: 'Self-propelled anti-aircraft gun systems of the ZSU-23-4 class carried as cued effectors in the air defence layer, taking assignment from the same picture that drives Ryder.',
+    },
+    {
+      title: 'Machine-assisted fire allocation',
+      body: 'Tube and rocket artillery ranked alongside loitering munitions and interceptors in Talon, against range, availability, collateral constraint and time of flight, with the reasoning shown.',
+    },
+    {
+      title: 'Crew drills preserved',
+      body: 'The terminal reports and receives; it does not lay the gun. Engagement authority and the existing manual procedure stay exactly where they are, which is what makes it fieldable.',
+    },
+    {
+      title: 'Degraded-link operation',
+      body: 'Store-and-forward reporting over constrained bearers, so a battery that loses its link keeps a usable local picture and reconciles when it returns.',
+    },
+  ],
+  specs: [
+    { label: 'Role', value: 'Retrofit integration' },
+    { label: 'Vector types', value: 'Guns · Howitzers · Mortars · Rockets · SPAAG' },
+    { label: 'Sensor types', value: 'Legacy surveillance and fire-control radar' },
+    { label: 'Fit', value: 'Non-intrusive', note: 'No change to ballistics or maintenance chain' },
+    { label: 'Engagement authority', value: 'Crew retained', note: 'The terminal never lays the gun' },
+    { label: 'Link', value: 'Store-and-forward', note: 'Functions under denied and intermittent conditions' },
+    { label: 'Grid interface', value: 'Valley native' },
+    { label: 'Qualification status', value: 'ON REQUEST' },
+  ],
+  gallery: [
+    {
+      label: 'TOWED ARTILLERY / IN SERVICE',
+      caption: 'Dhanush 155mm howitzers in action. Photograph: Government of India, GODL-India',
+      path: '/images/legacy/gun-firing.jpg',
+      src: '/images/legacy/gun-firing.jpg',
+      ratio: '3/2',
+    },
+    {
+      label: 'WEAPON LOCATING RADAR / IN SERVICE',
+      caption: 'Swathi weapon locating radar, an indigenous counter-battery sensor. Photograph: Government of India, GODL-India',
+      path: '/images/legacy/wlr.jpg',
+      src: '/images/legacy/wlr.jpg',
+      ratio: '3/2',
+    },
+  ],
+  integration:
+    'Legacy vectors publish position and readiness to the grid and subscribe to assignment from it. Aorizon carries their sensors as track sources, and Talon carries their guns as effectors, ranked against everything else available to the commander.',
+  related: ['talon', 'aorizon', 'counter-uas', 'valley'],
+};
+
 const hypersonics: Programme = {
   slug: 'hypersonics',
   category: 'systems',
@@ -755,7 +836,7 @@ const quantum: Programme = {
   ],
   integration:
     'Quantum-secured links are the backbone of the grid\'s highest-classification traffic, and the channel over which tasking and engagement authority move between nodes.',
-  related: ['orbital-systems', 'digital-twin', 'sovereign-model', 'valley'],
+  related: ['orbital-systems', 'digital-twin', 'aorizon', 'valley'],
 };
 
 const aorizon: Programme = {
@@ -763,24 +844,29 @@ const aorizon: Programme = {
   category: 'ai',
   designation: 'AORIZON',
   name: 'Aorizon',
-  tagline: 'See. Wide-area autonomous sensing and fusion',
-  domain: ['ISR', 'Fusion', 'Valley product'],
+  tagline: 'The sovereign foundation model, and the picture it holds',
+  domain: ['Artificial intelligence', 'Fusion', 'Sovereign', 'Air-gapped'],
   status: 'In trials',
   summary:
-    'The sensing product of the Valley stack. Aorizon turns every sensor a force owns, and several it does not, into one continuously maintained picture of the battlespace.',
+    'Our multi-modal foundation model, trained and operated wholly on Indian infrastructure, and the sensing layer built on it. Aorizon reads sensor telemetry as a first-class modality, which is what lets it turn every sensor a force owns into one continuously maintained picture.',
   hero: {
     label: 'AORIZON / FUSED PICTURE',
     path: '/images/products/aorizon-hero.jpg',
   },
   overview: {
-    heading: 'Most forces do not have a sensing problem. They have a fusion problem.',
+    heading: 'A model that reads sensors, not captions of sensors.',
     body: [
-      'A brigade already fields more sensors than it can exploit: radars, EO/IR turrets, RF receivers, ground surveillance, UAS feeds, satellite imagery products, and a great deal of human reporting. Almost all of it is processed separately, presented separately, and correlated by an analyst under time pressure, which is where the picture falls apart.',
-      'Aorizon is the fusion layer. It ingests heterogeneous sensor feeds without demanding that they be replaced, resolves them into single tracks per real-world object, and maintains custody of those tracks continuously: through sensor handover, through gaps in coverage, and through deliberate deception.',
-      'It runs at the edge. A forward node produces a usable local picture with no connectivity at all, and reconciles with the wider grid when a link returns. Nothing about the design assumes a datacentre is reachable.',
+      'Most forces do not have a sensing problem. They have a fusion problem. A brigade already fields more sensors than it can exploit: radars, EO/IR turrets, RF receivers, ground surveillance, UAS feeds, satellite imagery and a great deal of human reporting. Almost all of it is processed separately, presented separately, and correlated by an analyst under time pressure, which is where the picture falls apart.',
+      'Solving that with a general-purpose language model runs into a wall. The capable models are hosted by foreign companies, under foreign law, on foreign compute, and cannot be taken into an air-gapped enclave or shown classified material. The models that can be self-hosted are smaller, and none of them treat sonar, radar or AIS telemetry as anything more than text to be described.',
+      'Aorizon is our answer to both problems at once. A sparse mixture-of-experts transformer trained on sovereign compute, reading text, imagery, speech and sensor telemetry as native modalities fused through cross-attention rather than as captions bolted onto a language model. Because telemetry is native to the model, fusion stops being a separate pipeline bolted on afterwards.',
+      'It runs at the edge. A forward node produces a usable local picture with no connectivity at all and reconciles with the wider grid when a link returns. Source code, training data, pipelines, weights and tooling transfer to the customer as exclusive IP, with a structured knowledge-transfer programme so their own people can retrain it.',
     ],
   },
   capabilities: [
+    {
+      title: 'Sensor telemetry as a modality',
+      body: 'A purpose-built 1D-CNN and transformer encoder for sonar, radar and AIS, fused by cross-attention. Genuine sensor-language reasoning rather than caption-style approximation.',
+    },
     {
       title: 'Sensor-agnostic ingest',
       body: 'Works with the sensors already in service, ours and third parties\', rather than requiring a fleet replacement to deliver value.',
@@ -798,22 +884,48 @@ const aorizon: Programme = {
       body: 'A forward node produces a full local picture disconnected, and reconciles with the grid when a link returns.',
     },
     {
-      title: 'Anomaly surfacing',
-      body: 'Pattern-of-life modelling that raises what has changed, rather than presenting an operator with everything that is present.',
+      title: 'Classification-aware retrieval',
+      body: 'Vector and lexical indices physically sharded by compartment and gated by user clearance before embedding lookup, which removes the prompt-tag leakage class of attack entirely.',
     },
     {
-      title: 'Provenance on every track',
-      body: 'Any operator can interrogate which sensors contributed to a track and how confidence was derived. No unexplained assertions.',
+      title: 'Audit-grade interpretability',
+      body: 'Sparse autoencoder dictionaries on the production residual stream give monosemantic features for attribution, so any track or output can be explained after the fact.',
+    },
+    {
+      title: 'Reproducible and attested',
+      body: 'Hermetic Nix builds, fixed seeds, Sigstore-signed weights and SLSA L3+ provenance. Three rebuilds produce byte-identical artefacts, which is what makes the supply chain auditable.',
+    },
+  ],
+  variants: [
+    {
+      designation: 'PROFILE A',
+      name: 'Edge',
+      role: 'Sensor fusion, autonomous platforms, swarm',
+      note: 'Distilled students quantised for Jetson-class, ARM and x86 industrial hardware, sized to run inside an airframe or a forward node.',
+    },
+    {
+      designation: 'PROFILE B',
+      name: 'Workstation',
+      role: 'Staff work, maintenance, damage control, voice',
+      note: 'Quantised CPU-only build for staff work, maintenance and voice interaction where no accelerator is available.',
+    },
+    {
+      designation: 'PROFILE C',
+      name: 'Secure data centre',
+      role: 'Intelligence fusion, mission planning, wargaming',
+      note: 'Full-precision build inside trusted execution enclaves for intelligence fusion, mission planning and wargaming.',
     },
   ],
   specs: [
-    { label: 'Role', value: 'Sense and fuse' },
+    { label: 'Role', value: 'Reason, sense and fuse' },
+    { label: 'Architecture', value: 'Sparse mixture of experts', note: 'Multi-modal transformer backbone' },
+    { label: 'Modalities', value: 'Four, native', note: 'Text, imagery, audio, sensor telemetry' },
     { label: 'Sensor types', value: 'Radar · EO/IR · RF · Acoustic · Imagery' },
-    { label: 'Third-party sensors', value: 'Supported' },
+    { label: 'Deployment profiles', value: 'Three', note: 'Edge, workstation and secure data centre' },
     { label: 'Operation', value: 'Edge-first', note: 'Full function disconnected' },
+    { label: 'Sovereignty', value: '100 per cent', note: 'Indian compute, data, weights and lifecycle' },
+    { label: 'IP position', value: 'Customer exclusive', note: 'Source, weights, data and pipelines transferred' },
     { label: 'Track provenance', value: 'Always available' },
-    { label: 'Deployment', value: 'On-premise / air-gapped' },
-    { label: 'Built on', value: 'Valley' },
     { label: 'Concurrent tracks', value: 'ON REQUEST' },
   ],
   gallery: [
@@ -831,8 +943,8 @@ const aorizon: Programme = {
     },
   ],
   integration:
-    'Aorizon produces the picture. Talon acts on it and Sentinel defends against what appears in it. All three read and write the same grid state.',
-  related: ['talon', 'sentinel', 'valley', 'orbital-systems'],
+    'Aorizon is the reasoning tier of the grid and the picture it produces. Profile A rides the airframes as the autonomy core, Profile B sits at the operator console, and Profile C carries intelligence fusion and mission planning behind the enclave boundary. Talon acts on the picture and Sentinel defends against what appears in it.',
+  related: ['talon', 'sentinel', 'valley', 'quantum'],
 };
 
 const talon: Programme = {
@@ -990,100 +1102,17 @@ const sentinel: Programme = {
 };
 
 
-const sovereignModel: Programme = {
-  slug: 'sovereign-model',
-  category: 'ai',
-  designation: 'SOVEREIGN MODEL',
-  name: 'Sovereign Foundation Model',
-  tagline: 'A multi-modal foundation model trained wholly on Indian infrastructure',
-  domain: ['Artificial intelligence', 'Sovereign', 'Air-gapped'],
-  status: 'In development',
-  summary:
-    'A sparse Mixture-of-Experts foundation model reasoning natively over text, imagery, audio and sensor telemetry, designed, trained and operated entirely inside national infrastructure and handed over as customer IP.',
-  hero: {
-    label: 'SOVEREIGN MODEL / REFERENCE STACK',
-    path: '/images/sovereign-model/hero-stack.jpg',
-  },
-  overview: {
-    heading: 'The model that cannot be switched off from abroad.',
-    body: [
-      'Every serious military use of a foundation model runs into the same wall. The capable models are hosted by foreign companies, under foreign law, on foreign compute, and they cannot be taken into an air-gapped enclave or shown classified material. The models that can be self-hosted are smaller, and none of them treat sonar, radar or AIS telemetry as anything more than text to be described.',
-      'This programme is our answer. A sparse mixture-of-experts transformer trained on sovereign compute, reading text, imagery, speech and sensor telemetry as first-class modalities fused through cross-attention rather than as captions bolted onto a language model.',
-      'It is built for customers who cannot put classified material through a foreign API. Source code, training data, pipelines, model weights and tooling transfer to the customer as exclusive IP, with a structured knowledge-transfer programme so their own people can retrain it.',
-    ],
-  },
-  capabilities: [
-    {
-      title: 'Sensor telemetry as a modality',
-      body: 'A purpose-built 1D-CNN and transformer encoder for sonar, radar and AIS, fused by cross-attention. Genuine sensor-language reasoning rather than caption-style approximation.',
-    },
-    {
-      title: 'Classification-aware retrieval',
-      body: 'Vector and lexical indices physically sharded by compartment and gated by user clearance before embedding lookup, which removes the prompt-tag leakage class of attack entirely.',
-    },
-    {
-      title: 'Three hardened profiles',
-      body: 'One training pipeline produces a quantised edge build for Jetson-class hardware, a CPU-only workstation build, and a full-precision secure data-centre build. All three are air-gap installable.',
-    },
-    {
-      title: 'Audit-grade interpretability',
-      body: 'Sparse autoencoder dictionaries on the production residual stream give monosemantic features for attribution and targeted behaviour steering, so a mission-critical output can be explained after the fact.',
-    },
-    {
-      title: 'Reproducible and attested',
-      body: 'Hermetic Nix builds, fixed seeds, Sigstore-signed weights and SLSA L3+ provenance. Three rebuilds produce byte-identical artefacts, which is what makes the supply chain auditable.',
-    },
-    {
-      title: 'Resilient under DDIL',
-      body: 'Air-gap native, operating under denied, degraded, intermittent and limited conditions, in English and the major Indian languages.',
-    },
-  ],
-  variants: [
-    {
-      designation: 'PROFILE A',
-      name: 'Edge',
-      role: 'Sensor fusion, autonomous platforms, swarm',
-      note: 'Distilled students quantised for Jetson-class, ARM and x86 industrial hardware, sized to run inside an airframe or a forward node.',
-    },
-    {
-      designation: 'PROFILE B',
-      name: 'Workstation',
-      role: 'Staff work, maintenance, damage control, voice',
-      note: 'Quantised CPU-only build for staff work, maintenance and voice interaction where no accelerator is available.',
-    },
-    {
-      designation: 'PROFILE C',
-      name: 'Secure data centre',
-      role: 'Intelligence fusion, mission planning, wargaming',
-      note: 'Full-precision build inside trusted execution enclaves for intelligence fusion, mission planning and wargaming.',
-    },
-  ],
-  specs: [
-    { label: 'Architecture', value: 'Sparse mixture of experts', note: 'Multi-modal transformer backbone' },
-    { label: 'Deployment profiles', value: 'Three', note: 'Edge, workstation and secure data centre' },
-    { label: 'Performance envelope', value: 'ON REQUEST' },
-    { label: 'Programme schedule', value: 'ON REQUEST' },
-    { label: 'Modalities', value: 'Four, native', note: 'Text, imagery, audio, sensor telemetry' },
-    { label: 'Sovereignty', value: '100 per cent', note: 'Indian compute, data, weights and lifecycle' },
-    { label: 'IP position', value: 'Customer exclusive', note: 'Source, weights, data and pipelines transferred' },
-  ],
-  gallery: [],
-  integration:
-    'The sovereign model is the reasoning tier of the Valley grid. Profile A rides the airframes as the autonomy core, Profile B sits at the operator console, and Profile C carries intelligence fusion and mission planning behind the enclave boundary.',
-  related: ['aorizon', 'quantum', 'digital-twin', 'valley'],
-};
-
 /* ========================================================================= */
 
 export const PROGRAMMES: Programme[] = [
   ankosha,
   counterUas,
+  legacySystems,
   hypersonics,
   orbitalSystems,
   aorizon,
   talon,
   sentinel,
-  sovereignModel,
   digitalTwin,
   quantum,
 ];
