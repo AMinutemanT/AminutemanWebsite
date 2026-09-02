@@ -65,7 +65,7 @@ export const NAV_GROUPS: NavGroup[] = [
   {
     label: 'AI',
     to: '/ai',
-    blurb: 'See, strike, shield, and the intelligence underneath them.',
+    blurb: 'Aorizon, Talon and Sentinel, and the intelligence underneath them.',
     links: linksFor('ai'),
   },
   {

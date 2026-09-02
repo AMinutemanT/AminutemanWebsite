@@ -26,7 +26,7 @@ const BEHAVIOURS = [
   },
   {
     title: 'Fails safe, not silent',
-    body: 'Loss of link, loss of an element or loss of confidence drives a defined behaviour (hold, return, or abort) declared before launch rather than improvised in the air.',
+    body: 'Loss of link, loss of an element or loss of confidence drives a defined behaviour: hold, return, or abort, declared before launch and never improvised in the air.',
   },
   {
     title: 'Formation before platform',
@@ -122,7 +122,7 @@ export function ValleyMissionAutonomy() {
         <div className="container">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-4">
-              <Eyebrow index="01">The problem</Eyebrow>
+              <Eyebrow>The problem</Eyebrow>
             </div>
             <div className="lg:col-span-8">
               <Reveal>
@@ -157,7 +157,7 @@ export function ValleyMissionAutonomy() {
       <section className="section border-b border-line">
         <div className="container">
           <Reveal>
-            <SectionHeading eyebrow="Behaviour" index="02" title="What runs on the airframe" />
+            <SectionHeading eyebrow="Behaviour" title="What runs on the airframe" />
           </Reveal>
 
           <Stagger className="mt-16 grid grid-cols-1 gap-px bg-line md:grid-cols-2 lg:grid-cols-3">
@@ -185,7 +185,6 @@ export function ValleyMissionAutonomy() {
           <Reveal>
             <SectionHeading
               eyebrow="Trust"
-              index="03"
               title="How a behaviour is qualified"
               lede="Autonomy is only useful if a commander will actually launch it. That is a qualification problem before it is a research one."
             />
@@ -240,7 +239,7 @@ export function ValleyMissionAutonomy() {
       <section className="section border-b border-line">
         <div className="container">
           <Reveal>
-            <Eyebrow index="04">Specification</Eyebrow>
+            <Eyebrow>Specification</Eyebrow>
           </Reveal>
           <div className="mt-10">
             <SpecTable specs={SPECS} />

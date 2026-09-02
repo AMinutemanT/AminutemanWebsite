@@ -144,15 +144,15 @@ export const FIELD: Shot[] = [
   {
     src: '/videos/fibre-optic-trial.jpg',
     video: '/videos/fibre-optic-trial.mp4',
-    label: 'FIBRE-OPTIC CONTROL TRIAL',
-    caption: 'Onboard footage from a tethered fibre-optic control test, a link nothing can jam',
+    label: 'Fibre-optic control trial',
+    caption: 'Onboard footage from a tethered fibre-optic control run. The command link is physical, so there is nothing on it to jam.',
     ratio: '3/2',
   },
   {
     src: '/videos/payload-release-trial.jpg',
     video: '/videos/payload-release-trial.mp4',
-    label: 'PAYLOAD RELEASE TRIAL',
-    caption: 'Onboard footage from a payload release run over the range',
+    label: 'Payload release trial',
+    caption: 'A grenade release over the range, flown and filmed from the airframe. Release, separation and the run off target.',
     ratio: '3/2',
   },
 ];
@@ -175,12 +175,6 @@ export const EXHIBITIONS: Shot[] = [
     src: '/images/exhibitions/aesi-pune.jpg',
     label: 'AERONAUTICAL SOCIETY OF INDIA',
     caption: 'At the Aeronautical Society of India, Pune',
-    ratio: '3/2',
-  },
-  {
-    src: '/images/exhibitions/imaginxt.jpg',
-    label: 'INDUSTRY FORUM',
-    caption: 'Present where national technology policy is set',
     ratio: '3/2',
   },
 ];
@@ -258,7 +252,7 @@ export const RECORD: Milestone[] = [
   {
     year: '2023',
     title: 'Founded in Pune',
-    body: 'Established to build autonomous defence hardware together with the autonomy stack that runs it, rather than integrating somebody else’s.',
+    body: 'Established to build autonomous defence hardware together with the autonomy stack that runs it, instead of integrating somebody else’s.',
   },
   {
     year: '2024',

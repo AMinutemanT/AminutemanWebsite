@@ -4,6 +4,7 @@ import { ArrowRight } from 'lucide-react';
 import { Reveal, Stagger, StaggerItem } from '../components/ui/Reveal';
 import { Eyebrow, SectionHeading } from '../components/ui/HUD';
 import { MediaSlot } from '../components/ui/MediaSlot';
+import { PageHero } from '../components/ui/PageHero';
 import { PROGRAMMES, programmePath } from '../data/programmes';
 import {
   ACHIEVEMENTS,
@@ -14,7 +15,6 @@ import {
   INTERNATIONAL_PARTNERS,
   OFFICES,
   RECORD,
-  TAGLINE,
 } from '../data/company';
 
 /* ---------------------------------------------------------------------------
@@ -30,7 +30,7 @@ import {
 const PRINCIPLES = [
   {
     title: 'Build it here',
-    body: 'Every capability on this site exists because the alternative was an import licence, a foreign end-use certificate, or a lead time set by somebody else. Sovereignty is a supply chain question before it is a policy one.',
+    body: 'Every capability on this site exists because the alternative was an import licence, a foreign end-use certificate, or a lead time set by somebody else. Sovereignty is decided in a supply chain long before it is debated as policy.',
   },
   {
     title: 'A human commits',
@@ -38,19 +38,19 @@ const PRINCIPLES = [
   },
   {
     title: 'Cost exchange decides',
-    body: 'A defence that spends more per engagement than the attack costs loses on arithmetic alone. We design effectors against the price of what they are shooting at, not against a specification written in peacetime.',
+    body: 'A defence that spends more per engagement than the attack costs loses on arithmetic alone. We price effectors against what they are shooting at, and we hold that line even when a peacetime specification asks for more.',
   },
   {
     title: 'Grid before platform',
-    body: 'Every system is designed as a node before it is designed as a platform. Hardware is what a customer buys; the grid is what makes the hardware worth more together than apart.',
+    body: 'Every system is designed as a node before it is designed as a platform. Hardware is what a customer buys; the grid is what gets more out of it.',
   },
   {
     title: 'Degrade, do not fail',
-    body: 'Jamming, GNSS denial and loss of the rear link are the design case, not an exception handled later. Systems that need a datacentre to close a kill chain are not systems a force can fight on.',
+    body: 'Jamming, GNSS denial and loss of the rear link are the design case, worked in the first release. A system that needs a datacentre to close a kill chain is not one a force can fight on.',
   },
   {
     title: 'Publish what we can defend',
-    body: 'Figures on this site are either releasable or marked as withheld. We would rather print CLASSIFIED than print a number we cannot stand behind in a trial.',
+    body: 'Figures on this site are either releasable or marked as withheld. Where a number cannot be stood behind in a trial, it is not printed.',
   },
 ];
 
@@ -76,43 +76,22 @@ export function About() {
 
   return (
     <div className="bg-void">
-      {/* ---- Header ------------------------------------------------------ */}
-      <header className="relative overflow-hidden border-b border-line pt-40 pb-20 sm:pt-48 sm:pb-28">
-        <div className="absolute inset-0 bg-grid-coarse bg-grid-coarse opacity-[0.18]" />
-        <div className="absolute inset-0 bg-[radial-gradient(100%_80%_at_50%_0%,rgba(255,138,0,0.12),transparent_60%)]" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-void" />
-
-        <div className="container relative">
-          <Reveal direction="none">
-            <Eyebrow>Company</Eyebrow>
-          </Reveal>
-          <Reveal delay={0.08}>
-            <h1 className="display-xl mt-6 max-w-4xl text-white">
-              We build what could not be bought
-            </h1>
-          </Reveal>
-          <Reveal delay={0.14}>
-            <p className="mt-7 max-w-3xl text-lg leading-relaxed text-ink-2 sm:text-xl">
-              Aminuteman Technologies is a defence engineering company building autonomous air
-              systems, the effectors that finish an engagement, and the grid that connects every
-              sensor and shooter into a single picture. {TAGLINE} is not a slogan for us; it is
-              the specification.
-            </p>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <p className="mt-10 font-mono text-[0.65rem] uppercase tracking-widest text-ink-dim">
-              Founded 2023 · Pune, Delhi, Bengaluru, Madhya Pradesh · {counts.total} programmes
-            </p>
-          </Reveal>
-        </div>
-      </header>
+      <PageHero
+        eyebrow="Company"
+        title="We build what could not be bought"
+        image="altitude"
+        focus="50% 34%"
+        intensity={0.9}
+        lede="Aminuteman Technologies is a defence engineering company building autonomous air systems, the effectors that finish an engagement, and the grid that connects every sensor and shooter into a single picture. Designed, developed and manufactured in India."
+        meta={`Founded 2023 · Pune, Delhi, Bengaluru, Madhya Pradesh · ${counts.total} programmes`}
+      />
 
       {/* ---- Mandate ----------------------------------------------------- */}
       <section className="section border-b border-line">
         <div className="container">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-4">
-              <Eyebrow index="01">Mandate</Eyebrow>
+              <Eyebrow>Mandate</Eyebrow>
             </div>
             <div className="lg:col-span-8">
               <Reveal>
@@ -133,7 +112,7 @@ export function About() {
                 <Reveal delay={0.12}>
                   <p className="body-copy text-base sm:text-lg">
                     So we work the full stack: airframes, powerplants, effectors, sensing, and the
-                    software grid that makes them act as one system rather than a collection of
+                    software grid that makes them act as one system instead of a collection of
                     procurement line items. That vertical span is not ambition for its own sake. It
                     is the only way to hold the cost, the schedule and the export position of a
                     programme at the same time.
@@ -159,9 +138,8 @@ export function About() {
           <Reveal>
             <SectionHeading
               eyebrow="Standing"
-              index="02"
               title="Where we actually are"
-              lede="Programme facts rather than adjectives. Each of these is drawn from a contract, a submission or a build standard."
+              lede="Each of these is drawn from a contract, a submission or a build standard."
             />
           </Reveal>
 
@@ -188,7 +166,6 @@ export function About() {
           <Reveal>
             <SectionHeading
               eyebrow="Alongside"
-              index="03"
               title="Who we work with"
               lede="Primes, integrators and end users in India, and the international partners who supply and qualify alongside us."
             />
@@ -227,7 +204,6 @@ export function About() {
               <Reveal>
                 <SectionHeading
                   eyebrow="In-house"
-                  index="04"
                   title="What we hold ourselves"
                   lede="The disciplines we refuse to outsource, because outsourcing any one of them puts a programme on somebody else’s schedule."
                 />
@@ -270,9 +246,8 @@ export function About() {
           <Reveal>
             <SectionHeading
               eyebrow="How we work"
-              index="05"
               title="Six commitments"
-              lede="These are engineering constraints rather than values statements. Each one changes what gets built."
+              lede="Six engineering constraints. Each one changes what gets built."
             />
           </Reveal>
 
@@ -301,7 +276,6 @@ export function About() {
           <Reveal>
             <SectionHeading
               eyebrow="Footprint"
-              index="06"
               title="Where we build"
               lede="Design and works in Pune, the programme office in Delhi, avionics and autonomy in Bengaluru, and test and integration in Madhya Pradesh."
             />
@@ -313,7 +287,6 @@ export function About() {
                 <div className="flex h-full flex-col border border-line bg-panel/30">
                   <MediaSlot
                     label={`${office.city.toUpperCase()} / ${office.role.toUpperCase()}`}
-                    path={office.image}
                     src={office.image}
                     alt={`${office.city}, ${office.role}`}
                     ratio="3/2"
@@ -359,8 +332,7 @@ export function About() {
           <Reveal>
             <SectionHeading
               eyebrow="In the field"
-              index="07"
-              title="Where it actually gets judged"
+              title="On the ground"
               lede="Our systems are evaluated by the people who would use them, on the ground they would use them on. In August 2025 that meant Sumdo at 10,700 feet, under an Indian Army initiative. Between evaluations we fly our own trials, and the onboard footage is the record."
             />
           </Reveal>
@@ -371,7 +343,6 @@ export function About() {
                 <MediaSlot
                   src={shot.src}
                   video={shot.video}
-                  path={shot.src}
                   label={shot.label}
                   caption={shot.caption}
                   alt={shot.caption}
@@ -389,22 +360,20 @@ export function About() {
           <Reveal>
             <SectionHeading
               eyebrow="Alongside"
-              index="08"
               title="In the room"
-              lede="Defence exhibitions, the Aeronautical Society of India, and the industry forums where national technology policy is argued out. Access is a capability."
+              lede="Defence exhibitions, the Aeronautical Society of India, and the industry forums where national technology policy gets argued out."
             />
           </Reveal>
 
-          <div className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {EXHIBITIONS.map((shot, i) => (
               <Reveal key={shot.src} delay={i * 0.06}>
                 <MediaSlot
                   src={shot.src}
-                  path={shot.src}
                   label={shot.label}
                   caption={shot.caption}
                   alt={shot.caption}
-                  ratio="4/5"
+                  ratio="3/2"
                 />
               </Reveal>
             ))}
@@ -418,7 +387,6 @@ export function About() {
           <Reveal>
             <SectionHeading
               eyebrow="The floor"
-              index="09"
               title="Where the hardware sits"
               lede="Photographed on the engineering floor. Rotary and fixed-wing development airframes, integration positions, and the secure area behind them."
             />
@@ -429,7 +397,6 @@ export function About() {
               <Reveal key={shot.src} delay={i * 0.06}>
                 <MediaSlot
                   src={shot.src}
-                  path={shot.src}
                   label={shot.label}
                   caption={shot.caption}
                   alt={shot.caption}
@@ -447,7 +414,7 @@ export function About() {
           <div className="grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-16">
             <div className="lg:col-span-7">
               <Reveal>
-                <Eyebrow index="10">Leadership</Eyebrow>
+                <Eyebrow>Leadership</Eyebrow>
                 <p className="mt-8 font-display text-2xl uppercase leading-tight tracking-tight text-white sm:text-3xl">
                   Our goal is to shift defence readiness away from dependence on constant
                   maintenance and foreign supply, toward self-sustaining systems built and
@@ -459,7 +426,7 @@ export function About() {
                   Through <span className="font-medium text-accent">Valley</span>, our physical-AI
                   operating system, we are building the connective intelligence for autonomous
                   defence hardware, capable of real-time decision-making at the edge, and designed
-                  so that the systems a force already owns become more capable rather than
+                  so that the systems a force already owns become more capable and not
                   obsolete.
                 </p>
               </Reveal>
@@ -479,9 +446,9 @@ export function About() {
               <Reveal delay={0.1} direction="left">
                 <MediaSlot
                   src="/images/vision.jpg"
-                  path="/images/vision.jpg"
-                  label="FOUNDER & CEO"
-                  caption="Aniruddha Narayan · Founder & Chief Executive"
+                  alt="Press coverage of Aminuteman Technologies"
+                  label="Press coverage"
+                  caption="Reported in the national and trade press, September 2025"
                   ratio="4/5"
                 />
               </Reveal>
@@ -494,7 +461,7 @@ export function About() {
       <section className="section border-b border-line">
         <div className="container">
           <Reveal>
-            <SectionHeading eyebrow="Record" index="11" title="How we got here" />
+            <SectionHeading eyebrow="Record" title="How we got here" />
           </Reveal>
 
           <div className="mt-14 border-t border-line">
@@ -534,7 +501,7 @@ export function About() {
                     Bring us a problem, not a specification
                   </h2>
                   <p className="body-copy mt-5 max-w-2xl">
-                    We work best with customers who describe the fight rather than the part
+                    We work best with customers who describe the fight and not the part
                     number. Programme briefings and trials are arranged through the programme
                     office.
                   </p>

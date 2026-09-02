@@ -88,7 +88,7 @@ const ankosha: Programme = {
   domain: ['Air', 'Strike', 'Attritable'],
   status: 'In trials',
   summary:
-    'A common-architecture family of loitering munitions spanning man-portable to extended-range deep strike, flown as a formation rather than as individual rounds.',
+    'A common-architecture family of loitering munitions spanning man-portable to extended-range deep strike, flown as a formation and not as individual rounds.',
   hero: {
     label: 'ANKOSHA / AIRFRAME WITH POWERPLANT',
     path: '/images/ankosha/airframe-powerplant.webp',
@@ -233,15 +233,15 @@ const counterUas: Programme = {
     'INDRASTRA senses, classifies and holds the low-altitude air picture. RYDER is the hard-kill effector it commands. Together they cover the drone threat from commercial quadcopter to high-speed loitering munition.',
   hero: {
     label: 'RYDER / HARD-KILL INTERCEPTOR',
-    path: '/images/counter-uas/ryder-interceptor.jpg',
-    src: '/images/counter-uas/ryder-interceptor.jpg',
+    path: '/images/counter-uas/ryder-field.jpg',
+    src: '/images/counter-uas/ryder-field.jpg',
   },
   overview: {
     heading: 'Cost per engagement is the whole problem.',
     body: [
       'The uncomfortable arithmetic of modern air defence is that a system costing lakhs is routinely spent on a threat costing thousands, and the side with the cheaper magazine wins by arithmetic alone. Any credible counter-UAS answer has to be layered, and every layer has to be priced against what it is shooting at.',
       'INDRASTRA is the sensing and command layer. It fuses radar, radio-frequency, electro-optical and acoustic sensing into a single low-altitude picture, classifies what it sees against a continuously updated signature library, and holds custody of every track from first detection to resolution. It is designed to run on sensors already deployed at a site, not to require replacement of them.',
-      'RYDER is the effector layer INDRASTRA commands: soft-kill through RF and navigation denial for the low end, and a hard-kill interceptor for what soft-kill cannot touch: hardened, autonomous or high-speed rounds flying without a link to deny. Every engagement is priced against what it is shooting at, so the magazine holds through a saturation attack rather than being spent on the first one.',
+      'RYDER is the effector layer INDRASTRA commands: soft-kill through RF and navigation denial for the low end, and a hard-kill interceptor for what soft-kill cannot touch: hardened, autonomous or high-speed rounds flying without a link to deny. Every engagement is priced against what it is shooting at, so the magazine holds through a saturation attack instead of emptying on the first one.',
       'Both elements are grid-native. A site does not defend itself in isolation. It defends as one cell of a national picture, handing tracks forward and receiving cueing from sensors it will never see.',
     ],
   },
@@ -260,7 +260,7 @@ const counterUas: Programme = {
     },
     {
       title: 'RYDER · hard kill',
-      body: 'A guided interceptor for autonomous and hardened targets, priced and sized for the threat rather than for the airframe it defends.',
+      body: 'A guided interceptor for autonomous and hardened targets, priced and sized for the threat, not for the airframe it defends.',
     },
     {
       title: 'Swarm handling',
@@ -296,13 +296,6 @@ const counterUas: Programme = {
     { label: 'Grid interface', value: 'Native', note: 'Publishes to and subscribes from Valley' },
   ],
   gallery: [
-    {
-      label: 'RYDER / INTERCEPTOR',
-      caption: 'Tilting rotor arms on a faired body, sized for the climb to intercept',
-      path: '/images/counter-uas/ryder-interceptor.jpg',
-      src: '/images/counter-uas/ryder-interceptor.jpg',
-      ratio: '3/2',
-    },
     {
       label: 'INDRASTRA / SENSOR NODE',
       caption: 'Airborne sensor node and ground control at the trial site',
@@ -353,7 +346,7 @@ const legacySystems: Programme = {
     body: [
       'A formation does not re-equip because a better architecture arrived. It fights with what it holds: towed howitzers, self-propelled anti-aircraft guns of Soviet lineage still in wide service, surveillance radars designed decades before anything on this site, and crews who know that equipment intimately. Most of it has no digital interface at all, so it sits outside every modern picture and is coordinated by voice.',
       'That gap is now the stated problem. The Indian Army\'s Land Vectors Control and Coordination System requirement describes exactly this: technical and tactical control of fire from missiles, rockets, guns, howitzers, mortars and loitering munitions as one regiment-level application, integrated with battlefield surveillance and the wider C4I2 grid, to compress sensor-to-shooter timelines. The lesson was drawn in the open, from artillery employment during Operation Sindoor in May 2025.',
-      'Our position is that this is an integration problem rather than a procurement one. A gun does not need to be replaced to be scheduled; it needs to know where it is, what it is laid on, what it is holding, and it needs to say so on a link that survives jamming. That is a retrofit kit and a protocol, not a new platform.',
+      'Our position is that this is an integration problem, not a procurement one. A gun does not need to be replaced to be scheduled; it needs to know where it is, what it is laid on, what it is holding, and it needs to say so on a link that survives jamming. That is a retrofit kit and a protocol, not a new platform.',
       'So the same grid Ankosha and Ryder sit on takes a position-and-azimuth pack, a ruggedised crew terminal and a datalink appliance, and a legacy gun becomes an addressable effector in Talon\'s allocation. The crew keeps its drills. The picture stops depending on someone reading grid references over a radio.',
     ],
   },
@@ -364,7 +357,7 @@ const legacySystems: Programme = {
     },
     {
       title: 'Legacy radar ingest',
-      body: 'Analogue and early-digital surveillance radars adapted into Aorizon as ordinary track sources, with provenance, rather than being read off a scope and relayed by voice.',
+      body: 'Analogue and early-digital surveillance radars adapted into Aorizon as ordinary track sources, carrying provenance instead of being read off a scope and relayed by voice.',
     },
     {
       title: 'Gun-system integration',
@@ -434,7 +427,7 @@ const hypersonics: Programme = {
     heading: 'Speed is a defence-penetration argument, not a marketing one.',
     body: [
       'A manoeuvring vehicle at hypersonic speed collapses an adversary\'s decision timeline and defeats the predicted-intercept assumption that most integrated air defence rests on. That is the entire strategic case, and it is why the capability is worth the considerable engineering difficulty of getting there.',
-      'Our glide vehicle work concentrates on the three problems that actually gate the capability: thermal protection that survives a full glide phase without a mass penalty that eats the payload, guidance and control authority that remain effective through plasma-attenuated communications, and manufacturability of the leading-edge structures at a rate that makes the weapon a magazine item rather than a demonstration.',
+      'Our glide vehicle work concentrates on the three problems that actually gate the capability: thermal protection that survives a full glide phase without a mass penalty that eats the payload, guidance and control authority that remain effective through plasma-attenuated communications, and manufacturability of the leading-edge structures at a rate that makes the weapon a magazine item and not a demonstration.',
       'The balloon-launched approach addresses the other half of the problem. Lifting a vehicle to the stratosphere under a high-altitude balloon removes the first-stage booster entirely. With it goes the launch signature, most of the launch cost and the fixed-site infrastructure that makes a hypersonic magazine targetable. Release above the dense atmosphere puts the vehicle into its glide regime with a fraction of the energy a ground launch demands.',
       'This is long-horizon work, stated as such. We publish where the programme is, not where it will be.',
     ],
@@ -551,7 +544,7 @@ const hypersonics: Programme = {
     ],
   },
   integration:
-    'Targeting, release authority and post-release custody run over Valley, with the vehicle appearing on the grid as a scheduled effect rather than as a platform to be flown.',
+    'Targeting, release authority and post-release custody run over Valley, with the vehicle appearing on the grid as a scheduled effect, not as a platform to be flown.',
   related: ['orbital-systems', 'digital-twin', 'quantum', 'valley'],
 };
 
@@ -564,7 +557,7 @@ const orbitalSystems: Programme = {
   domain: ['Space', 'Co-orbital', 'Defensive'],
   status: 'In development',
   summary:
-    'PRAHARI escorts and defends high-value national space assets. KETU is the co-orbital effector it can call on. Space is treated as a domain that has to be held, not merely used.',
+    'PRAHARI escorts and defends high-value national space assets. KETU is the co-orbital effector it can call on. Space is treated as a domain that has to be held.',
   hero: {
     label: 'PRAHARI / BUS CONFIGURATION',
     path: '/images/orbital/bus-iso.webp',
@@ -577,7 +570,7 @@ const orbitalSystems: Programme = {
       'National communications, navigation and imaging now sit on a small number of satellites whose orbits are public, whose approach can be watched and whose loss would be felt on the ground within hours. Every serious space power has been developing the means to interfere with them. Defending them has lagged badly behind.',
       'PRAHARI is a bodyguard satellite: a manoeuvrable escort that keeps station near a high-value asset, maintains local space situational awareness, characterises approaching objects, and interposes itself or manoeuvres the pair out of a developing threat geometry. It buys the one thing a defended satellite has never had: warning and options.',
       'KETU is the co-orbital element. Where a threat cannot be avoided or deterred, it provides a proportionate, attributable response held under national command authority. Both elements are designed for rapid replenishment, because in space the side that can reconstitute its constellation faster wins the second week of a conflict.',
-      'This work is defensive in posture and framed accordingly. Rules of engagement, escalation control and attribution are designed into the system rather than added to it.',
+      'This work is defensive in posture and framed accordingly. Rules of engagement, escalation control and attribution are designed into the system, never bolted on afterwards.',
     ],
   },
   capabilities: [
@@ -599,7 +592,7 @@ const orbitalSystems: Programme = {
     },
     {
       title: 'Rapid replenishment',
-      body: 'Designed for small-launch cadence and constellation reconstitution rather than for single exquisite deployment.',
+      body: 'Designed for small-launch cadence and constellation reconstitution, not for a single exquisite deployment.',
     },
     {
       title: 'Autonomous under blackout',
@@ -702,14 +695,14 @@ const digitalTwin: Programme = {
     body: [
       'Weapons spend almost their entire lives not being fired. They sit in a canister through temperature cycles, humidity, vibration and handling, and then they are expected to work perfectly, once, on a day nobody scheduled. The traditional way to gain confidence in that is to fire a sample and extrapolate: expensive, slow, and statistically thin at exactly the tail of the distribution that matters.',
       'A digital twin changes the economics. We build a physics-based model of the airframe, the powerplant, the seeker, the guidance loop and the warhead, and we keep it honest by continuously correlating it against telemetry from every real firing, every test-cell run and every stored-round inspection. The model earns its authority instead of asserting it.',
-      'What that buys is concrete. Flight regimes too expensive or too dangerous to test (hypersonic glide, terminal manoeuvre at the edge of the envelope, saturation-swarm behaviour) get qualified in simulation with a quantified confidence interval. Stockpile surveillance shifts from calendar-based to condition-based, so a round is replaced when its twin says it has degraded rather than when the shelf-life card expires. And a modification can be assessed against the whole envelope before a single article is cut.',
+      'What that buys is concrete. Hypersonic glide, terminal manoeuvre at the edge of the envelope and saturation-swarm behaviour are all too expensive or too dangerous to fly repeatedly, and all of them get qualified in simulation with a quantified confidence interval. Stockpile surveillance shifts from calendar-based to condition-based: a round is replaced when its twin says it has degraded, not when the shelf-life card expires. And a modification can be assessed against the whole envelope before a single article is cut.',
       'The same twins run inside the training environment, so what an operator rehearses against is the same model the engineers qualify against.',
     ],
   },
   capabilities: [
     {
       title: 'Physics-based fidelity',
-      body: 'Aerodynamics, propulsion, structures, seeker and guidance modelled from first principles rather than fitted to a curve.',
+      body: 'Aerodynamics, propulsion, structures, seeker and guidance modelled from first principles, not fitted to a curve.',
     },
     {
       title: 'Flight-data correlation',
@@ -757,7 +750,7 @@ const digitalTwin: Programme = {
     },
   ],
   integration:
-    'Twins are a Valley service. When the grid pairs an effector to a target it queries the twin for that specific round (its age, its storage history, its predicted performance) rather than assuming a nominal article.',
+    'Twins are a Valley service. When the grid pairs an effector to a target it queries the twin for that specific round, for its age, its storage history and its predicted performance, instead of assuming a nominal article.',
   related: ['ankosha', 'hypersonics', 'quantum', 'valley'],
 };
 
@@ -779,9 +772,9 @@ const quantum: Programme = {
     heading: 'Assume the adversary is recording everything, and will decrypt it later.',
     body: [
       'Encrypted traffic intercepted today can be stored and broken years from now against a cryptographically relevant quantum computer. For commercial data that is an inconvenience. For strategic communications, force dispositions and weapon telemetry with a thirty-year classification life, it is a present-tense problem that has to be solved before the machine exists, not after.',
-      'Our quantum work runs on three fronts. Quantum key distribution establishes keys whose interception is physically detectable rather than merely improbable, protecting the highest-value links between fixed sites and, in time, between ground and orbit. Post-quantum cryptography migrates the rest of the estate to algorithms that hold against quantum attack, unglamorous, essential, and the part most organisations are late on.',
+      'Our quantum work runs on three fronts. Quantum key distribution establishes keys whose interception is physically detectable, not just improbable, protecting the highest-value links between fixed sites and, in time, between ground and orbit. Post-quantum cryptography migrates the rest of the estate to algorithms that hold against quantum attack, unglamorous, essential, and the part most organisations are late on.',
       'The third front is sensing. Quantum inertial sensors offer navigation drift low enough to hold accuracy for extended periods with no satellite fix at all, which matters enormously for a force that has to assume GNSS will be denied. Quantum magnetometry and gravimetry open detection of objects that conventional sensing does not see.',
-      'Where this joins the rest of our work is the grid itself. Tasking, target nominations and engagement authority move constantly between nodes an adversary is actively trying to read and to spoof. Quantum-secured channels are what make that traffic trustworthy rather than merely fast.',
+      'Where this joins the rest of our work is the grid itself. Tasking, target nominations and engagement authority move constantly between nodes an adversary is actively trying to read and to spoof. Quantum-secured channels are what make that traffic trustworthy as well as fast.',
     ],
   },
   capabilities: [
@@ -858,18 +851,18 @@ const aorizon: Programme = {
     body: [
       'Most forces do not have a sensing problem. They have a fusion problem. A brigade already fields more sensors than it can exploit: radars, EO/IR turrets, RF receivers, ground surveillance, UAS feeds, satellite imagery and a great deal of human reporting. Almost all of it is processed separately, presented separately, and correlated by an analyst under time pressure, which is where the picture falls apart.',
       'Solving that with a general-purpose language model runs into a wall. The capable models are hosted by foreign companies, under foreign law, on foreign compute, and cannot be taken into an air-gapped enclave or shown classified material. The models that can be self-hosted are smaller, and none of them treat sonar, radar or AIS telemetry as anything more than text to be described.',
-      'Aorizon is our answer to both problems at once. A sparse mixture-of-experts transformer trained on sovereign compute, reading text, imagery, speech and sensor telemetry as native modalities fused through cross-attention rather than as captions bolted onto a language model. Because telemetry is native to the model, fusion stops being a separate pipeline bolted on afterwards.',
+      'Aorizon is our answer to both problems at once. A sparse mixture-of-experts transformer trained on sovereign compute, reading text, imagery, speech and sensor telemetry as native modalities fused through cross-attention, not as captions bolted onto a language model. Because telemetry is native to the model, fusion stops being a separate pipeline downstream of it.',
       'It runs at the edge. A forward node produces a usable local picture with no connectivity at all and reconciles with the wider grid when a link returns. Source code, training data, pipelines, weights and tooling transfer to the customer as exclusive IP, with a structured knowledge-transfer programme so their own people can retrain it.',
     ],
   },
   capabilities: [
     {
       title: 'Sensor telemetry as a modality',
-      body: 'A purpose-built 1D-CNN and transformer encoder for sonar, radar and AIS, fused by cross-attention. Genuine sensor-language reasoning rather than caption-style approximation.',
+      body: 'A purpose-built 1D-CNN and transformer encoder for sonar, radar and AIS, fused by cross-attention. Genuine sensor-language reasoning, not caption-style approximation.',
     },
     {
       title: 'Sensor-agnostic ingest',
-      body: 'Works with the sensors already in service, ours and third parties\', rather than requiring a fleet replacement to deliver value.',
+      body: 'Works with the sensors already in service, ours and third parties\', with no fleet replacement needed to deliver value.',
     },
     {
       title: 'Single track per object',
@@ -877,7 +870,7 @@ const aorizon: Programme = {
     },
     {
       title: 'Continuous custody',
-      body: 'Tracks survive sensor handover, coverage gaps and attempted deception, with a maintained history rather than a snapshot.',
+      body: 'Tracks survive sensor handover, coverage gaps and attempted deception, carrying a maintained history and not a snapshot.',
     },
     {
       title: 'Edge-first operation',
@@ -952,7 +945,7 @@ const talon: Programme = {
   category: 'ai',
   designation: 'TALON',
   name: 'Talon',
-  tagline: 'Strike. Effector pairing and engagement management',
+  tagline: 'Effector pairing and engagement management',
   domain: ['Fires', 'Effector pairing', 'Valley product'],
   status: 'In trials',
   summary:
@@ -1029,7 +1022,7 @@ const sentinel: Programme = {
   category: 'ai',
   designation: 'SENTINEL',
   name: 'Sentinel',
-  tagline: 'Shield. Installation and force protection',
+  tagline: 'Installation and force protection, layer by layer',
   domain: ['Protection', 'Air defence', 'Valley product'],
   status: 'In trials',
   summary:
@@ -1042,7 +1035,7 @@ const sentinel: Programme = {
     heading: 'Defence fails on reaction time, not on equipment.',
     body: [
       'An installation under attack rarely lacks the means to defend itself. What it lacks is the seconds between detection and response, the time spent identifying what was seen, deciding whether it matters, finding who has authority, and telling the right effector to act. Against a drone at low altitude that entire chain has to complete in less time than a staff process takes to begin.',
-      'Sentinel compresses it. It holds a continuous defensive picture for a defended asset, evaluates threats against rules of engagement that a commander sets in advance, allocates the appropriate layer automatically (soft kill, hard kill, manoeuvre, or an alert to a human) and executes within standing authority while keeping the commander informed rather than in the loop for every event.',
+      'Sentinel compresses it. It holds a continuous defensive picture for a defended asset, evaluates threats against rules of engagement that a commander sets in advance, allocates the appropriate layer automatically (soft kill, hard kill, manoeuvre, or an alert to a human) and executes within standing authority while keeping the commander informed without putting them in the loop for every event.',
       'It scales down to a single forward position with one radar and one effector, and up to an installation with dozens of sensors and multiple effector types. The same model covers a static base, a moving convoy and a deployed formation.',
     ],
   },

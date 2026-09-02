@@ -119,17 +119,22 @@ export function Navbar() {
                   )}
                 </div>
 
-                {/* Plain link columns. No per-link codes or descriptions: the
-                    page itself carries that, and the menu reads as a directory. */}
-                <div className="col-span-9 grid grid-cols-3 gap-x-12">
+                {/* One uniform cell per entry. Hairline gaps and a filled
+                    trailing row keep every group the same shape, whether it
+                    holds three links or seven. */}
+                <div className="col-span-9 grid auto-rows-fr grid-cols-3 gap-px bg-line">
                   {group.links.map((link) => (
                     <Link
                       key={link.to + link.label}
                       to={link.to}
-                      className="border-b border-line py-3 font-display text-base uppercase tracking-wide text-ink-1 transition-colors hover:text-white"
+                      className="flex items-center bg-void px-5 py-4 font-display text-base uppercase tracking-wide text-ink-1 transition-colors hover:bg-panel hover:text-white"
                     >
                       {link.label}
                     </Link>
+                  ))}
+                  {/* Blank cells so the last row squares off. */}
+                  {Array.from({ length: (3 - (group.links.length % 3)) % 3 }).map((_, i) => (
+                    <span key={`pad-${i}`} className="bg-void" />
                   ))}
                 </div>
               </div>

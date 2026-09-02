@@ -13,12 +13,10 @@ export interface MediaSlotProps {
   alt?: string;
   /** Short caption shown under the frame. */
   caption?: string;
-  /** Designation printed inside the placeholder, e.g. "ANKOSHA-C / FLIGHT TEST". */
+  /** Designation used for the alt text, and shown while an asset is missing. */
   label?: string;
   ratio?: MediaRatio;
   className?: string;
-  /** Suggested drop path, printed in the placeholder so assets land in the right slot. */
-  path?: string;
   priority?: boolean;
   /**
    * `contain` is for cut-out CAD renders, which carry their own transparency and
@@ -38,12 +36,12 @@ const ratioClass: Record<MediaRatio, string> = {
 };
 
 /**
- * Every image on the site goes through this component.
+ * Every image and clip on the site goes through this component, so ratios and
+ * loading behaviour stay consistent between grids.
  *
- * With no `src`/`video` it renders a labelled technical placeholder, a reticle,
- * the designation, the target aspect ratio and the file path the asset belongs at. * so the marketing team can see exactly what imagery is still outstanding and drop
- * files in without touching layout. It also covers the case where a supplied asset
- * fails to load.
+ * With no `src`/`video` it holds the frame with a quiet panel carrying the
+ * designation, which is also what a supplied asset falls back to if it fails
+ * to load.
  */
 export function MediaSlot({
   src,
@@ -51,10 +49,9 @@ export function MediaSlot({
   poster,
   alt = '',
   caption,
-  label = 'IMAGERY PENDING',
+  label = 'Imagery pending',
   ratio = '16/9',
   className = '',
-  path,
   priority = false,
   fit = 'cover',
 }: MediaSlotProps) {
@@ -67,7 +64,8 @@ export function MediaSlot({
 
   // Trial footage runs to a couple of megabytes a clip, and an autoplaying
   // <video> fetches the moment it mounts. Hold the source back until the frame
-  // is actually approaching the viewport.
+  // is actually approaching the viewport, so the poster is all that loads above
+  // the fold.
   useEffect(() => {
     if (!video) return;
     const el = frame.current;
@@ -83,120 +81,88 @@ export function MediaSlot({
           io.disconnect();
         }
       },
-      { rootMargin: '300px' },
+      { rootMargin: '400px' },
     );
     io.observe(el);
     return () => io.disconnect();
   }, [video]);
 
+  const posterSrc = poster ?? src;
+  // Reduced-motion viewers still get the clip, they just get it paused with
+  // controls instead of looping at them.
+  const loadVideo = Boolean(video) && videoNear;
+
   return (
     <figure className={className}>
-              <div
-          ref={frame}
-          className={`relative overflow-hidden border border-line bg-abyss ${ratioClass[ratio]}`}
-        >
-          {/* Cut-out renders sit on the tactical grid rather than on flat black. */}
-          {contain && hasAsset && (
-            <div className="absolute inset-0 bg-grid-fine bg-grid-fine opacity-[0.14]" />
-          )}
-          {video && !failed ? (
-            <video
-              className="absolute inset-0 h-full w-full object-cover"
-              src={videoNear && !reduced ? video : undefined}
-              autoPlay={!reduced}
-              muted
-              loop
-              playsInline
-              preload={priority ? 'auto' : 'metadata'}
-              poster={poster ?? src}
-              onError={() => setFailed(true)}
-            />
-          ) : src && !failed ? (
-            <img
-              src={src}
-              alt={alt || label}
-              loading={priority ? 'eager' : 'lazy'}
-              decoding={priority ? 'sync' : 'async'}
-              // React 18 forwards only the lowercase DOM attribute; the camelCase
-              // prop is React 19 and warns here.
-              {...({ fetchpriority: priority ? 'high' : 'auto' } as Record<string, string>)}
-              className={
-                contain
-                  ? 'absolute inset-0 h-full w-full object-contain p-6 sm:p-8'
-                  : 'absolute inset-0 h-full w-full object-cover'
-              }
-              onError={() => setFailed(true)}
-            />
-          ) : (
-            <Placeholder label={label} ratio={ratio} path={path} />
-          )}
-
-          {/* Constant HUD overlay, kept subtle so it reads on real photography too. */}
-          <div className="pointer-events-none absolute inset-0">
-            <div
-              className={`absolute inset-0 bg-gradient-to-t ${
-                contain ? 'from-void/30' : 'from-void/70'
-              } via-transparent to-transparent`}
-            />
-            {hasAsset && (
-              <span className="absolute left-3 top-3 font-mono text-[0.6rem] uppercase tracking-widest text-ink-3">
-                {label}
-              </span>
+      <div
+        ref={frame}
+        className={`relative overflow-hidden border border-line bg-abyss ${ratioClass[ratio]}`}
+      >
+        {video && !failed ? (
+          <>
+            {/* Poster stays painted underneath so the frame is never empty
+                while the clip is still arriving. */}
+            {posterSrc && (
+              <img
+                src={posterSrc}
+                alt={alt || label}
+                loading={priority ? 'eager' : 'lazy'}
+                decoding="async"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
             )}
-          </div>
-        </div>
+            {loadVideo && (
+              <video
+                className="absolute inset-0 h-full w-full object-cover"
+                src={video}
+                autoPlay={!reduced}
+                controls={reduced === true}
+                muted
+                loop
+                playsInline
+                preload="auto"
+                poster={posterSrc}
+                onError={() => setFailed(true)}
+              />
+            )}
+          </>
+        ) : src && !failed ? (
+          <img
+            src={src}
+            alt={alt || label}
+            loading={priority ? 'eager' : 'lazy'}
+            decoding={priority ? 'sync' : 'async'}
+            // React 18 forwards only the lowercase DOM attribute; the camelCase
+            // prop is React 19 and warns here.
+            {...({ fetchpriority: priority ? 'high' : 'auto' } as Record<string, string>)}
+            className={
+              contain
+                ? 'absolute inset-0 h-full w-full object-contain p-6 sm:p-8'
+                : 'absolute inset-0 h-full w-full object-cover'
+            }
+            onError={() => setFailed(true)}
+          />
+        ) : (
+          <Placeholder label={label} />
+        )}
+
+        {/* A single soft foot on photography, so captions and card text below
+            the frame keep their contrast. Cut-out renders are left alone. */}
+        {hasAsset && !contain && (
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-void/60 to-transparent" />
+        )}
+      </div>
       {caption && (
-        <figcaption className="mt-3 font-mono text-[0.65rem] uppercase tracking-widest text-ink-dim">
-          {caption}
-        </figcaption>
+        <figcaption className="mt-3 text-xs leading-relaxed text-ink-dim">{caption}</figcaption>
       )}
     </figure>
   );
 }
 
-function Placeholder({
-  label,
-  ratio,
-  path,
-}: {
-  label: string;
-  ratio: MediaRatio;
-  path?: string;
-}) {
+function Placeholder({ label }: { label: string }) {
   return (
-    <div className="absolute inset-0 flex flex-col items-center justify-center bg-grid-fine bg-grid-fine">
-      {/* Diagonal survey lines */}
-      <svg
-        className="absolute inset-0 h-full w-full text-white/[0.06]"
-        preserveAspectRatio="none"
-        viewBox="0 0 100 100"
-        aria-hidden="true"
-      >
-        <line x1="0" y1="0" x2="100" y2="100" stroke="currentColor" strokeWidth="0.25" />
-        <line x1="100" y1="0" x2="0" y2="100" stroke="currentColor" strokeWidth="0.25" />
-      </svg>
-
-      {/* Reticle */}
-      <svg
-        className="relative h-14 w-14 text-accent/40"
-        viewBox="0 0 100 100"
-        fill="none"
-        aria-hidden="true"
-      >
-        <circle cx="50" cy="50" r="30" stroke="currentColor" strokeWidth="1.5" strokeDasharray="6 8" />
-        <circle cx="50" cy="50" r="3" fill="currentColor" />
-        <path d="M50 6v16M50 78v16M6 50h16M78 50h16" stroke="currentColor" strokeWidth="1.5" />
-      </svg>
-
-      <div className="relative mt-4 px-4 text-center">
-        <p className="font-mono text-[0.65rem] uppercase tracking-widest text-ink-3">{label}</p>
-        <p className="mt-1.5 font-mono text-[0.6rem] uppercase tracking-widest text-white/20">
-          asset slot · {ratio.replace('/', ':')}
-        </p>
-        {path && (
-          <p className="mt-1 font-mono text-[0.6rem] tracking-wide text-accent/35">{path}</p>
-        )}
-      </div>
+    <div className="absolute inset-0 flex items-end bg-panel/40 p-5">
+      <p className="font-mono text-[0.6rem] uppercase tracking-widest text-ink-dim">{label}</p>
     </div>
   );
 }

@@ -23,19 +23,25 @@ The AminutemanWebsite now has integrated forms using Web3Forms for form submissi
 ## Configuration
 
 ### Environment Variables (`.env`)
-```env
-# Cloudinary Configuration
-VITE_CLOUDINARY_CLOUD_NAME=dhi6p6erz
-VITE_CLOUDINARY_API_KEY=696776578481646
 
-# Web3Forms Configuration  
-VITE_WEB3FORMS_ACCESS_KEY=087ad74a-490c-4bcb-a331-228bbb69f1d8
+Copy `.env.example` to `.env` and fill it in. `.env` is gitignored and must stay that way.
+
+```env
+VITE_CLOUDINARY_CLOUD_NAME=
+VITE_CLOUDINARY_UPLOAD_PRESET=
+VITE_WEB3FORMS_ACCESS_KEY=
 ```
+
+Everything in a `VITE_`-prefixed variable is compiled into the public JavaScript
+bundle and is readable by anyone. Only ever put publishable values here: the
+Cloudinary cloud name, an *unsigned* upload preset, and the Web3Forms access key
+(which is designed to be public). A Cloudinary API secret, or any signing key,
+must never appear in this file or anywhere else in this repository.
 
 ### Cloudinary Settings
 - **Cloud Name**: `dhi6p6erz`
 - **API Key**: `696776578481646`
-- **API Secret**: `KU_ZoAqwdmp-pBSGyWGt-cYP6ME` (not used in frontend)
+- **API Secret**: not used by the frontend, and never committed. Keep it in the Cloudinary dashboard only.
 - **Upload Folder**: `aminuteman_resumes`
 
 ### Web3Forms Settings

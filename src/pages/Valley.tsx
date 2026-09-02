@@ -46,7 +46,7 @@ const CHAIN = [
 const LAYERS = [
   {
     name: 'Custody',
-    body: 'One track, one identity, one chain of evidence. The grid records which sensor contributed what and when, so a track can be defended after the fact rather than merely asserted during the fight.',
+    body: 'One track, one identity, one chain of evidence. The grid records which sensor contributed what and when, so a track can still be defended long after the fight.',
   },
   {
     name: 'Fusion',
@@ -62,7 +62,7 @@ const LAYERS = [
   },
   {
     name: 'Assurance',
-    body: 'Rules of engagement, geofences and authority boundaries enforced in the software rather than in the briefing. Every engagement is reconstructable end to end.',
+    body: 'Rules of engagement, geofences and authority boundaries enforced in the software, not left to the briefing. Every engagement is reconstructable end to end.',
   },
 ];
 
@@ -191,7 +191,7 @@ export function Valley() {
         <div className="container">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-4">
-              <Eyebrow index="01">The problem</Eyebrow>
+              <Eyebrow>The problem</Eyebrow>
             </div>
             <div className="lg:col-span-8">
               <Reveal>
@@ -239,7 +239,6 @@ export function Valley() {
           <Reveal>
             <SectionHeading
               eyebrow="Architecture"
-              index="02"
               title="The unified grid"
               lede="Sensing on the left, effects on the right, one custody model in the middle. Any node on either side can be ours, the customer’s, or a third party’s. The grid is indifferent to which."
             />
@@ -259,7 +258,6 @@ export function Valley() {
           <Reveal>
             <SectionHeading
               eyebrow="Sequence"
-              index="03"
               title="How an engagement closes"
               lede="Six steps, and a human at the fifth. The grid compresses the four either side of it."
             />
@@ -309,7 +307,6 @@ export function Valley() {
           <Reveal>
             <SectionHeading
               eyebrow="Composition"
-              index="04"
               title="What the platform is made of"
               lede="Five layers. A customer can adopt the lower ones without the upper ones, which is usually how a first deployment starts."
             />
@@ -342,9 +339,8 @@ export function Valley() {
               <Reveal>
                 <SectionHeading
                   eyebrow="Posture"
-                  index="05"
                   title="Built for the link going down"
-                  lede="Contested electromagnetic conditions are the design case, not the exception handled in a later release."
+                  lede="Contested electromagnetic conditions are the design case, handled in the first release and not deferred to a later one."
                 />
               </Reveal>
             </div>
@@ -372,23 +368,19 @@ export function Valley() {
           <Reveal>
             <SectionHeading
               eyebrow="Delivered as"
-              index="06"
               title="Three products, one grid"
               lede="Valley reaches a customer as one of three deployable products. They read and write the same grid state, so a force can start with one and add the others without a second integration."
             />
           </Reveal>
 
           <Stagger className="mt-16 grid grid-cols-1 gap-px bg-line lg:grid-cols-3">
-            {products.map((product, i) => (
+            {products.map((product) => (
               <StaggerItem key={product.slug} className="bg-void">
                 <Link
                   to={programmePath(product.slug)}
                   className="group flex h-full flex-col bg-panel/30 p-8 transition-colors duration-300 hover:bg-panel"
                 >
-                  <span className="font-display text-6xl uppercase leading-none tracking-tight text-white/[0.08]">
-                    {['See', 'Strike', 'Shield'][i]}
-                  </span>
-                  <h3 className="-mt-6 font-display text-3xl uppercase leading-none tracking-wide text-white">
+                  <h3 className="font-display text-3xl uppercase leading-none tracking-wide text-white">
                     {product.name}
                   </h3>
                   <p className="mt-3 font-mono text-[0.6rem] uppercase tracking-widest text-accent/60">
@@ -410,7 +402,7 @@ export function Valley() {
       <section className="section border-b border-line">
         <div className="container">
           <Reveal>
-            <Eyebrow index="07">Platform specification</Eyebrow>
+            <Eyebrow>Platform specification</Eyebrow>
           </Reveal>
           <div className="mt-10">
             <SpecTable specs={PLATFORM_SPECS} />
@@ -422,7 +414,7 @@ export function Valley() {
       <section className="section">
         <div className="container">
           <Reveal>
-            <SectionHeading eyebrow="Go deeper" index="08" title="The platform in detail" />
+            <SectionHeading eyebrow="Go deeper" title="The platform in detail" />
           </Reveal>
 
           <div className="mt-14 grid grid-cols-1 gap-px bg-line md:grid-cols-3">

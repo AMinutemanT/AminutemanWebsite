@@ -60,6 +60,7 @@ export function Contact() {
 
     try {
       const web3FormData = {
+        botcheck: '',
         name: formData.name,
         email: formData.email,
         subject: formData.subject,

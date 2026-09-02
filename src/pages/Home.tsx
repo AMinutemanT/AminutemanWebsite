@@ -63,17 +63,17 @@ const DOMAINS: { slug: string; heading: string; blurb: string }[] = [
   },
   {
     slug: 'aorizon',
-    heading: 'See',
+    heading: 'Aorizon',
     blurb: 'The sovereign foundation model, trained wholly on Indian compute, and the fused picture it holds over every source.',
   },
   {
     slug: 'talon',
-    heading: 'Strike',
+    heading: 'Talon',
     blurb: 'Effector pairing and engagement management, with the reasoning shown and a human at the decision point.',
   },
   {
     slug: 'sentinel',
-    heading: 'Shield',
+    heading: 'Sentinel',
     blurb: 'Installation and force protection, layered from detection through to the effector that answers it.',
   },
 ];
@@ -87,6 +87,25 @@ const POSTURE = [
 
 const PRODUCTS = ['aorizon', 'talon', 'sentinel'];
 
+/* Onboard footage from the range. Both clips are recorded off the airframe,
+   telemetry overlay and all. */
+const TRIALS = [
+  {
+    video: '/videos/fibre-optic-trial.mp4',
+    poster: '/videos/fibre-optic-trial.jpg',
+    label: 'Fibre-optic control',
+    caption:
+      'Onboard footage from a tethered fibre-optic control run. The spool pays out behind the airframe and the command link is physical, so there is nothing on it to jam.',
+  },
+  {
+    video: '/videos/payload-release-trial.mp4',
+    poster: '/videos/payload-release-trial.jpg',
+    label: 'Payload release',
+    caption:
+      'A grenade release over the range, flown from the airframe camera. Release, separation and the run off target, uncut.',
+  },
+];
+
 /* -- Page ------------------------------------------------------------------- */
 
 export function Home() {
@@ -97,12 +116,12 @@ export function Home() {
   return (
     <div className="bg-void">
       <Hero />
-      <DeterrenceBand />
       <Mandate />
       <DomainMatrix />
       <ValleySection />
       <ProductTriad />
       <AnkoshaStrip />
+      <Trials />
       <Posture />
       <Vision />
       <Standing />
@@ -185,27 +204,6 @@ function Hero() {
   );
 }
 
-/* -- Deterrence band -------------------------------------------------------- */
-
-function DeterrenceBand() {
-  return (
-    <section className="relative overflow-hidden border-b border-line py-20 sm:py-28">
-      <div className="container">
-        <div className="text-center">
-          <p className="display-xl text-white/[0.14]">Shaping</p>
-          <p className="-mt-2 font-display text-xl italic tracking-widest text-ink-3 sm:-mt-4 sm:text-2xl">
-            the
-          </p>
-          <p className="display-xl -mt-1 bg-gradient-to-b from-white to-white/25 bg-clip-text text-transparent sm:-mt-2">
-            Deterrence
-          </p>
-        </div>
-      </div>
-      <div className="pointer-events-none absolute inset-x-0 top-1/2 h-px bg-gradient-to-r from-transparent via-accent/25 to-transparent" />
-    </section>
-  );
-}
-
 /* -- Mandate ---------------------------------------------------------------- */
 
 function Mandate() {
@@ -214,7 +212,7 @@ function Mandate() {
       <div className="container">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-4">
-            <Eyebrow index="01">Mandate</Eyebrow>
+            <Eyebrow>Mandate</Eyebrow>
           </div>
           <div className="lg:col-span-8">
             <Reveal>
@@ -229,24 +227,25 @@ function Mandate() {
                   licence, a foreign end-use certificate, or a lead time set by somebody else's
                   industrial policy. Autonomy that runs at the edge without a datacentre.
                   Counter-drone effectors priced against what they are shooting at. Loitering
-                  munitions a section can carry and launch. These are not exotic technologies. They are the things a serious force needs in
-                  quantity, and they have been unavailable to India on its own terms.
+                  munitions a section can carry and launch. None of it is exotic. All of it is
+                  what a serious force needs in quantity, and all of it has been unavailable to
+                  India on its own terms.
                 </p>
               </Reveal>
               <Reveal delay={0.12}>
                 <p className="body-copy text-base sm:text-lg">
                   We work the full stack: airframes, powerplants, effectors, sensing, and the
-                  software grid that makes them act as one system rather than a collection of
+                  software grid that makes them act as one system instead of a collection of
                   procurement line items. The hardware is what a customer buys. The grid is what
-                  makes the hardware worth more together than apart.
+                  gets more out of it.
                 </p>
               </Reveal>
               <Reveal delay={0.18}>
                 <p className="body-copy text-base sm:text-lg">
-                  One principle sits above all of it, and it is engineered in rather than asserted:
-                  a machine may propose, but a human commits. Every engagement on our systems
-                  carries an identity, a timestamp and an authority reference, and every one of
-                  them can be reviewed afterwards.
+                  One principle sits above all of it, and it is engineered in rather than
+                  asserted: a machine may propose, but a human commits. Every engagement on our
+                  systems carries an identity, a timestamp and an authority reference, and every
+                  one of them can be reviewed afterwards.
                 </p>
               </Reveal>
             </div>
@@ -266,9 +265,8 @@ function DomainMatrix() {
         <Reveal>
           <SectionHeading
             eyebrow="Capability"
-            index="02"
             title="What we build"
-            lede="Ten programmes across four domains. Every one of them is designed as a node on the grid before it is designed as a platform."
+            lede="Ten programmes across four domains, each designed as a node on the grid before it is designed as a platform."
           />
         </Reveal>
 
@@ -344,7 +342,6 @@ function ValleySection() {
             <Reveal>
               <SectionHeading
                 eyebrow="Platform"
-                index="03"
                 title="Valley"
                 lede="An integration layer for the whole force. Every sensor publishes to it, every effector subscribes from it, and the picture it holds is the same picture at a forward position and at command."
               />
@@ -383,33 +380,23 @@ function ProductTriad() {
         <Reveal>
           <SectionHeading
             eyebrow="Products"
-            index="04"
-            title="See. Strike. Shield."
+            title="Aorizon, Talon, Sentinel"
             lede="Three deployable products on the Valley platform. They run on the sensors and effectors a force already owns, and they read and write the same grid state."
           />
         </Reveal>
 
         <Stagger className="mt-16 grid grid-cols-1 gap-px bg-line lg:grid-cols-3">
-          {PRODUCTS.map((slug, i) => {
+          {PRODUCTS.map((slug) => {
             const product = PROGRAMME_BY_SLUG[slug];
             if (!product) return null;
-            const verb = ['See', 'Strike', 'Shield'][i];
             return (
               <StaggerItem key={slug} className="bg-void">
                 <Link
                   to={programmePath(slug)}
                   className="group flex h-full flex-col bg-panel/30 transition-colors duration-300 hover:bg-panel"
                 >
-                  <MediaSlot
-                    label={product.designation}
-                    path={product.hero.path}
-                    ratio="16/9"
-                  />
                   <div className="flex flex-1 flex-col p-8">
-                    <span className="font-display text-6xl uppercase leading-none tracking-tight text-white/[0.08]">
-                      {verb}
-                    </span>
-                    <h3 className="-mt-6 font-display text-3xl uppercase leading-none tracking-wide text-white">
+                    <h3 className="font-display text-3xl uppercase leading-none tracking-wide text-white">
                       {product.name}
                     </h3>
                     <p className="mt-3 font-mono text-[0.6rem] uppercase tracking-widest text-accent/60">
@@ -445,7 +432,6 @@ function AnkoshaStrip() {
             <Reveal>
               <SectionHeading
                 eyebrow="Flagship"
-                index="05"
                 title="The Ankosha cross"
                 lede="Five airframes, one autonomy core, flown as a formation. Sensing, decision and effect distributed across the cross. Losing an element degrades the formation, it does not end the mission."
               />
@@ -484,20 +470,60 @@ function AnkoshaStrip() {
             <Reveal delay={0.1} direction="left">
               <div className="relative">
                 {/* Live formation view, reusing the hero renderer at lower intensity. */}
-                                  <div className="relative aspect-[4/3] overflow-hidden border border-line bg-abyss">
-                    <AnkoshaFlythrough className="absolute inset-0" intensity={0.95} scale={3.1} />
-                    <div className="pointer-events-none absolute inset-x-0 bottom-0 flex items-center justify-between gap-4 border-t border-line bg-void/70 px-4 py-2.5 backdrop-blur-sm">
-                      <span className="font-mono text-[0.6rem] uppercase tracking-widest text-ink-3">
-                        Formation view · synthetic
-                      </span>
-                      <span className="font-mono text-[0.6rem] uppercase tracking-widest text-nominal/80">
-                        09 elements · mesh held
-                      </span>
-                    </div>
+                <div className="relative aspect-[4/3] overflow-hidden border border-line bg-abyss">
+                  <AnkoshaFlythrough className="absolute inset-0" intensity={0.95} scale={3.1} />
+                  <div className="pointer-events-none absolute inset-x-0 bottom-0 border-t border-line bg-void/70 px-4 py-2.5 backdrop-blur-sm">
+                    <span className="font-mono text-[0.6rem] uppercase tracking-widest text-ink-3">
+                      Formation geometry, rendered from the airframe models
+                    </span>
                   </div>
+                </div>
               </div>
             </Reveal>
           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* -- Trials ----------------------------------------------------------------- */
+
+/**
+ * Two clips off the airframe. They sit behind an IntersectionObserver in
+ * MediaSlot, so nothing but the poster loads until the section is close.
+ */
+function Trials() {
+  return (
+    <section className="section border-b border-line">
+      <div className="container">
+        <Reveal>
+          <SectionHeading
+            eyebrow="From the range"
+            title="Trial footage"
+            lede="Recorded off the airframe during trials, telemetry overlay and all. No reconstruction and no animation."
+          />
+        </Reveal>
+
+        <div className="mt-14 grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-12">
+          {TRIALS.map((clip, i) => (
+            <Reveal key={clip.video} delay={i * 0.08}>
+              <MediaSlot
+                video={clip.video}
+                poster={clip.poster}
+                src={clip.poster}
+                alt={clip.label}
+                label={clip.label}
+                ratio="3/2"
+              />
+              <div className="mt-5">
+                <h3 className="font-display text-xl uppercase tracking-wide text-white">
+                  {clip.label}
+                </h3>
+                <p className="mt-3 max-w-xl text-sm leading-relaxed text-ink-3">{clip.caption}</p>
+              </div>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>
@@ -539,14 +565,13 @@ function Vision() {
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-7">
             <Reveal>
-              <SectionHeading eyebrow="Leadership" index="06" title="Our vision" />
+              <SectionHeading eyebrow="Leadership" title="Our vision" />
             </Reveal>
             <Reveal delay={0.08}>
               <p className="body-copy mt-10 text-base leading-relaxed sm:text-lg">
                 At <span className="font-medium text-white">Aminuteman Technologies</span>, we are
-                building toward a future where defence systems are not merely reactive but
-                intelligent, systems that sense, decide and act with autonomy, under human
-                authority. Our goal is to shift defence readiness away from dependence on constant
+                building toward defence systems that sense, decide and act with autonomy, under
+                human authority. Our goal is to shift defence readiness away from dependence on constant
                 maintenance and foreign supply, toward self-sustaining systems built and sustained
                 at home. Through <span className="font-medium text-accent">Valley</span>, our
                 physical-AI operating system, we are building the connective intelligence for
@@ -575,10 +600,10 @@ function Vision() {
             <Reveal delay={0.1} direction="left">
               <MediaSlot
                 src="/images/vision.jpg"
-                label="FOUNDER & CEO"
-                caption="Aniruddha Narayan · Founder & Chief Executive"
+                alt="Press coverage of Aminuteman Technologies"
+                label="Press coverage"
+                caption="Reported in the national and trade press, September 2025"
                 ratio="4/5"
-                path="/images/vision.jpg"
               />
             </Reveal>
           </div>
@@ -597,9 +622,8 @@ function Standing() {
         <Reveal>
           <SectionHeading
             eyebrow="Standing"
-            index="07"
-            title="Where we actually are"
-            lede="Programme facts rather than adjectives. Each of these comes from a contract, a submission or a build standard."
+            title="Where we stand"
+            lede="Each of these comes from a contract, a submission or a build standard."
           />
         </Reveal>
 
@@ -696,12 +720,12 @@ function ClosingCTA() {
               <div className="lg:col-span-8">
                 <Eyebrow>Engagement</Eyebrow>
                 <h2 className="display-md mt-6 text-white">
-                  Bring us a problem, not a specification
+                  Start with the operational problem
                 </h2>
                 <p className="body-copy mt-6 max-w-2xl text-base sm:text-lg">
-                  We work best with customers who describe the operational problem and let the
-                  engineering follow. Programme briefings, trial data and integration
-                  documentation are released to qualified government and industry counterparties.
+                  We work best with customers who describe the fight and let the engineering
+                  follow. Programme briefings, trial data and integration documentation are
+                  released to qualified government and industry counterparties.
                 </p>
               </div>
               <div className="flex flex-col gap-3 lg:col-span-4 lg:items-end">

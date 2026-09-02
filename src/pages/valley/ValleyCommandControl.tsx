@@ -21,7 +21,7 @@ const SURFACE = [
   },
   {
     title: 'Disagreement stays visible',
-    body: 'When two sensors contradict each other the console shows the contradiction rather than averaging it into a false consensus. Ambiguity is information.',
+    body: 'When two sensors contradict each other the console shows the contradiction instead of averaging it into a false consensus. Ambiguity is information.',
   },
   {
     title: 'Effector pairing, not platform tasking',
@@ -122,7 +122,7 @@ export function ValleyCommandControl() {
         <div className="container">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-4">
-              <Eyebrow index="01">The problem</Eyebrow>
+              <Eyebrow>The problem</Eyebrow>
             </div>
             <div className="lg:col-span-8">
               <Reveal>
@@ -143,7 +143,7 @@ export function ValleyCommandControl() {
                   <p className="body-copy text-base sm:text-lg">
                     Valley C2 inverts that. Correlation happens in the grid before it reaches a
                     person, and what reaches the person is a track with its provenance attached.
-                    The operator&rsquo;s job becomes judgement (is this what it appears to be, and should we act) rather than clerical reconciliation of contradictory feeds.
+                    The operator&rsquo;s job becomes judgement, not clerical reconciliation of contradictory feeds.
                   </p>
                 </Reveal>
               </div>
@@ -158,7 +158,6 @@ export function ValleyCommandControl() {
           <Reveal>
             <SectionHeading
               eyebrow="Operator surface"
-              index="02"
               title="What the console does"
             />
           </Reveal>
@@ -188,9 +187,8 @@ export function ValleyCommandControl() {
           <Reveal>
             <SectionHeading
               eyebrow="Authority"
-              index="03"
               title="How a commitment is made"
-              lede="Four steps, and the third is always a person. This sequence is enforced by the software rather than described in a standing order."
+              lede="Four steps, and the third is always a person. The software enforces the sequence; a standing order only describes it."
             />
           </Reveal>
 
@@ -236,7 +234,7 @@ export function ValleyCommandControl() {
       <section className="section border-b border-line">
         <div className="container">
           <Reveal>
-            <Eyebrow index="04">Specification</Eyebrow>
+            <Eyebrow>Specification</Eyebrow>
           </Reveal>
           <div className="mt-10">
             <SpecTable specs={SPECS} />

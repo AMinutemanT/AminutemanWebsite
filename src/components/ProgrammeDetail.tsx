@@ -25,7 +25,7 @@ export function ProgrammeDetail({ programme }: { programme: Programme }) {
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-4">
               <div className="lg:sticky lg:top-28">
-                <Eyebrow index="01">Overview</Eyebrow>
+                <Eyebrow>Overview</Eyebrow>
                 <dl className="mt-8 space-y-px border border-line bg-line">
                   <Detail term="Designation" value={programme.designation} />
                   <Detail term="Category" value={CATEGORY_LABEL[programme.category]} />
@@ -57,7 +57,6 @@ export function ProgrammeDetail({ programme }: { programme: Programme }) {
           <Reveal>
             <SectionHeading
               eyebrow="Capabilities"
-              index="02"
               title="What it does"
               lede={`Capability set for ${programme.designation}, stated at the level we are prepared to publish.`}
             />
@@ -89,7 +88,6 @@ export function ProgrammeDetail({ programme }: { programme: Programme }) {
             <Reveal>
               <SectionHeading
                 eyebrow="Configuration"
-                index="03"
                 title="The family"
                 lede="Common architecture, differentiated by the fight each element is sized for."
               />
@@ -133,9 +131,8 @@ export function ProgrammeDetail({ programme }: { programme: Programme }) {
             <Reveal>
               <SectionHeading
                 eyebrow="Geometry"
-                index="04"
                 title="The actual assembly"
-                lede="Not an illustration. This is the engineering CAD assembly the airframe is built from, tessellated and served to the browser. Drag it."
+                lede="The engineering CAD assembly the airframe is built from, tessellated and served to the browser. Drag it."
               />
             </Reveal>
             <Reveal delay={0.1} className="mt-14">
@@ -155,7 +152,7 @@ export function ProgrammeDetail({ programme }: { programme: Programme }) {
         <section className="section border-t border-line">
           <div className="container">
             <Reveal>
-              <SectionHeading eyebrow="Imagery" index="05" title="Programme record" />
+              <SectionHeading eyebrow="Imagery" title="Programme record" />
             </Reveal>
             <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {programme.gallery.map((item, i) => (
@@ -163,7 +160,6 @@ export function ProgrammeDetail({ programme }: { programme: Programme }) {
                   <MediaSlot
                     label={item.label}
                     caption={item.caption}
-                    path={item.path}
                     src={item.src}
                     video={item.video}
                     ratio={item.ratio ?? '4/5'}
@@ -180,7 +176,7 @@ export function ProgrammeDetail({ programme }: { programme: Programme }) {
       <section className="section border-t border-line">
         <div className="container">
           <Reveal>
-            <Eyebrow index="06">Specification</Eyebrow>
+            <Eyebrow>Specification</Eyebrow>
           </Reveal>
           <div className="mt-10">
             <SpecTable specs={programme.specs} />
@@ -194,7 +190,7 @@ export function ProgrammeDetail({ programme }: { programme: Programme }) {
           <div className="container py-20 sm:py-24">
             <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
               <div className="lg:col-span-4">
-                <Eyebrow index="07">On the grid</Eyebrow>
+                <Eyebrow>On the grid</Eyebrow>
                 <p className="mt-6 font-display text-4xl uppercase leading-none tracking-tight text-white sm:text-5xl">
                   Valley
                 </p>
@@ -221,7 +217,7 @@ export function ProgrammeDetail({ programme }: { programme: Programme }) {
         <section className="section">
           <div className="container">
             <Reveal>
-              <SectionHeading eyebrow="Adjacent" index="08" title="Related programmes" />
+              <SectionHeading eyebrow="Adjacent" title="Related programmes" />
             </Reveal>
             <div className="mt-12 grid grid-cols-1 gap-px bg-line sm:grid-cols-2 lg:grid-cols-4">
               {wantsValley && (

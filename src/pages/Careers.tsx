@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Send, Upload, FileCheck } from 'lucide-react';
 import { uploadToCloudinary, submitToWeb3Forms } from '../utils/cloudinary';
 import { Reveal, Stagger, StaggerItem } from '../components/ui/Reveal';
+import { PageHero } from '../components/ui/PageHero';
 import { Eyebrow, SectionHeading } from '../components/ui/HUD';
 
 /* ---------------------------------------------------------------------------
@@ -104,13 +105,18 @@ export function Careers() {
       if (formData.resume && !formData.resumeUrl) {
         setUploadingResume(true);
         resumeUrl = await uploadToCloudinary(formData.resume);
+        setUploadingResume(false);
+        // Hold the URL so a retry after a failed submit does not upload the
+        // same CV to Cloudinary a second time.
+        setFormData((prev) => ({ ...prev, resumeUrl }));
       }
 
       if (!resumeUrl) {
-        throw new Error('Resume upload failed. Please try again.');
+        throw new Error('Attach a CV before submitting.');
       }
 
       const web3FormData = {
+        botcheck: '',
         name: formData.name,
         email: formData.email,
         phone: formData.phone,
@@ -218,37 +224,21 @@ ${formData.coverLetter || 'No cover letter provided'}
 
   return (
     <div className="bg-void">
-      {/* ---- Header ------------------------------------------------------ */}
-      <header className="relative overflow-hidden border-b border-line pt-40 pb-20 sm:pt-48 sm:pb-28">
-        <div className="absolute inset-0 bg-grid-coarse bg-grid-coarse opacity-[0.18]" />
-        <div className="absolute inset-0 bg-[radial-gradient(100%_80%_at_50%_0%,rgba(255,138,0,0.12),transparent_60%)]" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-void" />
-
-        <div className="container relative">
-          <Reveal direction="none">
-            <Eyebrow>Careers</Eyebrow>
-          </Reveal>
-          <Reveal delay={0.08}>
-            <h1 className="display-xl mt-6 max-w-4xl text-white">
-              Build the things
-              <br />
-              nobody will sell us
-            </h1>
-          </Reveal>
-          <Reveal delay={0.14}>
-            <p className="mt-7 max-w-3xl text-lg leading-relaxed text-ink-2 sm:text-xl">
-              We are hiring engineers who want the unsolved half of the problem, autonomy,
-              structures, guidance and avionics for systems that have to work in contested
-              airspace, on a schedule India controls.
-            </p>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <p className="mt-10 font-mono text-[0.65rem] uppercase tracking-widest text-ink-dim">
-              {POSITIONS.length} open positions · Pune, India · Full-time
-            </p>
-          </Reveal>
-        </div>
-      </header>
+      <PageHero
+        eyebrow="Careers"
+        title={
+          <>
+            Build the things
+            <br />
+            nobody will sell us
+          </>
+        }
+        image="trial"
+        focus="50% 26%"
+        intensity={0.7}
+        lede="We are hiring engineers who want the unsolved half of the problem, autonomy, structures, guidance and avionics for systems that have to work in contested airspace, on a schedule India controls."
+        meta={`${POSITIONS.length} open positions · Pune, India · Full-time`}
+      />
 
       {/* ---- Why --------------------------------------------------------- */}
       <section className="section border-b border-line">
@@ -256,7 +246,6 @@ ${formData.coverLetter || 'No cover letter provided'}
           <Reveal>
             <SectionHeading
               eyebrow="The work"
-              index="01"
               title="Why this, and not somewhere else"
             />
           </Reveal>
@@ -286,7 +275,6 @@ ${formData.coverLetter || 'No cover letter provided'}
           <Reveal>
             <SectionHeading
               eyebrow="Open roles"
-              index="02"
               title="Positions"
               lede="All roles are full-time and on-site in Pune. If none of these match and you are still the right person, apply anyway and say why."
             />
@@ -334,7 +322,7 @@ ${formData.coverLetter || 'No cover letter provided'}
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-4">
               <Reveal>
-                <Eyebrow index="03">Application</Eyebrow>
+                <Eyebrow>Application</Eyebrow>
                 <h2 className="display-md mt-6 text-white">Send it in</h2>
                 <p className="body-copy mt-5">
                   One form, one attachment. We read every application ourselves, there is no

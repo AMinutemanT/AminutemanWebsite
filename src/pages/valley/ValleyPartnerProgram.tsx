@@ -40,7 +40,7 @@ const STAGES = [
   },
   {
     step: 'Conformance',
-    body: 'Track publication, tasking, timing and failure behaviour are tested against the harness. Disagreements surface in a lab rather than on a range.',
+    body: 'Track publication, tasking, timing and failure behaviour are tested against the harness. Disagreements surface in a lab, not on a range.',
   },
   {
     step: 'Integration trial',
@@ -139,7 +139,7 @@ export function ValleyPartnerProgram() {
         <div className="container">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-4">
-              <Eyebrow index="01">Why open</Eyebrow>
+              <Eyebrow>Why open</Eyebrow>
             </div>
             <div className="lg:col-span-8">
               <Reveal>
@@ -158,7 +158,7 @@ export function ValleyPartnerProgram() {
                 </Reveal>
                 <Reveal delay={0.12}>
                   <p className="body-copy text-base sm:text-lg">
-                    So the interface is published rather than guarded, conformance is something a
+                    So the interface is published and not guarded, conformance is something a
                     partner can run themselves before talking to us, and there is no exclusivity
                     requirement. A partner keeps their customers and their roadmap. What they gain
                     is that their system becomes tasking-reachable by every other node on the grid.
@@ -174,7 +174,7 @@ export function ValleyPartnerProgram() {
       <section className="section border-b border-line">
         <div className="container">
           <Reveal>
-            <SectionHeading eyebrow="Who this is for" index="02" title="Partners" />
+            <SectionHeading eyebrow="Who this is for" title="Partners" />
           </Reveal>
 
           <Stagger className="mt-16 grid grid-cols-1 gap-px bg-line sm:grid-cols-2 lg:grid-cols-4">
@@ -202,7 +202,6 @@ export function ValleyPartnerProgram() {
           <Reveal>
             <SectionHeading
               eyebrow="Process"
-              index="03"
               title="How onboarding runs"
               lede="Five stages. Most of the effort sits in the first two, which is deliberate. Ambiguity is cheaper to remove before integration than after."
             />
@@ -242,7 +241,6 @@ export function ValleyPartnerProgram() {
               <Reveal>
                 <SectionHeading
                   eyebrow="Interface"
-                  index="04"
                   title="What your system must do"
                   lede="Short list, strictly enforced. Everything here exists because its absence has broken a real integration."
                 />
@@ -274,7 +272,7 @@ export function ValleyPartnerProgram() {
       <section className="section border-b border-line">
         <div className="container">
           <Reveal>
-            <Eyebrow index="05">Programme terms</Eyebrow>
+            <Eyebrow>Programme terms</Eyebrow>
           </Reveal>
           <div className="mt-10">
             <SpecTable specs={SPECS} />

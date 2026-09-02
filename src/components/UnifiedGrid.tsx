@@ -185,17 +185,6 @@ export function UnifiedGrid({ className = '' }: { className?: string }) {
             >
               CUSTODY · PAIRING · AUTHORITY
             </text>
-            <text
-              x={CORE.x}
-              y={CORE.y + 32}
-              textAnchor="middle"
-              className="fill-nominal/70"
-              fontSize="9"
-              fontFamily="IBM Plex Mono, monospace"
-              letterSpacing="1.6"
-            >
-              ● GRID NOMINAL
-            </text>
           </g>
 
           {/* Nodes */}

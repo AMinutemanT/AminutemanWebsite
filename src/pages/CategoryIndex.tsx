@@ -7,18 +7,25 @@ import {
   programmesIn,
   type Category,
 } from '../data/programmes';
-import { Reveal, Stagger, StaggerItem } from '../components/ui/Reveal';
-import { Eyebrow, StatusTag, DomainChip } from '../components/ui/HUD';
+import { Stagger, StaggerItem } from '../components/ui/Reveal';
+import { StatusTag, DomainChip } from '../components/ui/HUD';
+import { PageHero, type HeroImage } from '../components/ui/PageHero';
 import { MediaSlot } from '../components/ui/MediaSlot';
 
-const COPY: Record<Category, { title: string; lede: string }> = {
+const COPY: Record<
+  Category,
+  { title: string; lede: string; image?: HeroImage; focus?: string; intensity?: number }
+> = {
   systems: {
     title: 'Systems',
     lede: 'Hardware programmes across air, air defence and space. Each one is a grid node before it is a platform.',
+    image: 'battery',
+    focus: '50% 46%',
+    intensity: 0.72,
   },
   ai: {
     title: 'AI',
-    lede: 'See, strike, shield, and the intelligence underneath. Deployable products that run on the Valley grid, the sovereign foundation model that reasons for them, and the validated models and secured links that qualify everything we build.',
+    lede: 'Deployable products that run on the Valley grid, the sovereign foundation model that reasons for them, and the validated models and secured links that qualify everything we build.',
   },
   platform: {
     title: 'Platform',
@@ -40,46 +47,34 @@ export function CategoryIndex({ category }: { category: Category }) {
 
   return (
     <div className="bg-void">
-      {/* ---- Header ------------------------------------------------------- */}
-      <header className="relative overflow-hidden border-b border-line pt-40 pb-20 sm:pt-48 sm:pb-28">
-        <div className="absolute inset-0 bg-grid-coarse bg-grid-coarse opacity-[0.18]" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-void" />
-        <div className="container relative">
-          <Reveal direction="none">
-            <Eyebrow>{CATEGORY_LABEL[category]} index</Eyebrow>
-          </Reveal>
-          <Reveal delay={0.08}>
-            <h1 className="display-xl mt-6 text-white">{copy.title}</h1>
-          </Reveal>
-          <Reveal delay={0.14}>
-            <p className="mt-7 max-w-3xl text-lg leading-relaxed text-ink-2 sm:text-xl">
-              {copy.lede}
-            </p>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <p className="mt-10 font-mono text-[0.65rem] uppercase tracking-widest text-ink-dim">
-              {programmes.length} programmes listed · restricted parameters withheld
-            </p>
-          </Reveal>
-        </div>
-      </header>
+      <PageHero
+        eyebrow={`${CATEGORY_LABEL[category]} index`}
+        title={copy.title}
+        lede={copy.lede}
+        meta={`${programmes.length} programmes`}
+        image={copy.image}
+        focus={copy.focus}
+        intensity={copy.intensity}
+      />
 
       {/* ---- Index -------------------------------------------------------- */}
       <section className="section">
         <div className="container">
-          <Stagger className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <Stagger className="grid grid-cols-1 gap-px bg-line sm:grid-cols-2 lg:grid-cols-3">
             {programmes.map((programme) => (
-              <StaggerItem key={programme.slug}>
+              <StaggerItem key={programme.slug} className="bg-void">
                 <Link
                   to={programmePath(programme.slug)}
-                  className="group flex h-full flex-col border border-line bg-panel/30 transition-colors duration-300 hover:border-accent/40 hover:bg-panel/60"
+                  className="group flex h-full flex-col bg-panel/30 transition-colors duration-300 hover:bg-panel"
                 >
-                  <MediaSlot
-                    label={programme.designation}
-                    path={programme.hero.path}
-                    src={programme.hero.src}
-                    ratio="3/2"
-                  />
+                  {programme.hero.src && (
+                    <MediaSlot
+                      label={programme.designation}
+                      src={programme.hero.src}
+                      alt={programme.name}
+                      ratio="3/2"
+                    />
+                  )}
 
                   <div className="flex flex-1 flex-col p-7">
                     <div className="flex items-start justify-between gap-4">
@@ -108,6 +103,22 @@ export function CategoryIndex({ category }: { category: Category }) {
                 </Link>
               </StaggerItem>
             ))}
+
+            {/* Squares off the last row, and gives the index somewhere to go. */}
+            <StaggerItem className="bg-void">
+              <Link
+                to="/contact"
+                className="group flex h-full flex-col justify-between bg-panel/20 p-7 transition-colors duration-300 hover:bg-panel"
+              >
+                <span className="font-mono text-[0.6rem] uppercase tracking-widest text-ink-dim">
+                  Enquiries
+                </span>
+                <span className="mt-10 inline-flex items-center gap-2 font-display text-2xl uppercase leading-none tracking-wide text-white transition-colors group-hover:text-accent">
+                  Talk to us
+                  <ArrowUpRight className="h-4 w-4" />
+                </span>
+              </Link>
+            </StaggerItem>
           </Stagger>
         </div>
       </section>

@@ -7,18 +7,14 @@ import { ReactNode } from 'react';
 
 export function Eyebrow({
   children,
-  index,
   className = '',
 }: {
   children: ReactNode;
-  /** Optional section number, rendered as a fixed-width tag e.g. "03 /". */
-  index?: string;
   className?: string;
 }) {
   return (
     <div className={`flex items-center gap-3 ${className}`}>
       <span className="h-px w-6 bg-accent/70" />
-      {index && <span className="font-mono text-[0.65rem] text-ink-dim">{index} /</span>}
       <span className="eyebrow">{children}</span>
     </div>
   );
@@ -26,14 +22,12 @@ export function Eyebrow({
 
 export function SectionHeading({
   eyebrow,
-  index,
   title,
   lede,
   align = 'left',
   className = '',
 }: {
   eyebrow?: string;
-  index?: string;
   title: ReactNode;
   lede?: ReactNode;
   align?: 'left' | 'center';
@@ -44,7 +38,7 @@ export function SectionHeading({
     <div className={`${centered ? 'text-center' : ''} ${className}`}>
       {eyebrow && (
         <div className={centered ? 'flex justify-center' : ''}>
-          <Eyebrow index={index}>{eyebrow}</Eyebrow>
+          <Eyebrow>{eyebrow}</Eyebrow>
         </div>
       )}
       <h2 className={`display-lg text-white mt-5 ${centered ? 'mx-auto max-w-4xl' : 'max-w-4xl'}`}>
@@ -86,7 +80,7 @@ export function StatusTag({
     <span
       className={`inline-flex items-center gap-2 border px-2.5 py-1 font-mono text-[0.6rem] uppercase tracking-widest ${tone} ${className}`}
     >
-      <span className="h-1 w-1 rounded-full bg-current animate-blink" />
+      <span className="h-1 w-1 rounded-full bg-current" />
       {normalized}
     </span>
   );

@@ -1,4 +1,7 @@
-// Cloudinary upload utility using unsigned upload
+/**
+  * Unsigned upload to Cloudinary. The cloud name and preset are public by
+  * design; no signing key is involved, and none belongs in this bundle.
+  */
 export const uploadToCloudinary = async (file: File): Promise<string> => {
   const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME || 'dhi6p6erz';
   const uploadPreset = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET || 'resume'; // Using your 'resume' unsigned preset
@@ -24,8 +27,7 @@ export const uploadToCloudinary = async (file: File): Promise<string> => {
     }
     
     const data = await response.json();
-    console.log('Cloudinary upload successful:', data.secure_url);
-    return data.secure_url;
+    return data.secure_url as string;
   } catch (error) {
     console.error('Cloudinary upload error:', error);
     throw new Error('Failed to upload file. Please try again.');
@@ -43,8 +45,6 @@ export const submitToWeb3Forms = async (
     ...formData,
   };
   
-  console.log('Submitting to Web3Forms:', payload);
-  
   try {
     const response = await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
@@ -55,8 +55,7 @@ export const submitToWeb3Forms = async (
     });
     
     const result = await response.json();
-    console.log('Web3Forms response:', result);
-    
+
     if (!response.ok) {
       throw new Error(`HTTP ${response.status}: ${result.message || 'Failed to submit form'}`);
     }
