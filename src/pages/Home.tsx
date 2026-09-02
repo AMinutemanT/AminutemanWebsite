@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSeo } from '../utils/seo';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
@@ -137,15 +138,45 @@ export function Home() {
 
 /* -- Hero ------------------------------------------------------------------- */
 
+/**
+ * The formation is sized for the frame it flies through. At the desktop scale
+ * a phone viewport puts an airframe directly behind the body copy, so narrow
+ * screens get a smaller formation pushed further off-axis, and the scrim
+ * reaches all the way across instead of clearing at 58%.
+ */
+function useHeroFraming() {
+  const [narrow, setNarrow] = useState(
+    () => typeof window !== 'undefined' && window.matchMedia('(max-width: 767px)').matches,
+  );
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 767px)');
+    const onChange = (e: MediaQueryListEvent) => setNarrow(e.matches);
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
+  }, []);
+
+  return narrow
+    ? { scale: 2.4, axisX: 4.6, scrim: 'linear-gradient(180deg,rgba(0,0,0,0.35) 0%,rgba(0,0,0,0.82) 45%,#000 100%)' }
+    : { scale: 4.1, axisX: 3.3, scrim: 'linear-gradient(100deg,#000 10%,rgba(0,0,0,0.55) 34%,transparent 58%)' };
+}
+
 function Hero() {
+  const framing = useHeroFraming();
+
   return (
     <header className="relative flex min-h-[100svh] flex-col justify-end overflow-hidden">
       {/* The Ankosha cross flythrough sits behind everything. */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(120%_90%_at_50%_20%,rgba(255,138,0,0.18),transparent_65%)]" />
-        <AnkoshaFlythrough className="absolute inset-0" intensity={1.15} axisX={3.3} scale={4.1} />
+        <AnkoshaFlythrough
+          className="absolute inset-0"
+          intensity={1.15}
+          axisX={framing.axisX}
+          scale={framing.scale}
+        />
         <div className="absolute inset-0 bg-gradient-to-t from-void via-void/20 to-void/45" />
-        <div className="absolute inset-0 bg-[linear-gradient(100deg,#000_10%,rgba(0,0,0,0.55)_34%,transparent_58%)]" />
+        <div className="absolute inset-0" style={{ background: framing.scrim }} />
       </div>
 
       <div className="container relative z-10 pb-20 pt-40 sm:pb-24">
