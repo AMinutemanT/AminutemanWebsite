@@ -143,7 +143,7 @@ function Hero() {
       {/* The Ankosha cross flythrough sits behind everything. */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(120%_90%_at_50%_20%,rgba(255,138,0,0.18),transparent_65%)]" />
-        <AnkoshaFlythrough className="absolute inset-0" intensity={1} axisX={4.2} scale={2.3} />
+        <AnkoshaFlythrough className="absolute inset-0" intensity={1.15} axisX={3.3} scale={4.1} />
         <div className="absolute inset-0 bg-gradient-to-t from-void via-void/20 to-void/45" />
         <div className="absolute inset-0 bg-[linear-gradient(100deg,#000_10%,rgba(0,0,0,0.55)_34%,transparent_58%)]" />
       </div>
