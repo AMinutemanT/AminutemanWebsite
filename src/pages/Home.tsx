@@ -7,6 +7,7 @@ import { UnifiedGrid } from '../components/UnifiedGrid';
 import { Reveal, Stagger, StaggerItem } from '../components/ui/Reveal';
 import { Eyebrow, SectionHeading } from '../components/ui/HUD';
 import { MediaSlot } from '../components/ui/MediaSlot';
+import { StatementBand } from '../components/ui/StatementBand';
 import { PROGRAMME_BY_SLUG, programmePath } from '../data/programmes';
 import {
   ACHIEVEMENTS,
@@ -125,6 +126,7 @@ export function Home() {
       <DomainMatrix />
       <ValleySection />
       <ProductTriad />
+      <GridBand />
       <AnkoshaStrip />
       <Trials />
       <Posture />
@@ -453,6 +455,30 @@ function ProductTriad() {
         </Stagger>
       </div>
     </section>
+  );
+}
+
+/* -- Statement band --------------------------------------------------------- */
+
+/**
+ * Photographed on an Indian gun line. The point of the section it sits
+ * between is that the grid takes in what a force already fields, and this is
+ * what that hardware actually looks like.
+ */
+function GridBand() {
+  return (
+    <StatementBand
+      image="gunline"
+      focus="50% 55%"
+      intensity={0.72}
+      statement={
+        <>
+          The cheapest effector to add to the grid
+          <br className="hidden sm:block" /> is one the force already owns.
+        </>
+      }
+      attribution="Towed artillery on an Indian gun line, brought onto the grid by retrofit"
+    />
   );
 }
 

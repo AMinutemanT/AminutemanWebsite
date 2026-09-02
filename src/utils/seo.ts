@@ -15,6 +15,12 @@ import { useEffect } from 'react';
  * ------------------------------------------------------------------------- */
 
 export const SITE_URL = 'https://aminutemantechnologies.com';
+
+/** The URL form that actually serves this route's prerendered metadata. */
+export function canonicalUrl(path: string): string {
+  if (path === '/') return `${SITE_URL}/`;
+  return `${SITE_URL}${path.endsWith('/') ? path : `${path}/`}`;
+}
 const SITE_NAME = 'Aminuteman Technologies';
 const DEFAULT_IMAGE = `${SITE_URL}/logo-og.png`;
 
@@ -51,7 +57,11 @@ export interface SeoInput {
 export function useSeo({ title, description, path, image }: SeoInput) {
   useEffect(() => {
     const full = path === '/' ? `${SITE_NAME}, Shaping the Deterrence` : `${title}, ${SITE_NAME}`;
-    const url = `${SITE_URL}${path === '/' ? '' : path}`;
+    // Trailing slash is deliberate. The host serves the prerendered shell for
+    // /systems/ankosha/ but its SPA rewrite shadows /systems/ankosha, which
+    // would hand a scraper the home page. The slashed form is the one that
+    // resolves to this route's own metadata, so it is the one we declare.
+    const url = canonicalUrl(path);
     const img = image
       ? image.startsWith('http')
         ? image

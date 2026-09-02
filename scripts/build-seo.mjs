@@ -44,6 +44,9 @@ const STATIC = [
   ['/contact', `Contact, ${NAME}`, 'Programme briefings, trials, integration and supply enquiries, handled directly by the responsible engineering team.', 0.7],
 ];
 
+/** The URL form the host actually serves this route's shell from. */
+const canonical = (p) => (p === '/' ? `${SITE}/` : `${SITE}${p}/`);
+
 const routes = [
   ...STATIC.map(([p, title, description, priority]) => ({ path: p, title, description, priority, image: null })),
   ...PROGRAMMES.map((p) => ({
@@ -63,7 +66,7 @@ const sitemap = [
   `<urlset xmlns="${NS}">`,
   ...routes.map((r) => [
     '  <url>',
-    `    <loc>${SITE}${r.path}</loc>`,
+    `    <loc>${canonical(r.path)}</loc>`,
     `    <lastmod>${today}</lastmod>`,
     `    <priority>${r.priority.toFixed(1)}</priority>`,
     '  </url>',
@@ -80,7 +83,7 @@ const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replac
 let written = 0;
 for (const r of routes) {
   if (r.path === '/') continue;
-  const url = SITE + r.path;
+  const url = canonical(r.path);
   const img = r.image ? SITE + r.image : `${SITE}/logo-og.png`;
   const html = shell
     .replace(/<title>[\s\S]*?<\/title>/, `<title>${esc(r.title)}</title>`)
@@ -94,16 +97,15 @@ for (const r of routes) {
     .replace(/<meta name="twitter:title" content="[^"]*" \/>/, `<meta name="twitter:title" content="${esc(r.title)}" />`)
     .replace(/<meta name="twitter:description" content="[^"]*" \/>/, `<meta name="twitter:description" content="${esc(r.description)}" />`)
     .replace(/<meta name="twitter:image" content="[^"]*" \/>/, `<meta name="twitter:image" content="${img}" />`);
-  // Two forms of the same shell, because static hosts disagree about how they
-  // resolve an extensionless path. Render serves <route>/index.html only when
-  // the request carries a trailing slash; without one its SPA rewrite shadows
-  // the file and the root shell is returned instead. Writing <route>.html as
-  // well gives hosts that try the .html extension first something to match,
-  // so /systems/ankosha and /systems/ankosha/ both carry Ankosha's metadata.
+  // Verified against the live host: it serves <route>/index.html for a path
+  // with a trailing slash, while an extensionless path is caught by the SPA
+  // rewrite before either directory-index or .html resolution is tried. So the
+  // shell lives here and the canonical points at the slashed form, rather than
+  // shipping a second .html copy that this host never reaches and that would
+  // only add a third indexable URL per page.
   const dir = path.join(DIST, r.path);
   await mkdir(dir, { recursive: true });
   await writeFile(path.join(dir, 'index.html'), html);
-  await writeFile(path.join(DIST, `${r.path}.html`), html);
   written += 1;
 }
 await rm(tmp, { force: true });
