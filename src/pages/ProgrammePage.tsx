@@ -1,6 +1,11 @@
 import { Navigate, useParams } from 'react-router-dom';
 import { ProgrammeDetail } from '../components/ProgrammeDetail';
-import { PROGRAMME_BY_SLUG, programmePath, type Category } from '../data/programmes';
+import {
+  CATEGORY_LABEL,
+  PROGRAMME_BY_SLUG,
+  programmePath,
+  type Category,
+} from '../data/programmes';
 import { useSeo } from '../utils/seo';
 
 /**
@@ -18,6 +23,13 @@ export function ProgrammePage({ category }: { category: Category }) {
     path: programme ? programmePath(programme.slug) : `/${category}`,
     description: programme?.summary ?? '',
     image: programme?.hero.src,
+    breadcrumbs: programme
+      ? [
+          { name: 'Home', path: '/' },
+          { name: CATEGORY_LABEL[programme.category], path: `/${programme.category}` },
+          { name: programme.name, path: programmePath(programme.slug) },
+        ]
+      : undefined,
   });
 
   // Guard against a slug that exists but sits under a different category, so the

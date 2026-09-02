@@ -44,6 +44,23 @@ function setCanonical(href: string) {
   el.href = href;
 }
 
+/** One JSON-LD block per route, replaced on navigation. */
+function setJsonLd(id: string, data: unknown | null) {
+  const existing = document.head.querySelector(`script[data-seo="${id}"]`);
+  if (existing) existing.remove();
+  if (!data) return;
+  const el = document.createElement('script');
+  el.type = 'application/ld+json';
+  el.setAttribute('data-seo', id);
+  el.textContent = JSON.stringify(data);
+  document.head.appendChild(el);
+}
+
+export interface Crumb {
+  name: string;
+  path: string;
+}
+
 export interface SeoInput {
   /** Page title, without the company suffix. */
   title: string;
@@ -52,9 +69,15 @@ export interface SeoInput {
   path: string;
   /** Absolute or root-relative image for social cards. */
   image?: string;
+  /**
+   * Trail from the home page to this one. Rendered as BreadcrumbList, which
+   * is what lets a search result show Home > Systems > Ankosha instead of a
+   * bare URL.
+   */
+  breadcrumbs?: Crumb[];
 }
 
-export function useSeo({ title, description, path, image }: SeoInput) {
+export function useSeo({ title, description, path, image, breadcrumbs }: SeoInput) {
   useEffect(() => {
     const full = path === '/' ? `${SITE_NAME}, Shaping the Deterrence` : `${title}, ${SITE_NAME}`;
     // Trailing slash is deliberate. The host serves the prerendered shell for
@@ -80,5 +103,23 @@ export function useSeo({ title, description, path, image }: SeoInput) {
     setMeta('meta[name="twitter:title"]', 'name', 'twitter:title', full);
     setMeta('meta[name="twitter:description"]', 'name', 'twitter:description', description);
     setMeta('meta[name="twitter:image"]', 'name', 'twitter:image', img);
-  }, [title, description, path, image]);
+
+    setJsonLd(
+      'breadcrumbs',
+      breadcrumbs && breadcrumbs.length
+        ? {
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: breadcrumbs.map((c, i) => ({
+              '@type': 'ListItem',
+              position: i + 1,
+              name: c.name,
+              item: canonicalUrl(c.path),
+            })),
+          }
+        : null,
+    );
+
+    return () => setJsonLd('breadcrumbs', null);
+  }, [title, description, path, image, breadcrumbs]);
 }

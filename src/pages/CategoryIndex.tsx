@@ -42,6 +42,10 @@ export function CategoryIndex({ category }: { category: Category }) {
     path: `/${category}`,
     description: copy.lede,
     image: copy.image ? `/images/hero/${copy.image}.webp` : undefined,
+    breadcrumbs: [
+      { name: 'Home', path: '/' },
+      { name: CATEGORY_LABEL[category], path: `/${category}` },
+    ],
   });
 
   return (
