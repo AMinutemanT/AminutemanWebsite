@@ -19,10 +19,34 @@ export interface MediaSlotProps {
   className?: string;
   priority?: boolean;
   /**
+   * Layout hint for the browser's srcset pick. The default assumes the
+   * three-up card grids most of the site uses.
+   */
+  sizes?: string;
+  /**
    * `contain` is for cut-out CAD renders, which carry their own transparency and
    * must not be cropped. `cover` stays the default for photography.
    */
   fit?: 'cover' | 'contain';
+}
+
+/**
+ * Every photograph is built out as webp at 500w, 1000w and full width, at
+ * roughly half the bytes of the original. Serve the set and keep the original
+ * as the fallback for anything that cannot decode webp.
+ *
+ * A card renders around 440px wide, so without the srcset a grid of them pulls
+ * full-width photographs it will never show at full width.
+ */
+const RASTER = /\.(jpe?g|png)$/i;
+
+function webpSet(src: string): { srcSet: string; full: string } | null {
+  if (!RASTER.test(src)) return null;
+  const stem = src.replace(RASTER, '');
+  return {
+    srcSet: `${stem}-500.webp 500w, ${stem}-1000.webp 1000w, ${stem}.webp 1400w`,
+    full: `${stem}.webp`,
+  };
 }
 
 const ratioClass: Record<MediaRatio, string> = {
@@ -53,6 +77,7 @@ export function MediaSlot({
   ratio = '16/9',
   className = '',
   priority = false,
+  sizes = '(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw',
   fit = 'cover',
 }: MediaSlotProps) {
   const [failed, setFailed] = useState(false);
@@ -103,13 +128,18 @@ export function MediaSlot({
             {/* Poster stays painted underneath so the frame is never empty
                 while the clip is still arriving. */}
             {posterSrc && (
-              <img
-                src={posterSrc}
-                alt={alt || label}
-                loading={priority ? 'eager' : 'lazy'}
-                decoding="async"
-                className="absolute inset-0 h-full w-full object-cover"
-              />
+              <picture>
+                {webpSet(posterSrc) && (
+                  <source srcSet={webpSet(posterSrc)!.srcSet} sizes={sizes} type="image/webp" />
+                )}
+                <img
+                  src={posterSrc}
+                  alt={alt || label}
+                  loading={priority ? 'eager' : 'lazy'}
+                  decoding="async"
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+              </picture>
             )}
             {loadVideo && (
               <video
@@ -127,21 +157,26 @@ export function MediaSlot({
             )}
           </>
         ) : src && !failed ? (
-          <img
-            src={src}
-            alt={alt || label}
-            loading={priority ? 'eager' : 'lazy'}
-            decoding={priority ? 'sync' : 'async'}
-            // React 18 forwards only the lowercase DOM attribute; the camelCase
-            // prop is React 19 and warns here.
-            {...({ fetchpriority: priority ? 'high' : 'auto' } as Record<string, string>)}
-            className={
-              contain
-                ? 'absolute inset-0 h-full w-full object-contain p-6 sm:p-8'
-                : 'absolute inset-0 h-full w-full object-cover'
-            }
-            onError={() => setFailed(true)}
-          />
+          <picture>
+            {webpSet(src) && (
+              <source srcSet={webpSet(src)!.srcSet} sizes={sizes} type="image/webp" />
+            )}
+            <img
+              src={src}
+              alt={alt || label}
+              loading={priority ? 'eager' : 'lazy'}
+              decoding={priority ? 'sync' : 'async'}
+              // React 18 forwards only the lowercase DOM attribute; the camelCase
+              // prop is React 19 and warns here.
+              {...({ fetchpriority: priority ? 'high' : 'auto' } as Record<string, string>)}
+              className={
+                contain
+                  ? 'absolute inset-0 h-full w-full object-contain p-6 sm:p-8'
+                  : 'absolute inset-0 h-full w-full object-cover'
+              }
+              onError={() => setFailed(true)}
+            />
+          </picture>
         ) : (
           <Placeholder label={label} />
         )}
