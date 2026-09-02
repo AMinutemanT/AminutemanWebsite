@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { useSeo } from '../utils/seo';
 import { Link } from 'react-router-dom';
 import { Send, Phone, Mail, MapPin, ArrowRight } from 'lucide-react';
 import { submitToWeb3Forms } from '../utils/cloudinary';
@@ -36,6 +37,12 @@ const ENQUIRY_TYPES = [
 ];
 
 export function Contact() {
+  useSeo({
+    title: 'Contact',
+    path: '/contact',
+    description:
+      'Programme briefings, trials, integration and supply enquiries, handled directly by the responsible engineering team.',
+  });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{
     type: 'success' | 'error' | null;
@@ -50,9 +57,6 @@ export function Contact() {
     message: '',
   });
 
-  useEffect(() => {
-    document.title = 'Contact, Aminuteman Technologies';
-  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

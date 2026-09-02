@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useSeo } from '../utils/seo';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { UnifiedGrid } from '../components/UnifiedGrid';
 import { Reveal, Stagger, StaggerItem } from '../components/ui/Reveal';
@@ -118,9 +118,12 @@ const PLATFORM_SPECS = [
 ];
 
 export function Valley() {
-  useEffect(() => {
-    document.title = 'Valley, Aminuteman Technologies';
-  }, []);
+  useSeo({
+    title: 'Valley',
+    path: '/valley',
+    description:
+      'Valley is the integration grid: every sensor publishes to it, every effector subscribes from it, and the picture it holds is the same at a forward position and at command.',
+  });
 
   const products = ['aorizon', 'talon', 'sentinel']
     .map((slug) => PROGRAMME_BY_SLUG[slug])

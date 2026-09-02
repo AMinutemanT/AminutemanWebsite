@@ -21,6 +21,7 @@ import { ProgrammePage } from './pages/ProgrammePage';
 import { ValleyCommandControl } from './pages/valley/ValleyCommandControl';
 import { ValleyMissionAutonomy } from './pages/valley/ValleyMissionAutonomy';
 import { ValleyPartnerProgram } from './pages/valley/ValleyPartnerProgram';
+import { PROGRAMME_BY_SLUG, programmePath } from './data/programmes';
 
 /**
  * Routes the site off one content model:
@@ -51,9 +52,17 @@ const REDIRECTS: Record<string, string> = {
  * carry the slug straight across, so redirect on the slug rather than listing
  * every programme in REDIRECTS.
  */
+/**
+ * Old /technologies/:slug and /products/:slug URLs. The slug comes straight
+ * off the address bar, so it is resolved against the programme list rather
+ * than interpolated into a path: an unknown slug lands on the right index
+ * instead of putting arbitrary input into a redirect target.
+ */
 function LegacySlugRedirect() {
   const { slug } = useParams<{ slug: string }>();
-  return <Navigate to={slug ? `/ai/${slug}` : '/ai'} replace />;
+  const programme = slug ? PROGRAMME_BY_SLUG[slug] : undefined;
+  if (!programme) return <Navigate to="/ai" replace />;
+  return <Navigate to={programmePath(programme.slug)} replace />;
 }
 
 function ScrollToTop() {

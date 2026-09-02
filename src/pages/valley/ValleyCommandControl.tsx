@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useSeo } from '../../utils/seo';
 import { ArrowRight } from 'lucide-react';
 import { Reveal, Stagger, StaggerItem } from '../../components/ui/Reveal';
 import { GraphicBackdrop } from '../../components/ui/GraphicBackdrop';
@@ -69,9 +69,12 @@ const SPECS = [
 ];
 
 export function ValleyCommandControl() {
-  useEffect(() => {
-    document.title = 'Command & Control, Aminuteman Technologies';
-  }, []);
+  useSeo({
+    title: 'Command & Control',
+    path: '/valley/command-control',
+    description:
+      'Decision at the speed of the fight. One picture, the contradictions shown rather than averaged away, and a person at the commit step.',
+  });
 
   return (
     <div className="bg-void">

@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useSeo } from '../../utils/seo';
 import { ArrowRight } from 'lucide-react';
 import { Reveal, Stagger, StaggerItem } from '../../components/ui/Reveal';
 import { GraphicBackdrop } from '../../components/ui/GraphicBackdrop';
@@ -88,9 +88,12 @@ const SPECS = [
 ];
 
 export function ValleyPartnerProgram() {
-  useEffect(() => {
-    document.title = 'Partner Program, Aminuteman Technologies';
-  }, []);
+  useSeo({
+    title: 'Partner Program',
+    path: '/valley/partner-program',
+    description:
+      'Bring your platform onto the grid. A published interface, a conformance harness, and disagreements surfaced in a lab.',
+  });
 
   return (
     <div className="bg-void">

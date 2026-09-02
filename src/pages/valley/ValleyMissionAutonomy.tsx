@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useSeo } from '../../utils/seo';
 import { ArrowRight } from 'lucide-react';
 import { Reveal, Stagger, StaggerItem } from '../../components/ui/Reveal';
 import { GraphicBackdrop } from '../../components/ui/GraphicBackdrop';
@@ -70,9 +70,12 @@ const SPECS = [
 ];
 
 export function ValleyMissionAutonomy() {
-  useEffect(() => {
-    document.title = 'Mission Autonomy, Aminuteman Technologies';
-  }, []);
+  useSeo({
+    title: 'Mission Autonomy',
+    path: '/valley/mission-autonomy',
+    description:
+      'Autonomy that holds through disconnection. Loss of link, of an element or of confidence drives a behaviour declared before launch.',
+  });
 
   return (
     <div className="bg-void">

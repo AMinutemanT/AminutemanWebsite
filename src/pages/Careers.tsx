@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
+import { useSeo } from '../utils/seo';
 import { Send, Upload, FileCheck } from 'lucide-react';
 import { uploadToCloudinary, submitToWeb3Forms } from '../utils/cloudinary';
 import { Reveal, Stagger, StaggerItem } from '../components/ui/Reveal';
@@ -70,6 +71,12 @@ const WHY = [
 const EXPERIENCE_BANDS = ['0 to 1', '2 to 4', '5 to 9', '10+'];
 
 export function Careers() {
+  useSeo({
+    title: 'Careers',
+    path: '/careers',
+    description:
+      'Engineering roles in autonomy, structures, guidance and avionics, for systems that have to work in contested airspace on a schedule India controls.',
+  });
   const form = useRef<HTMLFormElement>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{
@@ -89,9 +96,6 @@ export function Careers() {
     coverLetter: '',
   });
 
-  useEffect(() => {
-    document.title = 'Careers, Aminuteman Technologies';
-  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

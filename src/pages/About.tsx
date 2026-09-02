@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useSeo } from '../utils/seo';
 import { ArrowRight } from 'lucide-react';
 import { Reveal, Stagger, StaggerItem } from '../components/ui/Reveal';
 import { Eyebrow, SectionHeading } from '../components/ui/HUD';
@@ -64,9 +64,12 @@ const CAPABILITY_SPINE = [
 ];
 
 export function About() {
-  useEffect(() => {
-    document.title = 'About, Aminuteman Technologies';
-  }, []);
+  useSeo({
+    title: 'About',
+    path: '/about',
+    description:
+      'Aminuteman Technologies is a defence engineering company building autonomous air systems, the effectors that finish an engagement, and the grid that connects every sensor and shooter into a single picture.',
+  });
 
   const counts = {
     total: PROGRAMMES.length,

@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useSeo } from '../utils/seo';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { AnkoshaFlythrough } from '../components/AnkoshaFlythrough';
 import { UnifiedGrid } from '../components/UnifiedGrid';
@@ -110,9 +110,12 @@ const TRIALS = [
 /* -- Page ------------------------------------------------------------------- */
 
 export function Home() {
-  useEffect(() => {
-    document.title = 'Aminuteman Technologies, Shaping the Deterrence';
-  }, []);
+  useSeo({
+    title: 'Home',
+    path: '/',
+    description:
+      'Autonomous air systems, counter-UAS and loitering strike, hypersonics and orbital programmes, unified by Valley, our defence integration grid. Designed, developed and manufactured in India.',
+  });
 
   return (
     <div className="bg-void">

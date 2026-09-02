@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 import {
@@ -10,6 +9,7 @@ import {
 import { Stagger, StaggerItem } from '../components/ui/Reveal';
 import { StatusTag, DomainChip } from '../components/ui/HUD';
 import { PageHero, type HeroImage } from '../components/ui/PageHero';
+import { useSeo } from '../utils/seo';
 import { MediaSlot } from '../components/ui/MediaSlot';
 
 const COPY: Record<
@@ -37,13 +37,12 @@ export function CategoryIndex({ category }: { category: Category }) {
   const programmes = programmesIn(category);
   const copy = COPY[category];
 
-  useEffect(() => {
-    const previous = document.title;
-    document.title = `${copy.title}, Aminuteman Technologies`;
-    return () => {
-      document.title = previous;
-    };
-  }, [copy.title]);
+  useSeo({
+    title: copy.title,
+    path: `/${category}`,
+    description: copy.lede,
+    image: copy.image ? `/images/hero/${copy.image}.webp` : undefined,
+  });
 
   return (
     <div className="bg-void">
