@@ -8,13 +8,13 @@ import { TAGLINE, OFFICES } from '../data/company';
 const SOCIALS = [
   {
     label: 'LinkedIn',
-    href: 'https://www.linkedin.com/company/106417184/admin/page-posts/published/',
+    href: 'https://www.linkedin.com/company/aminuteman-technologies/',
     Icon: Linkedin,
   },
   { label: 'X', href: 'https://x.com/Aminutemantech', Icon: Twitter },
   {
     label: 'Instagram',
-    href: 'https://www.instagram.com/aniruddhanarayan__/?utm_source=ig_web_button_share_sheet',
+    href: 'https://www.instagram.com/aminutemantechnologies/',
     Icon: Instagram,
   },
 ];
@@ -54,13 +54,13 @@ export function Footer() {
               </li>
               <li className="flex items-start gap-3">
                 <Mail className="mt-0.5 h-4 w-4 shrink-0 text-accent/80" />
-                <span className="break-all font-mono text-xs text-ink-2">
+                <span className="break-words font-mono text-[0.7rem] leading-relaxed text-ink-2">
                   aminutemantechnologies@gmail.com
                 </span>
               </li>
               <li className="flex items-start gap-3">
                 <Mail className="mt-0.5 h-4 w-4 shrink-0 text-accent/80" />
-                <span className="break-all font-mono text-xs text-ink-2">
+                <span className="break-words font-mono text-[0.7rem] leading-relaxed text-ink-2">
                   admincontrols@aminutemantechnologies.com
                 </span>
               </li>
@@ -85,7 +85,7 @@ export function Footer() {
 
           {/* ---- Sitemap, driven by the same IA as the navbar ------------ */}
           <nav className="lg:col-span-6">
-            <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
+            <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
               {NAV_GROUPS.map((group) => (
                 <div key={group.label}>
                   <h3 className="data-label text-white/70">
@@ -135,30 +135,30 @@ export function Footer() {
 
             <Link
               to="/contact"
-              className="mt-6 inline-flex items-center gap-2 font-mono text-[0.65rem] uppercase tracking-widest text-accent transition-colors hover:text-white"
+              className="mt-6 inline-flex items-center gap-2 whitespace-nowrap font-mono text-[0.65rem] uppercase tracking-widest text-accent transition-colors hover:text-white"
             >
               Programme enquiries
-              <ArrowRight className="h-3.5 w-3.5" />
+              <ArrowRight className="h-3.5 w-3.5 shrink-0" />
             </Link>
-
-            <div className="mt-8 flex items-center gap-4">
-              <img
-                src="/images/indianflag.jpg"
-                alt="India"
-                loading="lazy"
-                className="h-6 w-auto object-contain opacity-70"
-              />
-            </div>
           </div>
         </div>
 
         {/* ---- Baseline ------------------------------------------------- */}
         <div className="mt-16 border-t border-line pt-8">
           <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
-            <p className="font-mono text-[0.6rem] uppercase tracking-widest text-ink-dim">
-              © {new Date().getFullYear()} Aminuteman Technologies · Pune · Delhi · Bengaluru ·
-              Madhya Pradesh
-            </p>
+            <div className="flex items-center gap-3">
+              <img
+                src="/images/indianflag.jpg"
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+                className="h-4 w-auto shrink-0 object-contain opacity-80"
+              />
+              <p className="font-mono text-[0.6rem] uppercase tracking-widest text-ink-dim">
+                © {new Date().getFullYear()} Aminuteman Technologies · Pune · Delhi · Bengaluru ·
+                Madhya Pradesh
+              </p>
+            </div>
             <p className="max-w-xl font-mono text-[0.6rem] uppercase leading-relaxed tracking-widest text-ink-dim sm:text-right">
               Performance data released to qualified counterparties following end-user
               certification. Commitment authority is never delegated to a machine.
