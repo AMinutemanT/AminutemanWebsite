@@ -316,7 +316,7 @@ export function Valley() {
             {LAYERS.map((layer, i) => (
               <StaggerItem key={layer.name} className="bg-void">
                 <div className="group relative h-full bg-panel/40 p-8 transition-colors duration-300 hover:bg-panel">
-                  <span className="font-mono text-[0.6rem] tracking-widest text-accent/50">
+                  <span className="font-mono text-[0.6rem] tracking-widest text-accent/80">
                     {String(i + 1).padStart(2, '0')}
                   </span>
                   <h3 className="mt-4 font-display text-xl uppercase tracking-wide text-white">
@@ -383,7 +383,7 @@ export function Valley() {
                   <h3 className="font-display text-3xl uppercase leading-none tracking-wide text-white">
                     {product.name}
                   </h3>
-                  <p className="mt-3 font-mono text-[0.6rem] uppercase tracking-widest text-accent/60">
+                  <p className="mt-3 font-mono text-[0.6rem] uppercase tracking-widest text-accent/80">
                     {product.tagline}
                   </p>
                   <p className="mt-6 text-sm leading-relaxed text-ink-3">{product.summary}</p>
@@ -425,7 +425,7 @@ export function Valley() {
                 className="group block bg-panel/40 p-8 transition-colors hover:bg-panel"
               >
                 <div className="flex items-start justify-between gap-3">
-                  <span className="font-mono text-[0.6rem] uppercase tracking-widest text-accent/60">
+                  <span className="font-mono text-[0.6rem] uppercase tracking-widest text-accent/80">
                     {page.designation}
                   </span>
                   <ArrowUpRight className="h-4 w-4 shrink-0 text-ink-dim transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent" />

@@ -67,7 +67,7 @@ export function ProgrammeDetail({ programme }: { programme: Programme }) {
             {programme.capabilities.map((cap, i) => (
               <StaggerItem key={cap.title} className="bg-void">
                 <div className="group relative h-full bg-panel/40 p-8 transition-colors duration-300 hover:bg-panel">
-                  <span className="font-mono text-[0.6rem] tracking-widest text-accent/50">
+                  <span className="font-mono text-[0.6rem] tracking-widest text-accent/80">
                     {String(i + 1).padStart(2, '0')}
                   </span>
                   <h3 className="mt-4 font-display text-xl uppercase tracking-wide text-white">
@@ -375,7 +375,7 @@ function RelatedCard({
   return (
     <Link to={to} className="group block bg-panel/40 p-7 transition-colors hover:bg-panel">
       <div className="flex items-start justify-between gap-3">
-        <span className="font-mono text-[0.6rem] uppercase tracking-widest text-accent/60">
+        <span className="font-mono text-[0.6rem] uppercase tracking-widest text-accent/80">
           {designation}
         </span>
         <ArrowUpRight className="h-4 w-4 shrink-0 text-ink-dim transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent" />

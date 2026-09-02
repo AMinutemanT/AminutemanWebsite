@@ -294,7 +294,7 @@ function DomainMatrix() {
                   <h3 className="mt-6 font-display text-2xl uppercase leading-none tracking-wide text-white">
                     {domain.heading}
                   </h3>
-                  <p className="mt-2 font-mono text-[0.6rem] uppercase tracking-widest text-accent/60">
+                  <p className="mt-2 font-mono text-[0.6rem] uppercase tracking-widest text-accent/80">
                     {programme.designation}
                   </p>
                   <p className="mt-5 text-sm leading-relaxed text-ink-3">{domain.blurb}</p>
@@ -403,7 +403,7 @@ function ProductTriad() {
                     <h3 className="font-display text-3xl uppercase leading-none tracking-wide text-white">
                       {product.name}
                     </h3>
-                    <p className="mt-3 font-mono text-[0.6rem] uppercase tracking-widest text-accent/60">
+                    <p className="mt-3 font-mono text-[0.6rem] uppercase tracking-widest text-accent/80">
                       {product.tagline}
                     </p>
                     <p className="mt-6 text-sm leading-relaxed text-ink-3">{product.summary}</p>
@@ -547,7 +547,7 @@ function Posture() {
                 <p className="font-display text-4xl uppercase leading-none tracking-tight text-white sm:text-5xl">
                   {item.value}
                 </p>
-                <p className="mt-4 font-mono text-[0.65rem] uppercase tracking-widest text-accent/70">
+                <p className="mt-4 font-mono text-[0.65rem] uppercase tracking-widest text-accent/80">
                   {item.label}
                 </p>
                 <p className="mt-2 text-xs leading-relaxed text-ink-dim">{item.note}</p>
@@ -592,7 +592,7 @@ function Vision() {
                   <p className="font-display text-2xl uppercase tracking-wide text-white">
                     Aniruddha Narayan
                   </p>
-                  <p className="mt-1 font-mono text-[0.65rem] uppercase tracking-widest text-accent/70">
+                  <p className="mt-1 font-mono text-[0.65rem] uppercase tracking-widest text-accent/80">
                     Founder &amp; Chief Executive
                   </p>
                 </div>

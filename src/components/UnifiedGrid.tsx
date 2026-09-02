@@ -82,13 +82,13 @@ export function UnifiedGrid({ className = '' }: { className?: string }) {
           </defs>
 
           {/* Column headers */}
-          <text x={SENSE_X} y="30" className="fill-white/30" fontSize="11" fontFamily="IBM Plex Mono, monospace" letterSpacing="4" textAnchor="middle">
+          <text x={SENSE_X} y="30" className="fill-white/55" fontSize="11" fontFamily="IBM Plex Mono, monospace" letterSpacing="4" textAnchor="middle">
             SENSE
           </text>
-          <text x={CORE.x} y="30" className="fill-white/30" fontSize="11" fontFamily="IBM Plex Mono, monospace" letterSpacing="4" textAnchor="middle">
+          <text x={CORE.x} y="30" className="fill-white/55" fontSize="11" fontFamily="IBM Plex Mono, monospace" letterSpacing="4" textAnchor="middle">
             DECIDE
           </text>
-          <text x={EFFECT_X} y="30" className="fill-white/30" fontSize="11" fontFamily="IBM Plex Mono, monospace" letterSpacing="4" textAnchor="middle">
+          <text x={EFFECT_X} y="30" className="fill-white/55" fontSize="11" fontFamily="IBM Plex Mono, monospace" letterSpacing="4" textAnchor="middle">
             EFFECT
           </text>
 
@@ -178,7 +178,7 @@ export function UnifiedGrid({ className = '' }: { className?: string }) {
               x={CORE.x}
               y={CORE.y + 14}
               textAnchor="middle"
-              className="fill-white/40"
+              className="fill-white/60"
               fontSize="9.5"
               fontFamily="IBM Plex Mono, monospace"
               letterSpacing="1.6"
@@ -229,7 +229,7 @@ export function UnifiedGrid({ className = '' }: { className?: string }) {
                   x={x}
                   y={node.y + 13}
                   textAnchor="middle"
-                  className="fill-white/35"
+                  className="fill-white/60"
                   fontSize="8.5"
                   fontFamily="IBM Plex Mono, monospace"
                 >

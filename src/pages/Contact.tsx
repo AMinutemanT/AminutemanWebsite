@@ -246,7 +246,7 @@ ${formData.message}
                   {CHANNELS.map(({ Icon, label, lines }) => (
                     <div key={label} className="bg-panel/50 px-5 py-5">
                       <dt className="flex items-center gap-2.5">
-                        <Icon className="h-4 w-4 text-accent/70" />
+                        <Icon className="h-4 w-4 text-accent/80" />
                         <span className="data-label">{label}</span>
                       </dt>
                       {lines.map((line) => (
@@ -269,7 +269,7 @@ ${formData.message}
                     {OFFICES.map((office) => (
                       <div key={office.city + office.role} className="bg-panel/50 px-5 py-5">
                         <dt className="flex items-center gap-2.5">
-                          <MapPin className="h-4 w-4 shrink-0 text-accent/70" />
+                          <MapPin className="h-4 w-4 shrink-0 text-accent/80" />
                           <span className="data-label">
                             {office.city}
                             <span className="text-ink-dim"> · {office.role}</span>

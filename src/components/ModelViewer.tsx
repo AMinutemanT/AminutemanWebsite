@@ -147,7 +147,7 @@ export function ModelViewer({
             <span className="absolute left-3 top-3 font-mono text-[0.6rem] uppercase tracking-widest text-ink-3">
               {label}
             </span>
-            <span className="absolute right-3 top-3 font-mono text-[0.6rem] uppercase tracking-widest text-accent/60">
+            <span className="absolute right-3 top-3 font-mono text-[0.6rem] uppercase tracking-widest text-accent/80">
               CAD / live geometry
             </span>
 

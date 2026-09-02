@@ -180,7 +180,7 @@ export function ValleyPartnerProgram() {
             {WHO.map((item, i) => (
               <StaggerItem key={item.title} className="bg-void">
                 <div className="group relative h-full bg-panel/40 p-8 transition-colors duration-300 hover:bg-panel">
-                  <span className="font-mono text-[0.6rem] tracking-widest text-accent/50">
+                  <span className="font-mono text-[0.6rem] tracking-widest text-accent/80">
                     {String(i + 1).padStart(2, '0')}
                   </span>
                   <h3 className="mt-4 font-display text-xl uppercase leading-tight tracking-wide text-white">

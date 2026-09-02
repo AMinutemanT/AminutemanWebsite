@@ -37,7 +37,7 @@ export function Footer() {
               />
             </Link>
 
-            <p className="mt-5 font-mono text-[0.65rem] uppercase tracking-ultra text-accent-soft/70">
+            <p className="mt-5 font-mono text-[0.65rem] uppercase tracking-ultra text-accent-soft/80">
               {TAGLINE}
             </p>
 
@@ -47,27 +47,27 @@ export function Footer() {
               manufactured in India.
             </p>
 
-            <dl className="mt-8 space-y-3">
-              <div className="flex items-start gap-3">
-                <Phone className="mt-0.5 h-4 w-4 shrink-0 text-accent/60" />
-                <dd className="font-mono text-xs text-ink-2">+91 93562 21384</dd>
-              </div>
-              <div className="flex items-start gap-3">
-                <Mail className="mt-0.5 h-4 w-4 shrink-0 text-accent/60" />
-                <dd className="break-all font-mono text-xs text-ink-2">
+            <ul className="mt-8 space-y-3">
+              <li className="flex items-start gap-3">
+                <Phone className="mt-0.5 h-4 w-4 shrink-0 text-accent/80" />
+                <span className="font-mono text-xs text-ink-2">+91 93562 21384</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <Mail className="mt-0.5 h-4 w-4 shrink-0 text-accent/80" />
+                <span className="break-all font-mono text-xs text-ink-2">
                   aminutemantechnologies@gmail.com
-                </dd>
-              </div>
-              <div className="flex items-start gap-3">
-                <Mail className="mt-0.5 h-4 w-4 shrink-0 text-accent/60" />
-                <dd className="break-all font-mono text-xs text-ink-2">
+                </span>
+              </li>
+              <li className="flex items-start gap-3">
+                <Mail className="mt-0.5 h-4 w-4 shrink-0 text-accent/80" />
+                <span className="break-all font-mono text-xs text-ink-2">
                   admincontrols@aminutemantechnologies.com
-                </dd>
-              </div>
-            </dl>
+                </span>
+              </li>
+            </ul>
 
             <div className="mt-8 flex items-start gap-3">
-              <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-accent/60" />
+              <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-accent/80" />
               <div>
                 <p className="data-label">Sites</p>
                 {OFFICES.map((office) => (

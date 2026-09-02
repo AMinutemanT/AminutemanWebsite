@@ -43,7 +43,9 @@ export default {
           1: '#E8E8EC',
           2: '#B8B8BF',
           3: '#8C8C94',
-          dim: '#5A5A62',
+          // Raised from #5A5A62, which sat at 3.07:1 on black and failed WCAG AA
+          // for the small mono labels this is used on. Now 5.52:1.
+          dim: '#82828B',
         },
       },
       container: {

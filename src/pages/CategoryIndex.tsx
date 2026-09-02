@@ -79,7 +79,7 @@ export function CategoryIndex({ category }: { category: Category }) {
 
                   <div className="flex flex-1 flex-col p-7">
                     <div className="flex items-start justify-between gap-4">
-                      <span className="font-mono text-[0.6rem] uppercase tracking-widest text-accent/60">
+                      <span className="font-mono text-[0.6rem] uppercase tracking-widest text-accent/80">
                         {programme.designation}
                       </span>
                       <ArrowUpRight className="h-4 w-4 shrink-0 text-ink-dim transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent" />

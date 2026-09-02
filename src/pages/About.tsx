@@ -255,7 +255,7 @@ export function About() {
             {PRINCIPLES.map((item, i) => (
               <StaggerItem key={item.title} className="bg-void">
                 <div className="group relative h-full bg-panel/40 p-8 transition-colors duration-300 hover:bg-panel">
-                  <span className="font-mono text-[0.6rem] tracking-widest text-accent/50">
+                  <span className="font-mono text-[0.6rem] tracking-widest text-accent/80">
                     {String(i + 1).padStart(2, '0')}
                   </span>
                   <h3 className="mt-4 font-display text-xl uppercase tracking-wide text-white">
@@ -297,12 +297,12 @@ export function About() {
                         {office.city}
                       </h3>
                       {office.primary && (
-                        <span className="font-mono text-[0.55rem] uppercase tracking-widest text-accent/70">
+                        <span className="font-mono text-[0.55rem] uppercase tracking-widest text-accent/80">
                           HQ
                         </span>
                       )}
                     </div>
-                    <p className="mt-2 font-mono text-[0.6rem] uppercase tracking-widest text-accent/60">
+                    <p className="mt-2 font-mono text-[0.6rem] uppercase tracking-widest text-accent/80">
                       {office.role}
                     </p>
                     <p className="mt-4 text-sm leading-relaxed text-ink-3">{office.note}</p>
@@ -435,7 +435,7 @@ export function About() {
                   <p className="font-display text-2xl uppercase tracking-wide text-white">
                     Aniruddha Narayan
                   </p>
-                  <p className="mt-1 font-mono text-[0.65rem] uppercase tracking-widest text-accent/70">
+                  <p className="mt-1 font-mono text-[0.65rem] uppercase tracking-widest text-accent/80">
                     Founder &amp; Chief Executive
                   </p>
                 </div>
@@ -469,7 +469,7 @@ export function About() {
               <Reveal key={item.year} delay={i * 0.06}>
                 <div className="group grid grid-cols-1 gap-3 border-b border-line py-8 transition-colors duration-300 hover:bg-white/[0.02] md:grid-cols-12 md:gap-8">
                   <div className="md:col-span-2">
-                    <span className="font-display text-3xl uppercase leading-none tracking-tight text-accent/70">
+                    <span className="font-display text-3xl uppercase leading-none tracking-tight text-accent/80">
                       {item.year}
                     </span>
                   </div>
@@ -547,7 +547,7 @@ function PartnerRow({
           {region}
         </span>
       </div>
-      <p className="mt-1.5 font-mono text-[0.55rem] uppercase tracking-widest text-accent/55">
+      <p className="mt-1.5 font-mono text-[0.55rem] uppercase tracking-widest text-accent/80">
         {basis}
       </p>
       <p className="mt-2 text-sm leading-relaxed text-ink-3">{note}</p>
