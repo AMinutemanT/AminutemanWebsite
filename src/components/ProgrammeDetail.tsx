@@ -5,6 +5,7 @@ import { CATEGORY_LABEL, programmePath, PROGRAMME_BY_SLUG } from '../data/progra
 import { Reveal, Stagger, StaggerItem } from './ui/Reveal';
 import { Eyebrow, SectionHeading, StatusTag, DomainChip } from './ui/HUD';
 import { MediaSlot } from './ui/MediaSlot';
+import { ContourField } from './ui/ContourField';
 import { LazyModelViewer } from './LazyModelViewer';
 import { SpecTable } from './ui/SpecTable';
 
@@ -275,7 +276,7 @@ function ProgrammeHero({ programme }: { programme: Programme }) {
             className="h-full w-full object-cover"
           />
         ) : (
-          <HeroPlaceholder designation={programme.designation} path={programme.hero.path} />
+          <HeroPlaceholder designation={programme.designation} />
         )}
         <div
           className={`absolute inset-0 bg-gradient-to-t ${
@@ -325,26 +326,24 @@ function ProgrammeHero({ programme }: { programme: Programme }) {
   );
 }
 
-function HeroPlaceholder({ designation, path }: { designation: string; path?: string }) {
+/**
+ * Masthead for the programmes that are software and have no photograph to
+ * stand behind. A relief field seeded off the designation, so each programme
+ * gets its own stable terrain, with the designation stamped behind it.
+ */
+function HeroPlaceholder({ designation }: { designation: string }) {
   return (
     <div className="relative h-full w-full bg-abyss">
-      <div className="absolute inset-0 bg-grid-fine bg-grid-fine opacity-[0.18]" />
-      <div className="absolute inset-0 bg-grid-coarse bg-grid-coarse opacity-[0.2]" />
+      <div className="absolute inset-0 bg-[radial-gradient(120%_90%_at_18%_15%,rgba(255,138,0,0.16),transparent_62%)]" />
+      <ContourField seed={designation} className="absolute inset-0 h-full w-full" />
+      <div className="absolute inset-0 bg-grid-fine bg-grid-fine opacity-[0.08]" />
       {/* Ghosted designation, reads as a plate stamp behind the content. */}
       <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
-        <span className="select-none whitespace-nowrap font-display text-[22vw] font-semibold uppercase leading-none tracking-tighter text-white/[0.035]">
+        <span className="select-none whitespace-nowrap font-display text-[22vw] font-semibold uppercase leading-none tracking-tighter text-white/[0.04]">
           {designation}
         </span>
       </div>
-      {path && (
-        <div className="absolute right-6 top-28 hidden text-right sm:block">
-          <p className="font-mono text-[0.6rem] uppercase tracking-widest text-ink-dim">
-            hero imagery pending
-          </p>
-          <p className="font-mono text-[0.6rem] tracking-wide text-accent/30">{path}</p>
-        </div>
-      )}
-      <div className="absolute inset-x-0 top-1/2 h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-void via-void/20 to-void/45" />
     </div>
   );
 }

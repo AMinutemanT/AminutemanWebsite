@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Send, Phone, Mail, MapPin, ArrowRight } from 'lucide-react';
 import { submitToWeb3Forms } from '../utils/cloudinary';
 import { Reveal } from '../components/ui/Reveal';
+import { GraphicBackdrop } from '../components/ui/GraphicBackdrop';
 import { Eyebrow } from '../components/ui/HUD';
 import { OFFICES } from '../data/company';
 
@@ -106,9 +107,7 @@ ${formData.message}
     <div className="bg-void">
       {/* ---- Header ------------------------------------------------------ */}
       <header className="relative overflow-hidden border-b border-line pt-40 pb-20 sm:pt-48 sm:pb-24">
-        <div className="absolute inset-0 bg-grid-coarse bg-grid-coarse opacity-[0.18]" />
-        <div className="absolute inset-0 bg-[radial-gradient(100%_80%_at_50%_0%,rgba(255,138,0,0.12),transparent_60%)]" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-void" />
+        <GraphicBackdrop seed="Contact" />
 
         <div className="container relative">
           <Reveal direction="none">

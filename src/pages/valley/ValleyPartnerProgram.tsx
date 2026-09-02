@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { Reveal, Stagger, StaggerItem } from '../../components/ui/Reveal';
+import { GraphicBackdrop } from '../../components/ui/GraphicBackdrop';
 import { Eyebrow, SectionHeading, StatusTag } from '../../components/ui/HUD';
 import { SpecTable } from '../../components/ui/SpecTable';
 
@@ -95,9 +96,7 @@ export function ValleyPartnerProgram() {
     <div className="bg-void">
       {/* ---- Header ------------------------------------------------------ */}
       <header className="relative overflow-hidden border-b border-line pt-40 pb-20 sm:pt-48 sm:pb-28">
-        <div className="absolute inset-0 bg-grid-coarse bg-grid-coarse opacity-[0.18]" />
-        <div className="absolute inset-0 bg-[radial-gradient(100%_80%_at_50%_0%,rgba(255,138,0,0.14),transparent_60%)]" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-void" />
+        <GraphicBackdrop seed="Partner Program" />
 
         <div className="container relative">
           <Reveal direction="none">

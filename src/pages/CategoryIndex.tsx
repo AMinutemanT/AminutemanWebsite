@@ -55,6 +55,7 @@ export function CategoryIndex({ category }: { category: Category }) {
         image={copy.image}
         focus={copy.focus}
         intensity={copy.intensity}
+        seed={copy.title}
       />
 
       {/* ---- Index -------------------------------------------------------- */}

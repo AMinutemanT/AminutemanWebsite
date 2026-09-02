@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import { Reveal } from './Reveal';
 import { Eyebrow } from './HUD';
+import { ContourField } from './ContourField';
 
 /* ---------------------------------------------------------------------------
  * PAGE HERO
@@ -35,6 +36,8 @@ interface PageHeroProps {
   meta?: ReactNode;
   /** Omit for the graphic treatment used where no honest photograph exists. */
   image?: HeroImage;
+  /** Seeds the relief field in graphic mode. Stable per page. */
+  seed?: string;
   /** object-position for the photograph. */
   focus?: string;
   /**
@@ -51,6 +54,7 @@ export function PageHero({
   lede,
   meta,
   image,
+  seed = 'aminuteman',
   focus = 'center',
   intensity = 0.62,
   children,
@@ -93,9 +97,10 @@ export function PageHero({
           </>
         ) : (
           <>
-            <div className="absolute inset-0 bg-grid-coarse bg-grid-coarse opacity-[0.18]" />
-            <div className="absolute inset-0 bg-[radial-gradient(100%_80%_at_50%_0%,rgba(255,138,0,0.12),transparent_60%)]" />
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-void" />
+            <div className="absolute inset-0 bg-[radial-gradient(120%_90%_at_20%_10%,rgba(255,138,0,0.15),transparent_62%)]" />
+            <ContourField seed={seed} className="absolute inset-0 h-full w-full" />
+            <div className="absolute inset-0 bg-grid-fine bg-grid-fine opacity-[0.07]" />
+            <div className="absolute inset-0 bg-gradient-to-b from-void/40 via-transparent to-void" />
           </>
         )}
       </div>
