@@ -82,13 +82,13 @@ export function UnifiedGrid({ className = '' }: { className?: string }) {
           </defs>
 
           {/* Column headers */}
-          <text x={SENSE_X} y="30" className="fill-white/55" fontSize="11" fontFamily="IBM Plex Mono, monospace" letterSpacing="4" textAnchor="middle">
+          <text x={SENSE_X} y="30" className="fill-white/55" fontSize="11" fontFamily='"JetBrains Mono", ui-monospace, monospace' letterSpacing="4" textAnchor="middle">
             SENSE
           </text>
-          <text x={CORE.x} y="30" className="fill-white/55" fontSize="11" fontFamily="IBM Plex Mono, monospace" letterSpacing="4" textAnchor="middle">
+          <text x={CORE.x} y="30" className="fill-white/55" fontSize="11" fontFamily='"JetBrains Mono", ui-monospace, monospace' letterSpacing="4" textAnchor="middle">
             DECIDE
           </text>
-          <text x={EFFECT_X} y="30" className="fill-white/55" fontSize="11" fontFamily="IBM Plex Mono, monospace" letterSpacing="4" textAnchor="middle">
+          <text x={EFFECT_X} y="30" className="fill-white/55" fontSize="11" fontFamily='"JetBrains Mono", ui-monospace, monospace' letterSpacing="4" textAnchor="middle">
             EFFECT
           </text>
 
@@ -169,7 +169,7 @@ export function UnifiedGrid({ className = '' }: { className?: string }) {
               textAnchor="middle"
               className="fill-white"
               fontSize="26"
-              fontFamily="Barlow Condensed, sans-serif"
+              fontFamily='"Big Shoulders Display", Impact, sans-serif'
               letterSpacing="4"
             >
               VALLEY
@@ -180,7 +180,7 @@ export function UnifiedGrid({ className = '' }: { className?: string }) {
               textAnchor="middle"
               className="fill-white/60"
               fontSize="9.5"
-              fontFamily="IBM Plex Mono, monospace"
+              fontFamily='"JetBrains Mono", ui-monospace, monospace'
               letterSpacing="1.6"
             >
               CUSTODY · PAIRING · AUTHORITY
@@ -220,7 +220,7 @@ export function UnifiedGrid({ className = '' }: { className?: string }) {
                   textAnchor="middle"
                   className="fill-white"
                   fontSize="14"
-                  fontFamily="Barlow Condensed, sans-serif"
+                  fontFamily='"Big Shoulders Display", Impact, sans-serif'
                   letterSpacing="2"
                 >
                   {node.label}
@@ -231,7 +231,7 @@ export function UnifiedGrid({ className = '' }: { className?: string }) {
                   textAnchor="middle"
                   className="fill-white/60"
                   fontSize="8.5"
-                  fontFamily="IBM Plex Mono, monospace"
+                  fontFamily='"JetBrains Mono", ui-monospace, monospace'
                 >
                   {node.sub.toUpperCase()}
                 </text>
