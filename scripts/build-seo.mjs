@@ -94,9 +94,16 @@ for (const r of routes) {
     .replace(/<meta name="twitter:title" content="[^"]*" \/>/, `<meta name="twitter:title" content="${esc(r.title)}" />`)
     .replace(/<meta name="twitter:description" content="[^"]*" \/>/, `<meta name="twitter:description" content="${esc(r.description)}" />`)
     .replace(/<meta name="twitter:image" content="[^"]*" \/>/, `<meta name="twitter:image" content="${img}" />`);
+  // Two forms of the same shell, because static hosts disagree about how they
+  // resolve an extensionless path. Render serves <route>/index.html only when
+  // the request carries a trailing slash; without one its SPA rewrite shadows
+  // the file and the root shell is returned instead. Writing <route>.html as
+  // well gives hosts that try the .html extension first something to match,
+  // so /systems/ankosha and /systems/ankosha/ both carry Ankosha's metadata.
   const dir = path.join(DIST, r.path);
   await mkdir(dir, { recursive: true });
   await writeFile(path.join(dir, 'index.html'), html);
+  await writeFile(path.join(DIST, `${r.path}.html`), html);
   written += 1;
 }
 await rm(tmp, { force: true });

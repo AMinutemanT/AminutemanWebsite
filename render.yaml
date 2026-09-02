@@ -1,0 +1,77 @@
+# Render blueprint for the static site.
+#
+# The live service predates this file. If it was created from the dashboard,
+# Render will not adopt these settings automatically: either attach the service
+# to this blueprint, or mirror the headers and routes below in the dashboard
+# under Settings > Headers and Settings > Redirects/Rewrites.
+#
+# Two things here matter beyond convenience.
+#
+# 1. The response headers. The live site currently sends only
+#    x-content-type-options, so there is no HSTS, no framing protection, no
+#    referrer policy and no content security policy.
+#
+# 2. The rewrite is deliberately last and deliberately not a blanket catch-all
+#    ahead of the filesystem. The build writes a prerendered shell per route
+#    carrying that route's title, description, canonical and social tags, and
+#    those files must win over the SPA fallback or every shared link previews
+#    as the home page.
+
+services:
+  - type: web
+    name: aminuteman-website
+    runtime: static
+    buildCommand: npm ci && npm run build
+    staticPublishPath: ./dist
+
+    headers:
+      - path: /*
+        name: Strict-Transport-Security
+        value: max-age=63072000; includeSubDomains; preload
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: X-Frame-Options
+        value: DENY
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
+      - path: /*
+        name: Permissions-Policy
+        value: camera=(), microphone=(), geolocation=(), interest-cohort=()
+      # Scripts and styles are our own and inline; the only third parties the
+      # page talks to are the form endpoint and the upload endpoint.
+      # frame-ancestors is what actually stops clickjacking in modern browsers.
+      # wasm-unsafe-eval is required by the Draco decoder that tessellates the
+      # CAD models; without it every 3D viewer on the site fails to compile.
+      # It permits WebAssembly only, unlike the far broader unsafe-eval.
+      - path: /*
+        name: Content-Security-Policy
+        value: >-
+          default-src 'self';
+          script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval';
+          style-src 'self' 'unsafe-inline';
+          img-src 'self' data: blob: https://res.cloudinary.com;
+          font-src 'self';
+          media-src 'self';
+          connect-src 'self' https://api.web3forms.com https://api.cloudinary.com;
+          worker-src 'self' blob:;
+          frame-ancestors 'none';
+          base-uri 'self';
+          form-action 'self';
+          object-src 'none';
+          upgrade-insecure-requests
+      # Hashed build assets are immutable; the shells must revalidate so a
+      # deploy is picked up straight away.
+      - path: /assets/*
+        name: Cache-Control
+        value: public, max-age=31536000, immutable
+      - path: /fonts/*
+        name: Cache-Control
+        value: public, max-age=31536000, immutable
+
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
