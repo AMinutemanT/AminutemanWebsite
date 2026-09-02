@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { AnkoshaFlythrough } from '../components/AnkoshaFlythrough';
+import { UnifiedGrid } from '../components/UnifiedGrid';
 import { Reveal, Stagger, StaggerItem } from '../components/ui/Reveal';
 import { Eyebrow, SectionHeading } from '../components/ui/HUD';
 import { MediaSlot } from '../components/ui/MediaSlot';
@@ -366,6 +367,9 @@ function ValleySection() {
           </div>
         </div>
 
+        <Reveal delay={0.14}>
+          <UnifiedGrid className="mt-16" />
+        </Reveal>
       </div>
     </section>
   );
