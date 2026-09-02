@@ -21,6 +21,7 @@ import { ProgrammePage } from './pages/ProgrammePage';
 import { ValleyCommandControl } from './pages/valley/ValleyCommandControl';
 import { ValleyMissionAutonomy } from './pages/valley/ValleyMissionAutonomy';
 import { ValleyPartnerProgram } from './pages/valley/ValleyPartnerProgram';
+import { NotFound } from './pages/NotFound';
 import { PROGRAMME_BY_SLUG, programmePath } from './data/programmes';
 
 /**
@@ -116,7 +117,9 @@ function AnimatedRoutes() {
           <Route key={from} path={from} element={<Navigate to={to} replace />} />
         ))}
 
-        <Route path="*" element={<Navigate to="/" replace />} />
+        {/* A real not-found page rather than a silent redirect to the home
+            page, which search engines treat as a soft 404. */}
+        <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
       </Routes>
     </AnimatePresence>
   );
