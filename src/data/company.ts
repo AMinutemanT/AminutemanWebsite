@@ -179,6 +179,39 @@ export const EXHIBITIONS: Shot[] = [
   },
 ];
 
+export interface PressItem {
+  outlet: string;
+  href: string;
+}
+
+export interface PressStory {
+  headline: string;
+  date: string;
+  outlets: PressItem[];
+}
+
+/**
+ * Press coverage. Every link here was checked and resolves to the article.
+ *
+ * These outlets carried the same piece on the same day, so it is presented as
+ * one story with the outlets that ran it, rather than as six separate items.
+ * Padding a syndicated release out into a wall of entries is the sort of thing
+ * a reader checks, and it costs more credibility than it buys.
+ */
+export const PRESS: PressStory[] = [
+  {
+    headline: 'Aminuteman Technologies: A Young Startup Taking Bold Strides in Defense',
+    date: '16 September 2025',
+    outlets: [
+      { outlet: 'Hindustan Metro', href: 'https://www.hindustanmetro.com/aminuteman-technologies-a-young-startup-taking-bold-strides-in-defense/' },
+      { outlet: 'Indian Sentinel', href: 'https://www.indiansentinel.in/aminuteman-technologies-a-young-startup-taking-bold-strides-in-defense/' },
+      { outlet: 'Republic News India', href: 'https://republicnewsindia.com/aminuteman-technologies-a-young-startup-taking-bold-strides-in-defense/' },
+      { outlet: 'NewsMint24', href: 'https://newsmint24.com/aminuteman-technologies-a-young-startup-taking-bold-strides-in-defense/' },
+      { outlet: 'Entrepreneur Hunt', href: 'https://entrepreneurhunt.com/aminuteman-technologies-a-young-startup-taking-bold-strides-in-defense' },
+    ],
+  },
+];
+
 export interface Partner {
   name: string;
   region: string;

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useSeo } from '../utils/seo';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { Reveal, Stagger, StaggerItem } from '../components/ui/Reveal';
 import { Eyebrow, SectionHeading } from '../components/ui/HUD';
 import { MediaSlot } from '../components/ui/MediaSlot';
@@ -10,6 +10,7 @@ import {
   ACHIEVEMENTS,
   DOMESTIC_PARTNERS,
   EXHIBITIONS,
+  PRESS,
   FACILITY,
   FIELD,
   INTERNATIONAL_PARTNERS,
@@ -378,6 +379,51 @@ export function About() {
                   alt={shot.caption}
                   ratio="3/2"
                 />
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ---- Press -------------------------------------------------------- */}
+      <section className="section border-b border-line">
+        <div className="container">
+          <Reveal>
+            <SectionHeading
+              eyebrow="In the press"
+              title="Written about"
+              lede="Coverage of the company and the programmes. Each entry links to the article."
+            />
+          </Reveal>
+
+          <div className="mt-14 space-y-px border border-line bg-line">
+            {PRESS.map((story) => (
+              <Reveal key={story.headline}>
+                <article className="bg-panel/40 p-7 sm:p-9">
+                  <p className="font-mono text-[0.6rem] uppercase tracking-widest text-ink-dim">
+                    {story.date}
+                  </p>
+                  <h3 className="mt-4 max-w-3xl font-display text-2xl uppercase leading-tight tracking-wide text-white sm:text-3xl">
+                    {story.headline}
+                  </h3>
+                  <div className="mt-6 flex flex-wrap items-center gap-x-2 gap-y-3">
+                    <span className="mr-1 font-mono text-[0.6rem] uppercase tracking-widest text-ink-dim">
+                      Carried by
+                    </span>
+                    {story.outlets.map((o) => (
+                      <a
+                        key={o.href}
+                        href={o.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 border border-line-bright px-3 py-1.5 font-mono text-[0.6rem] uppercase tracking-widest text-ink-2 transition-colors hover:border-accent/50 hover:text-accent"
+                      >
+                        {o.outlet}
+                        <ArrowUpRight className="h-3 w-3" />
+                      </a>
+                    ))}
+                  </div>
+                </article>
               </Reveal>
             ))}
           </div>
