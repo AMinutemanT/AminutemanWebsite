@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useSeo } from '../utils/seo';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { UnifiedGrid } from '../components/UnifiedGrid';
+import { GraphicBackdrop } from '../components/ui/GraphicBackdrop';
 import { Reveal, Stagger, StaggerItem } from '../components/ui/Reveal';
 import { Eyebrow, SectionHeading, StatusTag } from '../components/ui/HUD';
 import { SpecTable } from '../components/ui/SpecTable';
@@ -134,16 +135,13 @@ export function Valley() {
       {/* ---- Hero -------------------------------------------------------- */}
       <header className="relative flex min-h-[90vh] items-end overflow-hidden border-b border-line pt-32">
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-grid-fine bg-grid-fine opacity-[0.16]" />
-          <div className="absolute inset-0 bg-grid-coarse bg-grid-coarse opacity-[0.2]" />
-          <div className="absolute inset-0 bg-[radial-gradient(120%_80%_at_50%_10%,rgba(255,138,0,0.16),transparent_60%)]" />
+          <GraphicBackdrop seed="Valley" />
           <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
-            <span className="select-none whitespace-nowrap font-display text-[26vw] font-semibold uppercase leading-none tracking-tighter text-white/[0.035]">
+            <span className="select-none whitespace-nowrap font-display text-[26vw] font-semibold uppercase leading-none tracking-tighter text-white/[0.04]">
               Valley
             </span>
           </div>
-          <div className="absolute inset-x-0 top-1/2 h-px bg-gradient-to-r from-transparent via-accent/25 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-void via-void/50 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-void via-void/40 to-transparent" />
         </div>
 
         <div className="container relative z-10 pb-20 sm:pb-24">
