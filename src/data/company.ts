@@ -216,63 +216,26 @@ export interface Partner {
   name: string;
   region: string;
   basis: string;
-  note: string;
 }
 
-/** Indian defence ecosystem engagements. */
+/**
+ * Indian defence ecosystem engagements. Deliberately name and relationship-type
+ * only — what each engagement actually involves is confidential and does not
+ * appear here or anywhere else on the site.
+ */
 export const DOMESTIC_PARTNERS: Partner[] = [
-  {
-    name: 'Adani Defence & Aerospace',
-    region: 'India',
-    basis: 'Active engagement',
-    note: 'AI-centric systems collaboration across manufacturing and integration.',
-  },
-  {
-    name: 'Alpha Design Technologies',
-    region: 'India',
-    basis: 'Active engagement',
-    note: 'AI-centric systems collaboration on integration and production.',
-  },
-  {
-    name: 'Bharat Electronics',
-    region: 'India',
-    basis: 'Active engagement',
-    note: 'AI-centric systems collaboration with the national electronics prime.',
-  },
-  {
-    name: 'Indian Army',
-    region: 'India',
-    basis: 'End-user validation',
-    note: 'Field validation of counter-UAS and loitering munition capability.',
-  },
-  {
-    name: 'JSW Group',
-    region: 'India',
-    basis: 'Memorandum of understanding',
-    note: 'Manufacturing capacity for airframe and structural production.',
-  },
-  {
-    name: 'Elbatech Group',
-    region: 'India',
-    basis: 'Memorandum of understanding',
-    note: 'Radio frequency engineering and datalink hardware.',
-  },
-  {
-    name: 'Pax Intelligence',
-    region: 'India',
-    basis: 'Memorandum of understanding',
-    note: 'Cybersecurity and secure systems assurance.',
-  },
+  { name: 'Adani Defence & Aerospace', region: 'India', basis: 'Active engagement' },
+  { name: 'Alpha Design Technologies', region: 'India', basis: 'Active engagement' },
+  { name: 'Bharat Electronics', region: 'India', basis: 'Active engagement' },
+  { name: 'Indian Army', region: 'India', basis: 'End-user validation' },
+  { name: 'JSW Group', region: 'India', basis: 'Memorandum of understanding' },
+  { name: 'Elbatech Group', region: 'India', basis: 'Memorandum of understanding' },
+  { name: 'Pax Intelligence', region: 'India', basis: 'Memorandum of understanding' },
 ];
 
-/** International agreements and collaborations. */
+/** International agreements and collaborations. Name and relationship-type only. */
 export const INTERNATIONAL_PARTNERS: Partner[] = [
-  {
-    name: 'Nicomatic',
-    region: 'France',
-    basis: 'Agreement',
-    note: 'High-reliability interconnect for airborne and space-qualified assemblies.',
-  },
+  { name: 'Nicomatic', region: 'France', basis: 'Agreement' },
 ];
 
 export interface Milestone {
@@ -295,50 +258,19 @@ export const RECORD: Milestone[] = [
   {
     year: '2025',
     title: 'Ankosha-A and the industrial base',
-    body: 'Ankosha-A published at 1,000 km range and 8 hours endurance on a 20 kg warhead. Manufacturing, RF and cybersecurity partners brought under memoranda with JSW Group, Elbatech Group and Pax Intelligence.',
+    body: 'Ankosha-A published at 1,000 km range and 8 hours endurance on a 20 kg warhead. Industrial partnerships established under memoranda of understanding to scale the supply base.',
   },
   {
     year: '2026',
-    title: 'Four capitals, and a sovereign model programme',
-    body: 'Sovereign multi-modal foundation model programme under way for a service customer. International agreement concluded with Nicomatic for high-reliability interconnect. Operations across Pune, Delhi, Bengaluru and Madhya Pradesh.',
+    title: 'Four capitals, and an international agreement',
+    body: 'An international supply agreement concluded. Operations across Pune, Delhi, Bengaluru and Madhya Pradesh.',
   },
 ];
 
-export interface Achievement {
-  label: string;
-  value: string;
-  note: string;
-}
-
-export const ACHIEVEMENTS: Achievement[] = [
-  {
-    label: 'Surya Dronathon 2025',
-    value: 'Indian Army',
-    note: 'Flown and evaluated at Sumdo at 10,700 feet under an Indian Army initiative, August 2025.',
-  },
-  {
-    label: 'Engineering bench',
-    value: '22 engineers',
-    note: 'Across pretraining, multi-modal systems, security, MLOps and physics.',
-  },
-  {
-    label: 'Turbo Quant Engine',
-    value: 'In production',
-    note: 'Proprietary quantisation and distillation tooling, already shipping inside our own stack.',
-  },
-  {
-    label: 'Software readiness',
-    value: 'TRL 5 / 4 / 3',
-    note: 'Talon at TRL 5, Aorizon at TRL 4, Sentinel at TRL 3, all shipping in phases.',
-  },
-  {
-    label: 'Edge hardware lab',
-    value: 'Jetson · ARM · x86',
-    note: 'Industrial edge compute kits supporting the Ankosha A and B programmes.',
-  },
-  {
-    label: 'Sovereign compute',
-    value: 'National allocation',
-    note: 'Dedicated accelerator capacity for the foundation model programme, held on Indian infrastructure.',
-  },
-];
+/**
+ * Deliberately removed: this previously listed internal team headcount and
+ * composition, proprietary tooling status, and internal compute/hardware
+ * inventory as a public "stat tile" band. None of that needs to be public for
+ * a defence company, and Surya Dronathon 2025 (the one genuinely external,
+ * press-covered item) is already covered, with real photography, in `FIELD`.
+ */

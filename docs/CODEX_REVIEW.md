@@ -166,6 +166,22 @@ there, just unrendered), or, if text-only uniformity is preferred, add a line to
 `tasks/todo.md` saying so — same standard this review applies elsewhere, so the next
 session can tell a deliberate choice from an accidental one.
 
+## Confidentiality fix — 25 September
+
+User instruction, direct and firm: the specific substance of what Aminuteman is
+doing with any named partner is confidential and must not appear anywhere on the
+site, only the partner's name and a generic relationship-type label. Removed the
+`Partner.note` field entirely from `company.ts` (previously rendered on About's
+"Who we work with" section via `PartnerRow` — e.g. "AI-centric systems
+collaboration across manufacturing and integration" for Adani, "High-reliability
+interconnect for airborne and space-qualified assemblies" for Nicomatic) and
+rewrote the 2025/2026 `RECORD` milestones, which paired JSW/Elbatech/Pax and
+Nicomatic with specific functions. Verified nothing else in `src/` references
+these partner names, and grepped the actual `dist/` build to confirm none of the
+removed text survives anywhere in the compiled output. **Important for any future
+partner data entry**: name + `basis` (relationship type) only, never what the
+engagement actually involves — this is now recorded as a standing project rule.
+
 ## New fixes — 25 September, direct user-reported issues
 
 User reported these directly with screenshots; fixed in-session, flagging for

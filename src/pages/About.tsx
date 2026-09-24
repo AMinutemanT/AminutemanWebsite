@@ -7,7 +7,6 @@ import { MediaSlot } from '../components/ui/MediaSlot';
 import { PageHero } from '../components/ui/PageHero';
 import { PROGRAMMES, programmePath } from '../data/programmes';
 import {
-  ACHIEVEMENTS,
   DOMESTIC_PARTNERS,
   EXHIBITIONS,
   PRESS,
@@ -138,43 +137,12 @@ export function About() {
         </div>
       </section>
 
-      {/* ---- Record / achievements --------------------------------------- */}
-      <section className="section border-b border-line">
-        <div className="container">
-          <Reveal>
-            <SectionHeading
-              index="01"
-              eyebrow="Standing · The position"
-              lead="Where we"
-              title="Actually are"
-              stop
-              lede="Each of these is drawn from a contract, a submission or a build standard."
-            />
-          </Reveal>
-
-          <Stagger className="mt-16 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {ACHIEVEMENTS.map((item) => (
-              <StaggerItem key={item.label}>
-                <div className="card group p-8">
-                  <p className="data-label">{item.label}</p>
-                  <p className="mt-4 font-display text-3xl uppercase leading-none tracking-tight text-white">
-                    {item.value}
-                  </p>
-                  <p className="mt-4 text-sm leading-relaxed text-ink-2">{item.note}</p>
-                  <span className="absolute bottom-0 left-0 h-px w-0 bg-accent transition-all duration-500 group-hover:w-full" />
-                </div>
-              </StaggerItem>
-            ))}
-          </Stagger>
-        </div>
-      </section>
-
       {/* ---- Partners ----------------------------------------------------- */}
       <section className="section border-b border-line">
         <div className="container">
           <Reveal>
             <SectionHeading
-              index="02"
+              index="01"
               eyebrow="Alongside · The ecosystem"
               lead="Who we"
               title="Work with"
@@ -215,7 +183,7 @@ export function About() {
             <div className="lg:col-span-5">
               <Reveal>
                 <SectionHeading
-                  index="03"
+                  index="02"
                   eyebrow="In-house · Held capability"
                   lead="What we hold"
                   title="Ourselves"
@@ -260,7 +228,7 @@ export function About() {
         <div className="container">
           <Reveal>
             <SectionHeading
-              index="04"
+              index="03"
               eyebrow="How we work · Commitments"
               lead="Six"
               title="Commitments"
@@ -293,7 +261,7 @@ export function About() {
         <div className="container">
           <Reveal>
             <SectionHeading
-              index="05"
+              index="04"
               eyebrow="Footprint · The sites"
               lead="Where we"
               title="Build"
@@ -346,7 +314,7 @@ export function About() {
         <div className="container">
           <Reveal>
             <SectionHeading
-              index="06"
+              index="05"
               eyebrow="In the field · Trials"
               lead="On the"
               title="Ground"
@@ -377,7 +345,7 @@ export function About() {
         <div className="container">
           <Reveal>
             <SectionHeading
-              index="07"
+              index="06"
               eyebrow="Alongside · Exhibitions"
               lead="In the"
               title="Room"
@@ -407,7 +375,7 @@ export function About() {
         <div className="container">
           <Reveal>
             <SectionHeading
-              index="08"
+              index="07"
               eyebrow="In the press · Coverage"
               lead="Written"
               title="About"
@@ -455,7 +423,7 @@ export function About() {
         <div className="container">
           <Reveal>
             <SectionHeading
-              index="09"
+              index="08"
               eyebrow="The floor · The works"
               lead="Where the"
               title="Hardware sits"
@@ -534,7 +502,7 @@ export function About() {
         <div className="container">
           <Reveal>
             <SectionHeading
-              index="10"
+              index="09"
               eyebrow="Record · The timeline"
               lead="How we"
               title="Got here"
@@ -604,16 +572,18 @@ export function About() {
   );
 }
 
+/**
+ * Name, region and relationship type only. What each engagement actually
+ * involves is confidential and is deliberately not rendered here.
+ */
 function PartnerRow({
   name,
   region,
   basis,
-  note,
 }: {
   name: string;
   region: string;
   basis: string;
-  note: string;
 }) {
   return (
     <div className="group border-b border-line py-5 transition-colors duration-300 hover:bg-white/[0.02]">
@@ -628,7 +598,6 @@ function PartnerRow({
       <p className="mt-1.5 font-mono text-[0.55rem] uppercase tracking-widest text-accent/80">
         {basis}
       </p>
-      <p className="mt-2 text-sm leading-relaxed text-ink-3">{note}</p>
     </div>
   );
 }
