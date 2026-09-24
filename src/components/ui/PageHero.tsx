@@ -1,21 +1,8 @@
 import { ReactNode } from 'react';
 import { Reveal } from './Reveal';
 import { Eyebrow } from './HUD';
-import { RevealText } from './RevealText';
-import { ContourField } from './ContourField';
 
-/* ---------------------------------------------------------------------------
- * PAGE HERO
- *
- * A full-bleed photographic masthead. Every image here is a real photograph
- * from a trial, a range or a gun line; where no honest photograph exists the
- * page uses `tone="graphic"` and keeps the engineered treatment instead of
- * reaching for stock.
- *
- * The scrim is doing real work: display type sits over the lower-left of the
- * frame, so the gradient is weighted there and the image is dimmed and lightly
- * desaturated to sit inside the palette.
- * ------------------------------------------------------------------------- */
+/** Shared masthead, with documentary photography only when supplied. */
 
 const LQIP: Record<string, string> = {
   battery:
@@ -41,7 +28,7 @@ interface PageHeroProps {
   meta?: ReactNode;
   /** Omit for the graphic treatment used where no honest photograph exists. */
   image?: HeroImage;
-  /** Seeds the relief field in graphic mode. Stable per page. */
+  /** Legacy content key; retained for existing page call sites. */
   seed?: string;
   /** object-position for the photograph. */
   focus?: string;
@@ -61,7 +48,6 @@ export function PageHero({
   lede,
   meta,
   image,
-  seed = 'aminuteman',
   focus = 'center',
   intensity = 0.62,
   children,
@@ -70,7 +56,7 @@ export function PageHero({
   // needs it to reach further across the frame.
   const reach = Math.round(46 + intensity * 42);
   return (
-    <header className="relative flex min-h-[62svh] flex-col justify-end overflow-hidden border-b border-line pt-40 pb-16 sm:min-h-[68svh] sm:pt-48 sm:pb-20">
+    <header className="page-masthead relative flex flex-col justify-end overflow-hidden border-b border-line pt-32 pb-12 sm:pt-40 sm:pb-16">
       <div className="absolute inset-0">
         {image ? (
           <>
@@ -103,12 +89,7 @@ export function PageHero({
             />
           </>
         ) : (
-          <>
-            <div className="absolute inset-0 bg-[radial-gradient(120%_90%_at_20%_10%,rgba(255,138,0,0.15),transparent_62%)]" />
-            <ContourField seed={seed} className="absolute inset-0 h-full w-full" />
-            <div className="absolute inset-0 bg-grid-fine bg-grid-fine opacity-[0.07]" />
-            <div className="absolute inset-0 bg-gradient-to-b from-void/40 via-transparent to-void" />
-          </>
+          <div className="absolute inset-0 bg-abyss" />
         )}
       </div>
 
@@ -122,14 +103,14 @@ export function PageHero({
           <h1 className="mt-6 max-w-5xl">
             {lead && (
               <span className="display-lead-xl">
-                <RevealText>{lead}</RevealText>
+                {lead}
               </span>
             )}
             {/* Big Shoulders sits low in its line box, so at the masthead size
                 the two lines read further apart than their boxes are. The pull
                 closes that optically; the boxes themselves are already flush. */}
-            <span className={`display-xl block text-white ${lead ? '-mt-3 sm:-mt-4' : ''}`}>
-              <RevealText delay={lead ? 0.12 : 0}>{title}</RevealText>
+            <span className={`display-xl block text-white ${lead ? 'mt-2' : ''}`}>
+              {title}
               {stop && <span className="text-accent">.</span>}
             </span>
           </h1>

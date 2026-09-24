@@ -48,12 +48,6 @@ export function Footer() {
               </li>
               <li className="flex items-start gap-3">
                 <Mail className="mt-0.5 h-4 w-4 shrink-0 text-accent/80" />
-                <a href="mailto:aminutemantechnologies@gmail.com" className="min-w-0 break-all font-mono text-[0.7rem] leading-relaxed text-ink-2 hover:text-accent">
-                  aminutemantechnologies@gmail.com
-                </a>
-              </li>
-              <li className="flex items-start gap-3">
-                <Mail className="mt-0.5 h-4 w-4 shrink-0 text-accent/80" />
                 <a href="mailto:admincontrols@aminutemantechnologies.com" className="min-w-0 break-all font-mono text-[0.7rem] leading-relaxed text-ink-2 hover:text-accent">
                   admincontrols@aminutemantechnologies.com
                 </a>
@@ -153,9 +147,9 @@ export function Footer() {
                 Madhya Pradesh
               </p>
             </div>
-            <p className="max-w-xl font-mono text-[0.6rem] uppercase leading-relaxed tracking-widest text-ink-dim sm:text-right">
-              Performance data released to qualified counterparties following end-user
-              certification. Commitment authority is never delegated to a machine.
+            <p className="max-w-xl text-xs leading-relaxed text-ink-3 sm:text-right">
+              Happy to share performance data with qualified counterparties once end-user
+              certification is in place. Commitment authority is never delegated to a machine.
             </p>
           </div>
         </div>

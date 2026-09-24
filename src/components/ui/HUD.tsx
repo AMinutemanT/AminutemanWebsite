@@ -1,10 +1,6 @@
 import { ReactNode } from 'react';
 
-/* ---------------------------------------------------------------------------
- * Small, shared chrome. These are the pieces that give every page the same
- * instrument-panel language: monospaced labels, corner brackets, rules.
- * ------------------------------------------------------------------------- */
-
+/** Shared section labels and document headings. */
 export function Eyebrow({
   children,
   className = '',
@@ -14,28 +10,12 @@ export function Eyebrow({
 }) {
   return (
     <div className={`flex items-center gap-3 ${className}`}>
-      <span className="h-px w-6 bg-accent/70" />
       <span className="eyebrow">{children}</span>
     </div>
   );
 }
 
-/**
- * The heading every section on the site is built from.
- *
- * Four optional pieces stack above the lede: a ghosted ordinal, a dotted
- * eyebrow, a light lead line and the heavy title. Passing `lead` turns the
- * heading two-tone —
- *
- *   02
- *   SYSTEMS · THE FLEET
- *   The
- *   FLEET.
- *
- * — which is the rhythm the whole site is set to. `index` and `lead` are both
- * optional, so a heading that wants only an eyebrow and a title still renders
- * exactly as it did before.
- */
+/** Optional section index and label above a natural-language heading. */
 export function SectionHeading({
   index,
   eyebrow,
@@ -46,13 +26,13 @@ export function SectionHeading({
   align = 'left',
   className = '',
 }: {
-  /** Ghosted ordinal, e.g. "02". */
+  /** Section ordinal, e.g. "02". */
   index?: string;
   eyebrow?: string;
-  /** Lighter upper line of a two-tone heading. */
+  /** Optional opening words of the heading. */
   lead?: ReactNode;
   title: ReactNode;
-  /** Appends a full stop in the accent colour, the way the headings terminate. */
+  /** Appends a full stop. */
   stop?: boolean;
   lede?: ReactNode;
   align?: 'left' | 'center';
@@ -63,37 +43,16 @@ export function SectionHeading({
 
   return (
     <div className={`${centered ? 'text-center' : ''} ${className}`}>
-      {index && <span className="section-index">{index}</span>}
-
-      {eyebrow && (
-        <div className={`${centered ? 'flex justify-center' : ''} ${index ? '-mt-2' : ''}`}>
-          <Eyebrow>{eyebrow}</Eyebrow>
+      {(index || eyebrow) && (
+        <div className={`flex items-baseline gap-4 ${centered ? 'justify-center' : ''}`}>
+          {index && <span className="section-index !mb-0">{index}</span>}
+          {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
         </div>
       )}
-
-      <h2 className={`mt-5 ${width}`}>
-        {lead && (
-          <span className="display-lead">
-            {lead}
-          </span>
-        )}
-        <span className={`display-lg block text-white ${lead ? 'mt-1' : ''}`}>
-          {/* The lead has already run by the time the heavy line starts, so the
-              two halves arrive in reading order rather than together. */}
-          {title}
-          {stop && <span className="text-accent">.</span>}
-        </span>
+      <h2 className={`display-lg mt-5 text-white ${width}`}>
+        {lead && <>{lead}{' '}</>}{title}{stop && '.'}
       </h2>
-
-      {lede && (
-        <p
-          className={`body-copy mt-5 text-base sm:text-lg ${
-            centered ? 'mx-auto max-w-3xl' : 'max-w-2xl'
-          }`}
-        >
-          {lede}
-        </p>
-      )}
+      {lede && <p className={`body-copy mt-5 text-base ${centered ? 'mx-auto max-w-3xl' : 'max-w-2xl'}`}>{lede}</p>}
     </div>
   );
 }
@@ -102,7 +61,7 @@ export function Rule({ className = '' }: { className?: string }) {
   return <div className={`hairline ${className}`} />;
 }
 
-/** Status pill. "OPERATIONAL", "IN TRIALS", "IN DEVELOPMENT". */
+/** Programme maturity label. "OPERATIONAL", "IN TRIALS", "IN DEVELOPMENT". */
 export function StatusTag({
   status,
   className = '',
@@ -110,19 +69,10 @@ export function StatusTag({
   status: string;
   className?: string;
 }) {
-  const normalized = status.toUpperCase();
-  const tone = normalized.includes('DEVELOP') || normalized.includes('CONCEPT')
-    ? 'text-signal border-signal/40 bg-signal/[0.07]'
-    : normalized.includes('TRIAL') || normalized.includes('QUALIF')
-      ? 'text-accent-soft border-accent/40 bg-accent/[0.07]'
-      : 'text-nominal border-nominal/40 bg-nominal/[0.07]';
-
   return (
-    <span
-      className={`inline-flex items-center gap-2 border px-2.5 py-1 font-mono text-[0.6rem] uppercase tracking-widest ${tone} ${className}`}
-    >
-      <span className="h-1 w-1 rounded-full bg-current" />
-      {normalized}
+    <span className={`inline-flex items-center gap-2 font-sans text-xs text-ink-2 ${className}`}>
+      <span aria-hidden="true" className="h-1.5 w-1.5 bg-accent" />
+      {status}
     </span>
   );
 }
@@ -130,7 +80,7 @@ export function StatusTag({
 /** Domain chip used on cards and in the systems index. */
 export function DomainChip({ label }: { label: string }) {
   return (
-    <span className="border border-line-bright px-2 py-0.5 font-mono text-[0.6rem] uppercase tracking-widest text-ink-3">
+    <span className="font-sans text-xs text-ink-3">
       {label}
     </span>
   );

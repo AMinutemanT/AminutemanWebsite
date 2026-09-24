@@ -235,19 +235,12 @@ ${formData.coverLetter || 'No cover letter provided'}
     <div className="bg-void">
       <PageHero
         eyebrow="Careers · Open roles"
-        lead="Build the things"
-        title={
-          <>
-            Nobody will
-            <br />
-            sell us
-          </>
-        }
+        title="Engineering careers"
         stop
         image="trial"
         focus="50% 26%"
         intensity={0.7}
-        lede="We are hiring engineers who want the unsolved half of the problem, autonomy, structures, guidance and avionics for systems that have to work in contested airspace, on a schedule India controls."
+        lede="Join our engineering team in Pune. Open roles span airframes, aerodynamics, structures, avionics, electronics and AI."
         meta={`${POSITIONS.length} open positions · Pune, India · Full-time`}
       />
 
@@ -258,8 +251,7 @@ ${formData.coverLetter || 'No cover letter provided'}
             <SectionHeading
               index="01"
               eyebrow="The work · The case"
-              lead="Why this, and not"
-              title="Somewhere else"
+              title="Working here"
               stop
             />
           </Reveal>
@@ -267,15 +259,15 @@ ${formData.coverLetter || 'No cover letter provided'}
           <Stagger className="mt-16 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {WHY.map((item, i) => (
               <StaggerItem key={item.title}>
-                <div className="card group p-8">
+                <div className="h-full border-t border-line py-6 pr-4">
                   <span className="font-mono text-[0.6rem] tracking-widest text-accent/80">
                     {String(i + 1).padStart(2, '0')}
                   </span>
-                  <h3 className="mt-4 font-display text-xl uppercase leading-tight tracking-wide text-white">
+                  <h3 className="mt-4 font-sans font-medium text-xl leading-tight tracking-tight text-white">
                     {item.title}
                   </h3>
                   <p className="mt-3 text-sm leading-relaxed text-ink-2">{item.body}</p>
-                  <span className="absolute bottom-0 left-0 h-px w-0 bg-accent transition-all duration-500 group-hover:w-full" />
+
                 </div>
               </StaggerItem>
             ))}
@@ -291,9 +283,9 @@ ${formData.coverLetter || 'No cover letter provided'}
               index="02"
               eyebrow="Open roles · Hiring now"
               lead="Open"
-              title="Positions"
+              title="positions"
               stop
-              lede="All roles are full-time and on-site in Pune. If none of these match and you are still the right person, apply anyway and say why."
+              lede="All roles are full-time and on-site in Pune. For other engineering disciplines, include your area of interest in your application."
             />
           </Reveal>
 
@@ -307,7 +299,7 @@ ${formData.coverLetter || 'No cover letter provided'}
                     </span>
                   </div>
                   <div className="md:col-span-4">
-                    <h3 className="font-display text-2xl uppercase leading-none tracking-wide text-white transition-colors group-hover:text-accent">
+                    <h3 className="font-sans font-medium text-2xl leading-snug tracking-tight text-white transition-colors group-hover:text-accent">
                       {role.title}
                     </h3>
                     <p className="mt-2 font-mono text-[0.6rem] uppercase tracking-widest text-ink-dim">
@@ -322,7 +314,7 @@ ${formData.coverLetter || 'No cover letter provided'}
                       type="button"
                       onClick={() => selectPosition(role.title)}
                       aria-label={`Apply for ${role.title}`}
-                      className="font-mono text-[0.65rem] uppercase tracking-widest text-accent transition-colors hover:text-white"
+                      className="inline-flex min-h-11 items-center text-sm text-accent transition-colors hover:text-white"
                     >
                       Apply →
                     </button>
@@ -341,7 +333,7 @@ ${formData.coverLetter || 'No cover letter provided'}
             <div className="lg:col-span-4">
               <Reveal>
                 <Eyebrow>Application</Eyebrow>
-                <h2 className="display-md mt-6 text-white">Send it in</h2>
+                <h2 className="display-md mt-6 text-white">Your application</h2>
                 <p className="body-copy mt-5">
                   One form, one attachment. We read every application ourselves, there is no
                   keyword filter between you and the engineering team.

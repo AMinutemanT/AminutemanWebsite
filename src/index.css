@@ -61,11 +61,8 @@
     background: #2a2a30;
   }
 
-  h1,
-  h2,
-  h3 {
-    @apply font-display;
-  }
+  h1 { @apply font-display; }
+  h2, h3 { @apply font-sans font-medium; }
 
   :focus-visible {
     outline: 2px solid #FFAE42;
@@ -113,34 +110,39 @@
   /* ---- Typographic system ------------------------------------------------ */
 
   .eyebrow {
-    @apply font-mono text-[0.65rem] sm:text-xs uppercase tracking-ultra text-accent-soft/80;
+    @apply font-sans text-xs font-medium uppercase text-ink-2;
+    letter-spacing: .1em;
   }
 
   .display-xl {
-    @apply font-display font-extrabold uppercase leading-[0.86];
-    @apply text-6xl sm:text-7xl md:text-8xl lg:text-9xl;
-    letter-spacing: -0.03em;
+    @apply font-display font-bold uppercase;
+    font-size: clamp(3.25rem, 6.5vw, 6.5rem);
+    line-height: 1;
+    letter-spacing: -.025em;
   }
 
   .display-lg {
-    @apply font-display font-extrabold uppercase leading-[0.9];
-    @apply text-5xl sm:text-6xl md:text-7xl;
-    letter-spacing: -0.025em;
+    @apply font-sans font-medium;
+    font-size: clamp(1.9rem, 3.3vw, 3rem);
+    line-height: 1.15;
+    letter-spacing: -.035em;
   }
 
   .display-md {
-    @apply font-display font-bold uppercase leading-[0.92];
-    @apply text-4xl sm:text-5xl md:text-6xl;
-    letter-spacing: -0.02em;
+    @apply font-sans font-medium;
+    font-size: clamp(1.65rem, 2.6vw, 2.4rem);
+    line-height: 1.2;
+    letter-spacing: -.025em;
   }
 
   /* The lighter upper line of a two-tone section heading. Big Shoulders is
      self-hosted at 600/700/800/900, so "light" here means 600 set against the
      800 of .display-lg below it — the contrast is weight and colour, not size. */
   .display-lead {
-    @apply block font-display font-semibold uppercase leading-[0.95] text-ink-2;
-    @apply text-4xl sm:text-5xl md:text-6xl;
-    letter-spacing: -0.02em;
+    @apply block font-sans font-normal text-ink-2;
+    font-size: clamp(1.5rem, 2.7vw, 2.5rem);
+    line-height: 1.2;
+    letter-spacing: -.025em;
   }
 
   /**
@@ -149,9 +151,10 @@
    * rather than a first line, so mastheads take this larger cut instead.
    */
   .display-lead-xl {
-    @apply block font-display font-semibold uppercase leading-[0.95] text-ink-2;
-    @apply text-5xl sm:text-6xl md:text-7xl;
-    letter-spacing: -0.025em;
+    @apply block font-display font-semibold uppercase text-ink-2;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    line-height: 1.1;
+    letter-spacing: -.02em;
   }
 
   /* The ghosted ordinal that anchors each numbered section. Sits behind the
@@ -179,7 +182,8 @@
   }
 
   .data-label {
-    @apply font-mono text-[0.65rem] uppercase tracking-widest text-ink-3;
+    @apply font-sans text-xs text-ink-3;
+    letter-spacing: .04em;
   }
 
   .data-value {
@@ -189,7 +193,7 @@
   /* ---- Surfaces ----------------------------------------------------------- */
 
   .panel {
-    @apply relative bg-panel/70 border border-line backdrop-blur-[2px];
+    @apply relative bg-panel border border-line;
   }
 
   .panel-hover {
@@ -234,7 +238,7 @@
   .btn {
     @apply inline-flex items-center justify-center gap-2;
     @apply px-6 sm:px-7 py-3;
-    @apply font-mono text-xs uppercase tracking-widest;
+    @apply font-sans text-sm font-medium;
     @apply transition-all duration-200;
     @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/60 focus-visible:ring-offset-2 focus-visible:ring-offset-void;
     @apply disabled:opacity-40 disabled:cursor-not-allowed;
@@ -260,7 +264,7 @@
   }
 
   .section {
-    @apply py-20 sm:py-28 lg:py-32;
+    @apply py-14 sm:py-20;
   }
 }
 
@@ -354,4 +358,15 @@
   .no-print {
     display: none !important;
   }
+}
+
+/* Product photography is the frame; an extra card border adds no information. */
+.fleet-card,
+.fleet-card:hover {
+  border: 0;
+  background: transparent;
+}
+.page-masthead { min-height: 420px; }
+@media (max-width: 480px) {
+  .page-masthead { min-height: 0; }
 }

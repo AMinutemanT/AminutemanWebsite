@@ -1,6 +1,6 @@
 # Implementation status
 
-Updated 24 September 2026. Final UX audit addressed and local QA complete; production configuration and deployment remain.
+Updated 25 September 2026. A further frontend finalization pass is complete locally. See FRONTEND_FINALIZATION.md for the current design decisions and QA; older entries below are historical. Production configuration and deployment remain.
 
 ## Completed
 
@@ -78,3 +78,11 @@ User rejected the earlier visual direction as too template-like and requested av
 - Preserved video controls, reduced-motion stills, responsive image infrastructure, navigation accessibility, routes, forms and optional programme CAD.
 - Production build and lint pass. Homepage inspected at 1440, 1280, 1024, 768, 480 and 375 px with no overflow, broken images or runtime errors. Desktop and mobile full-page screenshots inspected. QA captures: `/tmp/aminuteman-qa/editorial-*.png`.
 - This explicitly supersedes the earlier five-numbered-section homepage design decision and earlier final-design sign-off. Deployment and real provider verification remain outstanding.
+
+## Finalization — 25 September 2026
+
+Completed the user-requested inner-page and shared-UI humanization pass. See [FRONTEND_FINALIZATION.md](./FRONTEND_FINALIZATION.md). Preserved existing company-data/About edits and all routes/forms. The four newly requested humanization research files remain absent; no approval from those documents is assumed. Current implementation favors readable technical headings, compact mastheads, image/text programme layouts, earlier specifications, semantic data and immediate content over decorative graphics and repeated reveal animations.
+
+## Partner display — 25 September 2026
+
+Per user direction, About and the homepage partner strip now show names only. Removed relationship labels and engagement descriptions from the rendered UI and public partner data. No suitable partner logo assets are present, so the current presentation uses names. This supersedes the earlier requirement to display relationship bases.

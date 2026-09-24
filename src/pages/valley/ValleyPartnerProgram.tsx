@@ -98,8 +98,8 @@ export function ValleyPartnerProgram() {
   return (
     <div className="bg-void">
       {/* ---- Header ------------------------------------------------------ */}
-      <header className="relative overflow-hidden border-b border-line pt-40 pb-20 sm:pt-48 sm:pb-28">
-        <GraphicBackdrop seed="Partner Program" />
+      <header className="relative overflow-hidden border-b border-line pt-28 pb-12 sm:pt-36 sm:pb-16">
+        <GraphicBackdrop />
 
         <div className="container relative">
           <Reveal direction="none">
@@ -119,7 +119,7 @@ export function ValleyPartnerProgram() {
             <p className="mt-8 font-mono text-xs uppercase tracking-ultra text-accent-soft/80">
               Partner Program
             </p>
-            <h1 className="display-xl mt-4 max-w-4xl text-white">Bring your system onto the grid</h1>
+            <h1 className="display-xl mt-4 max-w-4xl text-white">Partner integration</h1>
           </Reveal>
           <Reveal delay={0.14}>
             <p className="mt-7 max-w-3xl text-lg leading-relaxed text-ink-2 sm:text-xl">
@@ -145,7 +145,7 @@ export function ValleyPartnerProgram() {
             </div>
             <div className="lg:col-span-8">
               <Reveal>
-                <p className="font-display text-3xl uppercase leading-tight tracking-tight text-white sm:text-4xl md:text-5xl">
+                <p className="font-sans text-2xl font-medium leading-snug tracking-tight text-white sm:text-3xl">
                   A grid that only talks to its owner&rsquo;s hardware is just a bigger silo.
                 </p>
               </Reveal>
@@ -182,15 +182,15 @@ export function ValleyPartnerProgram() {
           <Stagger className="mt-16 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {WHO.map((item, i) => (
               <StaggerItem key={item.title}>
-                <div className="card group p-8">
+                <div className="h-full border-t border-line py-6 pr-4">
                   <span className="font-mono text-[0.6rem] tracking-widest text-accent/80">
                     {String(i + 1).padStart(2, '0')}
                   </span>
-                  <h3 className="mt-4 font-display text-xl uppercase leading-tight tracking-wide text-white">
+                  <h3 className="mt-4 font-sans font-medium text-xl leading-tight tracking-tight text-white">
                     {item.title}
                   </h3>
                   <p className="mt-3 text-sm leading-relaxed text-ink-2">{item.body}</p>
-                  <span className="absolute bottom-0 left-0 h-px w-0 bg-accent transition-all duration-500 group-hover:w-full" />
+
                 </div>
               </StaggerItem>
             ))}
@@ -206,7 +206,7 @@ export function ValleyPartnerProgram() {
               eyebrow="Process"
               index="02"
               lead="How onboarding"
-              title="Runs"
+              title="runs"
               stop
               lede="Five stages. Most of the effort sits in the first two, which is deliberate. Ambiguity is cheaper to remove before integration than after."
             />
@@ -222,7 +222,7 @@ export function ValleyPartnerProgram() {
                     </span>
                   </div>
                   <div className="md:col-span-3">
-                    <h3 className="font-display text-2xl uppercase leading-none tracking-wide text-white transition-colors group-hover:text-accent">
+                    <h3 className="font-sans font-medium text-2xl leading-snug tracking-tight text-white transition-colors group-hover:text-accent">
                       {item.step}
                     </h3>
                   </div>
@@ -248,9 +248,9 @@ export function ValleyPartnerProgram() {
                   eyebrow="Interface"
                   index="03"
                   lead="What your system"
-                  title="Must do"
+                  title="must do"
                   stop
-                  lede="Short list, strictly enforced. Everything here exists because its absence has broken a real integration."
+                  lede="Short list, strictly enforced. These requirements define the integration interface."
                 />
               </Reveal>
             </div>
@@ -260,7 +260,7 @@ export function ValleyPartnerProgram() {
                   <Reveal key={item.label} delay={i * 0.05}>
                     <div className="grid grid-cols-1 gap-2 border-b border-line py-6 sm:grid-cols-12 sm:gap-6">
                       <div className="sm:col-span-4">
-                        <h3 className="font-display text-lg uppercase leading-tight tracking-wide text-white">
+                        <h3 className="font-sans font-medium text-lg leading-tight tracking-tight text-white">
                           {item.label}
                         </h3>
                       </div>

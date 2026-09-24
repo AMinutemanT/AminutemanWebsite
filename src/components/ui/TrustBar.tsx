@@ -1,7 +1,7 @@
-/** Named relationships retain their basis rather than implying endorsement through logos. */
+/** Public partner names, without engagement descriptions. */
 export interface TrustBarProps {
   label: string;
-  items: { name: string; basis: string }[];
+  items: { name: string }[];
 }
 
 export function TrustBar({ label, items }: TrustBarProps) {
@@ -12,8 +12,7 @@ export function TrustBar({ label, items }: TrustBarProps) {
         <ul className="mt-6 grid grid-cols-1 gap-x-8 gap-y-5 sm:grid-cols-2 lg:grid-cols-4">
           {items.map((item) => (
             <li key={item.name}>
-              <p className="font-display text-xl uppercase tracking-wide text-ink-1">{item.name}</p>
-              <p className="mt-1 text-xs leading-relaxed text-ink-3">{item.basis}</p>
+              <p className="font-sans text-sm font-medium text-ink-1">{item.name}</p>
             </li>
           ))}
         </ul>

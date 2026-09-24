@@ -3,9 +3,8 @@ import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import type { Programme } from '../data/programmes';
 import { CATEGORY_LABEL, programmePath, PROGRAMME_BY_SLUG } from '../data/programmes';
 import { Reveal, Stagger, StaggerItem } from './ui/Reveal';
-import { Eyebrow, SectionHeading, StatusTag, DomainChip } from './ui/HUD';
+import { Eyebrow, SectionHeading, StatusTag } from './ui/HUD';
 import { MediaSlot } from './ui/MediaSlot';
-import { ContourField } from './ui/ContourField';
 import { LazyModelViewer } from './LazyModelViewer';
 import { SpecTable } from './ui/SpecTable';
 
@@ -41,34 +40,71 @@ export function ProgrammeDetail({ programme }: { programme: Programme }) {
       {/* ---- Overview ---------------------------------------------------- */}
       <section className="section border-t border-line">
         <div className="container">
-          <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
-            <div className="lg:col-span-4">
-              <div className="lg:sticky lg:top-28">
-                <Eyebrow>Overview</Eyebrow>
-                <dl className="mt-8 space-y-px border border-line bg-line">
-                  <Detail term="Designation" value={programme.designation} />
-                  <Detail term="Category" value={CATEGORY_LABEL[programme.category]} />
-                  <Detail term="Status" value={programme.status} />
-                  <Detail term="Domain" value={programme.domain.join(' · ')} />
-                </dl>
-              </div>
-            </div>
-
-            <div className="lg:col-span-8">
+          {/* The designation, category, status and domain already appear in the
+              masthead. On the software programmes that repeat read as filler, so
+              those pages drop the panel and set the overview to a single measure
+              instead, the way the specification section does. */}
+          {programme.category === 'ai' ? (
+            <>
               <Reveal>
-                <h2 className="display-md text-white">{programme.overview.heading}</h2>
+                <Eyebrow>Overview</Eyebrow>
               </Reveal>
-              <div className="mt-8 space-y-6">
+              <Reveal>
+                <h2 className="display-md mt-8 max-w-4xl text-white">
+                  {programme.overview.heading}
+                </h2>
+              </Reveal>
+              <div className="mt-8 max-w-3xl space-y-6">
                 {programme.overview.body.map((para, i) => (
                   <Reveal key={i} delay={i * 0.06}>
                     <p className="body-copy text-base sm:text-lg">{para}</p>
                   </Reveal>
                 ))}
               </div>
+            </>
+          ) : (
+            <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+              <div className="lg:col-span-4">
+                <div className="lg:sticky lg:top-28">
+                  <Eyebrow>Overview</Eyebrow>
+                  <dl className="mt-8 space-y-px border border-line bg-line">
+                    <Detail term="Designation" value={programme.designation} />
+                    <Detail term="Category" value={CATEGORY_LABEL[programme.category]} />
+                    <Detail term="Status" value={programme.status} />
+                    <Detail term="Domain" value={programme.domain.join(' · ')} />
+                  </dl>
+                </div>
+              </div>
+
+              <div className="lg:col-span-8">
+                <Reveal>
+                  <h2 className="display-md text-white">{programme.overview.heading}</h2>
+                </Reveal>
+                <div className="mt-8 space-y-6">
+                  {programme.overview.body.map((para, i) => (
+                    <Reveal key={i} delay={i * 0.06}>
+                      <p className="body-copy text-base sm:text-lg">{para}</p>
+                    </Reveal>
+                  ))}
+                </div>
+              </div>
             </div>
+          )}
+        </div>
+      </section>
+
+      {/* ---- Specifications ---------------------------------------------- */}
+      <section id="specifications" className="section border-t border-line">
+        <div className="container">
+          <Reveal>
+            <Eyebrow>Specification</Eyebrow>
+          </Reveal>
+          <div className="mt-10">
+            <SpecTable specs={programme.specs} />
           </div>
         </div>
       </section>
+
 
       {/* ---- Capabilities ------------------------------------------------ */}
       <section className="section border-t border-line">
@@ -78,20 +114,20 @@ export function ProgrammeDetail({ programme }: { programme: Programme }) {
               index={capabilitiesIndex}
               eyebrow="Capabilities · The role"
               lead="What it"
-              title="Does"
+              title="does"
               stop
-              lede={`Capability set for ${programme.designation}, stated at the level we are prepared to publish.`}
+              lede={`Published capabilities for ${programme.designation}.`}
             />
           </Reveal>
 
-          <Stagger className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+          <Stagger className="mt-10 grid grid-cols-1 gap-x-10 md:grid-cols-2">
             {programme.capabilities.map((cap, i) => (
               <StaggerItem key={cap.title}>
-                <div className="card group p-8">
+                <div className="border-t border-line py-6 pr-4">
                   <span className="font-mono text-[0.6rem] tracking-widest text-accent/80">
                     {String(i + 1).padStart(2, '0')}
                   </span>
-                  <h3 className="mt-4 font-display text-xl uppercase tracking-wide text-white">
+                  <h3 className="mt-4 font-sans font-medium text-xl tracking-tight text-white">
                     {cap.title}
                   </h3>
                   <p className="mt-3 text-sm leading-relaxed text-ink-2">{cap.body}</p>
@@ -112,7 +148,7 @@ export function ProgrammeDetail({ programme }: { programme: Programme }) {
                 index={variantsIndex}
                 eyebrow="Configuration · Variants"
                 lead="The"
-                title="Family"
+                title="family"
                 stop
                 lede="Common architecture, differentiated by the fight each element is sized for."
               />
@@ -128,7 +164,7 @@ export function ProgrammeDetail({ programme }: { programme: Programme }) {
                       </span>
                     </div>
                     <div className="md:col-span-3">
-                      <h3 className="font-display text-2xl uppercase leading-none tracking-wide text-white transition-colors group-hover:text-accent">
+                      <h3 className="font-sans font-medium text-2xl leading-snug tracking-tight text-white transition-colors group-hover:text-accent">
                         {variant.designation}
                       </h3>
                       <p className="mt-2 font-mono text-[0.65rem] uppercase tracking-widest text-ink-dim">
@@ -158,9 +194,9 @@ export function ProgrammeDetail({ programme }: { programme: Programme }) {
                 index={modelIndex}
                 eyebrow="Geometry · Live model"
                 lead="The actual"
-                title="Assembly"
+                title="assembly"
                 stop
-                lede="The engineering CAD assembly the airframe is built from, tessellated and served to the browser. Drag it."
+                lede="Explore the programme CAD model. Drag to rotate, or use the controls below."
               />
             </Reveal>
             <Reveal delay={0.1} className="mt-14">
@@ -184,7 +220,7 @@ export function ProgrammeDetail({ programme }: { programme: Programme }) {
                 index={galleryIndex}
                 eyebrow="Imagery · The record"
                 lead="Programme"
-                title="Record"
+                title="record"
                 stop
               />
             </Reveal>
@@ -205,18 +241,6 @@ export function ProgrammeDetail({ programme }: { programme: Programme }) {
           </div>
         </section>
       )}
-
-      {/* ---- Specifications ---------------------------------------------- */}
-      <section className="section border-t border-line">
-        <div className="container">
-          <Reveal>
-            <Eyebrow>Specification</Eyebrow>
-          </Reveal>
-          <div className="mt-10">
-            <SpecTable specs={programme.specs} />
-          </div>
-        </div>
-      </section>
 
       {/* ---- Valley integration ------------------------------------------ */}
       {programme.integration && (
@@ -255,7 +279,7 @@ export function ProgrammeDetail({ programme }: { programme: Programme }) {
                 eyebrow="Adjacent · Nearby work"
                 index={relatedIndex}
                 lead="Related"
-                title="Programmes"
+                title="programmes"
                 stop
               />
             </Reveal>
@@ -291,99 +315,28 @@ export function ProgrammeDetail({ programme }: { programme: Programme }) {
 
 function ProgrammeHero({ programme }: { programme: Programme }) {
   return (
-    <header className="relative flex min-h-[78vh] items-end overflow-hidden border-b border-line pt-32 sm:min-h-[88vh]">
-      {/* Backdrop: real imagery when supplied, technical placeholder otherwise.
-          Cut-out CAD renders float over the plate rather than filling it. */}
-      <div className="absolute inset-0">
-        {programme.hero.src && programme.hero.fit === 'contain' ? (
-          <>
-            <HeroPlaceholder designation={programme.designation} />
-            <img
-              src={programme.hero.src}
-              alt={programme.name}
-              loading="eager"
-              {...({ fetchpriority: 'high' } as Record<string, string>)}
-              className="absolute inset-0 h-full w-full object-contain p-8 pb-40 sm:p-16 sm:pb-56 lg:pb-64"
-            />
-          </>
-        ) : programme.hero.src ? (
-          <img
-            src={programme.hero.src}
-            alt={programme.name}
-            loading="eager"
-            {...({ fetchpriority: 'high' } as Record<string, string>)}
-            className="h-full w-full object-cover"
-          />
-        ) : (
-          <HeroPlaceholder designation={programme.designation} />
-        )}
-        <div
-          className={`absolute inset-0 bg-gradient-to-t ${
-            programme.hero.fit === 'contain'
-              ? 'from-void via-void/45 to-transparent'
-              : 'from-void via-void/70 to-void/30'
-          }`}
-        />
-      </div>
-
-      <div className="container relative z-10 pb-16 sm:pb-20">
-        <Reveal direction="none">
-          <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-2 font-mono text-[0.65rem] uppercase tracking-widest text-ink-dim">
-            <Link to="/" className="transition-colors hover:text-white">
-              Home
-            </Link>
-            <span>/</span>
-            <Link
-              to={`/${programme.category}`}
-              className="transition-colors hover:text-white"
-            >
-              {CATEGORY_LABEL[programme.category]}
-            </Link>
-            <span>/</span>
-            <span className="text-accent">{programme.designation}</span>
-          </nav>
-        </Reveal>
-
-        <Reveal delay={0.08}>
-          <p className="mt-8 font-mono text-xs uppercase tracking-ultra text-accent-soft/80">
-            {programme.designation}
-          </p>
-          <h1 className="display-xl mt-4 max-w-5xl text-white">{programme.name}</h1>
-          <p className="mt-6 max-w-2xl text-lg text-white/65 sm:text-xl">{programme.tagline}</p>
-        </Reveal>
-
-        <Reveal delay={0.16}>
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            <StatusTag status={programme.status} />
-            {programme.domain.map((d) => (
-              <DomainChip key={d} label={d} />
-            ))}
+    <header className="border-b border-line bg-abyss pt-28 pb-12 sm:pt-36 sm:pb-16">
+      <div className="container">
+        <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-2 text-xs text-ink-3">
+          <Link to="/" className="hover:text-white">Home</Link><span>/</span>
+          <Link to={`/${programme.category}`} className="hover:text-white">{CATEGORY_LABEL[programme.category]}</Link><span>/</span>
+          <span className="text-ink-1">{programme.designation}</span>
+        </nav>
+        <div className={`mt-10 grid items-center gap-10 ${programme.hero.src ? 'lg:grid-cols-2 lg:gap-16' : ''}`}>
+          <div>
+            <p className="eyebrow">{programme.designation}</p>
+            <h1 className="display-xl mt-4 max-w-4xl text-white">{programme.name}</h1>
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink-2">{programme.tagline}</p>
+            <a href="#specifications" className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm text-accent hover:text-white">View specifications <ArrowRight className="h-4 w-4" /></a>
+            <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-3">
+              <StatusTag status={programme.status} />
+              <span className="text-xs text-ink-3">{programme.domain.join(' / ')}</span>
+            </div>
           </div>
-        </Reveal>
+          {programme.hero.src && <MediaSlot src={programme.hero.src} alt={programme.name} label={programme.designation} fit={programme.hero.fit} ratio="4/3" priority sizes="(min-width: 1025px) 45vw, 100vw" />}
+        </div>
       </div>
     </header>
-  );
-}
-
-/**
- * Masthead for the programmes that are software and have no photograph to
- * stand behind. A relief field seeded off the designation, so each programme
- * gets its own stable terrain, with the designation stamped behind it.
- */
-function HeroPlaceholder({ designation }: { designation: string }) {
-  return (
-    <div className="relative h-full w-full bg-abyss">
-      <div className="absolute inset-0 bg-[radial-gradient(120%_90%_at_18%_15%,rgba(255,138,0,0.16),transparent_62%)]" />
-      <ContourField seed={designation} className="absolute inset-0 h-full w-full" />
-      <div className="absolute inset-0 bg-grid-fine bg-grid-fine opacity-[0.08]" />
-      {/* Ghosted designation, reads as a plate stamp behind the content. */}
-      <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
-        <span className="select-none whitespace-nowrap font-display text-[22vw] font-semibold uppercase leading-none tracking-tighter text-white/[0.04]">
-          {designation}
-        </span>
-      </div>
-      <div className="absolute inset-0 bg-gradient-to-t from-void via-void/20 to-void/45" />
-    </div>
   );
 }
 
@@ -419,7 +372,7 @@ function RelatedCard({
         </span>
         <ArrowUpRight className="h-4 w-4 shrink-0 text-ink-dim transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent" />
       </div>
-      <h3 className="mt-4 font-display text-xl uppercase leading-tight tracking-wide text-white">
+      <h3 className="mt-4 font-sans font-medium text-xl leading-tight tracking-tight text-white">
         {name}
       </h3>
       <p className="mt-2 text-sm leading-relaxed text-ink-3">{tagline}</p>

@@ -80,8 +80,8 @@ export function ValleyMissionAutonomy() {
   return (
     <div className="bg-void">
       {/* ---- Header ------------------------------------------------------ */}
-      <header className="relative overflow-hidden border-b border-line pt-40 pb-20 sm:pt-48 sm:pb-28">
-        <GraphicBackdrop seed="Mission Autonomy" />
+      <header className="relative overflow-hidden border-b border-line pt-28 pb-12 sm:pt-36 sm:pb-16">
+        <GraphicBackdrop />
 
         <div className="container relative">
           <Reveal direction="none">
@@ -102,7 +102,7 @@ export function ValleyMissionAutonomy() {
               Mission Autonomy
             </p>
             <h1 className="display-xl mt-4 max-w-4xl text-white">
-              Autonomy that holds through disconnection
+              Mission autonomy
             </h1>
           </Reveal>
           <Reveal delay={0.14}>
@@ -128,7 +128,7 @@ export function ValleyMissionAutonomy() {
             </div>
             <div className="lg:col-span-8">
               <Reveal>
-                <p className="font-display text-3xl uppercase leading-tight tracking-tight text-white sm:text-4xl md:text-5xl">
+                <p className="font-sans text-2xl font-medium leading-snug tracking-tight text-white sm:text-3xl">
                   An autonomous system that needs its link is a remotely piloted one with extra steps.
                 </p>
               </Reveal>
@@ -163,7 +163,7 @@ export function ValleyMissionAutonomy() {
               index="01"
               eyebrow="Behaviour · On the airframe"
               lead="What runs on"
-              title="The airframe"
+              title="the airframe"
               stop
             />
           </Reveal>
@@ -171,15 +171,15 @@ export function ValleyMissionAutonomy() {
           <Stagger className="mt-16 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
             {BEHAVIOURS.map((item, i) => (
               <StaggerItem key={item.title}>
-                <div className="card group p-8">
+                <div className="h-full border-t border-line py-6 pr-4">
                   <span className="font-mono text-[0.6rem] tracking-widest text-accent/80">
                     {String(i + 1).padStart(2, '0')}
                   </span>
-                  <h3 className="mt-4 font-display text-xl uppercase leading-tight tracking-wide text-white">
+                  <h3 className="mt-4 font-sans font-medium text-xl leading-tight tracking-tight text-white">
                     {item.title}
                   </h3>
                   <p className="mt-3 text-sm leading-relaxed text-ink-2">{item.body}</p>
-                  <span className="absolute bottom-0 left-0 h-px w-0 bg-accent transition-all duration-500 group-hover:w-full" />
+
                 </div>
               </StaggerItem>
             ))}
@@ -195,7 +195,7 @@ export function ValleyMissionAutonomy() {
               index="02"
               eyebrow="Sequence · Trust"
               lead="How a behaviour"
-              title="Is qualified"
+              title="is qualified"
               stop
               lede="Autonomy is only useful if a commander will actually launch it. That is a qualification problem before it is a research one."
             />
@@ -211,7 +211,7 @@ export function ValleyMissionAutonomy() {
                     </span>
                   </div>
                   <div className="md:col-span-3">
-                    <h3 className="font-display text-2xl uppercase leading-none tracking-wide text-white transition-colors group-hover:text-accent">
+                    <h3 className="font-sans font-medium text-2xl leading-snug tracking-tight text-white transition-colors group-hover:text-accent">
                       {item.step}
                     </h3>
                   </div>

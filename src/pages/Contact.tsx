@@ -23,7 +23,7 @@ const CHANNELS = [
   {
     Icon: Mail,
     label: 'Enquiries',
-    lines: ['aminutemantechnologies@gmail.com', 'admincontrols@aminutemantechnologies.com'],
+    lines: ['admincontrols@aminutemantechnologies.com'],
   },
 ];
 
@@ -110,8 +110,8 @@ ${formData.message}
   return (
     <div className="bg-void">
       {/* ---- Header ------------------------------------------------------ */}
-      <header className="relative overflow-hidden border-b border-line pt-40 pb-20 sm:pt-48 sm:pb-24">
-        <GraphicBackdrop seed="Contact" />
+      <header className="relative overflow-hidden border-b border-line pt-28 pb-10 sm:pt-36 sm:pb-12">
+        <GraphicBackdrop />
 
         <div className="container relative">
           <Reveal direction="none">
@@ -119,7 +119,6 @@ ${formData.message}
           </Reveal>
           <Reveal delay={0.08}>
             <h1 className="mt-6">
-              <span className="display-lead">Programme enquiries</span>
               <span className="display-xl mt-2 block text-white">
                 Contact<span className="text-accent">.</span>
               </span>
@@ -149,7 +148,7 @@ ${formData.message}
                   >
                     <fieldset disabled={isSubmitting}>
                     <p className="data-label">Enquiry</p>
-                    <h2 className="display-md mt-4 text-white">Open a channel</h2>
+                    <h2 className="display-md mt-4 text-white">Send an enquiry</h2>
 
                     <div className="mt-9 grid grid-cols-1 gap-6 sm:grid-cols-2">
                       <Field

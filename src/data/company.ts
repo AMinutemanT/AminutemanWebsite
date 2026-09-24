@@ -26,7 +26,7 @@ export const OFFICES: Office[] = [
     city: 'Pune',
     state: 'Maharashtra',
     role: 'Headquarters and works',
-    note: 'Design, airframe and systems build, and the secure engineering facility with air-gapped development workstations.',
+    note: 'Design and systems build.',
     lines: ['Dhanori, Pune 411015'],
     primary: true,
   },
@@ -41,7 +41,7 @@ export const OFFICES: Office[] = [
     city: 'New Delhi',
     state: 'Delhi',
     role: 'Programme office',
-    note: 'Secure engineering facility, and the point of contact for the services and the ministry.',
+    note: 'Point of contact for the services and the ministry.',
   },
   {
     city: 'Bengaluru',
@@ -65,44 +65,15 @@ export interface FacilityShot {
   ratio: '16/9' | '4/5' | '3/2';
 }
 
-/** The engineering floor, photographed on site. */
+/**
+ * General office photography, Bengaluru only. Not labelled per-shot and not
+ * captioned as depicting anything specific (a prior version claimed things
+ * like "airframe assembly" and "secure development area" that these photos
+ * do not actually show) — plain, unlabelled photos, kept to a small number.
+ */
 export const FACILITY: FacilityShot[] = [
-  {
-    src: '/images/facility/floor-hero.jpg',
-    label: 'ENGINEERING FLOOR',
-    caption: 'Rotary-wing airframes on the bench, under the programme banner',
-    ratio: '3/2',
-  },
-  {
-    src: '/images/facility/rotary-bench.jpg',
-    label: 'ROTARY BENCH',
-    caption: 'Multirotor development airframes in build',
-    ratio: '3/2',
-  },
-  {
-    src: '/images/facility/fixed-wing.jpg',
-    label: 'FIXED WING',
-    caption: 'Fixed-wing test article alongside the rotary fleet',
-    ratio: '3/2',
-  },
-  {
-    src: '/images/facility/integration.jpg',
-    label: 'INTEGRATION',
-    caption: 'Payload and airframe integration at the desk',
-    ratio: '3/2',
-  },
-  {
-    src: '/images/facility/workfloor.jpg',
-    label: 'WORK FLOOR',
-    caption: 'Engineering positions across the floor',
-    ratio: '3/2',
-  },
-  {
-    src: '/images/facility/entrance.jpg',
-    label: 'FACILITY',
-    caption: 'Meeting rooms and the secure development area',
-    ratio: '3/2',
-  },
+  { src: '/images/facility/floor-hero.jpg', label: '', caption: '', ratio: '3/2' },
+  { src: '/images/facility/workfloor.jpg', label: '', caption: '', ratio: '3/2' },
 ];
 
 export interface Shot {
@@ -215,57 +186,32 @@ export const PRESS: PressStory[] = [
 export interface Partner {
   name: string;
   region: string;
-  basis: string;
 }
 
 /**
- * Indian defence ecosystem engagements. Deliberately name and relationship-type
- * only — what each engagement actually involves is confidential and does not
- * appear here or anywhere else on the site.
+ * Names for the public partner list. Engagement details are not published.
  */
 export const DOMESTIC_PARTNERS: Partner[] = [
-  { name: 'Adani Defence & Aerospace', region: 'India', basis: 'Active engagement' },
-  { name: 'Alpha Design Technologies', region: 'India', basis: 'Active engagement' },
-  { name: 'Bharat Electronics', region: 'India', basis: 'Active engagement' },
-  { name: 'Indian Army', region: 'India', basis: 'End-user validation' },
-  { name: 'JSW Group', region: 'India', basis: 'Memorandum of understanding' },
-  { name: 'Elbatech Group', region: 'India', basis: 'Memorandum of understanding' },
-  { name: 'Pax Intelligence', region: 'India', basis: 'Memorandum of understanding' },
+  { name: 'Adani Defence & Aerospace', region: 'India' },
+  { name: 'Alpha Design Technologies', region: 'India' },
+  { name: 'Bharat Electronics', region: 'India' },
+  { name: 'Indian Army', region: 'India' },
+  { name: 'JSW Group', region: 'India' },
+  { name: 'Elbatech Group', region: 'India' },
+  { name: 'Pax Intelligence', region: 'India' },
 ];
 
-/** International agreements and collaborations. Name and relationship-type only. */
+/** International names for the public partner list. */
 export const INTERNATIONAL_PARTNERS: Partner[] = [
-  { name: 'Nicomatic', region: 'France', basis: 'Agreement' },
+  { name: 'Nicomatic', region: 'France' },
 ];
 
-export interface Milestone {
-  year: string;
-  title: string;
-  body: string;
-}
-
-export const RECORD: Milestone[] = [
-  {
-    year: '2023',
-    title: 'Founded in Pune',
-    body: 'Established to build autonomous defence hardware together with the autonomy stack that runs it, instead of integrating somebody else’s.',
-  },
-  {
-    year: '2024',
-    title: 'First autonomous combat system',
-    body: 'First AI-driven combat system taken from design to demonstration, carried from airframe and avionics through to a flown trial.',
-  },
-  {
-    year: '2025',
-    title: 'Ankosha-A and the industrial base',
-    body: 'Ankosha-A published at 1,000 km range and 8 hours endurance on a 20 kg warhead. Industrial partnerships established under memoranda of understanding to scale the supply base.',
-  },
-  {
-    year: '2026',
-    title: 'Four capitals, and an international agreement',
-    body: 'An international supply agreement concluded. Operations across Pune, Delhi, Bengaluru and Madhya Pradesh.',
-  },
-];
+/**
+ * Deliberately removed: a detailed year-by-year record (specific programme
+ * milestones, published figures, named agreements) is more disclosure than a
+ * defence company needs to make public. Founded 2023 is the one fact that
+ * still appears, in the About page hero line.
+ */
 
 /**
  * Deliberately removed: this previously listed internal team headcount and

@@ -6,11 +6,10 @@ import {
   programmesIn,
   type Category,
 } from '../data/programmes';
-import { Stagger, StaggerItem } from '../components/ui/Reveal';
-import { StatusTag, DomainChip } from '../components/ui/HUD';
+import { StatusTag } from '../components/ui/HUD';
 import { PageHero, type HeroImage } from '../components/ui/PageHero';
 import { useSeo } from '../utils/seo';
-import { FleetCard } from '../components/ui/FleetCard';
+import { MediaSlot } from '../components/ui/MediaSlot';
 
 const COPY: Record<
   Category,
@@ -18,14 +17,14 @@ const COPY: Record<
 > = {
   systems: {
     title: 'Systems',
-    lede: 'Hardware programmes across air, air defence and space. Each one is a grid node before it is a platform.',
+    lede: 'Air systems, counter-UAS, existing-platform integration and space programmes. Explore their current development status and published specifications.',
     image: 'battery',
     focus: '50% 46%',
     intensity: 0.72,
   },
   ai: {
     title: 'AI',
-    lede: 'Deployable products that run on the Valley grid, the sovereign foundation model that reasons for them, and the validated models and secured links that qualify everything we build.',
+    lede: 'Autonomy, mission software, digital twins and quantum technologies. Explore each programme and its current development status.',
   },
   platform: {
     title: 'Platform',
@@ -65,44 +64,31 @@ export function CategoryIndex({ category }: { category: Category }) {
       {/* ---- Index -------------------------------------------------------- */}
       <section className="section">
         <div className="container">
-          <Stagger className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="border-t border-line">
             {programmes.map((programme) => (
-              <StaggerItem key={programme.slug}>
-                <FleetCard
-                  to={programmePath(programme.slug)}
-                  designation={programme.designation}
-                  name={programme.name}
-                  blurb={programme.summary}
-                  src={programme.hero.src}
-                  fit={programme.hero.fit}
-                  meta={
-                    <>
-                      <StatusTag status={programme.status} />
-                      {programme.domain.slice(0, 2).map((d) => (
-                        <DomainChip key={d} label={d} />
-                      ))}
-                    </>
-                  }
-                />
-              </StaggerItem>
+              <article key={programme.slug} className={`grid gap-6 border-b border-line py-8 sm:py-10 ${programme.hero.src ? 'md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]' : 'md:grid-cols-[minmax(0,1fr)_minmax(0,1.5fr)]'} md:gap-12`}>
+                {programme.hero.src ? (
+                  <Link to={programmePath(programme.slug)} aria-label={`Explore ${programme.name}`}>
+                    <MediaSlot src={programme.hero.src} alt={programme.name} fit={programme.hero.fit} ratio="3/2" sizes="(min-width: 769px) 30vw, 100vw" />
+                  </Link>
+                ) : (
+                  <div><p className="eyebrow">{programme.designation}</p><div className="mt-4"><StatusTag status={programme.status} /></div></div>
+                )}
+                <div className="self-center">
+                  {programme.hero.src && <StatusTag status={programme.status} />}
+                  <h2 className="mt-4 font-sans text-2xl font-medium tracking-tight sm:text-3xl">
+                    <Link to={programmePath(programme.slug)} className="hover:text-accent">{programme.name}</Link>
+                  </h2>
+                  <p className="body-copy mt-4 max-w-2xl text-base">{programme.summary}</p>
+                  <Link to={programmePath(programme.slug)} className="mt-5 inline-flex min-h-11 items-center gap-3 text-sm text-accent hover:text-white">Programme details <ArrowUpRight className="h-4 w-4" /></Link>
+                </div>
+              </article>
             ))}
-
-            {/* Squares off the last row, and gives the index somewhere to go. */}
-            <StaggerItem>
-              <Link
-                to="/contact"
-                className="card group justify-between p-7"
-              >
-                <span className="font-mono text-[0.6rem] uppercase tracking-widest text-ink-dim">
-                  Enquiries
-                </span>
-                <span className="mt-10 inline-flex items-center gap-2 font-display text-2xl uppercase leading-none tracking-wide text-white transition-colors group-hover:text-accent">
-                  Talk to us
-                  <ArrowUpRight className="h-4 w-4" />
-                </span>
-              </Link>
-            </StaggerItem>
-          </Stagger>
+          </div>
+          <div className="mt-10 flex flex-wrap items-center justify-between gap-4">
+            <p className="text-sm text-ink-3">For technical information or an integration enquiry.</p>
+            <Link to="/contact" className="inline-flex min-h-11 items-center gap-3 text-sm text-accent hover:text-white">Contact the team <ArrowUpRight className="h-4 w-4" /></Link>
+          </div>
         </div>
       </section>
     </div>

@@ -133,18 +133,10 @@ export function Valley() {
   return (
     <div className="bg-void">
       {/* ---- Hero -------------------------------------------------------- */}
-      <header className="relative flex min-h-[90vh] items-end overflow-hidden border-b border-line pt-32">
-        <div className="absolute inset-0">
-          <GraphicBackdrop seed="Valley" />
-          <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
-            <span className="select-none whitespace-nowrap font-display text-[26vw] font-semibold uppercase leading-none tracking-tighter text-white/[0.04]">
-              Valley
-            </span>
-          </div>
-          <div className="absolute inset-0 bg-gradient-to-t from-void via-void/40 to-transparent" />
-        </div>
+      <header className="relative flex  items-end overflow-hidden border-b border-line pt-28 sm:pt-36">
+        <GraphicBackdrop />
 
-        <div className="container relative z-10 pb-20 sm:pb-24">
+        <div className="container relative z-10 pb-12 sm:pb-16">
           <Reveal direction="none">
             <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-2 font-mono text-[0.65rem] uppercase tracking-widest text-ink-dim">
               <Link to="/" className="transition-colors hover:text-white">
@@ -160,19 +152,13 @@ export function Valley() {
               Valley
             </p>
             <h1 className="display-xl mt-4 max-w-5xl text-white">
-              Every sensor.
-              <br />
-              Every effector.
-              <br />
-              One picture.
+              Valley integration platform
             </h1>
           </Reveal>
 
           <Reveal delay={0.16}>
             <p className="mt-8 max-w-2xl text-lg leading-relaxed text-white/65 sm:text-xl">
-              Valley is the grid the rest of this site plugs into. It takes what a force can
-              already see and what it can already shoot, and makes the two act as one system, across services, across suppliers, and through the loss of every link back to
-              headquarters.
+              Valley connects sensor data, mission autonomy and command software across systems and suppliers. It brings a shared operating picture to the operator, with explicit engagement authority.
             </p>
           </Reveal>
 
@@ -196,7 +182,7 @@ export function Valley() {
             </div>
             <div className="lg:col-span-8">
               <Reveal>
-                <p className="font-display text-3xl uppercase leading-tight tracking-tight text-white sm:text-4xl md:text-5xl">
+                <p className="font-sans text-2xl font-medium leading-snug tracking-tight text-white sm:text-3xl">
                   The sensor that saw it is almost never the shooter that can reach it.
                 </p>
               </Reveal>
@@ -235,14 +221,14 @@ export function Valley() {
 
       {/* ---- The grid ---------------------------------------------------- */}
       <section className="section relative overflow-hidden border-b border-line">
-        <div className="absolute inset-0 bg-grid-coarse bg-grid-coarse opacity-[0.15]" />
+
         <div className="container relative">
           <Reveal>
             <SectionHeading
               index="01"
               eyebrow="Architecture · The grid"
               lead="The unified"
-              title="Grid"
+              title="grid"
               stop
               lede="Sensing on the left, effects on the right, one custody model in the middle. Any node on either side can be ours, the customer’s, or a third party’s. The grid is indifferent to which."
             />
@@ -264,7 +250,7 @@ export function Valley() {
               index="02"
               eyebrow="Sequence · Engagement"
               lead="How an engagement"
-              title="Closes"
+              title="closes"
               stop
               lede="Six steps, and a human at the fifth. The grid compresses the four either side of it."
             />
@@ -316,7 +302,7 @@ export function Valley() {
               index="03"
               eyebrow="Composition · The stack"
               lead="What it is"
-              title="Made of"
+              title="made of"
               stop
               lede="Five layers. A customer can adopt the lower ones without the upper ones, which is usually how a first deployment starts."
             />
@@ -325,15 +311,15 @@ export function Valley() {
           <Stagger className="mt-16 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
             {LAYERS.map((layer, i) => (
               <StaggerItem key={layer.name}>
-                <div className="card group p-8">
+                <div className="h-full border-t border-line py-6 pr-4">
                   <span className="font-mono text-[0.6rem] tracking-widest text-accent/80">
                     {String(i + 1).padStart(2, '0')}
                   </span>
-                  <h3 className="mt-4 font-display text-xl uppercase tracking-wide text-white">
+                  <h3 className="mt-4 font-sans font-medium text-xl tracking-tight text-white">
                     {layer.name}
                   </h3>
                   <p className="mt-3 text-sm leading-relaxed text-ink-2">{layer.body}</p>
-                  <span className="absolute bottom-0 left-0 h-px w-0 bg-accent transition-all duration-500 group-hover:w-full" />
+
                 </div>
               </StaggerItem>
             ))}
@@ -351,7 +337,7 @@ export function Valley() {
                   index="04"
                   eyebrow="Posture · Contested conditions"
                   lead="Built for the"
-                  title="Link going down"
+                  title="link going down"
                   stop
                   lede="Contested electromagnetic conditions are the design case, handled in the first release and not deferred to a later one."
                 />
@@ -362,7 +348,7 @@ export function Valley() {
                 {EDGE.map((item) => (
                   <StaggerItem key={item.title}>
                     <div className="h-full bg-panel/40 p-7">
-                      <h3 className="font-display text-lg uppercase tracking-wide text-white">
+                      <h3 className="font-sans font-medium text-lg tracking-tight text-white">
                         {item.title}
                       </h3>
                       <p className="mt-3 text-sm leading-relaxed text-ink-2">{item.body}</p>
@@ -383,7 +369,7 @@ export function Valley() {
               index="05"
               eyebrow="Delivered as · Products"
               lead="Three products,"
-              title="One grid"
+              title="one grid"
               stop
               lede="Valley reaches a customer as one of three deployable products. They read and write the same grid state, so a force can start with one and add the others without a second integration."
             />
@@ -394,9 +380,9 @@ export function Valley() {
               <StaggerItem key={product.slug}>
                 <Link
                   to={programmePath(product.slug)}
-                  className="card group p-8"
+                  className="h-full border-t border-line py-6 pr-4"
                 >
-                  <h3 className="font-display text-3xl uppercase leading-none tracking-wide text-white">
+                  <h3 className="font-sans font-medium text-3xl leading-snug tracking-tight text-white">
                     {product.name}
                   </h3>
                   <p className="mt-3 font-mono text-[0.6rem] uppercase tracking-widest text-accent/80">
@@ -434,7 +420,7 @@ export function Valley() {
               index="06"
               eyebrow="Go deeper · The platform"
               lead="The platform"
-              title="In detail"
+              title="in detail"
               stop
             />
           </Reveal>
@@ -444,7 +430,7 @@ export function Valley() {
               <Link
                 key={page.to}
                 to={page.to}
-                className="card group p-8"
+                className="h-full border-t border-line py-6 pr-4"
               >
                 <div className="flex items-start justify-between gap-3">
                   <span className="font-mono text-[0.6rem] uppercase tracking-widest text-accent/80">
@@ -452,7 +438,7 @@ export function Valley() {
                   </span>
                   <ArrowUpRight className="h-4 w-4 shrink-0 text-ink-dim transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent" />
                 </div>
-                <h3 className="mt-4 font-display text-2xl uppercase leading-tight tracking-wide text-white">
+                <h3 className="mt-4 font-sans font-medium text-2xl leading-tight tracking-tight text-white">
                   {page.name}
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-ink-3">{page.body}</p>

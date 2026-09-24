@@ -1,4 +1,3 @@
-import { useState } from 'react';
 
 /* ---------------------------------------------------------------------------
  * THE UNIFIED GRID
@@ -47,70 +46,27 @@ const EFFECTORS: Node[] = [
   { id: 'partner-fx', label: 'THIRD PARTY', sub: 'Artillery, allied effectors', external: true },
 ];
 
-function NodeRow({
-  node,
-  active,
-  onActivate,
-  align,
-}: {
-  node: Node;
-  active: boolean;
-  onActivate: (id: string | null) => void;
-  align: 'left' | 'right';
-}) {
+function NodeRow({ node }: { node: Node }) {
   return (
-    <button
-      type="button"
-      onMouseEnter={() => onActivate(node.id)}
-      onMouseLeave={() => onActivate(null)}
-      onFocus={() => onActivate(node.id)}
-      onBlur={() => onActivate(null)}
-      className={`block w-full bg-panel/50 px-5 py-4 transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-accent/60 ${
-        align === 'right' ? 'text-right' : 'text-left'
-      } ${active ? 'bg-panel' : 'hover:bg-panel/70'}`}
-    >
-      <span
-        className={`flex items-baseline gap-2 ${align === 'right' ? 'flex-row-reverse' : ''}`}
-      >
-        <span
-          className={`font-display text-base uppercase tracking-wide transition-colors ${
-            active ? 'text-accent' : 'text-white'
-          }`}
-        >
-          {node.label}
-        </span>
-        {node.external && (
-          <span className="font-mono text-[0.55rem] uppercase tracking-widest text-ink-dim">
-            · Third party
-          </span>
-        )}
-      </span>
-      <span className="mt-1 block font-mono text-[0.6rem] uppercase tracking-widest text-ink-dim">
-        {node.sub}
-      </span>
-    </button>
+    <li className="border-t border-line py-4">
+      <p className="text-sm font-medium text-white">{node.label}</p>
+      <p className="mt-1 text-sm text-ink-3">{node.sub}</p>
+    </li>
   );
 }
 
 export function UnifiedGrid({ className = '' }: { className?: string }) {
-  const [active, setActive] = useState<string | null>(null);
 
   return (
     <div className={className}>
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:gap-8">
         <div>
           <p className="data-label mb-4">Sense</p>
-          <div className="space-y-px border border-line bg-line">
+          <ul>
             {SENSORS.map((node) => (
-              <NodeRow
-                key={node.id}
-                node={node}
-                active={active === node.id}
-                onActivate={setActive}
-                align="left"
-              />
+              <NodeRow key={node.id} node={node} />
             ))}
-          </div>
+          </ul>
         </div>
 
         <div className="flex justify-center lg:px-2">
@@ -126,18 +82,12 @@ export function UnifiedGrid({ className = '' }: { className?: string }) {
         </div>
 
         <div>
-          <p className="data-label mb-4 lg:text-right">Effect</p>
-          <div className="space-y-px border border-line bg-line">
+          <p className="data-label mb-4">Effect</p>
+          <ul>
             {EFFECTORS.map((node) => (
-              <NodeRow
-                key={node.id}
-                node={node}
-                active={active === node.id}
-                onActivate={setActive}
-                align="right"
-              />
+              <NodeRow key={node.id} node={node} />
             ))}
-          </div>
+          </ul>
         </div>
       </div>
     </div>

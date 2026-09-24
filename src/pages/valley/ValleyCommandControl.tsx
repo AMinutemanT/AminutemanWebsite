@@ -73,14 +73,14 @@ export function ValleyCommandControl() {
     title: 'Command & Control',
     path: '/valley/command-control',
     description:
-      'Decision at the speed of the fight. One picture, the contradictions shown rather than averaged away, and a person at the commit step.',
+      'Command & control. One picture, the contradictions shown rather than averaged away, and a person at the commit step.',
   });
 
   return (
     <div className="bg-void">
       {/* ---- Header ------------------------------------------------------ */}
-      <header className="relative overflow-hidden border-b border-line pt-40 pb-20 sm:pt-48 sm:pb-28">
-        <GraphicBackdrop seed="Command and Control" />
+      <header className="relative overflow-hidden border-b border-line pt-28 pb-12 sm:pt-36 sm:pb-16">
+        <GraphicBackdrop />
 
         <div className="container relative">
           <Reveal direction="none">
@@ -101,7 +101,7 @@ export function ValleyCommandControl() {
               Command &amp; Control
             </p>
             <h1 className="display-xl mt-4 max-w-4xl text-white">
-              Decision at the speed of the fight
+              Command & control
             </h1>
           </Reveal>
           <Reveal delay={0.14}>
@@ -128,8 +128,8 @@ export function ValleyCommandControl() {
             </div>
             <div className="lg:col-span-8">
               <Reveal>
-                <p className="font-display text-3xl uppercase leading-tight tracking-tight text-white sm:text-4xl md:text-5xl">
-                  A commander does not need more screens. They need one picture they can defend.
+                <p className="font-sans text-2xl font-medium leading-snug tracking-tight text-white sm:text-3xl">
+                  Sensor correlation and engagement review in one operator view.
                 </p>
               </Reveal>
               <div className="mt-10 space-y-6">
@@ -162,7 +162,7 @@ export function ValleyCommandControl() {
               index="01"
               eyebrow="Surface · Operator view"
               lead="What the"
-              title="Console does"
+              title="console does"
               stop
             />
           </Reveal>
@@ -170,15 +170,15 @@ export function ValleyCommandControl() {
           <Stagger className="mt-16 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
             {SURFACE.map((item, i) => (
               <StaggerItem key={item.title}>
-                <div className="card group p-8">
+                <div className="h-full border-t border-line py-6 pr-4">
                   <span className="font-mono text-[0.6rem] tracking-widest text-accent/80">
                     {String(i + 1).padStart(2, '0')}
                   </span>
-                  <h3 className="mt-4 font-display text-xl uppercase leading-tight tracking-wide text-white">
+                  <h3 className="mt-4 font-sans font-medium text-xl leading-tight tracking-tight text-white">
                     {item.title}
                   </h3>
                   <p className="mt-3 text-sm leading-relaxed text-ink-2">{item.body}</p>
-                  <span className="absolute bottom-0 left-0 h-px w-0 bg-accent transition-all duration-500 group-hover:w-full" />
+
                 </div>
               </StaggerItem>
             ))}
@@ -194,7 +194,7 @@ export function ValleyCommandControl() {
               index="02"
               eyebrow="Sequence · Authority"
               lead="How a commitment"
-              title="Is made"
+              title="is made"
               stop
               lede="Four steps, and the third is always a person. The software enforces the sequence; a standing order only describes it."
             />

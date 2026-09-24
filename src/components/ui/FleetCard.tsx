@@ -52,12 +52,12 @@ export function FleetCard({
   sizes,
 }: FleetCardProps) {
   return (
-    <SpotlightCard to={to} className={className}>
+    <SpotlightCard to={to} className={`fleet-card ${className}`}>
       <div className="relative overflow-hidden">
         {/* The zoom is put on the image rather than the figure: MediaSlot's
             frame carries the hairline border and its own overflow clip, so
             scaling the figure would crop the border with the photograph. */}
-        <div className="[&_img]:transition-transform [&_img]:duration-[900ms] [&_img]:ease-out group-hover:[&_img]:scale-[1.06]">
+        <div className="">
           <MediaSlot
             label={designation}
             src={src}
@@ -71,7 +71,7 @@ export function FleetCard({
         </div>
       </div>
 
-      <div className="flex flex-1 flex-col p-7">
+      <div className="flex flex-1 flex-col pt-5 pb-2">
         <div className="flex items-start justify-between gap-4">
           <span className="font-mono text-[0.6rem] uppercase tracking-widest text-accent/80">
             {designation}
@@ -79,7 +79,7 @@ export function FleetCard({
           <ArrowUpRight className="h-4 w-4 shrink-0 text-ink-dim transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent" />
         </div>
 
-        <h3 className="mt-4 font-display text-2xl uppercase leading-none tracking-wide text-white transition-colors duration-300 group-hover:text-accent-soft">
+        <h3 className="mt-4 font-sans font-medium text-2xl leading-snug tracking-tight text-white transition-colors duration-300 group-hover:text-accent-soft">
           {name}
         </h3>
         <p className="mt-3 text-sm leading-relaxed text-ink-3">{blurb}</p>

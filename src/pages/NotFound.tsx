@@ -50,7 +50,7 @@ export function NotFound() {
   return (
     <div className="bg-void">
       <header className="relative flex min-h-[70svh] flex-col justify-end overflow-hidden border-b border-line pt-40 pb-16 sm:pt-48 sm:pb-20">
-        <GraphicBackdrop seed="not-found" />
+        <GraphicBackdrop />
 
         <div className="container relative">
           <Reveal direction="none">

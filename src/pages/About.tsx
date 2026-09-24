@@ -14,7 +14,6 @@ import {
   FIELD,
   INTERNATIONAL_PARTNERS,
   OFFICES,
-  RECORD,
 } from '../data/company';
 
 /* ---------------------------------------------------------------------------
@@ -30,7 +29,7 @@ import {
 const PRINCIPLES = [
   {
     title: 'Build it here',
-    body: 'Every capability on this site exists because the alternative was an import licence, a foreign end-use certificate, or a lead time set by somebody else. Sovereignty is decided in a supply chain long before it is debated as policy.',
+    body: 'Nothing here was chosen because it was novel. It was chosen because the alternative arrived with a licence attached, or did not arrive at all. Sovereignty is decided in a supply chain long before it is debated as policy.',
   },
   {
     title: 'A human commits',
@@ -63,12 +62,15 @@ const CAPABILITY_SPINE = [
   { label: 'Modelling', body: 'Validated digital twins and quantum-secured links underneath every programme.' },
 ];
 
+/** The places we work from. Pune carries two sites, so it is listed once. */
+const SITES = Array.from(new Set(OFFICES.map((office) => office.city)));
+
 export function About() {
   useSeo({
     title: 'About',
     path: '/about',
     description:
-      'Aminuteman Technologies is a defence engineering company building autonomous air systems, the effectors that finish an engagement, and the grid that connects every sensor and shooter into a single picture.',
+      'Aminuteman Technologies develops autonomous air systems, counter-UAS and defence integration software.',
   });
 
   const counts = {
@@ -81,13 +83,12 @@ export function About() {
     <div className="bg-void">
       <PageHero
         eyebrow="Company · The mandate"
-        lead="We build what"
-        title="Could not be bought"
+        title="About Aminuteman"
         stop
         image="altitude"
         focus="50% 34%"
         intensity={0.9}
-        lede="Aminuteman Technologies is a defence engineering company building autonomous air systems, the effectors that finish an engagement, and the grid that connects every sensor and shooter into a single picture. Designed, developed and manufactured in India."
+        lede="Aminuteman Technologies develops autonomous air systems, counter-UAS and defence integration software. Designed, developed and manufactured in India."
         meta={`Founded 2023 · Pune, Delhi, Bengaluru, Madhya Pradesh · ${counts.total} programmes`}
       />
 
@@ -100,8 +101,8 @@ export function About() {
             </div>
             <div className="lg:col-span-8">
               <Reveal>
-                <p className="font-display text-3xl uppercase leading-tight tracking-tight text-white sm:text-4xl md:text-5xl">
-                  A country that cannot build its own weapons does not decide when to use them.
+                <p className="font-sans text-2xl font-medium leading-snug tracking-tight text-white sm:text-3xl">
+                  We develop air systems and their autonomy software together.
                 </p>
               </Reveal>
               <div className="mt-10 space-y-6">
@@ -145,33 +146,28 @@ export function About() {
               index="01"
               eyebrow="Alongside · The ecosystem"
               lead="Who we"
-              title="Work with"
+              title="work with"
               stop
-              lede="Primes, integrators and end users in India, and the international partners who supply and qualify alongside us."
             />
           </Reveal>
 
-          <div className="mt-16 grid gap-12 lg:grid-cols-12 lg:gap-16">
-            <div className="lg:col-span-7">
-              <p className="data-label text-white/70">India</p>
-              <div className="mt-6 border-t border-line">
-                {DOMESTIC_PARTNERS.map((p, i) => (
-                  <Reveal key={p.name} delay={i * 0.04}>
-                    <PartnerRow {...p} />
-                  </Reveal>
-                ))}
-              </div>
-            </div>
-            <div className="lg:col-span-5">
-              <p className="data-label text-white/70">International</p>
-              <div className="mt-6 border-t border-line">
-                {INTERNATIONAL_PARTNERS.map((p, i) => (
-                  <Reveal key={p.name} delay={i * 0.04}>
-                    <PartnerRow {...p} />
-                  </Reveal>
-                ))}
-              </div>
-            </div>
+          {/* One list, split evenly into two columns. Names only: no region, no
+              relationship type, no ordering that separates Indian from
+              international partners. */}
+          <div className="mt-16 grid gap-x-16 gap-y-0 sm:grid-cols-2">
+            {(() => {
+              const partners = [...DOMESTIC_PARTNERS, ...INTERNATIONAL_PARTNERS];
+              const half = Math.ceil(partners.length / 2);
+              return [partners.slice(0, half), partners.slice(half)].map((column, c) => (
+                <div key={c} className="border-t border-line">
+                  {column.map((p, i) => (
+                    <Reveal key={p.name} delay={i * 0.04}>
+                      <PartnerRow name={p.name} />
+                    </Reveal>
+                  ))}
+                </div>
+              ));
+            })()}
           </div>
         </div>
       </section>
@@ -186,7 +182,7 @@ export function About() {
                   index="02"
                   eyebrow="In-house · Held capability"
                   lead="What we hold"
-                  title="Ourselves"
+                  title="ourselves"
                   stop
                   lede="The disciplines we refuse to outsource, because outsourcing any one of them puts a programme on somebody else’s schedule."
                 />
@@ -196,7 +192,7 @@ export function About() {
                   <Stat value={String(counts.systems)} label="Systems" />
                   <Stat value={String(counts.ai)} label="AI" />
                   <Stat value={String(counts.total)} label="Programmes" />
-                  <Stat value={String(OFFICES.length)} label="Sites" />
+                  <Stat value={String(SITES.length)} label="Sites" />
                 </div>
               </Reveal>
             </div>
@@ -207,7 +203,7 @@ export function About() {
                   <Reveal key={item.label} delay={i * 0.05}>
                     <div className="grid grid-cols-1 gap-2 border-b border-line py-6 sm:grid-cols-12 sm:gap-6">
                       <div className="sm:col-span-4">
-                        <h3 className="font-display text-xl uppercase tracking-wide text-white">
+                        <h3 className="font-sans font-medium text-xl tracking-tight text-white">
                           {item.label}
                         </h3>
                       </div>
@@ -231,7 +227,7 @@ export function About() {
               index="03"
               eyebrow="How we work · Commitments"
               lead="Six"
-              title="Commitments"
+              title="commitments"
               stop
               lede="Six engineering constraints. Each one changes what gets built."
             />
@@ -240,15 +236,15 @@ export function About() {
           <Stagger className="mt-16 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
             {PRINCIPLES.map((item, i) => (
               <StaggerItem key={item.title}>
-                <div className="card group p-8">
+                <div className="h-full border-t border-line py-6 pr-4">
                   <span className="font-mono text-[0.6rem] tracking-widest text-accent/80">
                     {String(i + 1).padStart(2, '0')}
                   </span>
-                  <h3 className="mt-4 font-display text-xl uppercase tracking-wide text-white">
+                  <h3 className="mt-4 font-sans font-medium text-xl tracking-tight text-white">
                     {item.title}
                   </h3>
                   <p className="mt-3 text-sm leading-relaxed text-ink-2">{item.body}</p>
-                  <span className="absolute bottom-0 left-0 h-px w-0 bg-accent transition-all duration-500 group-hover:w-full" />
+
                 </div>
               </StaggerItem>
             ))}
@@ -264,45 +260,18 @@ export function About() {
               index="04"
               eyebrow="Footprint · The sites"
               lead="Where we"
-              title="Build"
+              title="build"
               stop
-              lede="Design and works in Pune, the programme office in Delhi, avionics and autonomy in Bengaluru, and test and integration in Madhya Pradesh."
             />
           </Reveal>
 
-          <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {OFFICES.map((office, i) => (
-              <Reveal key={office.city + office.role} delay={i * 0.06}>
-                <div className="flex h-full flex-col border border-line bg-panel/30">
-                  <div className="flex flex-1 flex-col p-7">
-                    <div className="flex items-baseline justify-between gap-3">
-                      <h3 className="font-display text-2xl uppercase leading-none tracking-wide text-white">
-                        {office.city}
-                      </h3>
-                      {office.primary && (
-                        <span className="font-mono text-[0.55rem] uppercase tracking-widest text-accent/80">
-                          HQ
-                        </span>
-                      )}
-                    </div>
-                    <p className="mt-2 font-mono text-[0.6rem] uppercase tracking-widest text-accent/80">
-                      {office.role}
-                    </p>
-                    <p className="mt-4 text-sm leading-relaxed text-ink-3">{office.note}</p>
-                    {office.lines && (
-                      <div className="mt-auto pt-6">
-                        {office.lines.map((line) => (
-                          <p
-                            key={line}
-                            className="font-mono text-[0.6rem] leading-relaxed text-ink-dim"
-                          >
-                            {line}
-                          </p>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </div>
+          {/* Places only. What each site does is deliberately not published here. */}
+          <div className="mt-16 grid grid-cols-1 gap-x-16 sm:grid-cols-2 lg:grid-cols-4">
+            {SITES.map((place, i) => (
+              <Reveal key={place} delay={i * 0.06}>
+                <p className="border-t border-line py-6 font-sans font-medium text-2xl leading-snug tracking-tight text-white">
+                  {place}
+                </p>
               </Reveal>
             ))}
           </div>
@@ -317,7 +286,7 @@ export function About() {
               index="05"
               eyebrow="In the field · Trials"
               lead="On the"
-              title="Ground"
+              title="ground"
               stop
               lede="Our systems are evaluated by the people who would use them, on the ground they would use them on. In August 2025 that meant Sumdo at 10,700 feet, under an Indian Army initiative. Between evaluations we fly our own trials, and the onboard footage is the record."
             />
@@ -348,7 +317,7 @@ export function About() {
               index="06"
               eyebrow="Alongside · Exhibitions"
               lead="In the"
-              title="Room"
+              title="room"
               stop
               lede="Defence exhibitions, the Aeronautical Society of India, and the industry forums where national technology policy gets argued out."
             />
@@ -378,7 +347,7 @@ export function About() {
               index="07"
               eyebrow="In the press · Coverage"
               lead="Written"
-              title="About"
+              title="about"
               stop
               lede="Coverage of the company and the programmes. Each entry links to the article."
             />
@@ -391,7 +360,7 @@ export function About() {
                   <p className="font-mono text-[0.6rem] uppercase tracking-widest text-ink-dim">
                     {story.date}
                   </p>
-                  <h3 className="mt-4 max-w-3xl font-display text-2xl uppercase leading-tight tracking-wide text-white sm:text-3xl">
+                  <h3 className="mt-4 max-w-3xl font-sans font-medium text-2xl leading-tight tracking-tight text-white sm:text-3xl">
                     {story.headline}
                   </h3>
                   <div className="mt-6 flex flex-wrap items-center gap-x-2 gap-y-3">
@@ -424,24 +393,16 @@ export function About() {
           <Reveal>
             <SectionHeading
               index="08"
-              eyebrow="The floor · The works"
-              lead="Where the"
-              title="Hardware sits"
+              eyebrow="Our office"
+              title="Bengaluru office"
               stop
-              lede="Photographed on the engineering floor. Rotary and fixed-wing development airframes, integration positions, and the secure area behind them."
             />
           </Reveal>
 
-          <div className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2">
             {FACILITY.map((shot, i) => (
               <Reveal key={shot.src} delay={i * 0.06}>
-                <MediaSlot
-                  src={shot.src}
-                  label={shot.label}
-                  caption={shot.caption}
-                  alt={shot.caption}
-                  ratio={shot.ratio}
-                />
+                <MediaSlot src={shot.src} alt="Bengaluru office interior" ratio={shot.ratio} />
               </Reveal>
             ))}
           </div>
@@ -455,7 +416,7 @@ export function About() {
             <div className="lg:col-span-7">
               <Reveal>
                 <Eyebrow>Leadership</Eyebrow>
-                <p className="mt-8 font-display text-2xl uppercase leading-tight tracking-tight text-white sm:text-3xl">
+                <p className="mt-8 font-sans text-xl font-medium leading-relaxed text-white sm:text-2xl">
                   Our goal is to shift defence readiness away from dependence on constant
                   maintenance and foreign supply, toward self-sustaining systems built and
                   sustained at home.
@@ -497,45 +458,6 @@ export function About() {
         </div>
       </section>
 
-      {/* ---- Record ------------------------------------------------------- */}
-      <section className="section border-b border-line">
-        <div className="container">
-          <Reveal>
-            <SectionHeading
-              index="09"
-              eyebrow="Record · The timeline"
-              lead="How we"
-              title="Got here"
-              stop
-            />
-          </Reveal>
-
-          <div className="mt-14 border-t border-line">
-            {RECORD.map((item, i) => (
-              <Reveal key={item.year} delay={i * 0.06}>
-                <div className="group grid grid-cols-1 gap-3 border-b border-line py-8 transition-colors duration-300 hover:bg-white/[0.02] md:grid-cols-12 md:gap-8">
-                  <div className="md:col-span-2">
-                    <span className="font-display text-3xl uppercase leading-none tracking-tight text-accent/80">
-                      {item.year}
-                    </span>
-                  </div>
-                  <div className="md:col-span-3">
-                    <h3 className="font-display text-xl uppercase leading-tight tracking-wide text-white">
-                      {item.title}
-                    </h3>
-                  </div>
-                  <div className="md:col-span-7">
-                    <p className="text-sm leading-relaxed text-ink-2 sm:text-base">
-                      {item.body}
-                    </p>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ---- CTA ---------------------------------------------------------- */}
       <section className="section">
         <div className="container">
@@ -572,32 +494,13 @@ export function About() {
   );
 }
 
-/**
- * Name, region and relationship type only. What each engagement actually
- * involves is confidential and is deliberately not rendered here.
- */
-function PartnerRow({
-  name,
-  region,
-  basis,
-}: {
-  name: string;
-  region: string;
-  basis: string;
-}) {
+/** Public names only; engagement details are not displayed. */
+function PartnerRow({ name }: { name: string }) {
   return (
-    <div className="group border-b border-line py-5 transition-colors duration-300 hover:bg-white/[0.02]">
-      <div className="flex items-baseline justify-between gap-4">
-        <h3 className="font-display text-lg uppercase leading-tight tracking-wide text-white transition-colors group-hover:text-accent">
-          {name}
-        </h3>
-        <span className="shrink-0 font-mono text-[0.55rem] uppercase tracking-widest text-ink-dim">
-          {region}
-        </span>
-      </div>
-      <p className="mt-1.5 font-mono text-[0.55rem] uppercase tracking-widest text-accent/80">
-        {basis}
-      </p>
+    <div className="border-b border-line py-5">
+      <h3 className="font-sans font-medium text-lg leading-tight tracking-tight text-white">
+        {name}
+      </h3>
     </div>
   );
 }

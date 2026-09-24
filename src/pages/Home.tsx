@@ -38,7 +38,6 @@ export function Home() {
         label="Working with"
         items={[...DOMESTIC_PARTNERS, ...INTERNATIONAL_PARTNERS].map((p) => ({
           name: p.name,
-          basis: p.basis,
         }))}
       />
       <Intro />
@@ -57,7 +56,7 @@ function Hero() {
   const [paused, setPaused] = useState(false);
 
   return (
-    <header className="relative flex min-h-[94svh] flex-col justify-end overflow-hidden border-b border-line">
+    <header className="relative flex min-h-[78svh] flex-col justify-end overflow-hidden border-b border-line">
       <div className="absolute inset-0">
         <HeroVideo
           className="absolute inset-0"
@@ -101,6 +100,7 @@ function Hero() {
             </Link>
           </div>
         </Reveal>
+        <p className="mt-8 text-xs text-ink-3">Ankosha Family</p>
       </div>
 
       {!reduced && (
@@ -249,7 +249,7 @@ function Platform() {
           </div>
           <div className="lg:col-span-7">
             <Reveal delay={0.06}>
-              <p className="font-display text-2xl uppercase leading-tight tracking-tight text-white sm:text-3xl">
+              <p className="font-sans text-xl font-medium leading-relaxed text-white sm:text-2xl">
                 The connection between a sensor, an operator and a decision.
               </p>
               <p className="body-copy mt-6 text-base sm:text-lg">
@@ -266,7 +266,7 @@ function Platform() {
                     to={`/valley/${path}`}
                     className="group flex items-center justify-between gap-4 border-b border-line py-5 transition-colors hover:text-accent"
                   >
-                    <span className="font-display text-xl uppercase tracking-wide text-white transition-colors group-hover:text-accent">
+                    <span className="font-sans text-base font-medium text-white transition-colors group-hover:text-accent">
                       {name}
                     </span>
                     <ArrowUpRight className="h-4 w-4 shrink-0 text-ink-dim transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent" />
@@ -295,13 +295,13 @@ function FieldRecord() {
             </div>
           </Reveal>
           <Reveal delay={0.06}>
-            <p className="max-w-xs text-right text-sm leading-relaxed text-ink-3">
+            <p className="max-w-xs text-left sm:text-right text-sm leading-relaxed text-ink-3">
               Recorded trials and evaluation. Original footage and company photography.
             </p>
           </Reveal>
         </div>
 
-        <div className="mt-14 grid grid-cols-1 gap-8 lg:grid-cols-3">
+        <div className="mt-10 grid grid-cols-1 gap-8 lg:grid-cols-[1.25fr_1fr_1fr]">
           <Reveal delay={0.08}>
             <article>
               <MediaSlot
@@ -315,7 +315,7 @@ function FieldRecord() {
               <p className="mt-5 font-mono text-[0.6rem] uppercase tracking-widest text-accent/80">
                 Range trial · Onboard footage
               </p>
-              <h3 className="mt-3 font-display text-xl uppercase leading-tight tracking-wide text-white">
+              <h3 className="mt-3 font-sans font-medium text-xl leading-tight tracking-tight text-white">
                 Fibre-optic control
               </h3>
               <p className="mt-3 text-sm leading-relaxed text-ink-3">
@@ -345,12 +345,12 @@ function FieldRecord() {
               <p className="mt-5 font-mono text-[0.6rem] uppercase tracking-widest text-accent/80">
                 Range trial · Onboard footage
               </p>
-              <h3 className="mt-3 font-display text-xl uppercase leading-tight tracking-wide text-white">
+              <h3 className="mt-3 font-sans font-medium text-xl leading-tight tracking-tight text-white">
                 Payload release
               </h3>
               <p className="mt-3 text-sm leading-relaxed text-ink-3">
                 A release run over the range, flown from the airframe camera. Release,
-                separation and the run off target, uncut.
+                separation and the run off target.
               </p>
               <Link
                 to="/systems/ankosha"
@@ -373,7 +373,7 @@ function FieldRecord() {
               <p className="mt-5 font-mono text-[0.6rem] uppercase tracking-widest text-accent/80">
                 Sumdo · August 2025
               </p>
-              <h3 className="mt-3 font-display text-xl uppercase leading-tight tracking-wide text-white">
+              <h3 className="mt-3 font-sans font-medium text-xl leading-tight tracking-tight text-white">
                 High-altitude evaluation
               </h3>
               <p className="mt-3 text-sm leading-relaxed text-ink-3">
@@ -402,7 +402,7 @@ function ContactCTA() {
     <section className="section">
       <div className="container">
         <Reveal>
-          <div className="flex flex-col gap-8 border-t border-line pt-14 sm:flex-row sm:items-end sm:justify-between">
+          <div className="flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <Eyebrow>Start a conversation</Eyebrow>
               <h2 className="display-lg mt-5 text-white">

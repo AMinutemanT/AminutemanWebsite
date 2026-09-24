@@ -72,7 +72,7 @@ export const NAV_GROUPS: NavGroup[] = [
       {
         label: 'Command & Control',
         to: '/valley/command-control',
-        note: 'Decision at the speed of the fight',
+        note: 'What the operator sees, and who commits',
         designation: 'C2',
       },
       {
