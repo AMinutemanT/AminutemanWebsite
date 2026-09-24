@@ -20,30 +20,71 @@ export function Eyebrow({
   );
 }
 
+/**
+ * The heading every section on the site is built from.
+ *
+ * Four optional pieces stack above the lede: a ghosted ordinal, a dotted
+ * eyebrow, a light lead line and the heavy title. Passing `lead` turns the
+ * heading two-tone —
+ *
+ *   02
+ *   SYSTEMS · THE FLEET
+ *   The
+ *   FLEET.
+ *
+ * — which is the rhythm the whole site is set to. `index` and `lead` are both
+ * optional, so a heading that wants only an eyebrow and a title still renders
+ * exactly as it did before.
+ */
 export function SectionHeading({
+  index,
   eyebrow,
+  lead,
   title,
+  stop = false,
   lede,
   align = 'left',
   className = '',
 }: {
+  /** Ghosted ordinal, e.g. "02". */
+  index?: string;
   eyebrow?: string;
+  /** Lighter upper line of a two-tone heading. */
+  lead?: ReactNode;
   title: ReactNode;
+  /** Appends a full stop in the accent colour, the way the headings terminate. */
+  stop?: boolean;
   lede?: ReactNode;
   align?: 'left' | 'center';
   className?: string;
 }) {
   const centered = align === 'center';
+  const width = centered ? 'mx-auto max-w-4xl' : 'max-w-4xl';
+
   return (
     <div className={`${centered ? 'text-center' : ''} ${className}`}>
+      {index && <span className="section-index">{index}</span>}
+
       {eyebrow && (
-        <div className={centered ? 'flex justify-center' : ''}>
+        <div className={`${centered ? 'flex justify-center' : ''} ${index ? '-mt-2' : ''}`}>
           <Eyebrow>{eyebrow}</Eyebrow>
         </div>
       )}
-      <h2 className={`display-lg text-white mt-5 ${centered ? 'mx-auto max-w-4xl' : 'max-w-4xl'}`}>
-        {title}
+
+      <h2 className={`mt-5 ${width}`}>
+        {lead && (
+          <span className="display-lead">
+            {lead}
+          </span>
+        )}
+        <span className={`display-lg block text-white ${lead ? 'mt-1' : ''}`}>
+          {/* The lead has already run by the time the heavy line starts, so the
+              two halves arrive in reading order rather than together. */}
+          {title}
+          {stop && <span className="text-accent">.</span>}
+        </span>
       </h2>
+
       {lede && (
         <p
           className={`body-copy mt-5 text-base sm:text-lg ${

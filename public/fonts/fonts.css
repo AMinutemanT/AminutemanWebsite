@@ -1,7 +1,15 @@
-/* Self-hosted. Generated from the Google Fonts CSS, latin and latin-ext
-   subsets only. Serving these ourselves keeps every visitor's request on
-   our own origin instead of sending their IP to a third party, and takes
-   a render-blocking cross-origin stylesheet off the critical path. */
+/* Self-hosted. Generated from the Google Fonts variable sources (instanced
+   per weight with fonttools varLib.instancer, then subset with pyftsubset),
+   latin and latin-ext subsets only. Serving these ourselves keeps every
+   visitor's request on our own origin instead of sending their IP to a third
+   party, and takes a render-blocking cross-origin stylesheet off the
+   critical path.
+
+   Each declared weight is a genuinely distinct static instance, verified by
+   hash and by glyph outline bounds before shipping (see docs/CODEX_REVIEW.md
+   and docs/FINAL_UX_AUDIT.md for how the earlier all-identical-file defect
+   was found and fixed). Do not reintroduce a shared URL across weights
+   without re-verifying the source files actually differ. */
 
 @font-face {
   font-family: 'Big Shoulders Display';

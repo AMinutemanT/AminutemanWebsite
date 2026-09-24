@@ -16,6 +16,24 @@ export function ProgrammeDetail({ programme }: { programme: Programme }) {
 
   const wantsValley = programme.related.includes('valley');
 
+  // Variants, the model and the gallery are optional per programme, so the
+  // ordinal each numbered section carries has to follow what actually
+  // renders, not a fixed per-section number. A hardcoded "01".."05" jumps
+  // straight from "01" to "04" whenever a programme lacks the sections in
+  // between, which reads as a broken counter rather than restraint.
+  const hasVariants = Boolean(programme.variants && programme.variants.length > 0);
+  const hasModel = Boolean(programme.model);
+  const hasGallery = Boolean(programme.gallery && programme.gallery.length > 0);
+  const hasRelated = related.length > 0 || wantsValley;
+
+  let ordinal = 0;
+  const nextIndex = () => String(++ordinal).padStart(2, '0');
+  const capabilitiesIndex = nextIndex();
+  const variantsIndex = hasVariants ? nextIndex() : undefined;
+  const modelIndex = hasModel ? nextIndex() : undefined;
+  const galleryIndex = hasGallery ? nextIndex() : undefined;
+  const relatedIndex = hasRelated ? nextIndex() : undefined;
+
   return (
     <article className="bg-void">
       <ProgrammeHero programme={programme} />
@@ -57,16 +75,19 @@ export function ProgrammeDetail({ programme }: { programme: Programme }) {
         <div className="container">
           <Reveal>
             <SectionHeading
-              eyebrow="Capabilities"
-              title="What it does"
+              index={capabilitiesIndex}
+              eyebrow="Capabilities · The role"
+              lead="What it"
+              title="Does"
+              stop
               lede={`Capability set for ${programme.designation}, stated at the level we are prepared to publish.`}
             />
           </Reveal>
 
-          <Stagger className="mt-14 grid grid-cols-1 gap-px bg-line md:grid-cols-2 lg:grid-cols-3">
+          <Stagger className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
             {programme.capabilities.map((cap, i) => (
-              <StaggerItem key={cap.title} className="bg-void">
-                <div className="group relative h-full bg-panel/40 p-8 transition-colors duration-300 hover:bg-panel">
+              <StaggerItem key={cap.title}>
+                <div className="card group p-8">
                   <span className="font-mono text-[0.6rem] tracking-widest text-accent/80">
                     {String(i + 1).padStart(2, '0')}
                   </span>
@@ -88,8 +109,11 @@ export function ProgrammeDetail({ programme }: { programme: Programme }) {
           <div className="container">
             <Reveal>
               <SectionHeading
-                eyebrow="Configuration"
-                title="The family"
+                index={variantsIndex}
+                eyebrow="Configuration · Variants"
+                lead="The"
+                title="Family"
+                stop
                 lede="Common architecture, differentiated by the fight each element is sized for."
               />
             </Reveal>
@@ -131,8 +155,11 @@ export function ProgrammeDetail({ programme }: { programme: Programme }) {
           <div className="container">
             <Reveal>
               <SectionHeading
-                eyebrow="Geometry"
-                title="The actual assembly"
+                index={modelIndex}
+                eyebrow="Geometry · Live model"
+                lead="The actual"
+                title="Assembly"
+                stop
                 lede="The engineering CAD assembly the airframe is built from, tessellated and served to the browser. Drag it."
               />
             </Reveal>
@@ -153,7 +180,13 @@ export function ProgrammeDetail({ programme }: { programme: Programme }) {
         <section className="section border-t border-line">
           <div className="container">
             <Reveal>
-              <SectionHeading eyebrow="Imagery" title="Programme record" />
+              <SectionHeading
+                index={galleryIndex}
+                eyebrow="Imagery · The record"
+                lead="Programme"
+                title="Record"
+                stop
+              />
             </Reveal>
             <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {programme.gallery.map((item, i) => (
@@ -218,9 +251,15 @@ export function ProgrammeDetail({ programme }: { programme: Programme }) {
         <section className="section">
           <div className="container">
             <Reveal>
-              <SectionHeading eyebrow="Adjacent" title="Related programmes" />
+              <SectionHeading
+                eyebrow="Adjacent · Nearby work"
+                index={relatedIndex}
+                lead="Related"
+                title="Programmes"
+                stop
+              />
             </Reveal>
-            <div className="mt-12 grid grid-cols-1 gap-px bg-line sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {wantsValley && (
                 <RelatedCard
                   to="/valley"
@@ -289,7 +328,7 @@ function ProgrammeHero({ programme }: { programme: Programme }) {
 
       <div className="container relative z-10 pb-16 sm:pb-20">
         <Reveal direction="none">
-          <nav className="flex items-center gap-2 font-mono text-[0.65rem] uppercase tracking-widest text-ink-dim">
+          <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-2 font-mono text-[0.65rem] uppercase tracking-widest text-ink-dim">
             <Link to="/" className="transition-colors hover:text-white">
               Home
             </Link>
@@ -373,7 +412,7 @@ function RelatedCard({
   tagline: string;
 }) {
   return (
-    <Link to={to} className="group block bg-panel/40 p-7 transition-colors hover:bg-panel">
+    <Link to={to} className="card group p-7">
       <div className="flex items-start justify-between gap-3">
         <span className="font-mono text-[0.6rem] uppercase tracking-widest text-accent/80">
           {designation}

@@ -1,10 +1,20 @@
-import { Suspense, lazy, useEffect, useRef, useState } from 'react';
+import { Component, Suspense, lazy, useEffect, useRef, useState, type ReactNode } from 'react';
 import type { ModelViewerProps } from './ModelViewer';
 
 
 const ModelViewer = lazy(() =>
   import('./ModelViewer').then((m) => ({ default: m.ModelViewer })),
 );
+
+class ViewerBoundary extends Component<{ children: ReactNode; label: string; height: string }, { failed: boolean }> {
+  state = { failed: false };
+  static getDerivedStateFromError() { return { failed: true }; }
+  render() {
+    return this.state.failed
+      ? <Placeholder label={`${this.props.label} · 3D view unavailable`} height={this.props.height} />
+      : this.props.children;
+  }
+}
 
 /**
  * Defers the three.js bundle until the viewer is actually scrolled near.
@@ -39,9 +49,11 @@ export function LazyModelViewer(props: ModelViewerProps) {
   return (
     <div ref={ref}>
       {near ? (
-        <Suspense fallback={<Placeholder label={props.label} height={height} />}>
-          <ModelViewer {...props} />
-        </Suspense>
+        <ViewerBoundary key={props.src} label={props.label} height={height}>
+          <Suspense fallback={<Placeholder label={props.label} height={height} />}>
+            <ModelViewer {...props} />
+          </Suspense>
+        </ViewerBoundary>
       ) : (
         <Placeholder label={props.label} height={height} />
       )}

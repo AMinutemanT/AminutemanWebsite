@@ -1,4 +1,5 @@
-import { Component, Suspense, lazy, type ReactNode } from 'react';
+import { Component, Suspense, lazy, useRef, useState, type ReactNode } from 'react';
+import { useInView, useReducedMotion } from 'framer-motion';
 
 const AnkoshaScene = lazy(() =>
   import('./AnkoshaScene').then((m) => ({ default: m.AnkoshaScene })),
@@ -37,13 +38,28 @@ class SceneBoundary extends Component<
  * three.js and the airframe LOD have arrived.
  */
 export function AnkoshaFlythrough(props: AnkoshaFlythroughProps) {
-  const backdrop = <Backdrop className={props.className} />;
+  const ref = useRef<HTMLDivElement>(null);
+  const near = useInView(ref, { once: true, margin: '300px' });
+  const visible = useInView(ref);
+  const reduced = useReducedMotion();
+  const [paused, setPaused] = useState(false);
+  const backdrop = <Backdrop className="absolute inset-0" />;
   return (
-    <SceneBoundary fallback={backdrop}>
-      <Suspense fallback={backdrop}>
-        <AnkoshaScene {...props} />
-      </Suspense>
-    </SceneBoundary>
+    <div ref={ref} className={props.className}>
+      {near ? (
+        <SceneBoundary fallback={backdrop}>
+          <Suspense fallback={backdrop}>
+            <AnkoshaScene {...props} className="absolute inset-0" playing={visible && !paused} />
+          </Suspense>
+        </SceneBoundary>
+      ) : backdrop}
+      {near && !reduced && (
+        <button type="button" onClick={() => setPaused((value) => !value)} aria-pressed={paused}
+          className="absolute right-3 top-3 z-10 min-h-11 border border-line-bright bg-void/90 px-3 font-mono text-xs text-ink-2 hover:text-white">
+          {paused ? 'Play formation' : 'Pause formation'}
+        </button>
+      )}
+    </div>
   );
 }
 

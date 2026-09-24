@@ -50,11 +50,26 @@
   <link rel="preload" as="font" type="font/woff2" href="/fonts/jetbrains-mono-400-lat.woff2" crossorigin />
   <link rel="stylesheet" href="/fonts/fonts.css" />
 
+  <!-- The hero poster is the LCP candidate: it paints before the loop has
+       arrived, and it is what a reduced-motion visitor sees instead of the
+       loop. Declared here so the preload scanner starts it in the first
+       request wave rather than when React mounts the hero. No crossorigin —
+       the poster attribute fetches without CORS, and mismatching the two
+       would download the image twice. -->
+  <link rel="preload" as="image" href="/videos/hero-loop.jpg" fetchpriority="high" />
+
   <title>Aminuteman Technologies, Shaping the Deterrence</title>
 </head>
 
 <body>
   <div id="root"></div>
+  <noscript>
+    <div style="max-width:48rem;margin:5rem auto;padding:2rem;color:#fff;background:#000;font-family:system-ui,sans-serif">
+      <h1>Aminuteman Technologies</h1>
+      <p>Autonomous air systems and defence integration, designed and developed in India.</p>
+      <p>Enable JavaScript to explore the programmes, or <a style="color:#ffae42" href="mailto:admincontrols@aminutemantechnologies.com">email the programme office</a>.</p>
+    </div>
+  </noscript>
   <script type="module" src="/src/main.tsx"></script>
   
   <!-- Structured Data for Organization -->

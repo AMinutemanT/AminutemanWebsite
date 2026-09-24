@@ -5,8 +5,10 @@ import {
   PROGRAMME_BY_SLUG,
   programmePath,
   type Category,
+  type Programme,
 } from '../data/programmes';
 import { useSeo } from '../utils/seo';
+import { NotFound } from './NotFound';
 
 /**
  * Renders any programme from the content model. One route per category, one
@@ -16,27 +18,23 @@ export function ProgrammePage({ category }: { category: Category }) {
   const { slug } = useParams<{ slug: string }>();
   const programme = slug ? PROGRAMME_BY_SLUG[slug] : undefined;
 
+  if (!programme) return <NotFound />;
+  if (programme.category !== category) return <Navigate to={programmePath(programme.slug)} replace />;
+  return <ProgrammeContent programme={programme} />;
+}
 
-  // Hooks run before the guard so their order stays stable across renders.
+function ProgrammeContent({ programme }: { programme: Programme }) {
   useSeo({
-    title: programme?.name ?? 'Programme',
-    path: programme ? programmePath(programme.slug) : `/${category}`,
-    description: programme?.summary ?? '',
-    image: programme?.hero.src,
-    breadcrumbs: programme
-      ? [
+    title: programme.name,
+    path: programmePath(programme.slug),
+    description: programme.summary,
+    image: programme.hero.src,
+    breadcrumbs: [
           { name: 'Home', path: '/' },
           { name: CATEGORY_LABEL[programme.category], path: `/${programme.category}` },
           { name: programme.name, path: programmePath(programme.slug) },
-        ]
-      : undefined,
+        ],
   });
-
-  // Guard against a slug that exists but sits under a different category, so the
-  // canonical URL for each programme stays unique.
-  if (!programme || programme.category !== category) {
-    return <Navigate to={`/${category}`} replace />;
-  }
 
   return <ProgrammeDetail programme={programme} />;
 }

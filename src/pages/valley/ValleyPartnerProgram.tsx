@@ -103,7 +103,7 @@ export function ValleyPartnerProgram() {
 
         <div className="container relative">
           <Reveal direction="none">
-            <nav className="flex items-center gap-2 font-mono text-[0.65rem] uppercase tracking-widest text-ink-dim">
+            <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-2 font-mono text-[0.65rem] uppercase tracking-widest text-ink-dim">
               <Link to="/" className="transition-colors hover:text-white">
                 Home
               </Link>
@@ -176,13 +176,13 @@ export function ValleyPartnerProgram() {
       <section className="section border-b border-line">
         <div className="container">
           <Reveal>
-            <SectionHeading eyebrow="Who this is for" title="Partners" />
+            <SectionHeading index="01" eyebrow="Who this is for" title="Partners" stop />
           </Reveal>
 
-          <Stagger className="mt-16 grid grid-cols-1 gap-px bg-line sm:grid-cols-2 lg:grid-cols-4">
+          <Stagger className="mt-16 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {WHO.map((item, i) => (
-              <StaggerItem key={item.title} className="bg-void">
-                <div className="group relative h-full bg-panel/40 p-8 transition-colors duration-300 hover:bg-panel">
+              <StaggerItem key={item.title}>
+                <div className="card group p-8">
                   <span className="font-mono text-[0.6rem] tracking-widest text-accent/80">
                     {String(i + 1).padStart(2, '0')}
                   </span>
@@ -204,7 +204,10 @@ export function ValleyPartnerProgram() {
           <Reveal>
             <SectionHeading
               eyebrow="Process"
-              title="How onboarding runs"
+              index="02"
+              lead="How onboarding"
+              title="Runs"
+              stop
               lede="Five stages. Most of the effort sits in the first two, which is deliberate. Ambiguity is cheaper to remove before integration than after."
             />
           </Reveal>
@@ -243,7 +246,10 @@ export function ValleyPartnerProgram() {
               <Reveal>
                 <SectionHeading
                   eyebrow="Interface"
-                  title="What your system must do"
+                  index="03"
+                  lead="What your system"
+                  title="Must do"
+                  stop
                   lede="Short list, strictly enforced. Everything here exists because its absence has broken a real integration."
                 />
               </Reveal>

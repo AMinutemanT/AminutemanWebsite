@@ -81,8 +81,10 @@ export function About() {
   return (
     <div className="bg-void">
       <PageHero
-        eyebrow="Company"
-        title="We build what could not be bought"
+        eyebrow="Company · The mandate"
+        lead="We build what"
+        title="Could not be bought"
+        stop
         image="altitude"
         focus="50% 34%"
         intensity={0.9}
@@ -141,16 +143,19 @@ export function About() {
         <div className="container">
           <Reveal>
             <SectionHeading
-              eyebrow="Standing"
-              title="Where we actually are"
+              index="01"
+              eyebrow="Standing · The position"
+              lead="Where we"
+              title="Actually are"
+              stop
               lede="Each of these is drawn from a contract, a submission or a build standard."
             />
           </Reveal>
 
-          <Stagger className="mt-16 grid grid-cols-1 gap-px bg-line md:grid-cols-2 lg:grid-cols-3">
+          <Stagger className="mt-16 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
             {ACHIEVEMENTS.map((item) => (
-              <StaggerItem key={item.label} className="bg-void">
-                <div className="group relative h-full bg-panel/40 p-8 transition-colors duration-300 hover:bg-panel">
+              <StaggerItem key={item.label}>
+                <div className="card group p-8">
                   <p className="data-label">{item.label}</p>
                   <p className="mt-4 font-display text-3xl uppercase leading-none tracking-tight text-white">
                     {item.value}
@@ -169,8 +174,11 @@ export function About() {
         <div className="container">
           <Reveal>
             <SectionHeading
-              eyebrow="Alongside"
-              title="Who we work with"
+              index="02"
+              eyebrow="Alongside · The ecosystem"
+              lead="Who we"
+              title="Work with"
+              stop
               lede="Primes, integrators and end users in India, and the international partners who supply and qualify alongside us."
             />
           </Reveal>
@@ -207,8 +215,11 @@ export function About() {
             <div className="lg:col-span-5">
               <Reveal>
                 <SectionHeading
-                  eyebrow="In-house"
-                  title="What we hold ourselves"
+                  index="03"
+                  eyebrow="In-house · Held capability"
+                  lead="What we hold"
+                  title="Ourselves"
+                  stop
                   lede="The disciplines we refuse to outsource, because outsourcing any one of them puts a programme on somebody else’s schedule."
                 />
               </Reveal>
@@ -249,16 +260,19 @@ export function About() {
         <div className="container">
           <Reveal>
             <SectionHeading
-              eyebrow="How we work"
-              title="Six commitments"
+              index="04"
+              eyebrow="How we work · Commitments"
+              lead="Six"
+              title="Commitments"
+              stop
               lede="Six engineering constraints. Each one changes what gets built."
             />
           </Reveal>
 
-          <Stagger className="mt-16 grid grid-cols-1 gap-px bg-line md:grid-cols-2 lg:grid-cols-3">
+          <Stagger className="mt-16 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
             {PRINCIPLES.map((item, i) => (
-              <StaggerItem key={item.title} className="bg-void">
-                <div className="group relative h-full bg-panel/40 p-8 transition-colors duration-300 hover:bg-panel">
+              <StaggerItem key={item.title}>
+                <div className="card group p-8">
                   <span className="font-mono text-[0.6rem] tracking-widest text-accent/80">
                     {String(i + 1).padStart(2, '0')}
                   </span>
@@ -279,8 +293,11 @@ export function About() {
         <div className="container">
           <Reveal>
             <SectionHeading
-              eyebrow="Footprint"
-              title="Where we build"
+              index="05"
+              eyebrow="Footprint · The sites"
+              lead="Where we"
+              title="Build"
+              stop
               lede="Design and works in Pune, the programme office in Delhi, avionics and autonomy in Bengaluru, and test and integration in Madhya Pradesh."
             />
           </Reveal>
@@ -289,12 +306,6 @@ export function About() {
             {OFFICES.map((office, i) => (
               <Reveal key={office.city + office.role} delay={i * 0.06}>
                 <div className="flex h-full flex-col border border-line bg-panel/30">
-                  <MediaSlot
-                    label={`${office.city.toUpperCase()} / ${office.role.toUpperCase()}`}
-                    src={office.image}
-                    alt={`${office.city}, ${office.role}`}
-                    ratio="3/2"
-                  />
                   <div className="flex flex-1 flex-col p-7">
                     <div className="flex items-baseline justify-between gap-3">
                       <h3 className="font-display text-2xl uppercase leading-none tracking-wide text-white">
@@ -335,8 +346,11 @@ export function About() {
         <div className="container">
           <Reveal>
             <SectionHeading
-              eyebrow="In the field"
-              title="On the ground"
+              index="06"
+              eyebrow="In the field · Trials"
+              lead="On the"
+              title="Ground"
+              stop
               lede="Our systems are evaluated by the people who would use them, on the ground they would use them on. In August 2025 that meant Sumdo at 10,700 feet, under an Indian Army initiative. Between evaluations we fly our own trials, and the onboard footage is the record."
             />
           </Reveal>
@@ -363,8 +377,11 @@ export function About() {
         <div className="container">
           <Reveal>
             <SectionHeading
-              eyebrow="Alongside"
-              title="In the room"
+              index="07"
+              eyebrow="Alongside · Exhibitions"
+              lead="In the"
+              title="Room"
+              stop
               lede="Defence exhibitions, the Aeronautical Society of India, and the industry forums where national technology policy gets argued out."
             />
           </Reveal>
@@ -390,8 +407,11 @@ export function About() {
         <div className="container">
           <Reveal>
             <SectionHeading
-              eyebrow="In the press"
-              title="Written about"
+              index="08"
+              eyebrow="In the press · Coverage"
+              lead="Written"
+              title="About"
+              stop
               lede="Coverage of the company and the programmes. Each entry links to the article."
             />
           </Reveal>
@@ -435,8 +455,11 @@ export function About() {
         <div className="container">
           <Reveal>
             <SectionHeading
-              eyebrow="The floor"
-              title="Where the hardware sits"
+              index="09"
+              eyebrow="The floor · The works"
+              lead="Where the"
+              title="Hardware sits"
+              stop
               lede="Photographed on the engineering floor. Rotary and fixed-wing development airframes, integration positions, and the secure area behind them."
             />
           </Reveal>
@@ -510,7 +533,13 @@ export function About() {
       <section className="section border-b border-line">
         <div className="container">
           <Reveal>
-            <SectionHeading eyebrow="Record" title="How we got here" />
+            <SectionHeading
+              index="10"
+              eyebrow="Record · The timeline"
+              lead="How we"
+              title="Got here"
+              stop
+            />
           </Reveal>
 
           <div className="mt-14 border-t border-line">

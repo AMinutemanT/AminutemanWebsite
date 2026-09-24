@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { useSeo } from '../utils/seo';
 import { Send, Upload, FileCheck } from 'lucide-react';
-import { uploadToCloudinary, submitToWeb3Forms } from '../utils/cloudinary';
+import { applicationFormAvailable, uploadToCloudinary, submitToWeb3Forms } from '../utils/cloudinary';
 import { Reveal, Stagger, StaggerItem } from '../components/ui/Reveal';
 import { PageHero } from '../components/ui/PageHero';
 import { Eyebrow, SectionHeading } from '../components/ui/HUD';
@@ -99,6 +99,7 @@ export function Careers() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSubmitting) return;
     setIsSubmitting(true);
     setSubmitStatus({ type: null, message: '' });
 
@@ -165,8 +166,7 @@ ${formData.coverLetter || 'No cover letter provided'}
       });
 
       if (form.current) form.current.reset();
-    } catch (error) {
-      console.error('Application submission error:', error);
+    } catch {
       setSubmitStatus({
         type: 'error',
         message: 'Submission failed. Please try again later.',
@@ -185,14 +185,16 @@ ${formData.coverLetter || 'No cover letter provided'}
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData((prev) => ({ ...prev, resume: null, resumeUrl: '' }));
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
 
       // Validate file size (5MB limit)
-      if (file.size > 5 * 1024 * 1024) {
+      if (file.size === 0 || file.size > 5 * 1024 * 1024) {
+        e.target.value = '';
         setSubmitStatus({
           type: 'error',
-          message: 'File size should be less than 5MB. Please choose a smaller file.',
+          message: file.size === 0 ? 'This file is empty. Please choose your CV.' : 'File size should be no more than 5 MB. Please choose a smaller file.',
         });
         return;
       }
@@ -203,7 +205,8 @@ ${formData.coverLetter || 'No cover letter provided'}
         'application/msword',
         'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
       ];
-      if (!allowedTypes.includes(file.type)) {
+      if (!/\.(pdf|docx?)$/i.test(file.name) || (file.type && !allowedTypes.includes(file.type))) {
+        e.target.value = '';
         setSubmitStatus({
           type: 'error',
           message: 'Please upload a PDF, DOC, or DOCX file.',
@@ -223,20 +226,24 @@ ${formData.coverLetter || 'No cover letter provided'}
 
   const selectPosition = (title: string) => {
     setFormData((prev) => ({ ...prev, position: title }));
-    document.getElementById('application')?.scrollIntoView({ behavior: 'smooth' });
+    const application = document.getElementById('application');
+    application?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+    application?.focus({ preventScroll: true });
   };
 
   return (
     <div className="bg-void">
       <PageHero
-        eyebrow="Careers"
+        eyebrow="Careers · Open roles"
+        lead="Build the things"
         title={
           <>
-            Build the things
+            Nobody will
             <br />
-            nobody will sell us
+            sell us
           </>
         }
+        stop
         image="trial"
         focus="50% 26%"
         intensity={0.7}
@@ -249,15 +256,18 @@ ${formData.coverLetter || 'No cover letter provided'}
         <div className="container">
           <Reveal>
             <SectionHeading
-              eyebrow="The work"
-              title="Why this, and not somewhere else"
+              index="01"
+              eyebrow="The work · The case"
+              lead="Why this, and not"
+              title="Somewhere else"
+              stop
             />
           </Reveal>
 
-          <Stagger className="mt-16 grid grid-cols-1 gap-px bg-line sm:grid-cols-2 lg:grid-cols-4">
+          <Stagger className="mt-16 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {WHY.map((item, i) => (
-              <StaggerItem key={item.title} className="bg-void">
-                <div className="group relative h-full bg-panel/40 p-8 transition-colors duration-300 hover:bg-panel">
+              <StaggerItem key={item.title}>
+                <div className="card group p-8">
                   <span className="font-mono text-[0.6rem] tracking-widest text-accent/80">
                     {String(i + 1).padStart(2, '0')}
                   </span>
@@ -278,8 +288,11 @@ ${formData.coverLetter || 'No cover letter provided'}
         <div className="container">
           <Reveal>
             <SectionHeading
-              eyebrow="Open roles"
+              index="02"
+              eyebrow="Open roles · Hiring now"
+              lead="Open"
               title="Positions"
+              stop
               lede="All roles are full-time and on-site in Pune. If none of these match and you are still the right person, apply anyway and say why."
             />
           </Reveal>
@@ -308,6 +321,7 @@ ${formData.coverLetter || 'No cover letter provided'}
                     <button
                       type="button"
                       onClick={() => selectPosition(role.title)}
+                      aria-label={`Apply for ${role.title}`}
                       className="font-mono text-[0.65rem] uppercase tracking-widest text-accent transition-colors hover:text-white"
                     >
                       Apply →
@@ -321,7 +335,7 @@ ${formData.coverLetter || 'No cover letter provided'}
       </section>
 
       {/* ---- Application ------------------------------------------------- */}
-      <section id="application" className="section scroll-mt-28">
+      <section id="application" tabIndex={-1} aria-label="Application" className="section scroll-mt-28">
         <div className="container">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-4">
@@ -340,11 +354,13 @@ ${formData.coverLetter || 'No cover letter provided'}
 
             <div className="lg:col-span-8">
               <Reveal delay={0.08}>
-                                  <form
+                {applicationFormAvailable ? <form
                     ref={form}
                     onSubmit={handleSubmit}
                     className="border border-line bg-panel/40 p-7 sm:p-10"
+                    aria-busy={isSubmitting}
                   >
+                    <fieldset disabled={isSubmitting}>
                     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                       <Field
                         label="Full name"
@@ -427,14 +443,14 @@ ${formData.coverLetter || 'No cover letter provided'}
                       <span className="data-label">Resume</span>
                       <label
                         htmlFor="resume"
-                        className="mt-2.5 flex cursor-pointer items-center gap-3 border border-dashed border-white/20 bg-white/[0.03] px-4 py-5 transition-colors hover:border-accent/50 hover:bg-white/[0.05]"
+                        className="mt-2.5 flex cursor-pointer items-center gap-3 border border-dashed border-white/20 bg-white/[0.03] px-4 py-5 transition-colors hover:border-accent/50 hover:bg-white/[0.05] focus-within:outline focus-within:outline-2 focus-within:outline-accent"
                       >
                         {formData.resume ? (
                           <FileCheck className="h-5 w-5 shrink-0 text-nominal" />
                         ) : (
                           <Upload className="h-5 w-5 shrink-0 text-accent/80" />
                         )}
-                        <span className="font-mono text-xs text-ink-2">
+                        <span className="min-w-0 break-all font-mono text-xs text-ink-2">
                           {formData.resume ? formData.resume.name : 'Attach PDF, DOC or DOCX'}
                         </span>
                         <input
@@ -479,7 +495,7 @@ ${formData.coverLetter || 'No cover letter provided'}
 
                     {submitStatus.type && (
                       <p
-                        role="status"
+                        role={submitStatus.type === 'error' ? 'alert' : 'status'}
                         className={`mt-6 border px-4 py-3 font-mono text-[0.65rem] uppercase tracking-widest ${
                           submitStatus.type === 'success'
                             ? 'border-nominal/40 bg-nominal/[0.07] text-nominal'
@@ -489,7 +505,15 @@ ${formData.coverLetter || 'No cover letter provided'}
                         {submitStatus.message}
                       </p>
                     )}
-                  </form>
+                    </fieldset>
+                  </form> : (
+                    <div className="border border-line bg-panel/40 p-7 sm:p-10">
+                      <p className="data-label">{formData.position || 'Engineering careers'}</p>
+                      <h3 className="display-md mt-4 text-white">Apply by email</h3>
+                      <p className="body-copy mt-6">Send your CV, the role you are interested in, and a short note about your experience to the team. Attach only unclassified material.</p>
+                      <a className="btn-primary mt-8" href={`mailto:admincontrols@aminutemantechnologies.com?subject=${encodeURIComponent(`Career application${formData.position ? ` - ${formData.position}` : ''}`)}`}>Email your application <Send className="h-4 w-4" /></a>
+                    </div>
+                  )}
               </Reveal>
             </div>
           </div>
@@ -523,6 +547,7 @@ function Field({
         id={name}
         name={name}
         type={type}
+        autoComplete={name === 'phone' ? 'tel' : name}
         value={value}
         onChange={onChange}
         required={required}

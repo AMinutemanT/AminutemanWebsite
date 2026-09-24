@@ -57,7 +57,12 @@ export function NotFound() {
             <Eyebrow>Not found</Eyebrow>
           </Reveal>
           <Reveal delay={0.08}>
-            <h1 className="display-xl mt-6 max-w-4xl text-white">No route to that page</h1>
+            <h1 className="mt-6 max-w-4xl">
+              <span className="display-lead">No route to</span>
+              <span className="display-xl mt-2 block text-white">
+                That page<span className="text-accent">.</span>
+              </span>
+            </h1>
           </Reveal>
           <Reveal delay={0.14}>
             <p className="mt-7 max-w-2xl text-lg leading-relaxed text-ink-2 sm:text-xl">
@@ -71,12 +76,12 @@ export function NotFound() {
 
       <section className="section">
         <div className="container">
-          <div className="grid grid-cols-1 gap-px bg-line sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {ROUTES.map((r) => (
               <Link
                 key={r.to}
                 to={r.to}
-                className="group flex h-full flex-col justify-between bg-panel/30 p-8 transition-colors duration-300 hover:bg-panel"
+                className="card group justify-between p-8"
               >
                 <span className="font-mono text-[0.6rem] uppercase tracking-widest text-ink-dim">
                   {r.note}

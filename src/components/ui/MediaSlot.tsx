@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { useReducedMotion } from 'framer-motion';
+import { IMAGE_WIDTHS } from '../../data/imageWidths';
 
 
 export type MediaRatio = '16/9' | '4/3' | '3/2' | '1/1' | '4/5' | '21/9' | '9/16';
@@ -39,12 +39,24 @@ export interface MediaSlotProps {
  * full-width photographs it will never show at full width.
  */
 const RASTER = /\.(jpe?g|png)$/i;
+const availableWebp = new Set(Object.keys(import.meta.glob('/public/**/*.webp', {
+  eager: true,
+  query: '?url',
+  import: 'default',
+})).map((path) => path.replace('/public', '')));
 
 function webpSet(src: string): { srcSet: string; full: string } | null {
   if (!RASTER.test(src)) return null;
   const stem = src.replace(RASTER, '');
+  if (!availableWebp.has(`${stem}.webp`)) return null;
+  const fullWidth = IMAGE_WIDTHS[`${stem}.webp`];
+  const variants = [500, 1000]
+    .filter((width) => availableWebp.has(`${stem}-${width}.webp`))
+    .map((width) => `${stem}-${width}.webp ${width}w`);
   return {
-    srcSet: `${stem}-500.webp 500w, ${stem}-1000.webp 1000w, ${stem}.webp 1400w`,
+    srcSet: variants.length && fullWidth
+      ? [...variants, `${stem}.webp ${fullWidth}w`].join(', ')
+      : `${stem}.webp`,
     full: `${stem}.webp`,
   };
 }
@@ -83,7 +95,6 @@ export function MediaSlot({
   const [failed, setFailed] = useState(false);
   const hasAsset = Boolean(video || src) && !failed;
   const contain = fit === 'contain';
-  const reduced = useReducedMotion();
   const frame = useRef<HTMLDivElement>(null);
   const [videoNear, setVideoNear] = useState(false);
 
@@ -113,8 +124,7 @@ export function MediaSlot({
   }, [video]);
 
   const posterSrc = poster ?? src;
-  // Reduced-motion viewers still get the clip, they just get it paused with
-  // controls instead of looping at them.
+  // Footage is evidence: let the visitor choose when to watch it.
   const loadVideo = Boolean(video) && videoNear;
 
   return (
@@ -145,12 +155,11 @@ export function MediaSlot({
               <video
                 className="absolute inset-0 h-full w-full object-cover"
                 src={video}
-                autoPlay={!reduced}
-                controls={reduced === true}
+                controls
+                aria-label={alt || label}
                 muted
-                loop
                 playsInline
-                preload="auto"
+                preload="none"
                 poster={posterSrc}
                 onError={() => setFailed(true)}
               />

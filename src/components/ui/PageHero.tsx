@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import { Reveal } from './Reveal';
 import { Eyebrow } from './HUD';
+import { RevealText } from './RevealText';
 import { ContourField } from './ContourField';
 
 /* ---------------------------------------------------------------------------
@@ -31,7 +32,11 @@ export type HeroImage = keyof typeof LQIP;
 
 interface PageHeroProps {
   eyebrow?: string;
+  /** Lighter upper line, matching the two-tone headings the sections use. */
+  lead?: ReactNode;
   title: ReactNode;
+  /** Terminating full stop in the accent colour. */
+  stop?: boolean;
   lede?: ReactNode;
   meta?: ReactNode;
   /** Omit for the graphic treatment used where no honest photograph exists. */
@@ -50,7 +55,9 @@ interface PageHeroProps {
 
 export function PageHero({
   eyebrow,
+  lead,
   title,
+  stop = false,
   lede,
   meta,
   image,
@@ -112,7 +119,20 @@ export function PageHero({
           </Reveal>
         )}
         <Reveal delay={0.08}>
-          <h1 className="display-xl mt-6 max-w-5xl text-white">{title}</h1>
+          <h1 className="mt-6 max-w-5xl">
+            {lead && (
+              <span className="display-lead-xl">
+                <RevealText>{lead}</RevealText>
+              </span>
+            )}
+            {/* Big Shoulders sits low in its line box, so at the masthead size
+                the two lines read further apart than their boxes are. The pull
+                closes that optically; the boxes themselves are already flush. */}
+            <span className={`display-xl block text-white ${lead ? '-mt-3 sm:-mt-4' : ''}`}>
+              <RevealText delay={lead ? 0.12 : 0}>{title}</RevealText>
+              {stop && <span className="text-accent">.</span>}
+            </span>
+          </h1>
         </Reveal>
         {lede && (
           <Reveal delay={0.14}>

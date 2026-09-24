@@ -146,6 +146,7 @@ function Formation({
 }
 
 export interface AnkoshaSceneProps {
+  playing?: boolean;
   className?: string;
   /** Scales the overall luminance so the hero and the inset can differ. */
   intensity?: number;
@@ -160,11 +161,13 @@ export interface AnkoshaSceneProps {
 
 /** WebGL is not guaranteed. Probe once so a machine without it still gets a page. */
 function useWebGL() {
-  const [supported, setSupported] = useState(true);
+  const [supported, setSupported] = useState<boolean | null>(null);
   useEffect(() => {
     try {
       const c = document.createElement('canvas');
-      if (!(c.getContext('webgl2') || c.getContext('webgl'))) setSupported(false);
+      const gl = c.getContext('webgl2') || c.getContext('webgl');
+      setSupported(Boolean(gl));
+      gl?.getExtension('WEBGL_lose_context')?.loseContext();
     } catch {
       setSupported(false);
     }
@@ -177,6 +180,7 @@ export function AnkoshaScene({
   intensity = 1,
   axisX = 0,
   scale = 2.3,
+  playing = true,
 }: AnkoshaSceneProps) {
   const reduced = useReducedMotion();
   const supported = useWebGL();
@@ -197,7 +201,7 @@ export function AnkoshaScene({
         camera={{ position: [0, 0, 10], fov: 58, near: 0.1, far: 200 }}
         dpr={[1, 1.6]}
         gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
-        frameloop={reduced ? 'demand' : 'always'}
+        frameloop={reduced || !playing ? 'demand' : 'always'}
       >
         <fog attach="fog" args={['#000000', 62, 135]} />
         <ambientLight intensity={0.9 * intensity} />
@@ -206,7 +210,7 @@ export function AnkoshaScene({
         <directionalLight position={[0, -5, 4]} intensity={0.8 * intensity} color="#5AB6FF" />
 
         <Suspense fallback={null}>
-          <Formation animate={!reduced} axisX={axisX} scale={scale} />
+          <Formation animate={!reduced && playing} axisX={axisX} scale={scale} />
         </Suspense>
       </Canvas>
     </div>

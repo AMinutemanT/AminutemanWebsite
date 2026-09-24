@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import {
   BrowserRouter as Router,
   Routes,
@@ -7,7 +7,6 @@ import {
   useLocation,
   useParams,
 } from 'react-router-dom';
-import { AnimatePresence } from 'framer-motion';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { PageTransition } from './components/PageTransition';
@@ -68,9 +67,17 @@ function LegacySlugRedirect() {
 
 function ScrollToTop() {
   const { pathname } = useLocation();
+  const previousPath = useRef(pathname);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    if (previousPath.current !== pathname) {
+      previousPath.current = pathname;
+      const frame = requestAnimationFrame(() => {
+        document.getElementById('main-content')?.focus({ preventScroll: true });
+      });
+      return () => cancelAnimationFrame(frame);
+    }
   }, [pathname]);
 
   return null;
@@ -80,7 +87,6 @@ function AnimatedRoutes() {
   const location = useLocation();
 
   return (
-    <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<PageTransition><Home /></PageTransition>} />
 
@@ -121,17 +127,21 @@ function AnimatedRoutes() {
             page, which search engines treat as a soft 404. */}
         <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
       </Routes>
-    </AnimatePresence>
   );
 }
 
 function App() {
+  // One delegated pointer listener drives the spotlight on every card.
+
   return (
     <Router>
       <ScrollToTop />
       <div className="relative min-h-screen">
+        <a href="#main-content" className="skip-link">Skip to content</a>
         <Navbar />
-        <AnimatedRoutes />
+        <main id="main-content" tabIndex={-1}>
+          <AnimatedRoutes />
+        </main>
         <Footer />
       </div>
     </Router>

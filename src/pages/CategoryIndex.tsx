@@ -10,7 +10,7 @@ import { Stagger, StaggerItem } from '../components/ui/Reveal';
 import { StatusTag, DomainChip } from '../components/ui/HUD';
 import { PageHero, type HeroImage } from '../components/ui/PageHero';
 import { useSeo } from '../utils/seo';
-import { MediaSlot } from '../components/ui/MediaSlot';
+import { FleetCard } from '../components/ui/FleetCard';
 
 const COPY: Record<
   Category,
@@ -51,8 +51,9 @@ export function CategoryIndex({ category }: { category: Category }) {
   return (
     <div className="bg-void">
       <PageHero
-        eyebrow={`${CATEGORY_LABEL[category]} index`}
+        eyebrow={`${CATEGORY_LABEL[category]} · Index`}
         title={copy.title}
+        stop
         lede={copy.lede}
         meta={`${programmes.length} programmes`}
         image={copy.image}
@@ -64,55 +65,33 @@ export function CategoryIndex({ category }: { category: Category }) {
       {/* ---- Index -------------------------------------------------------- */}
       <section className="section">
         <div className="container">
-          <Stagger className="grid grid-cols-1 gap-px bg-line sm:grid-cols-2 lg:grid-cols-3">
+          <Stagger className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {programmes.map((programme) => (
-              <StaggerItem key={programme.slug} className="bg-void">
-                <Link
+              <StaggerItem key={programme.slug}>
+                <FleetCard
                   to={programmePath(programme.slug)}
-                  className="group flex h-full flex-col bg-panel/30 transition-colors duration-300 hover:bg-panel"
-                >
-                  {programme.hero.src && (
-                    <MediaSlot
-                      label={programme.designation}
-                      src={programme.hero.src}
-                      alt={programme.name}
-                      ratio="3/2"
-                    />
-                  )}
-
-                  <div className="flex flex-1 flex-col p-7">
-                    <div className="flex items-start justify-between gap-4">
-                      <span className="font-mono text-[0.6rem] uppercase tracking-widest text-accent/80">
-                        {programme.designation}
-                      </span>
-                      <ArrowUpRight className="h-4 w-4 shrink-0 text-ink-dim transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent" />
-                    </div>
-
-                    <h2 className="mt-4 font-display text-2xl uppercase leading-none tracking-wide text-white">
-                      {programme.name}
-                    </h2>
-                    <p className="mt-3 text-sm leading-relaxed text-ink-3">
-                      {programme.summary}
-                    </p>
-
-                    <div className="mt-auto pt-7">
-                      <div className="flex flex-wrap items-center gap-2">
-                        <StatusTag status={programme.status} />
-                        {programme.domain.slice(0, 2).map((d) => (
-                          <DomainChip key={d} label={d} />
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </Link>
+                  designation={programme.designation}
+                  name={programme.name}
+                  blurb={programme.summary}
+                  src={programme.hero.src}
+                  fit={programme.hero.fit}
+                  meta={
+                    <>
+                      <StatusTag status={programme.status} />
+                      {programme.domain.slice(0, 2).map((d) => (
+                        <DomainChip key={d} label={d} />
+                      ))}
+                    </>
+                  }
+                />
               </StaggerItem>
             ))}
 
             {/* Squares off the last row, and gives the index somewhere to go. */}
-            <StaggerItem className="bg-void">
+            <StaggerItem>
               <Link
                 to="/contact"
-                className="group flex h-full flex-col justify-between bg-panel/20 p-7 transition-colors duration-300 hover:bg-panel"
+                className="card group justify-between p-7"
               >
                 <span className="font-mono text-[0.6rem] uppercase tracking-widest text-ink-dim">
                   Enquiries

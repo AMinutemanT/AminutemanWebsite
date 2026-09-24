@@ -98,7 +98,7 @@ const ankosha: Programme = {
   overview: {
     heading: 'One architecture. Four airframes. A single formation.',
     body: [
-      'Ankosha is built the way a family should be built: one autonomy core, one datalink, one ground segment, one logistics tail, wrapped in five airframes sized for five different fights. A section commander carrying an Ankosha-A and a strike cell tasking an Ankosha-C are operating the same system with the same interface and the same rules of engagement.',
+      'Ankosha is built the way a family should be built: one autonomy core, one datalink, one ground segment, one logistics tail, shared across the airframe family. A section commander carrying an Ankosha-A and a strike cell tasking an Ankosha-C are operating the same system with the same interface and the same rules of engagement.',
       'The airframes fly as a cruciform formation. Sensing, decision and effect are distributed across the cross: outer elements screen and localise, the arms carry the mixed payload load-out, and the lead element holds the engagement picture. Losing any single element degrades the formation gracefully: the remaining aircraft re-elect a lead and re-plan the run in flight, without a link back to the operator.',
       'Every round is dual-role. Until the moment of commitment an Ankosha is an ISR asset feeding the grid; commitment is a human decision, taken against a target the operator can see, on a timeline the operator controls.',
     ],
@@ -233,8 +233,8 @@ const counterUas: Programme = {
     'INDRASTRA senses, classifies and holds the low-altitude air picture. RYDER is the hard-kill effector it commands. Together they cover the drone threat from commercial quadcopter to high-speed loitering munition.',
   hero: {
     label: 'RYDER / HARD-KILL INTERCEPTOR',
-    path: '/images/counter-uas/ryder-field.jpg',
-    src: '/images/counter-uas/ryder-field.jpg',
+    path: '/images/counter-uas/ryder-interceptor-cad.jpg',
+    src: '/images/counter-uas/ryder-interceptor-cad.jpg',
   },
   overview: {
     heading: 'Cost per engagement is the whole problem.',
@@ -296,6 +296,13 @@ const counterUas: Programme = {
     { label: 'Grid interface', value: 'Native', note: 'Publishes to and subscribes from Valley' },
   ],
   gallery: [
+    {
+      label: 'RYDER / CAD ASSEMBLY',
+      caption: 'RYDER hard-kill interceptor, engineering render',
+      path: '/images/counter-uas/ryder-interceptor-cad.jpg',
+      src: '/images/counter-uas/ryder-interceptor-cad.jpg',
+      ratio: '3/2',
+    },
     {
       label: 'INDRASTRA / SENSOR NODE',
       caption: 'Airborne sensor node and ground control at the trial site',
@@ -735,20 +742,6 @@ const digitalTwin: Programme = {
     { label: 'Deployment', value: 'On-premise', note: 'Air-gapped installation supported' },
     { label: 'Grid interface', value: 'Native Valley service' },
   ],
-  gallery: [
-    {
-      label: 'TWIN / STRUCTURAL RESPONSE',
-      caption: 'Coupled structural and aerodynamic solution',
-      path: '/images/digital-twin/structural.jpg',
-      ratio: '4/5',
-    },
-    {
-      label: 'STOCKPILE / CONDITION VIEW',
-      caption: 'Per-round remaining-life prediction',
-      path: '/images/digital-twin/stockpile.jpg',
-      ratio: '4/5',
-    },
-  ],
   integration:
     'Twins are a Valley service. When the grid pairs an effector to a target it queries the twin for that specific round, for its age, its storage history and its predicted performance, instead of assuming a nominal article.',
   related: ['ankosha', 'hypersonics', 'quantum', 'valley'],
@@ -812,20 +805,6 @@ const quantum: Programme = {
     { label: 'Key rate', value: 'ON REQUEST' },
     { label: 'Integration', value: 'Valley command channel' },
     { label: 'Programme phase', value: 'Development' },
-  ],
-  gallery: [
-    {
-      label: 'FREE-SPACE / OPTICAL TERMINAL',
-      caption: 'Free-space link terminal under test',
-      path: '/images/quantum/optical-terminal.jpg',
-      ratio: '4/5',
-    },
-    {
-      label: 'INERTIAL / COLD-ATOM SENSOR',
-      caption: 'Quantum inertial sensing bench',
-      path: '/images/quantum/inertial-sensor.jpg',
-      ratio: '4/5',
-    },
   ],
   integration:
     'Quantum-secured links are the backbone of the grid\'s highest-classification traffic, and the channel over which tasking and engagement authority move between nodes.',
@@ -921,20 +900,6 @@ const aorizon: Programme = {
     { label: 'Track provenance', value: 'Always available' },
     { label: 'Concurrent tracks', value: 'ON REQUEST' },
   ],
-  gallery: [
-    {
-      label: 'AORIZON / OPERATOR CONSOLE',
-      caption: 'Fused track picture with provenance',
-      path: '/images/products/aorizon-console.jpg',
-      ratio: '16/9',
-    },
-    {
-      label: 'AORIZON / FORWARD NODE',
-      caption: 'Disconnected edge operation',
-      path: '/images/products/aorizon-node.jpg',
-      ratio: '4/5',
-    },
-  ],
   integration:
     'Aorizon is the reasoning tier of the grid and the picture it produces. Profile A rides the airframes as the autonomy core, Profile B sits at the operator console, and Profile C carries intelligence fusion and mission planning behind the enclave boundary. Talon acts on the picture and Sentinel defends against what appears in it.',
   related: ['talon', 'sentinel', 'valley', 'quantum'],
@@ -997,20 +962,6 @@ const talon: Programme = {
     { label: 'Assessment', value: 'Closed loop' },
     { label: 'Audit record', value: 'Per-step attribution' },
     { label: 'Built on', value: 'Valley' },
-  ],
-  gallery: [
-    {
-      label: 'TALON / PAIRING VIEW',
-      caption: 'Ranked effector options against a nominated target',
-      path: '/images/products/talon-pairing.jpg',
-      ratio: '16/9',
-    },
-    {
-      label: 'TALON / ENGAGEMENT TIMELINE',
-      caption: 'Authority chain through commitment',
-      path: '/images/products/talon-timeline.jpg',
-      ratio: '4/5',
-    },
   ],
   integration:
     'Talon is the effects face of the grid. It consumes Aorizon tracks, commands Ankosha, Ryder and third-party effectors, and queries digital twins for the actual condition of the round it is about to commit.',
@@ -1075,20 +1026,6 @@ const sentinel: Programme = {
     { label: 'Third-party effectors', value: 'Supported' },
     { label: 'Built on', value: 'Valley' },
   ],
-  gallery: [
-    {
-      label: 'SENTINEL / DEFENSIVE PICTURE',
-      caption: 'Layered protection around a defended asset',
-      path: '/images/products/sentinel-picture.jpg',
-      ratio: '16/9',
-    },
-    {
-      label: 'SENTINEL / CONVOY MODE',
-      caption: 'Protection of a moving formation',
-      path: '/images/products/sentinel-convoy.jpg',
-      ratio: '4/5',
-    },
-  ],
   integration:
     'Sentinel is the defensive face of the grid, driving Indrastra and Ryder at a site while remaining one cell of a national picture, handing tracks forward and receiving cueing from sensors it will never own.',
   related: ['counter-uas', 'aorizon', 'talon', 'valley'],
@@ -1110,8 +1047,10 @@ export const PROGRAMMES: Programme[] = [
   quantum,
 ];
 
-export const PROGRAMME_BY_SLUG: Record<string, Programme> = Object.fromEntries(
-  PROGRAMMES.map((p) => [p.slug, p]),
+// URL slugs must not resolve inherited object keys such as "constructor".
+export const PROGRAMME_BY_SLUG: Record<string, Programme> = Object.assign(
+  Object.create(null) as Record<string, Programme>,
+  Object.fromEntries(PROGRAMMES.map((p) => [p.slug, p])),
 );
 
 export function programmesIn(category: Category): Programme[] {

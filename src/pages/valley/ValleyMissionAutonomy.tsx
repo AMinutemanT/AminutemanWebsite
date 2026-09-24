@@ -85,7 +85,7 @@ export function ValleyMissionAutonomy() {
 
         <div className="container relative">
           <Reveal direction="none">
-            <nav className="flex items-center gap-2 font-mono text-[0.65rem] uppercase tracking-widest text-ink-dim">
+            <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-2 font-mono text-[0.65rem] uppercase tracking-widest text-ink-dim">
               <Link to="/" className="transition-colors hover:text-white">
                 Home
               </Link>
@@ -159,13 +159,19 @@ export function ValleyMissionAutonomy() {
       <section className="section border-b border-line">
         <div className="container">
           <Reveal>
-            <SectionHeading eyebrow="Behaviour" title="What runs on the airframe" />
+            <SectionHeading
+              index="01"
+              eyebrow="Behaviour · On the airframe"
+              lead="What runs on"
+              title="The airframe"
+              stop
+            />
           </Reveal>
 
-          <Stagger className="mt-16 grid grid-cols-1 gap-px bg-line md:grid-cols-2 lg:grid-cols-3">
+          <Stagger className="mt-16 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
             {BEHAVIOURS.map((item, i) => (
-              <StaggerItem key={item.title} className="bg-void">
-                <div className="group relative h-full bg-panel/40 p-8 transition-colors duration-300 hover:bg-panel">
+              <StaggerItem key={item.title}>
+                <div className="card group p-8">
                   <span className="font-mono text-[0.6rem] tracking-widest text-accent/80">
                     {String(i + 1).padStart(2, '0')}
                   </span>
@@ -186,8 +192,11 @@ export function ValleyMissionAutonomy() {
         <div className="container">
           <Reveal>
             <SectionHeading
-              eyebrow="Trust"
-              title="How a behaviour is qualified"
+              index="02"
+              eyebrow="Sequence · Trust"
+              lead="How a behaviour"
+              title="Is qualified"
+              stop
               lede="Autonomy is only useful if a commander will actually launch it. That is a qualification problem before it is a research one."
             />
           </Reveal>

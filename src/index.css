@@ -40,35 +40,6 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Faint atmospheric wash. Deliberately low contrast, the content carries the page. */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    z-index: -2;
-    pointer-events: none;
-    background:
-      radial-gradient(120% 80% at 50% -10%, rgba(255, 138, 0, 0.10), transparent 62%),
-      radial-gradient(90% 60% at 100% 100%, rgba(90, 182, 255, 0.045), transparent 60%),
-      #000000;
-  }
-
-  /* Structural grid over the whole document, the "instrument" layer. */
-  body::after {
-    content: '';
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    opacity: 0.5;
-    background-image:
-      linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-    background-size: 96px 96px;
-    mask-image: radial-gradient(120% 100% at 50% 0%, #000 20%, transparent 85%);
-    -webkit-mask-image: radial-gradient(120% 100% at 50% 0%, #000 20%, transparent 85%);
-  }
-
   ::selection {
     background: rgba(255, 138, 0, 0.35);
     color: #fff;
@@ -95,9 +66,45 @@
   h3 {
     @apply font-display;
   }
+
+  :focus-visible {
+    outline: 2px solid #FFAE42;
+    outline-offset: 4px;
+  }
+
+  [id] {
+    scroll-margin-top: 5rem;
+  }
 }
 
 @layer components {
+  /* The supplied square logo has generous baked-in margins. Crop the box,
+     preserving the original artwork, so its wordmark is legible in navigation. */
+  .brand-logo {
+    position: relative;
+    display: block;
+    width: 8rem;
+    height: 3.5rem;
+    overflow: hidden;
+  }
+
+  .brand-logo img {
+    position: absolute;
+    width: 8rem;
+    height: 8rem;
+    max-width: none;
+    top: -2rem;
+    left: 0;
+  }
+
+  .skip-link {
+    @apply fixed left-4 top-4 z-[100] -translate-y-24 bg-accent px-5 py-3 font-semibold text-void;
+  }
+
+  .skip-link:focus {
+    transform: translateY(0);
+  }
+
   .container {
     @apply w-full max-w-[92rem] mx-auto;
     @apply px-4 sm:px-8 md:px-12 lg:px-16;
@@ -127,6 +134,46 @@
     letter-spacing: -0.02em;
   }
 
+  /* The lighter upper line of a two-tone section heading. Big Shoulders is
+     self-hosted at 600/700/800/900, so "light" here means 600 set against the
+     800 of .display-lg below it — the contrast is weight and colour, not size. */
+  .display-lead {
+    @apply block font-display font-semibold uppercase leading-[0.95] text-ink-2;
+    @apply text-4xl sm:text-5xl md:text-6xl;
+    letter-spacing: -0.02em;
+  }
+
+  /**
+   * Masthead pairing. .display-lead is sized against .display-lg at the section
+   * scale (a 1.2x step); under .display-xl the same class reads as a caption
+   * rather than a first line, so mastheads take this larger cut instead.
+   */
+  .display-lead-xl {
+    @apply block font-display font-semibold uppercase leading-[0.95] text-ink-2;
+    @apply text-5xl sm:text-6xl md:text-7xl;
+    letter-spacing: -0.025em;
+  }
+
+  /* The ghosted ordinal that anchors each numbered section. Sits behind the
+     eyebrow rather than beside it, so it reads as a plate stamp rather than a
+     list marker. */
+  .section-index {
+    @apply block font-mono font-normal leading-none text-ink-dim;
+    @apply text-xs mb-6;
+    letter-spacing: -0.02em;
+  }
+
+  /* Hero eyebrow chip. The one rounded shape on the site: it is a control, and
+     it should not be mistaken for the square instrument chrome around it. */
+  .pill {
+    @apply inline-flex items-center gap-2.5 rounded-full py-1.5 pl-4 pr-3;
+    @apply border border-white/15 bg-white/[0.04] backdrop-blur-sm;
+    @apply font-mono text-[0.62rem] uppercase tracking-widest text-ink-1;
+    @apply transition-colors duration-200;
+    @apply hover:border-accent/50 hover:bg-accent/[0.08] hover:text-white;
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/60 focus-visible:ring-offset-2 focus-visible:ring-offset-void;
+  }
+
   .body-copy {
     @apply text-ink-2 leading-relaxed;
   }
@@ -147,6 +194,35 @@
 
   .panel-hover {
     @apply transition-colors duration-300 hover:border-accent/40 hover:bg-panel;
+  }
+
+  /* ---- Card surface ------------------------------------------------------- */
+
+  /**
+   * The card every grid on the site is built from. The base is deliberately
+   * quiet — a hairline and a barely-there panel wash — and everything that
+   * makes it feel alive is a hover state layered on top by SpotlightCard: the
+   * cursor spotlight and the accent rule across the foot.
+   */
+  .card {
+    @apply relative isolate flex h-full flex-col overflow-hidden;
+    @apply border border-line bg-panel/40;
+    @apply transition-[border-color,background-color,transform] duration-300 ease-out;
+  }
+
+  .card:hover {
+    @apply border-line-bright bg-panel/70;
+  }
+
+  /* Accent rule drawing across the foot of a card on hover. */
+  .card-rule {
+    @apply pointer-events-none absolute bottom-0 left-0 h-px w-0 bg-accent;
+    @apply transition-[width] duration-500 ease-out;
+  }
+
+  .card:hover .card-rule,
+  .card:focus-within .card-rule {
+    @apply w-full;
   }
 
   .hairline {
@@ -216,6 +292,12 @@
     border-right: 1px solid;
   }
 
+
+  /* Word-by-word heading reveal, driven by RevealText. */
+  @keyframes rise-in {
+    from { transform: translateY(105%); }
+    to   { transform: translateY(0); }
+  }
 
   .noise {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");

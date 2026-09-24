@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSeo } from '../utils/seo';
 import { Link } from 'react-router-dom';
 import { Send, Phone, Mail, MapPin, ArrowRight } from 'lucide-react';
-import { submitToWeb3Forms } from '../utils/cloudinary';
+import { enquiryFormAvailable, submitToWeb3Forms } from '../utils/cloudinary';
 import { Reveal } from '../components/ui/Reveal';
 import { GraphicBackdrop } from '../components/ui/GraphicBackdrop';
 import { Eyebrow } from '../components/ui/HUD';
@@ -60,6 +60,7 @@ export function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSubmitting) return;
     setIsSubmitting(true);
     setSubmitStatus({ type: null, message: '' });
 
@@ -90,8 +91,7 @@ ${formData.message}
         message: 'Enquiry received. The programme office will respond directly.',
       });
       setFormData({ name: '', organisation: '', email: '', subject: '', message: '' });
-    } catch (error) {
-      console.error('Failed to send email:', error);
+    } catch {
       setSubmitStatus({
         type: 'error',
         message: 'Transmission failed. Please try again, or write to the address above.',
@@ -118,7 +118,12 @@ ${formData.message}
             <Eyebrow>Programme office</Eyebrow>
           </Reveal>
           <Reveal delay={0.08}>
-            <h1 className="display-xl mt-6 text-white">Contact</h1>
+            <h1 className="mt-6">
+              <span className="display-lead">Programme enquiries</span>
+              <span className="display-xl mt-2 block text-white">
+                Contact<span className="text-accent">.</span>
+              </span>
+            </h1>
           </Reveal>
           <Reveal delay={0.14}>
             <p className="mt-7 max-w-3xl text-lg leading-relaxed text-ink-2 sm:text-xl">
@@ -137,10 +142,12 @@ ${formData.message}
             {/* Form */}
             <div className="lg:col-span-7">
               <Reveal>
-                                  <form
+                {enquiryFormAvailable ? <form
                     onSubmit={handleSubmit}
                     className="border border-line bg-panel/40 p-7 sm:p-10"
+                    aria-busy={isSubmitting}
                   >
+                    <fieldset disabled={isSubmitting}>
                     <p className="data-label">Enquiry</p>
                     <h2 className="display-md mt-4 text-white">Open a channel</h2>
 
@@ -228,7 +235,7 @@ ${formData.message}
 
                     {submitStatus.type && (
                       <p
-                        role="status"
+                        role={submitStatus.type === 'error' ? 'alert' : 'status'}
                         className={`mt-6 border px-4 py-3 font-mono text-[0.65rem] uppercase tracking-widest ${
                           submitStatus.type === 'success'
                             ? 'border-nominal/40 bg-nominal/[0.07] text-nominal'
@@ -238,7 +245,15 @@ ${formData.message}
                         {submitStatus.message}
                       </p>
                     )}
-                  </form>
+                    </fieldset>
+                  </form> : (
+                    <div className="border border-line bg-panel/40 p-7 sm:p-10">
+                      <p className="data-label">Programme enquiries</p>
+                      <h2 className="display-md mt-4 text-white">Write to the team</h2>
+                      <p className="body-copy mt-6">Email your organisation, the programme you are interested in, and your timeline. Please include only unclassified information.</p>
+                      <a className="btn-primary mt-8" href="mailto:admincontrols@aminutemantechnologies.com?subject=Programme%20enquiry">Email an enquiry <ArrowRight className="h-4 w-4" /></a>
+                    </div>
+                  )}
               </Reveal>
             </div>
 
@@ -258,7 +273,7 @@ ${formData.message}
                           key={line}
                           className="mt-2 break-all font-mono text-xs text-white/75"
                         >
-                          {line}
+                          <a href={line.startsWith('+') ? `tel:${line.replace(/\s/g, '')}` : `mailto:${line}`} className="underline decoration-white/25 underline-offset-4 hover:text-accent">{line}</a>
                         </dd>
                       ))}
                     </div>
@@ -346,6 +361,7 @@ function Field({
         id={name}
         name={name}
         type={type}
+        autoComplete={name === 'organisation' ? 'organization' : name}
         value={value}
         onChange={onChange}
         placeholder={placeholder}

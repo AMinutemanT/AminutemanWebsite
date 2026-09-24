@@ -84,7 +84,7 @@ export function ValleyCommandControl() {
 
         <div className="container relative">
           <Reveal direction="none">
-            <nav className="flex items-center gap-2 font-mono text-[0.65rem] uppercase tracking-widest text-ink-dim">
+            <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-2 font-mono text-[0.65rem] uppercase tracking-widest text-ink-dim">
               <Link to="/" className="transition-colors hover:text-white">
                 Home
               </Link>
@@ -159,15 +159,18 @@ export function ValleyCommandControl() {
         <div className="container">
           <Reveal>
             <SectionHeading
-              eyebrow="Operator surface"
-              title="What the console does"
+              index="01"
+              eyebrow="Surface · Operator view"
+              lead="What the"
+              title="Console does"
+              stop
             />
           </Reveal>
 
-          <Stagger className="mt-16 grid grid-cols-1 gap-px bg-line md:grid-cols-2 lg:grid-cols-3">
+          <Stagger className="mt-16 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
             {SURFACE.map((item, i) => (
-              <StaggerItem key={item.title} className="bg-void">
-                <div className="group relative h-full bg-panel/40 p-8 transition-colors duration-300 hover:bg-panel">
+              <StaggerItem key={item.title}>
+                <div className="card group p-8">
                   <span className="font-mono text-[0.6rem] tracking-widest text-accent/80">
                     {String(i + 1).padStart(2, '0')}
                   </span>
@@ -188,8 +191,11 @@ export function ValleyCommandControl() {
         <div className="container">
           <Reveal>
             <SectionHeading
-              eyebrow="Authority"
-              title="How a commitment is made"
+              index="02"
+              eyebrow="Sequence · Authority"
+              lead="How a commitment"
+              title="Is made"
+              stop
               lede="Four steps, and the third is always a person. The software enforces the sequence; a standing order only describes it."
             />
           </Reveal>

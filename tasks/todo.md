@@ -506,3 +506,92 @@ Deployment. Not a git repository, no Vercel/Netlify config in the project, and t
 
 ### Open
 - Every image is a licensed third-party photograph of equipment the company does not own. If any of this reads as implying otherwise, the captions are where to fix it: they name the systems as in-service Indian Army assets rather than ours.
+
+## Session 13, rebuilt on the Skylark Labs structure
+
+Reference: skylarklabs.ai, fetched and read rather than recalled. What was taken
+is the *structure*, not the content: a video masthead, numbered sections with a
+ghosted ordinal and a two-tone heading, three repeating card shapes, a mega-menu
+with sub-group headers, and a footer that opens on a statement. Palette
+(`void #000` / `accent #FF8A00`) and typography (Big Shoulders / Inter /
+JetBrains Mono) are unchanged.
+
+### Hero asset
+- [x] `scripts/build-hero-video.sh` derives the loop from `Kamikaze.mp4` (35 MB,
+      28 s) so the derivation is reproducible rather than a one-off. Window is
+      8.5s–15.5s: the hangar reveal, chosen off a contact sheet because it is the
+      only stretch that stays near-monochrome. Everything past ~16 s cuts to
+      daylit cloud, which fights white display type and drags colour in.
+- [x] Output: `hero-loop.mp4` 366 KB, `.webm` 341 KB, poster `.jpg` 22 KB.
+      Poster preloaded in `index.html` as the LCP candidate.
+- [x] Homebrew ffmpeg has no webp encoder; the webp sibling comes off the jpg via
+      `cwebp`, the same tool the rest of `public/images` was built with.
+
+### Structure
+- [x] `SectionHeading` extended in place with `index` / `lead` / `stop` rather
+      than a parallel component — 25+ existing call sites upgrade without churn.
+      `PageHero` took the same treatment for mastheads.
+- [x] New primitives: `HeroVideo`, `FleetCard`, `TrustBar`, `PressStrip`,
+      `SpotlightCard`, `MediaHud`, `RevealText`, `Counter`, `useCardSpotlight`.
+- [x] `nav.ts` gained optional `sections`, so the mega-menu groups Systems into
+      Air & strike / Air defence / Space and AI into Products / Foundations. The
+      flat `links` list stays complete for the footer and mobile drawer.
+- [x] The per-link `note` the content model has always carried is now rendered.
+      It was populated and discarded before; previous session logged it as unused.
+- [x] Home rebuilt on the 01–06 skeleton. Valley, About, Careers and
+      ProgrammeDetail took the same numbered grammar.
+
+### Card system
+- [x] One `.card` rule in `index.css` carries the whole treatment: cursor
+      spotlight, hairline lift, HUD corner ticks, accent rule. Spotlight and
+      ticks are pseudo-elements, so a card needs **no** extra markup and any
+      existing element opts in with the class.
+- [x] Corner ticks are eight gradient bars in one `background` on `::after`,
+      rather than four spans per card.
+- [x] `useCardSpotlight` is one delegated `pointermove` on the window, rAF-
+      coalesced, skipped entirely on coarse pointers. A 20-card grid costs one
+      listener, not twenty.
+- [x] 14 hairline (`gap-px bg-line`) grids converted to gapped cards across 10
+      files. `SpecTable` and `PressStrip` deliberately kept the hairline
+      treatment — they are data surfaces, not cards.
+
+### Defects found and fixed while verifying
+- Press outlet chips were a wrapping `gap-px` grid, which cannot fill its last
+  line and showed the remainder as a stray filled block. Now bordered chips.
+- Domain cards carried their own `01`–`06` ordinals that competed with the
+  section's `05`. Dropped. The designation line is also now suppressed where it
+  merely repeats the heading (`QUANTUM` under "Quantum").
+- Media cards drew eight corner ticks — four from the card, four from the frame.
+  `FleetCard` now passes `ticks={false}`.
+- `MediaHud` showed its vertical readout at rest; now hover-only, and the whole
+  overlay sits at 0.22 until hover so a grid reads as photographs first.
+- About's masthead had a large optical gap between its two heading lines. Boxes
+  measured flush (9 px); the space is Big Shoulders sitting low in a 122 px line
+  box. Fixed with a `display-lead-xl` cut sized against `display-xl`, plus a
+  small negative pull.
+- Mobile hero stranded "an" on its own line; the hard break is now `sm:` only.
+- `SpotlightCard` exported both a component and a hook, which defeats fast
+  refresh (eslint caught it). Hook split into `useCardSpotlight.ts`.
+
+### Verification
+- `npx tsc --noEmit`, `npx eslint src --max-warnings=0`, `npm run build` all
+  clean. Build emits 20 sitemap URLs and 19 prerendered route shells.
+- Screenshotted over CDP (Chrome headless, no dependencies — Node 25 has a
+  global WebSocket). Full homepage in nine slices, plus Valley, Systems, About,
+  a programme page, the Systems mega-menu, hover states, and 375 px mobile.
+- All three hero states proven, not assumed:
+  - normal → `video: true, playing: true`
+  - loop blocked at the network layer → `canvas3d: true` (3D flythrough)
+  - `prefers-reduced-motion` → poster still, no video, no canvas
+  Note: `--autoplay-policy=document-user-activation-required` does *not* exercise
+  the fallback; Chrome never blocks muted autoplay. Blocking the request does.
+
+### Open
+- The `Gltf` chunk is 864 KB (three.js GLTF loader). Pre-existing, not from this
+  work, and already code-split behind the lazy `AnkoshaScene`.
+- `designation` on `NavLink` is now rendered in the mega-menu; `note` likewise.
+  The previous session's note about both being unused no longer applies.
+- Trust bar prints partner *names* rather than logos, and prints the basis of
+  each relationship beside them. Reproducing partner marks would imply an
+  endorsement none of them has given, and a logo wall flattens "memorandum of
+  understanding" and "end-user validation" into one claim.

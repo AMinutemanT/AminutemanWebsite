@@ -1,7 +1,7 @@
-import { Suspense, useEffect, useRef, useState } from 'react';
+import { Suspense, useEffect, useRef, useState, type ComponentRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, useGLTF, Bounds, useProgress } from '@react-three/drei';
-import { useReducedMotion } from 'framer-motion';
+import { useInView } from 'framer-motion';
 import * as THREE from 'three';
 
 
@@ -33,13 +33,17 @@ export interface ModelViewerProps {
 
 useGLTF.setDecoderPath('/draco/');
 
-function Model({ src, spin }: { src: string; spin: boolean }) {
+function Model({ src, spin, angle }: { src: string; spin: boolean; angle: number }) {
   const { scene } = useGLTF(src, '/draco/');
   const ref = useRef<THREE.Group>(null);
 
   // Clone so the same asset can appear twice on a page without sharing state.
   const cloned = useRef<THREE.Object3D | null>(null);
   if (!cloned.current) cloned.current = scene.clone(true);
+
+  useEffect(() => {
+    if (ref.current) ref.current.rotation.y = angle;
+  }, [angle]);
 
   useFrame((_, delta) => {
     if (spin && ref.current) ref.current.rotation.y += delta * 0.18;
@@ -78,26 +82,45 @@ export function ModelViewer({
   className = '',
   height = 'h-[380px] sm:h-[520px] lg:h-[600px]',
 }: ModelViewerProps) {
-  const reduced = useReducedMotion();
-  const [interacted, setInteracted] = useState(false);
-  const [supported, setSupported] = useState(true);
+  const frame = useRef<HTMLDivElement>(null);
+  const controls = useRef<ComponentRef<typeof OrbitControls>>(null);
+  const visible = useInView(frame);
+  const [rotating, setRotating] = useState(false);
+  const [angle, setAngle] = useState(0);
+  const [supported, setSupported] = useState<boolean | null>(null);
 
   // WebGL is not guaranteed. Fail to a readable panel rather than a blank box.
   useEffect(() => {
     try {
       const c = document.createElement('canvas');
       const gl = c.getContext('webgl2') || c.getContext('webgl');
-      if (!gl) setSupported(false);
+      setSupported(Boolean(gl));
+      gl?.getExtension('WEBGL_lose_context')?.loseContext();
     } catch {
       setSupported(false);
     }
   }, []);
 
+  const rotate = (direction: number) => {
+    setRotating(false);
+    setAngle((value) => value + direction * Math.PI / 8);
+  };
+
+  const zoom = (factor: number) => {
+    const orbit = controls.current;
+    if (!orbit) return;
+    const offset = orbit.object.position.clone().sub(orbit.target);
+    offset.setLength(Math.max(orbit.minDistance, Math.min(orbit.maxDistance, offset.length() * factor)));
+    orbit.object.position.copy(orbit.target).add(offset);
+    orbit.update();
+  };
+
   return (
     <figure className={className}>
               <div
+          ref={frame}
           className={`relative overflow-hidden border border-line bg-abyss ${height}`}
-          onPointerDown={() => setInteracted(true)}
+          onPointerDown={() => setRotating(false)}
         >
           <div className="absolute inset-0 bg-grid-fine bg-grid-fine opacity-[0.14]" />
 
@@ -107,7 +130,8 @@ export function ModelViewer({
                 camera={{ position: [2.4, 1.1, 2.4], fov: 42 }}
                 dpr={[1, 1.75]}
                 gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
-                frameloop={reduced ? 'demand' : 'always'}
+                frameloop={rotating && visible ? 'always' : 'demand'}
+                aria-label={`${label} interactive 3D model`}
               >
                 {/* Three-point rig: neutral key, warm accent rim, cool fill. */}
                 <ambientLight intensity={0.7} />
@@ -117,11 +141,12 @@ export function ModelViewer({
 
                 <Suspense fallback={null}>
                   <Bounds fit clip observe margin={0.82}>
-                    <Model src={src} spin={!reduced && !interacted} />
+                    <Model src={src} spin={rotating && visible} angle={angle} />
                   </Bounds>
                 </Suspense>
 
                 <OrbitControls
+                  ref={controls}
                   makeDefault
                   enablePan={false}
                   enableDamping
@@ -132,7 +157,7 @@ export function ModelViewer({
               </Canvas>
               <Loader />
             </>
-          ) : (
+          ) : supported === false ? (
             <div className="absolute inset-0 flex items-center justify-center px-6 text-center">
               <p className="font-mono text-[0.65rem] uppercase leading-relaxed tracking-widest text-ink-3">
                 3D view requires WebGL
@@ -140,7 +165,7 @@ export function ModelViewer({
                 <span className="text-ink-dim">Geometry available on request</span>
               </p>
             </div>
-          )}
+          ) : <Loader />}
 
           {/* HUD chrome */}
           <div className="pointer-events-none absolute inset-0">
@@ -173,6 +198,16 @@ export function ModelViewer({
             )}
           </div>
         </div>
+
+      {supported && (
+        <div role="group" aria-label={`${label} model controls`} className="flex flex-wrap gap-2 border-x border-b border-line bg-panel p-3">
+          <button type="button" className="btn-secondary px-3 text-[0.65rem]" onClick={() => rotate(-1)}>Rotate left</button>
+          <button type="button" className="btn-secondary px-3 text-[0.65rem]" onClick={() => rotate(1)}>Rotate right</button>
+          <button type="button" className="btn-secondary px-3 text-[0.65rem]" onClick={() => zoom(0.8)}>Zoom in</button>
+          <button type="button" className="btn-secondary px-3 text-[0.65rem]" onClick={() => zoom(1.25)}>Zoom out</button>
+          <button type="button" className="btn-secondary px-3 text-[0.65rem]" aria-pressed={rotating} onClick={() => setRotating((value) => !value)}>{rotating ? 'Pause rotation' : 'Auto rotate'}</button>
+        </div>
+      )}
 
       {caption && (
         <figcaption className="mt-3 font-mono text-[0.65rem] uppercase tracking-widest text-ink-dim">

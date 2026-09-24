@@ -1,183 +1,54 @@
-# Forms Integration Documentation
+# Enquiries and applications
 
-## Overview
-
-The AminutemanWebsite now has integrated forms using Web3Forms for form submissions and Cloudinary for file uploads. This implementation covers both the Contact form and Careers form.
-
-## Features Implemented
-
-### 1. Contact Form (`/src/pages/Contact.tsx`)
-- Direct submission to Web3Forms
-- Fields: Name, Email, Subject, Message
-- Success/Error feedback
-- Form validation
-
-### 2. Careers Form (`/src/pages/Careers.tsx`)
-- Resume upload to Cloudinary
-- Form submission to Web3Forms with resume URL
-- Fields: Name, Email, Phone, Position, Experience, Resume, Cover Letter
-- File validation (PDF, DOC, DOCX, max 5MB)
-- Upload progress indicators
-- Success/Error feedback
+Contact submits enquiries through Web3Forms. Careers uploads the CV to Cloudinary
+and submits its returned URL with the application through Web3Forms. Both are
+browser-side integrations; no server secrets belong in this repository.
 
 ## Configuration
 
-### Environment Variables (`.env`)
-
-Copy `.env.example` to `.env` and fill it in. `.env` is gitignored and must stay that way.
+Copy `.env.example` to `.env.local` for local development. Set the same publishable
+values in the deployment's build environment:
 
 ```env
+VITE_WEB3FORMS_ACCESS_KEY=
 VITE_CLOUDINARY_CLOUD_NAME=
 VITE_CLOUDINARY_UPLOAD_PRESET=
-VITE_WEB3FORMS_ACCESS_KEY=
 ```
 
-Everything in a `VITE_`-prefixed variable is compiled into the public JavaScript
-bundle and is readable by anyone. Only ever put publishable values here: the
-Cloudinary cloud name, an *unsigned* upload preset, and the Web3Forms access key
-(which is designed to be public). A Cloudinary API secret, or any signing key,
-must never appear in this file or anywhere else in this repository.
+The Web3Forms key is tied to the intended recipient's account. Cloudinary must use
+an unsigned upload preset in the intended company account. Configure that preset
+for the accepted document formats (PDF, DOC, DOCX), a 5 MB size limit and the
+appropriate application-upload folder. The browser's validation is a convenience;
+provider-side restrictions must also be configured.
 
-### Cloudinary Settings
-- **Cloud Name**: `dhi6p6erz`
-- **API Key**: `696776578481646`
-- **API Secret**: not used by the frontend, and never committed. Keep it in the Cloudinary dashboard only.
-- **Upload Folder**: `aminuteman_resumes`
+All `VITE_` values are public in the generated bundle. Never include a Cloudinary
+API secret, private API key or signing credential. Restart the development server
+after changing variables, and rebuild for production changes.
 
-### Web3Forms Settings
-- **Access Key**: `087ad74a-490c-4bcb-a331-228bbb69f1d8`
+There are no embedded fallback account values. Without a Web3Forms key, Contact
+offers a direct email enquiry path. Without all three values, Careers offers an
+email application path with the selected role included in the subject. This keeps
+the user journey available on unconfigured preview deployments.
 
-## Implementation Details
+## Submission behavior
 
-### File Structure
-```
-src/
-├── utils/
-│   └── cloudinary.ts          # Cloudinary upload & Web3Forms utilities
-├── pages/
-│   ├── Contact.tsx            # Updated contact form
-│   └── Careers.tsx            # Updated careers form with file upload
-```
+- Required fields use browser validation and persistent labels.
+- Fields and submit buttons lock while a request is pending.
+- Failures retain entered values; status messages are announced to assistive technology.
+- Enquiry requests time out after 30 seconds; CV uploads after 60 seconds.
+- A successful upload is retained if the application submission fails, so retrying
+  does not upload the same CV twice.
+- Selecting an invalid replacement clears the previous CV and upload URL.
+- Success resets all inputs, including the native file input.
 
-### Key Functions
+## Verification
 
-#### `uploadToCloudinary(file: File): Promise<string>`
-- Uploads file to Cloudinary
-- Returns secure URL of uploaded file
-- Handles error cases
-- Uses unsigned upload with preset
+Use intercepted/mock requests for routine browser testing. Cover contact failure,
+retry and success; job selection; invalid type and oversize CVs; upload failure;
+submission failure after upload; retry without duplicate upload; successful reset;
+and the missing-configuration email paths.
 
-#### `submitToWeb3Forms(formData: any): Promise<void>`
-- Submits form data to Web3Forms API
-- Handles success/error responses
-- Supports both contact and careers forms
-
-## File Upload Process (Careers Form)
-
-1. User selects resume file
-2. File is validated (type, size)
-3. On form submission:
-   - File is uploaded to Cloudinary
-   - Upload URL is obtained
-   - Form data (including resume URL) is sent to Web3Forms
-4. Success/Error feedback is displayed
-
-## Form Data Structure
-
-### Contact Form
-```json
-{
-  "access_key": "087ad74a-490c-4bcb-a331-228bbb69f1d8",
-  "name": "John Doe",
-  "email": "john@example.com",
-  "subject": "Inquiry",
-  "message": "Message content",
-  "form_type": "contact"
-}
-```
-
-### Careers Form
-```json
-{
-  "access_key": "087ad74a-490c-4bcb-a331-228bbb69f1d8",
-  "name": "John Doe",
-  "email": "john@example.com",
-  "phone": "+91 9876543210",
-  "position": "UAV Engineer",
-  "experience": "3",
-  "resume_url": "https://res.cloudinary.com/dhi6p6erz/...",
-  "cover_letter": "Cover letter content",
-  "form_type": "careers"
-}
-```
-
-## Error Handling
-
-### File Upload Errors
-- File size validation (max 5MB)
-- File type validation (PDF, DOC, DOCX)
-- Cloudinary upload failures
-- Network connectivity issues
-
-### Form Submission Errors
-- Web3Forms API failures
-- Network connectivity issues
-- Invalid form data
-
-## User Feedback
-
-### Success States
-- Contact form: "Message sent successfully! We'll get back to you soon."
-- Careers form: "Application submitted successfully! We'll review your application and get back to you soon."
-
-### Error States
-- File validation errors
-- Upload failure messages
-- Form submission failure messages
-
-## Security Considerations
-
-1. **Unsigned Upload**: Using Cloudinary's unsigned upload to avoid exposing API secrets
-2. **File Validation**: Client-side validation for file type and size
-3. **Environment Variables**: Sensitive keys stored in environment variables
-4. **HTTPS**: All API calls use HTTPS endpoints
-
-## Setup Instructions
-
-1. **Cloudinary Setup**:
-   - Create an unsigned upload preset (or use 'ml_default')
-   - Configure upload folder as 'aminuteman_resumes'
-   - Enable unsigned uploads for the preset
-
-2. **Web3Forms Setup**:
-   - Already configured with provided access key
-   - Forms will be delivered to the associated email
-
-3. **Environment Setup**:
-   - Copy `.env` file with correct values
-   - Restart development server after changes
-
-## Testing
-
-1. **Contact Form**:
-   - Fill all fields and submit
-   - Check Web3Forms dashboard for submissions
-
-2. **Careers Form**:
-   - Upload a valid resume file
-   - Fill all required fields
-   - Submit and verify both Cloudinary upload and Web3Forms submission
-
-## Monitoring
-
-- Check Web3Forms dashboard for form submissions
-- Monitor Cloudinary dashboard for file uploads
-- Check browser console for any JavaScript errors
-
-## Future Enhancements
-
-1. **File Preview**: Add preview functionality for uploaded resumes
-2. **Progress Bar**: Detailed upload progress indicators
-3. **Email Templates**: Custom email templates in Web3Forms
-4. **File Management**: Admin panel to manage uploaded files
-5. **Validation**: Server-side file validation for additional security
+A real delivery check must be performed against the configured deployment and
+verified in the intended recipient's inbox. Local mocked checks establish UI and
+request behavior, not inbox delivery or provider-account configuration. Avoid
+sending unsolicited test enquiries or personal documents during automated QA.

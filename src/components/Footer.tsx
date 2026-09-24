@@ -3,7 +3,7 @@ import { Instagram, Twitter, Linkedin, Mail, Phone, MapPin, ArrowRight } from 'l
 
 import logo from './../logo.png';
 import { NAV_GROUPS } from '../data/nav';
-import { TAGLINE, OFFICES } from '../data/company';
+import { OFFICES } from '../data/company';
 
 const SOCIALS = [
   {
@@ -22,47 +22,41 @@ const SOCIALS = [
 export function Footer() {
   return (
     <footer className="relative border-t border-line bg-void">
-      <div className="absolute inset-0 bg-grid-coarse bg-grid-coarse opacity-[0.12]" />
-
       <div className="container relative py-16 sm:py-20">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-10">
           {/* ---- Identity + contact ------------------------------------- */}
           <div className="lg:col-span-4">
             <Link to="/" className="inline-flex items-center">
-              <img
+              <span className="brand-logo"><img
                 loading="lazy"
                 src={logo}
                 alt="Aminuteman Technologies"
-                className="h-10 w-auto object-contain"
-              />
+                width="500"
+                height="500"
+              /></span>
             </Link>
 
-            <p className="mt-5 font-mono text-[0.65rem] uppercase tracking-ultra text-accent-soft/80">
-              {TAGLINE}
-            </p>
-
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-ink-3">
-              Autonomous air systems, the effectors that finish an engagement, and the grid that
-              connects every sensor and shooter into a single picture. Designed, developed and
-              manufactured in India.
+              Autonomous air systems and defence integration software.
+              Designed, developed and built in India.
             </p>
 
             <ul className="mt-8 space-y-3">
               <li className="flex items-start gap-3">
                 <Phone className="mt-0.5 h-4 w-4 shrink-0 text-accent/80" />
-                <span className="font-mono text-xs text-ink-2">+91 93562 21384</span>
+                <a href="tel:+919356221384" className="font-mono text-xs text-ink-2 hover:text-accent">+91 93562 21384</a>
               </li>
               <li className="flex items-start gap-3">
                 <Mail className="mt-0.5 h-4 w-4 shrink-0 text-accent/80" />
-                <span className="break-words font-mono text-[0.7rem] leading-relaxed text-ink-2">
+                <a href="mailto:aminutemantechnologies@gmail.com" className="min-w-0 break-all font-mono text-[0.7rem] leading-relaxed text-ink-2 hover:text-accent">
                   aminutemantechnologies@gmail.com
-                </span>
+                </a>
               </li>
               <li className="flex items-start gap-3">
                 <Mail className="mt-0.5 h-4 w-4 shrink-0 text-accent/80" />
-                <span className="break-words font-mono text-[0.7rem] leading-relaxed text-ink-2">
+                <a href="mailto:admincontrols@aminutemantechnologies.com" className="min-w-0 break-all font-mono text-[0.7rem] leading-relaxed text-ink-2 hover:text-accent">
                   admincontrols@aminutemantechnologies.com
-                </span>
+                </a>
               </li>
             </ul>
 
@@ -84,7 +78,7 @@ export function Footer() {
           </div>
 
           {/* ---- Sitemap, driven by the same IA as the navbar ------------ */}
-          <nav className="lg:col-span-6">
+          <nav aria-label="Footer navigation" className="lg:col-span-6">
             <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
               {NAV_GROUPS.map((group) => (
                 <div key={group.label}>

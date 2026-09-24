@@ -146,7 +146,7 @@ export function Valley() {
 
         <div className="container relative z-10 pb-20 sm:pb-24">
           <Reveal direction="none">
-            <nav className="flex items-center gap-2 font-mono text-[0.65rem] uppercase tracking-widest text-ink-dim">
+            <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-2 font-mono text-[0.65rem] uppercase tracking-widest text-ink-dim">
               <Link to="/" className="transition-colors hover:text-white">
                 Home
               </Link>
@@ -239,8 +239,11 @@ export function Valley() {
         <div className="container relative">
           <Reveal>
             <SectionHeading
-              eyebrow="Architecture"
-              title="The unified grid"
+              index="01"
+              eyebrow="Architecture · The grid"
+              lead="The unified"
+              title="Grid"
+              stop
               lede="Sensing on the left, effects on the right, one custody model in the middle. Any node on either side can be ours, the customer’s, or a third party’s. The grid is indifferent to which."
             />
           </Reveal>
@@ -258,8 +261,11 @@ export function Valley() {
         <div className="container">
           <Reveal>
             <SectionHeading
-              eyebrow="Sequence"
-              title="How an engagement closes"
+              index="02"
+              eyebrow="Sequence · Engagement"
+              lead="How an engagement"
+              title="Closes"
+              stop
               lede="Six steps, and a human at the fifth. The grid compresses the four either side of it."
             />
           </Reveal>
@@ -307,16 +313,19 @@ export function Valley() {
         <div className="container">
           <Reveal>
             <SectionHeading
-              eyebrow="Composition"
-              title="What the platform is made of"
+              index="03"
+              eyebrow="Composition · The stack"
+              lead="What it is"
+              title="Made of"
+              stop
               lede="Five layers. A customer can adopt the lower ones without the upper ones, which is usually how a first deployment starts."
             />
           </Reveal>
 
-          <Stagger className="mt-16 grid grid-cols-1 gap-px bg-line md:grid-cols-2 lg:grid-cols-3">
+          <Stagger className="mt-16 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
             {LAYERS.map((layer, i) => (
-              <StaggerItem key={layer.name} className="bg-void">
-                <div className="group relative h-full bg-panel/40 p-8 transition-colors duration-300 hover:bg-panel">
+              <StaggerItem key={layer.name}>
+                <div className="card group p-8">
                   <span className="font-mono text-[0.6rem] tracking-widest text-accent/80">
                     {String(i + 1).padStart(2, '0')}
                   </span>
@@ -339,16 +348,19 @@ export function Valley() {
             <div className="lg:col-span-5">
               <Reveal>
                 <SectionHeading
-                  eyebrow="Posture"
-                  title="Built for the link going down"
+                  index="04"
+                  eyebrow="Posture · Contested conditions"
+                  lead="Built for the"
+                  title="Link going down"
+                  stop
                   lede="Contested electromagnetic conditions are the design case, handled in the first release and not deferred to a later one."
                 />
               </Reveal>
             </div>
             <div className="lg:col-span-7">
-              <Stagger className="grid grid-cols-1 gap-px bg-line sm:grid-cols-2">
+              <Stagger className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                 {EDGE.map((item) => (
-                  <StaggerItem key={item.title} className="bg-void">
+                  <StaggerItem key={item.title}>
                     <div className="h-full bg-panel/40 p-7">
                       <h3 className="font-display text-lg uppercase tracking-wide text-white">
                         {item.title}
@@ -368,18 +380,21 @@ export function Valley() {
         <div className="container">
           <Reveal>
             <SectionHeading
-              eyebrow="Delivered as"
-              title="Three products, one grid"
+              index="05"
+              eyebrow="Delivered as · Products"
+              lead="Three products,"
+              title="One grid"
+              stop
               lede="Valley reaches a customer as one of three deployable products. They read and write the same grid state, so a force can start with one and add the others without a second integration."
             />
           </Reveal>
 
-          <Stagger className="mt-16 grid grid-cols-1 gap-px bg-line lg:grid-cols-3">
+          <Stagger className="mt-16 grid grid-cols-1 gap-5 lg:grid-cols-3">
             {products.map((product) => (
-              <StaggerItem key={product.slug} className="bg-void">
+              <StaggerItem key={product.slug}>
                 <Link
                   to={programmePath(product.slug)}
-                  className="group flex h-full flex-col bg-panel/30 p-8 transition-colors duration-300 hover:bg-panel"
+                  className="card group p-8"
                 >
                   <h3 className="font-display text-3xl uppercase leading-none tracking-wide text-white">
                     {product.name}
@@ -415,15 +430,21 @@ export function Valley() {
       <section className="section">
         <div className="container">
           <Reveal>
-            <SectionHeading eyebrow="Go deeper" title="The platform in detail" />
+            <SectionHeading
+              index="06"
+              eyebrow="Go deeper · The platform"
+              lead="The platform"
+              title="In detail"
+              stop
+            />
           </Reveal>
 
-          <div className="mt-14 grid grid-cols-1 gap-px bg-line md:grid-cols-3">
+          <div className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-3">
             {SUBPAGES.map((page) => (
               <Link
                 key={page.to}
                 to={page.to}
-                className="group block bg-panel/40 p-8 transition-colors hover:bg-panel"
+                className="card group p-8"
               >
                 <div className="flex items-start justify-between gap-3">
                   <span className="font-mono text-[0.6rem] uppercase tracking-widest text-accent/80">
