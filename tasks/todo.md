@@ -39,4 +39,5 @@ until Om says so.
   captions for the 3 extra Ankosha airframe renders and the 6 extra HGV / 4 extra orbital renders,
   a Valley image, and the exact subsidiary wording ("US subsidiary"?).
 - Metric to watch: enquiry_submitted per $pageview session, split by which Products tab was opened.
-- Still open: partner logos ×4, captions for the extra renders, a Valley image, the "US subsidiary" wording.
+- 2026-10-16: all 8 partner logos added from each organisation's own site (Indian Army + JSW Group from public-domain Commons files); cards use a fixed 96×60 tile, explicit width/height, and an initials fallback only if the image fails.
+- Still open: captions for the extra renders, a Valley image, the "US subsidiary" wording.
