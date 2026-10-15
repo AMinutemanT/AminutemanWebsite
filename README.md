@@ -1,73 +1,43 @@
-# Aminuteman Technologies
+# Aminuteman Technologies — website
 
-A static company website built with React 18, TypeScript, Vite and Tailwind CSS.
-Programme content is maintained in TypeScript; no backend or CMS is required.
+Single-page site for [aminutemantechnologies.com](https://aminutemantechnologies.com),
+a structural clone of the parent company's site, [avalonch.com](https://www.avalonch.com),
+carrying Aminuteman's own programmes, partners and contact details.
 
-## Local development
+## Layout
 
-Use Node.js 22.12 or later and npm.
-
-```sh
-npm ci
-npm run dev
+```
+index.html        the whole site: head, inline CSS, markup, inline JS
+public/           served as-is at the root (images, videos, fonts, favicons, sitemap)
+render.yaml       Render static-site blueprint: headers, CSP, redirects
+docs/             design notes from the previous multi-page build (historical)
+tasks/            working notes
 ```
 
-The development server runs at http://localhost:5173. Programme and company
-content live in `src/data/programmes.ts` and `src/data/company.ts`. Navigation is
-assembled in `src/data/nav.ts`; the route table and legacy redirects are in
-`src/App.tsx`. Shared styles and tokens live in `src/index.css` and
-`tailwind.config.js`. Company imagery, fonts, video and models are served locally
-from `public/`.
+The page has three hash routes: `/#home`, `/#products` (tabs: Hardware, Software,
+Future Roadmap, Research & Development) and `/#contact`. The old multi-page URLs
+redirect to the matching hash in `render.yaml`.
 
-## Forms
+## Working on it
 
-Copy `.env.example` to `.env.local` and provide the publishable values for your
-Web3Forms account and Cloudinary unsigned upload preset. Restart Vite after changing
-them. Vite embeds these values at build time, so production configuration must be
-set before building.
-
-- `VITE_WEB3FORMS_ACCESS_KEY`: enables the enquiry form.
-- `VITE_CLOUDINARY_CLOUD_NAME` and `VITE_CLOUDINARY_UPLOAD_PRESET`: together with the
-  form key, enable CV uploads and applications.
-
-When configuration is absent, Contact and Careers offer an email application or
-enquiry path. No fallback service accounts are embedded in source. Never put an API
-secret, signing key or private credential in a `VITE_` variable. See
-`FORMS_INTEGRATION.md` for provider setup.
-
-## Verification and production build
-
-```sh
-npm run lint
-npm run typecheck
-npm run build
-npm run preview
+```
+npm install
+npm run dev        # http://localhost:5173
+npm run build      # writes dist/
+npm run preview    # serves dist/ on :4173
 ```
 
-The build checks the TypeScript projects, bundles the app, and generates a sitemap
-and route-specific HTML metadata shells in `dist/`. These shells improve link
-previews; they do not render the React page body on the server. The preview server
-runs on port 4173. There is no configured automated test suite or formatter.
+Vite is used only to copy `public/` and to substitute `%VITE_WEB3FORMS_ACCESS_KEY%`
+into `index.html`. There is no bundling step; edit `index.html` directly.
 
-For browser QA, inspect the 20 routes in `dist/sitemap.xml`, legacy redirects and a
-not-found URL. Check 1440, 1280, 1024, 768, 480 and 375 px widths, keyboard navigation,
-reduced motion, image loading, and form success/failure states. Mock form-provider
-requests during testing to avoid sending real enquiries or uploading test CVs.
+## Content rules
 
-## Deployment
+- Programme copy, partner names and contact details are the only things that
+  differ from the parent site. Keep the structure identical.
+- Partners are listed by name only. Never describe the work done with a named partner.
+- Do not caption an image unless what it shows has been confirmed.
 
-`render.yaml` documents static hosting, security headers and SPA fallback routing.
-Provide form variables in the hosting environment, then run `npm ci && npm run
-build` and publish `dist/`. Existing dashboard-managed services must apply blueprint
-settings explicitly. Verify direct route loads and route-specific social metadata
-on the actual host; local preview cannot verify hosting rewrite precedence.
+## Forms and analytics
 
-The optional 3D renderer is a separate large chunk. Inspect whether it is downloaded
-on the initial page before treating its build warning as an entry-bundle regression.
-
-## Design review
-
-Claude's product/design guidance is in `docs/`. Implementation progress, verification
-results, outstanding issues and deviations are recorded in
-`docs/IMPLEMENTATION_STATUS.md`. Preserve the existing content and provenance of
-company imagery; do not add unverified statistics, customers or endorsements.
+See `FORMS_INTEGRATION.md`. Analytics is PostHog (US cloud); the snippet lives in
+the head of `index.html`, and the enquiry form fires `enquiry_submitted`.
